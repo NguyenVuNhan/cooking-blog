@@ -23,3 +23,15 @@ services:
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./client/build:/usr/share/nginx/html
+
+  cookingblogexporter:
+    container_name: cookingblogexporter
+    build: ./nginxexporter
+    command: "-nginx.scrape-uri http://cooking-blog:9113/stub_status"
+    restart: unless-stopped
+    depends_on:
+      - nginx
+    networks:
+      - default
+    labels:
+      org.label-schema.group: "monitoring"
