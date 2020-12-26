@@ -3,14 +3,17 @@ version: "3.8"
 networks:
   cooking-blog:
     name: "cooking-blog-network"
+  default:
+    name: "default-network"
 
 services:
-  nginx:
+  cookingblog:
     container_name: cookingblog
     image: nginx:1.19-alpine
     restart: always
     networks:
       - cooking-blog
+      - default
     logging:
       driver: "json-file"
       options:
@@ -18,3 +21,4 @@ services:
         max-file: "10"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./client/build:/usr/share/nginx/html
