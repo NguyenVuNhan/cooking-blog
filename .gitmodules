@@ -1,0 +1,6 @@
+[submodule "client"]
+	path = client
+	url = https://github.com/NguyenVuNhan/cooking-blog-fe
+[submodule "server"]
+	path = server
+	url = https://github.com/NguyenVuNhan/cooking-blog-be.git
