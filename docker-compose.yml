@@ -30,7 +30,7 @@ services:
     command: "-nginx.scrape-uri http://cooking-blog:9113/stub_status"
     restart: unless-stopped
     depends_on:
-      - nginx
+      - cookingblog
     networks:
       - default
     labels:
