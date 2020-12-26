@@ -4,6 +4,7 @@ networks:
   cooking-blog:
     name: "cooking-blog-network"
   default:
+    external: true
     name: "default-network"
 
 services:
