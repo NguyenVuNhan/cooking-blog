@@ -17,7 +17,7 @@ jobs:
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.SSHKEY }}
         with:
-          source: "docker-compose.yml,nginx"
+          source: "docker-compose.yml,nginx,nginxexporter"
           target: ${{ secrets.WORK_DIR }}
 
       - name: Executing remote command
