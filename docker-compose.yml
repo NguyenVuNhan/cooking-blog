@@ -2,6 +2,7 @@ version: "3.8"
 
 networks:
   cooking-blog:
+    external: true
     name: "cooking-blog-network"
   default:
     external: true
