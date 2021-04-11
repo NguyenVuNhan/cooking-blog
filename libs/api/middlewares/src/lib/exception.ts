@@ -1,6 +1,6 @@
 import { Application, NextFunction, Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-import Log from './log';
+import { log } from '@cookingblog/utils';
 import { APIError } from '@utils/exception';
 
 interface ErrorResponse {
@@ -15,9 +15,9 @@ class Handler {
    */
   public static notFoundHandler(_express: Application): Application {
     _express.use((req, res) => {
-      const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+      const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
 
-      Log.error(`Path '${req.originalUrl}' not found [IP: '${ip}']!`);
+      log.error(`Path '${req.originalUrl}' not found [IP: '${ip}']!`);
       return res.status(404).json({
         data: {
           errors: [
@@ -102,7 +102,7 @@ class Handler {
     next: NextFunction
   ): void {
     if (!(err instanceof APIError)) {
-      Log.error(err.stack || err.message);
+      log.error(err.stack || err.message);
     }
 
     return next(err);

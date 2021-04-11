@@ -1,16 +1,14 @@
-import { AppConfig } from './app-config';
+import { APIConfig } from '@cookingblog/api-interfaces';
+import { log } from '@cookingblog/utils';
 import { Application } from 'express';
-
-import { log } from '@api/middlewares';
+import apiRouter from '@api/routes';
 
 class Routes {
-  public mountApi(express: Application, config: AppConfig): Application {
+  public mountApi(express: Application, config: APIConfig): Application {
     const apiPrefix = config.apiPrefix;
     log.info('Routes :: Mounting API Routes...');
 
-    return express.use(`/${apiPrefix}`, (_, res) =>
-      res.json({ greeting: 'hello' })
-    );
+    return express.use(`/${apiPrefix}`, apiRouter);
   }
 }
 

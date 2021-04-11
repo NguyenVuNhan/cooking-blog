@@ -6,5 +6,6 @@ module.exports = {
     '<rootDir>/libs/utils/exception',
     '<rootDir>/libs/api/routes',
     '<rootDir>/libs/api/controllers',
+    '<rootDir>/libs/utils',
   ],
 };

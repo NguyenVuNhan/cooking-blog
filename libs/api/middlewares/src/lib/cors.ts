@@ -1,11 +1,11 @@
 import cors from 'cors';
 import { Application } from 'express';
 
-import Log from './log';
+import { log } from '@cookingblog/utils';
 
 class CORS {
   public mount(_express: Application, config: { url: string }): Application {
-    Log.info("Booting the 'CORS' middleware...");
+    log.info("Booting the 'CORS' middleware...");
 
     const options = {
       origin: config.url,

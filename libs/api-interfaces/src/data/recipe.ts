@@ -1,5 +1,5 @@
 import { Document } from 'mongoose';
-import { User } from './user';
+import { IUser } from './user';
 
 interface IIngredientElem {
   ingredient: string;
@@ -13,9 +13,9 @@ interface Step {
   ingredients: IIngredientList;
 }
 
-export interface Recipe {
+export interface IRecipe {
   title: string;
-  user: User;
+  user: IUser;
   course: string;
   ingredients: IIngredientList;
   ingredientsStr: string;
@@ -23,4 +23,4 @@ export interface Recipe {
   steps: Step[];
 }
 
-export interface RecipeModel extends Recipe, Document {}
+export interface IRecipeModel extends IRecipe, Document {}

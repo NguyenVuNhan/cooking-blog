@@ -1,10 +1,10 @@
-import { UserModel } from '@cookingblog/api-interfaces';
+import { IUserModel } from '@cookingblog/api-interfaces';
 import bcrypt from 'bcrypt-nodejs';
 import { createHash } from 'crypto';
 import { model, Schema } from 'mongoose';
 
 // Define the User Schema
-const UserSchema = new Schema<UserModel>(
+const UserSchema = new Schema<IUserModel>(
   {
     name: { type: String, unique: true },
     email: { type: String, unique: true },
@@ -16,7 +16,7 @@ const UserSchema = new Schema<UserModel>(
 );
 
 // Password hash middleware
-UserSchema.pre<UserModel>('save', function (next) {
+UserSchema.pre<IUserModel>('save', function (next) {
   if (!this.isModified('password')) {
     return next(null);
   }
@@ -48,7 +48,7 @@ UserSchema.methods.comparePassword = function (
 };
 
 // User's gravatar
-UserSchema.methods.gravatar = function (size: number): any {
+UserSchema.methods.gravatar = function (size: number): string {
   if (!size) {
     size = 200;
   }
@@ -62,6 +62,6 @@ UserSchema.methods.gravatar = function (size: number): any {
   return `${url}/${md5}?s=${size}&d=retro`;
 };
 
-const User = model<UserModel>('User', UserSchema);
+const User = model<IUserModel>('User', UserSchema);
 
 export default User;

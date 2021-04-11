@@ -14,7 +14,6 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "esModuleInterop": true,
     "paths": {
       "@cookingblog/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@blog/components": ["libs/blog/components/src/index.ts"],
@@ -22,8 +21,9 @@
       "@api/middlewares": ["libs/api/middlewares/src/index.ts"],
       "@api/configs": ["libs/api/configs/src/index.ts"],
       "@utils/exception": ["libs/utils/exception/src/index.ts"],
-      "@cookingblog/api/routes": ["libs/api/routes/src/index.ts"],
-      "@cookingblog/api/controllers": ["libs/api/controllers/src/index.ts"]
+      "@api/routes": ["libs/api/routes/src/index.ts"],
+      "@api/controllers": ["libs/api/controllers/src/index.ts"],
+      "@cookingblog/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

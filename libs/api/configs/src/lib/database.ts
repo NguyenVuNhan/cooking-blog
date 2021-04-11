@@ -2,12 +2,12 @@ import mongoose from 'mongoose';
 import bluebird from 'bluebird';
 import { MongoError } from 'mongodb';
 
-import { AppConfig } from '@api/configs';
-import { log } from '@api/middlewares';
+import { log } from '@cookingblog/utils';
+import { APIConfig } from '@cookingblog/api-interfaces';
 
 class Database {
   // Initialize your database pool
-  public static init(config: AppConfig): void {
+  public static init(config: APIConfig): void {
     const dsn = config.mongodbUrl;
     const options = { useNewUrlParser: true, useUnifiedTopology: true };
 

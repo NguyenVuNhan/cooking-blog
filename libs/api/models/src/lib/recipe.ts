@@ -1,10 +1,10 @@
 import { Types, Schema, model } from 'mongoose';
-import { RecipeModel } from '@cookingblog/api-interfaces';
+import { IRecipeModel } from '@cookingblog/api-interfaces';
 
 const ObjectId = Types.ObjectId;
 
 // Define the Recipe Schema
-const RecipeSchema = new Schema<RecipeModel>(
+const RecipeSchema = new Schema<IRecipeModel>(
   {
     user: { type: ObjectId, ref: 'User', required: true },
     course: { type: String },
@@ -43,6 +43,6 @@ RecipeSchema.index(
   }
 );
 
-const Recipe = model<RecipeModel>('Recipe', RecipeSchema);
+const Recipe = model<IRecipeModel>('Recipe', RecipeSchema);
 
 export default Recipe;

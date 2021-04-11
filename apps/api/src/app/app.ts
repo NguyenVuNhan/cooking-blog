@@ -3,7 +3,7 @@ import kue from 'kue';
 import { Database, Express, Queue } from '@api/configs';
 
 import { environment as config } from '../environments/environment';
-import { log } from '@api/middlewares';
+import { log } from '@cookingblog/utils';
 
 class App {
   private express: Express;

@@ -1,10 +1,10 @@
-import { AppConfig } from '@api/configs';
+import { APIConfig } from '@cookingblog/api-interfaces';
 import { Application } from 'express';
 import swaggerJSDoc from 'swagger-jsdoc';
 import { serve, setup } from 'swagger-ui-express';
 
 class Swagger {
-  public static mount(express: Application, config: AppConfig): Application {
+  public static mount(express: Application, config: APIConfig): Application {
     const swaggerOptions: swaggerJSDoc.Options = {
       swaggerDefinition: {
         openapi: '3.0.0',

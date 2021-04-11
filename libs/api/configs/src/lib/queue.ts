@@ -1,12 +1,12 @@
-import { AppConfig } from '@api/configs';
-import { log } from '@api/middlewares';
+import { log } from '@cookingblog/utils';
+import { APIConfig } from '@cookingblog/api-interfaces';
 import kue, { DoneCallback, Job, JobCallback } from 'kue';
 
 class Queue {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public jobs: any;
 
-  constructor(config: AppConfig) {
+  constructor(config: APIConfig) {
     this.jobs = kue.createQueue({
       prefix: config.redisPrefix,
       redis: {

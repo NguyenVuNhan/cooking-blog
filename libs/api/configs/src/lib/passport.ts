@@ -2,7 +2,7 @@ import { Application } from 'express';
 import passport from 'passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { User } from '@api/models';
-import { log } from '@api/middlewares';
+import { log } from '@cookingblog/utils';
 
 class JWT {
   public static init(
@@ -33,11 +33,11 @@ class Passport {
     express = express.use(passport.initialize());
     express = express.use(passport.session());
 
-    passport.serializeUser<any, any>((user, done) => {
+    passport.serializeUser<string>((user, done) => {
       done(null, user.id);
     });
 
-    passport.deserializeUser<any, any>((id, done) => {
+    passport.deserializeUser((id, done) => {
       User.findById(id)
         .then((user) => done(null, user))
         .catch((err) => done(err, false));

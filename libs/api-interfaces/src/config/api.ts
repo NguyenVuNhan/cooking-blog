@@ -1,4 +1,4 @@
-export interface AppConfig {
+export interface APIConfig {
   port: number;
   isCORSEnabled: boolean;
   appSecret: string;
@@ -13,4 +13,5 @@ export interface AppConfig {
   redisHttpPort: number;
   redisHttpHost: string;
   redisDB: number;
+  jwtExpiresIn: number;
 }

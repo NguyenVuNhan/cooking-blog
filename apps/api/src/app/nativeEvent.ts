@@ -1,4 +1,4 @@
-import { log } from '@api/middlewares';
+import { log } from '@cookingblog/utils';
 
 class NativeEvent {
   public cluster(_cluster: typeof import('cluster')): void {

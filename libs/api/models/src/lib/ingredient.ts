@@ -1,8 +1,8 @@
-import { IngredientModel } from '@cookingblog/api-interfaces';
+import { IIngredientModel } from '@cookingblog/api-interfaces';
 import { Schema, model } from 'mongoose';
 
 // Define the Recipe Schema
-const IngredientSchema = new Schema<IngredientModel>(
+const IngredientSchema = new Schema<IIngredientModel>(
   {
     name: { type: String, required: true },
     image: { type: String },
@@ -12,6 +12,6 @@ const IngredientSchema = new Schema<IngredientModel>(
   }
 );
 
-const Ingredient = model<IngredientModel>('Ingredient', IngredientSchema);
+const Ingredient = model<IIngredientModel>('Ingredient', IngredientSchema);
 
 export default Ingredient;

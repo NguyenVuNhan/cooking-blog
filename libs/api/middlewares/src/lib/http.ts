@@ -1,13 +1,13 @@
-import { AppConfig, Passport } from '@api/configs';
+import { APIConfig } from '@cookingblog/api-interfaces';
 import compress from 'compression';
 import MongoStore from 'connect-mongo';
 import { Application, json, urlencoded } from 'express';
 import session from 'express-session';
-import Log from './log';
+import { log } from '@cookingblog/utils';
 
 class Http {
-  public static mount(express: Application, config: AppConfig): Application {
-    Log.info("Booting the 'HTTP' middleware...");
+  public static mount(express: Application, config: APIConfig): Application {
+    log.info("Booting the 'HTTP' middleware...");
 
     // Enables the request body parser
     express.use(
@@ -53,9 +53,6 @@ class Http {
 
     // Enables the "gzip" / "deflate" compression for response
     express.use(compress());
-
-    // Loads the passport configuration
-    express = Passport.mountPackage(express, { appSecret: config.appSecret });
 
     return express;
   }

@@ -27,6 +27,7 @@
     "api-configs": { "tags": [] },
     "utils-exception": { "tags": [] },
     "api-routes": { "tags": [] },
-    "api-controllers": { "tags": [] }
+    "api-controllers": { "tags": [] },
+    "utils": { "tags": [] }
   }
 }

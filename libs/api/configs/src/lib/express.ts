@@ -1,8 +1,9 @@
 import express, { Application } from 'express';
+import Passport from './passport';
 
 import routes from './routes';
 import { exception } from '@api/middlewares';
-import { AppConfig } from './app-config';
+import { APIConfig } from '@cookingblog/api-interfaces';
 import { cors, http, swagger } from '@api/middlewares';
 
 class Express {
@@ -10,12 +11,12 @@ class Express {
    * Create the express object
    */
   public express: Application;
-  private config: AppConfig;
+  private config: APIConfig;
 
   /**
    * Initializes the express server
    */
-  constructor(config: AppConfig) {
+  constructor(config: APIConfig) {
     this.express = express();
     this.config = config;
 
@@ -39,6 +40,9 @@ class Express {
 
     // Mount basic middlewares
     this.express = http.mount(this.express, this.config);
+
+    // Mount passport for authentication
+    this.express = Passport.mountPackage(this.express, this.config);
 
     // Mount swagger for documentation
     this.express = swagger.mount(this.express, this.config);

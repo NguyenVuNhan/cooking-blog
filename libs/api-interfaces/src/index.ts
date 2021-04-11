@@ -1,3 +1,5 @@
-export * from './lib/user';
-export * from './lib/recipe';
-export * from './lib/ingredient';
+export * from './data/user';
+export * from './data/recipe';
+export * from './data/ingredient';
+
+export * from './config/api';
