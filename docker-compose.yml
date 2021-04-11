@@ -1,0 +1,23 @@
+version: '3.8'
+
+volumes:
+  mongo-data: {}
+
+services:
+  redis:
+    image: redis
+    environment:
+      REDIS_QUEUE_PORT: 6379
+    command: ['redis-server', '--bind', 'redis', '--port', '6379']
+    ports:
+      - 6379:6379
+
+  mongo:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-data:/data/db

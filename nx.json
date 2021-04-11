@@ -1,36 +1,32 @@
 {
   "implicitDependencies": {
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
     ".eslintrc.json": "*"
   },
-  "affected": {
-    "defaultBase": "master"
-  },
+  "affected": { "defaultBase": "master" },
   "npmScope": "cookingblog",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "OWUwZjk4MTYtNmIxNS00MmVjLWI1ZDctZTQwMzY1NTBhYmFmfHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
       }
     }
   },
   "projects": {
-    "blog": {
-      "tags": []
-    },
-    "blog-e2e": {
-      "tags": [],
-      "implicitDependencies": ["blog"]
-    },
-    "api": {
-      "tags": []
-    },
-    "api-interfaces": {
-      "tags": []
-    }
+    "blog": { "tags": [] },
+    "blog-e2e": { "tags": [], "implicitDependencies": ["blog"] },
+    "api": { "tags": [] },
+    "api-interfaces": { "tags": [] },
+    "blog-components": { "tags": [] },
+    "api-models": { "tags": [] },
+    "api-middlewares": { "tags": [] },
+    "api-configs": { "tags": [] },
+    "utils-exception": { "tags": [] },
+    "api-routes": { "tags": [] },
+    "api-controllers": { "tags": [] }
   }
 }
