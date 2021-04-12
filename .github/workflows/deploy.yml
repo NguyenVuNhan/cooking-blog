@@ -28,6 +28,6 @@ jobs:
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.SSHKEY }}
           script: |
-            cd ${{ secrets.WORK_DIR }} |
-            docker-compose down |
+            cd ${{ secrets.WORK_DIR }}
+            docker-compose down
             docker-compose up -d
