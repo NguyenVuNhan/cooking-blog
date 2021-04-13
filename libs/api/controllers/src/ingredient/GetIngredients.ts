@@ -1,9 +1,13 @@
 import { Request, Response } from 'express';
 import { Ingredient } from '@api/models';
+import { GetIngredientsRes } from '@cookingblog/api-interfaces';
 
 class GetIngredients {
   static perform = [
-    async (req: Request, res: Response) => {
+    async (
+      req: Request<{ name: string }, GetIngredientsRes>,
+      res: Response<GetIngredientsRes>
+    ) => {
       const name = req.params.name;
 
       const ingredients = (

@@ -158,27 +158,6 @@
         }
       }
     },
-    "blog-components": {
-      "root": "libs/blog/components",
-      "sourceRoot": "libs/blog/components/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/blog/components/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/blog/components"],
-          "options": {
-            "jestConfig": "libs/blog/components/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "api-models": {
       "root": "libs/api/models",
       "sourceRoot": "libs/api/models/src",
@@ -283,6 +262,29 @@
           "outputs": ["coverage/libs/utils"],
           "options": {
             "jestConfig": "libs/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-data-access-cooking-blog-api": {
+      "root": "libs/shared/data-access/cooking-blog-api",
+      "sourceRoot": "libs/shared/data-access/cooking-blog-api/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/data-access/cooking-blog-api/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/data-access/cooking-blog-api"],
+          "options": {
+            "jestConfig": "libs/shared/data-access/cooking-blog-api/jest.config.js",
             "passWithNoTests": true
           }
         }

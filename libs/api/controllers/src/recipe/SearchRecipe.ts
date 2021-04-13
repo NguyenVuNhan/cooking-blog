@@ -1,13 +1,17 @@
 import { Recipe } from '@api/models';
-import { IRecipeModel } from '@cookingblog/api-interfaces';
+import { IRecipeModel, SearchRecipeRes } from '@cookingblog/api-interfaces';
 import { APIError } from '@utils/exception';
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
 class SearchRecipe {
   static perform = [
-    async (req: Request, res: Response, next: NextFunction) => {
-      const query = req.query.query as string;
+    async (
+      req: Request<undefined, SearchRecipeRes, undefined, { query: string }>,
+      res: Response<SearchRecipeRes>,
+      next: NextFunction
+    ) => {
+      const query = req.query.query;
 
       let recipes: IRecipeModel[];
       if (query) {

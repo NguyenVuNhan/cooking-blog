@@ -2,10 +2,15 @@ import { StatusCodes } from 'http-status-codes';
 import { NextFunction, Request, Response } from 'express';
 import { APIError } from '@utils/exception';
 import { Recipe } from '@api/models';
+import { GetRecipeRes } from '@cookingblog/api-interfaces';
 
 class ViewRecipe {
   static perform = [
-    async (req: Request, res: Response, next: NextFunction) => {
+    async (
+      req: Request<{ id: string }, GetRecipeRes>,
+      res: Response<GetRecipeRes>,
+      next: NextFunction
+    ) => {
       const id = req.params.id;
 
       let recipes = null;

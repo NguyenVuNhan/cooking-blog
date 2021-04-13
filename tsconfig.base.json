@@ -23,7 +23,10 @@
       "@utils/exception": ["libs/utils/exception/src/index.ts"],
       "@api/routes": ["libs/api/routes/src/index.ts"],
       "@api/controllers": ["libs/api/controllers/src/index.ts"],
-      "@cookingblog/utils": ["libs/utils/src/index.ts"]
+      "@cookingblog/utils": ["libs/utils/src/index.ts"],
+      "@cookingblog/shared/data-access/cooking-blog-api": [
+        "libs/shared/data-access/cooking-blog-api/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

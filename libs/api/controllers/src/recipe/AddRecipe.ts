@@ -1,6 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 import { body } from 'express-validator';
-import { IRecipe } from '@cookingblog/api-interfaces';
+import {
+  AddRecipeReq,
+  AddRecipeRes,
+  IRecipe,
+} from '@cookingblog/api-interfaces';
 import { APIError } from '@utils/exception';
 import { Recipe, Ingredient } from '@api/models';
 import { exception } from '@api/middlewares';
@@ -15,8 +19,8 @@ class AddRecipe {
     body('steps', 'At least one steps must be given').isArray({ min: 1 }),
     exception.validatorHandler,
     async function (
-      req: Request,
-      res: Response,
+      req: Request<undefined, AddRecipeRes, AddRecipeReq>,
+      res: Response<AddRecipeRes>,
       next: NextFunction
     ): Promise<void> {
       const recipe = await Recipe.findOne({ title: req.body.title });
@@ -29,7 +33,7 @@ class AddRecipe {
       }
 
       const ingredientPromises: Promise<
-        IRecipe['ingredients']
+        IRecipe['ingredients'][number]
       >[] = req.body.ingredients.map(async (val) => {
         const name = val.ingredient.toLowerCase();
         const quantity = val.quantity;

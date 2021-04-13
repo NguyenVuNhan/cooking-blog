@@ -1,3 +1,4 @@
+import { LoginReq, LoginRes } from '@cookingblog/api-interfaces';
 import { exception } from '@api/middlewares';
 import { APIError } from '@utils/exception';
 import { NextFunction, Request, Response } from 'express';
@@ -10,7 +11,11 @@ class Login {
     body('email', 'Email or user name is required').exists(),
     body('password').exists().withMessage('Password cannot be empty'),
     exception.validatorHandler,
-    function (req: Request, res: Response, next: NextFunction): void {
+    function (
+      req: Request<undefined, LoginRes, LoginReq>,
+      res: Response<LoginRes>,
+      next: NextFunction
+    ): void {
       // Get POST data
       const { email, password } = req.body;
 

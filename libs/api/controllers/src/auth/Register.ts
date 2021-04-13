@@ -1,3 +1,4 @@
+import { RegisterRes, RegisterReq } from '@cookingblog/api-interfaces';
 import { NextFunction, Request, Response } from 'express';
 import { body } from 'express-validator';
 import { exception } from '@api/middlewares';
@@ -30,7 +31,11 @@ class Register {
         return true;
       }),
     exception.validatorHandler,
-    async (req: Request, res: Response, next: NextFunction) => {
+    async (
+      req: Request<undefined, RegisterRes, RegisterReq>,
+      res: Response<RegisterRes>,
+      next: NextFunction
+    ) => {
       // Get POST data
       const { name, email, password } = req.body;
 

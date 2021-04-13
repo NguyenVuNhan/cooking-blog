@@ -4,12 +4,17 @@ import { param } from 'express-validator';
 import { APIError } from '@utils/exception';
 import { exception } from '@api/middlewares';
 import { Recipe } from '@api/models';
+import { DeleteRecipeRes } from '@cookingblog/api-interfaces';
 
 class DeleteRecipe {
   static perform = [
     param('id', 'Recipe id must be given').isString(),
     exception.validatorHandler,
-    async (req: Request, res: Response, next: NextFunction) => {
+    async (
+      req: Request<{ id: string }, DeleteRecipeRes>,
+      res: Response<DeleteRecipeRes>,
+      next: NextFunction
+    ) => {
       const id = req.params.id;
 
       const recipe = await Recipe.findById(id);

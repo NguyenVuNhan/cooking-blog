@@ -1,7 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { body, param } from 'express-validator';
-import { IRecipe } from '@cookingblog/api-interfaces';
+import {
+  IRecipe,
+  UpdateRecipeReq,
+  UpdateRecipeRes,
+} from '@cookingblog/api-interfaces';
 import { APIError } from '@utils/exception';
 import { exception } from '@api/middlewares';
 import { Recipe, Ingredient } from '@api/models';
@@ -12,7 +16,11 @@ class UpdateRecipe {
     body('ingredients', 'Invalid input').optional().isArray({ min: 1 }),
     body('steps', 'Invalid input').optional().isArray({ min: 1 }),
     exception.validatorHandler,
-    async (req: Request, res: Response, next: NextFunction) => {
+    async (
+      req: Request<{ id: string }, UpdateRecipeRes, UpdateRecipeReq>,
+      res: Response<UpdateRecipeRes>,
+      next: NextFunction
+    ) => {
       const id = req.params.id;
 
       const recipe = await Recipe.findById(id);
@@ -48,7 +56,7 @@ class UpdateRecipe {
       // If new ingredients was given
       if (req.body.ingredients) {
         const ingredientPromises: Promise<
-          IRecipe['ingredients']
+          IRecipe['ingredients'][number]
         >[] = req.body.ingredients.map(async (val) => {
           const name = val.ingredient.toLowerCase();
           const quantity = val.quantity;
@@ -74,6 +82,7 @@ class UpdateRecipe {
       if (Object.keys(newRecipe).length === 0) {
         return res.status(200).json({
           data: {
+            id: recipe.id,
             title: recipe.title,
           },
           message: 'There is nothing to update',

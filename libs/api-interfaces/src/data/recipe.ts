@@ -1,26 +1,24 @@
 import { Document } from 'mongoose';
-import { IUser } from './user';
 
-interface IIngredientElem {
-  ingredient: string;
-  quantity: string;
-}
-type IIngredientList = IIngredientElem[];
-
-interface Step {
-  description: string;
-  duration?: string;
-  ingredients: IIngredientList;
-}
-
-export interface IRecipe {
+export interface IRecipe<TIngredient = string, TUser = string> {
+  _id: string;
   title: string;
-  user: IUser;
-  course: string;
-  ingredients: IIngredientList;
+  // User can be either string or IUser
+  user: TUser;
   ingredientsStr: string;
-  duration: number;
-  steps: Step[];
+  duration: string;
+  steps: {
+    description: string;
+    duration: string;
+    ingredients: string[];
+  }[];
+  ingredients: {
+    // Ingredient can be either string or IIngredientList
+    ingredient: TIngredient;
+    quantity: string;
+  }[];
 }
 
-export interface IRecipeModel extends IRecipe, Document {}
+export interface IRecipeModel extends IRecipe, Document {
+  _id: string;
+}

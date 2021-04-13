@@ -21,13 +21,13 @@
     "blog-e2e": { "tags": [], "implicitDependencies": ["blog"] },
     "api": { "tags": [] },
     "api-interfaces": { "tags": [] },
-    "blog-components": { "tags": [] },
     "api-models": { "tags": [] },
     "api-middlewares": { "tags": [] },
     "api-configs": { "tags": [] },
     "utils-exception": { "tags": [] },
     "api-routes": { "tags": [] },
     "api-controllers": { "tags": [] },
-    "utils": { "tags": [] }
+    "utils": { "tags": [] },
+    "shared-data-access-cooking-blog-api": { "tags": [] }
   }
 }
