@@ -24,7 +24,7 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "docker:dev": "docker-compose up && docker-compose down"
+    "docker:dev": "docker-compose down && docker-compose up -d"
   },
   "private": true,
   "dependencies": {

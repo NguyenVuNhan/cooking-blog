@@ -11,3 +11,4 @@ export * from './request/recipe';
 export * from './response/auth';
 export * from './response/ingredient';
 export * from './response/recipe';
+export * from './response/error';

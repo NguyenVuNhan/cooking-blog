@@ -26,7 +26,9 @@
       "@cookingblog/utils": ["libs/utils/src/index.ts"],
       "@cookingblog/shared/data-access/cooking-blog-api": [
         "libs/shared/data-access/cooking-blog-api/src/index.ts"
-      ]
+      ],
+      "@cookingblog/blog/data-access": ["libs/blog/data-access/src/index.ts"],
+      "@cookingblog/shared/web/utils": ["libs/shared/web/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

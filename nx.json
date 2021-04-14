@@ -28,6 +28,8 @@
     "api-routes": { "tags": [] },
     "api-controllers": { "tags": [] },
     "utils": { "tags": [] },
-    "shared-data-access-cooking-blog-api": { "tags": [] }
+    "shared-data-access-cooking-blog-api": { "tags": [] },
+    "blog-data-access": { "tags": [] },
+    "shared-web-utils": { "tags": [] }
   }
 }

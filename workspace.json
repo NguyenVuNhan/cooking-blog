@@ -65,6 +65,16 @@
             "production": { "buildTarget": "blog:build:production" }
           }
         },
+        "serveFull": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "yarn docker:dev",
+              "sleep 5 && nx run api:serve",
+              "sleep 5 && nx run blog:serve"
+            ]
+          }
+        },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": { "lintFilePatterns": ["apps/blog/**/*.{ts,tsx,js,jsx}"] }
@@ -285,6 +295,46 @@
           "outputs": ["coverage/libs/shared/data-access/cooking-blog-api"],
           "options": {
             "jestConfig": "libs/shared/data-access/cooking-blog-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-data-access": {
+      "root": "libs/blog/data-access",
+      "sourceRoot": "libs/blog/data-access/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/blog/data-access/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/data-access"],
+          "options": {
+            "jestConfig": "libs/blog/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-web-utils": {
+      "root": "libs/shared/web/utils",
+      "sourceRoot": "libs/shared/web/utils/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/shared/web/utils/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/web/utils"],
+          "options": {
+            "jestConfig": "libs/shared/web/utils/jest.config.js",
             "passWithNoTests": true
           }
         }
