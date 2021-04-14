@@ -30,6 +30,11 @@
     "utils": { "tags": [] },
     "shared-data-access-cooking-blog-api": { "tags": [] },
     "blog-data-access": { "tags": [] },
-    "shared-web-utils": { "tags": [] }
+    "shared-web-utils": { "tags": [] },
+    "blog-ui-components": { "tags": [] },
+    "blog-ui-views": { "tags": [] },
+    "blog-utils": { "tags": [] },
+    "shared-utils": { "tags": [] },
+    "shared-web-hooks": { "tags": [] }
   }
 }

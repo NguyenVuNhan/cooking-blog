@@ -19,6 +19,10 @@ export const authSlice = createSlice({
     authenticated: false,
   } as AuthState,
   reducers: {
+    logout: (state) => {
+      state.authenticated = false;
+      state.user = undefined;
+    },
     clearError: (state) => {
       state.errors = undefined;
     },

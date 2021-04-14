@@ -66,7 +66,7 @@
           }
         },
         "serveFull": {
-          "builder": "@nrwl/workspace:run-commands",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "commands": [
               "yarn docker:dev",
@@ -335,6 +335,107 @@
           "outputs": ["coverage/libs/shared/web/utils"],
           "options": {
             "jestConfig": "libs/shared/web/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-ui-components": {
+      "root": "libs/blog/ui/components",
+      "sourceRoot": "libs/blog/ui/components/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/blog/ui/components/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/ui/components"],
+          "options": {
+            "jestConfig": "libs/blog/ui/components/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-ui-views": {
+      "root": "libs/blog/ui/views",
+      "sourceRoot": "libs/blog/ui/views/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/blog/ui/views/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/ui/views"],
+          "options": {
+            "jestConfig": "libs/blog/ui/views/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-utils": {
+      "root": "libs/blog/utils",
+      "sourceRoot": "libs/blog/utils/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/blog/utils/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/utils"],
+          "options": {
+            "jestConfig": "libs/blog/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-utils": {
+      "root": "libs/shared/utils",
+      "sourceRoot": "libs/shared/utils/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/shared/utils/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/utils"],
+          "options": {
+            "jestConfig": "libs/shared/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-web-hooks": {
+      "root": "libs/shared/web/hooks",
+      "sourceRoot": "libs/shared/web/hooks/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/shared/web/hooks/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/web/hooks"],
+          "options": {
+            "jestConfig": "libs/shared/web/hooks/jest.config.js",
             "passWithNoTests": true
           }
         }

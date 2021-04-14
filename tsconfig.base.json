@@ -27,8 +27,15 @@
       "@cookingblog/shared/data-access/cooking-blog-api": [
         "libs/shared/data-access/cooking-blog-api/src/index.ts"
       ],
-      "@cookingblog/blog/data-access": ["libs/blog/data-access/src/index.ts"],
-      "@cookingblog/shared/web/utils": ["libs/shared/web/utils/src/index.ts"]
+      "@cookingblog/blog/data-access/*": ["libs/blog/data-access/src/*"],
+      "@cookingblog/shared/web/utils": ["libs/shared/web/utils/src/index.ts"],
+      "@cookingblog/blog/ui/components": [
+        "libs/blog/ui/components/src/index.ts"
+      ],
+      "@cookingblog/blog/ui/views": ["libs/blog/ui/views/src/index.ts"],
+      "@cookingblog/blog/utils": ["libs/blog/utils/src/index.ts"],
+      "@cookingblog/shared/utils": ["libs/shared/utils/src/index.ts"],
+      "@cookingblog/shared/web/hooks": ["libs/shared/web/hooks/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
