@@ -1,18 +1,21 @@
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import React, { useRef, useState } from 'react';
-import { Control, Controller } from 'react-hook-form';
+import { Control, Controller, Path } from 'react-hook-form';
 import { mapStringMatch, throttle } from '@cookingblog/shared/utils';
 import { useIsMounted } from '@cookingblog/shared/web/hooks';
 import { ingredientServices } from '@cookingblog/shared/data-access/cooking-blog-api';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-export interface IngredientInputProps extends Omit<TextFieldProps, 'name'> {
-  control: Control;
+export interface IngredientInputProps<TFieldValues>
+  extends Omit<TextFieldProps, 'name'> {
+  control: Control<TFieldValues>;
   name: string;
 }
 
-export function IngredientInput(props: IngredientInputProps) {
+export function IngredientInput<TFieldValues>(
+  props: IngredientInputProps<TFieldValues>
+) {
   const { control, name, defaultValue, ...rest } = props;
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState<string[]>([]);
@@ -98,7 +101,7 @@ export function IngredientInput(props: IngredientInputProps) {
           freeSolo
         />
       )}
-      name={name}
+      name={name as Path<TFieldValues>}
       control={control}
       defaultValue={defaultValue}
     />

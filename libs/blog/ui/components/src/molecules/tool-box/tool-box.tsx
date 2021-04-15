@@ -3,6 +3,7 @@ import {
   authActions,
   selectAuthenticatedStatus,
 } from '@cookingblog/blog/data-access/store';
+import { forwardTo } from '@cookingblog/blog/utils';
 import Backdrop from '@material-ui/core/Backdrop';
 import { makeStyles } from '@material-ui/core/styles';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -14,16 +15,6 @@ import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { forwardTo } from '@cookingblog/blog/utils';
-
-const useStyles = makeStyles((theme) => ({
-  speedDial: {
-    position: 'absolute',
-    zIndex: 20,
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-  },
-}));
 
 export interface ToolBoxProps {
   hidden?: boolean;
@@ -101,5 +92,14 @@ export function ToolBox(props: ToolBoxProps) {
     </>
   );
 }
+
+const useStyles = makeStyles((theme) => ({
+  speedDial: {
+    position: 'absolute',
+    zIndex: 20,
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+  },
+}));
 
 export default ToolBox;
