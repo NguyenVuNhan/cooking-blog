@@ -440,6 +440,27 @@
           }
         }
       }
+    },
+    "blog-ui-templates": {
+      "root": "libs/blog/ui/templates",
+      "sourceRoot": "libs/blog/ui/templates/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/blog/ui/templates/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/ui/templates"],
+          "options": {
+            "jestConfig": "libs/blog/ui/templates/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

@@ -38,6 +38,7 @@ export function EditStepGroup(props: EditStepGroupProps) {
       ...step,
       ingredients: stepIngredient.current[index],
     }));
+
     onUpdate(data);
     handleClose();
   };

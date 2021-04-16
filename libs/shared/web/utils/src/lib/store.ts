@@ -33,7 +33,7 @@ export const isFulfilledAction = (prefix: string) => (
 // ) => {};
 
 type ThunkApiConfig = {
-  rejectValue: ErrorRes['data'];
+  rejectValue: ErrorRes['data']['errors'];
 };
 
 export const withErrorHandler = <Returned, ThunkArg>(
@@ -45,6 +45,8 @@ export const withErrorHandler = <Returned, ThunkArg>(
   try {
     return await payloadCreator(args, thunkAPI);
   } catch (err) {
-    return thunkAPI.rejectWithValue((err.response.data as ErrorRes).data);
+    return thunkAPI.rejectWithValue(
+      (err.response.data as ErrorRes).data.errors
+    );
   }
 };

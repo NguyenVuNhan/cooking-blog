@@ -6,6 +6,7 @@ const ObjectId = Types.ObjectId;
 // Define the Recipe Schema
 const RecipeSchema = new Schema<IRecipeModel>(
   {
+    title: { type: String, required: true, unique: true },
     user: { type: ObjectId, ref: 'User', required: true },
     course: { type: String },
     ingredients: [

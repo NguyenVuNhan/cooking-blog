@@ -1,2 +1,2 @@
 export * from './auth.slice';
-export * from './auth.selector';
+export * as authSelector from './auth.selector';

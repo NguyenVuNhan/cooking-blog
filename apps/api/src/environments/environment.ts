@@ -8,7 +8,7 @@ export const environment: APIConfig = {
   maxUploadLimit: '50mb',
   maxParameterLimit: 5000,
   mongodbUrl:
-    'mongodb://root:rootpassword@localhost:27017/local?authSource=admin',
+    'mongodb://root:rootpassword@localhost:27017/cookingblog?authSource=admin',
   apiPrefix: 'api',
   queueMonitor: false,
   queueMonitorHttpPort: 5550,
@@ -16,5 +16,5 @@ export const environment: APIConfig = {
   redisHttpPort: 6379,
   redisHttpHost: 'localhost',
   redisDB: 3,
-  jwtExpiresIn: 60,
+  jwtExpiresIn: 60 * 24,
 };

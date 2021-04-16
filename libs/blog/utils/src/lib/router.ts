@@ -9,3 +9,11 @@ export const forwardTo = (location: string): void => {
 export const toLogin = (): void => {
   forwardTo('/login');
 };
+
+export const goBack = (): void => {
+  history.goBack();
+};
+
+export const appendToPath = (str: string) => {
+  history.replace(`${history.location.pathname}${str}`);
+};

@@ -11,11 +11,11 @@ import { exception } from '@api/middlewares';
 
 class AddRecipe {
   static perform = [
-    body('title', 'Recipe title cannot be empty').isString(),
+    body('title', 'Recipe title cannot be empty').exists().isString(),
     body('ingredients', 'At least one ingredient must be given').isArray({
       min: 1,
     }),
-    body('duration', 'Duration cannot be empty').isString(),
+    body('duration', 'Duration cannot be empty').exists().isString(),
     body('steps', 'At least one steps must be given').isArray({ min: 1 }),
     exception.validatorHandler,
     async function (
@@ -49,6 +49,9 @@ class AddRecipe {
 
       // Run all ingredientPromises
       req.body.ingredients = await Promise.all(ingredientPromises);
+      req.body.ingredientsStr = req.body.ingredients
+        .map((v) => v.ingredient)
+        .join(', ');
 
       // Add new recipe
       const newRecipe = await new Recipe({

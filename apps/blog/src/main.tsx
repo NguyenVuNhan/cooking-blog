@@ -25,11 +25,9 @@ const store = configureStore({
 
 ReactDOM.render(
   <Provider store={store}>
-    <StrictMode>
-      <Router history={history}>
-        <App />
-      </Router>
-    </StrictMode>
+    <Router history={history}>
+      <App />
+    </Router>
   </Provider>,
   document.getElementById('root')
 );

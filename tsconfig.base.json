@@ -32,10 +32,11 @@
       "@cookingblog/blog/ui/components": [
         "libs/blog/ui/components/src/index.ts"
       ],
-      "@cookingblog/blog/ui/views": ["libs/blog/ui/views/src/index.ts"],
+      "@cookingblog/blog/ui/views/*": ["libs/blog/ui/views/src/lib/*"],
       "@cookingblog/blog/utils": ["libs/blog/utils/src/index.ts"],
       "@cookingblog/shared/utils": ["libs/shared/utils/src/index.ts"],
-      "@cookingblog/shared/web/hooks": ["libs/shared/web/hooks/src/index.ts"]
+      "@cookingblog/shared/web/hooks": ["libs/shared/web/hooks/src/index.ts"],
+      "@cookingblog/blog/ui/templates": ["libs/blog/ui/templates/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

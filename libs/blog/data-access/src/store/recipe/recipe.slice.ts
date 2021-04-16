@@ -1,6 +1,6 @@
 import {
   ErrorRes,
-  GetRecipeRes,
+  IRecipe,
   SearchRecipeRes,
 } from '@cookingblog/api-interfaces';
 import { storeUtils } from '@cookingblog/shared/web/utils';
@@ -23,10 +23,10 @@ export interface RecipeEntity {
 }
 
 export interface RecipeState {
-  recipe?: GetRecipeRes['data'];
-  recipes?: SearchRecipeRes['data']['recipes'];
+  recipe?: IRecipe;
+  recipes: SearchRecipeRes['data']['recipes'];
   loading: boolean;
-  errors?: ErrorRes['data'];
+  errors?: ErrorRes['data']['errors'];
 }
 
 export const recipeAdapter = createEntityAdapter<RecipeEntity>();
@@ -35,15 +35,19 @@ export const recipeSlice = createSlice({
   name: RECIPE_FEATURE_KEY,
   initialState: {
     loading: false,
+    recipes: [],
   } as RecipeState,
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(searchRecipe.fulfilled, (state, action) => {
-        state.loading = false;
         state.recipes = action.payload.recipes;
       })
+      .addCase(getRecipe.fulfilled, (state, action) => {
+        state.recipe = action.payload;
+      })
       .addMatcher(storeUtils.isFulfilledAction(RECIPE_FEATURE_KEY), (state) => {
+        state.errors = undefined;
         state.loading = false;
       })
       .addMatcher(storeUtils.isPendingAction(RECIPE_FEATURE_KEY), (state) => {

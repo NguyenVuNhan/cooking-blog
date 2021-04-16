@@ -13,8 +13,7 @@ class ViewRecipe {
     ) => {
       const id = req.params.id;
 
-      let recipes = null;
-      recipes = await Recipe.findById(id)
+      const recipe = await Recipe.findById(id)
         .populate({
           path: 'ingredients',
           populate: {
@@ -24,14 +23,14 @@ class ViewRecipe {
         })
         .exec();
 
-      if (!recipes) {
+      if (!recipe) {
         return next(
           new APIError('No recipe found', { status: StatusCodes.NOT_FOUND })
         );
       }
 
       return res.status(200).json({
-        data: { recipes },
+        data: recipe as GetRecipeRes['data'],
         message: 'List recipe',
         success: true,
       });

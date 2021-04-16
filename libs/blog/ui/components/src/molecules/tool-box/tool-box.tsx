@@ -1,8 +1,5 @@
 import { ShoppingListCtx } from '@cookingblog/blog/data-access/context';
-import {
-  authActions,
-  selectAuthenticatedStatus,
-} from '@cookingblog/blog/data-access/store';
+import { authActions, authSelector } from '@cookingblog/blog/data-access/store';
 import { forwardTo } from '@cookingblog/blog/utils';
 import Backdrop from '@material-ui/core/Backdrop';
 import { makeStyles } from '@material-ui/core/styles';
@@ -25,7 +22,7 @@ export function ToolBox(props: ToolBoxProps) {
 
   const classes = useStyles();
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector(selectAuthenticatedStatus);
+  const isAuthenticated = useSelector(authSelector.authenticated);
   const [open, setOpen] = React.useState(false);
   const { openShoppingList } = useContext(ShoppingListCtx);
 

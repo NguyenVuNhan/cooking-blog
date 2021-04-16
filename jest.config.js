@@ -14,5 +14,6 @@ module.exports = {
     '<rootDir>/libs/blog/utils',
     '<rootDir>/libs/shared/utils',
     '<rootDir>/libs/shared/web/hooks',
+    '<rootDir>/libs/blog/ui/templates',
   ],
 };

@@ -11,15 +11,16 @@ export interface SearchInputProps {
 export function SearchInput(props: SearchInputProps) {
   const { onSearch } = props;
   const { handleSubmit, register } = useForm<{ query: string }>();
+  const { ref, ...rest } = register('query');
 
   return (
     <form onSubmit={handleSubmit(onSearch)}>
       <InputBase
         placeholder="Search recipe or Ingredient"
         inputProps={{ 'aria-label': 'Search recipe' }}
-        name="query"
         className="rounded pl-2 w-100 bg-white mt-2 border"
-        inputRef={register}
+        inputRef={ref}
+        {...rest}
         endAdornment={
           <IconButton type="submit">
             <SearchIcon />

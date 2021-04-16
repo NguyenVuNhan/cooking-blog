@@ -35,6 +35,7 @@
     "blog-ui-views": { "tags": [] },
     "blog-utils": { "tags": [] },
     "shared-utils": { "tags": [] },
-    "shared-web-hooks": { "tags": [] }
+    "shared-web-hooks": { "tags": [] },
+    "blog-ui-templates": { "tags": [] }
   }
 }

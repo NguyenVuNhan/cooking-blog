@@ -17,6 +17,4 @@ export type SearchRecipeRes = BaseRes<{
 
 export type UpdateRecipeRes = BaseRes<CommonData>;
 
-export type GetRecipeRes = BaseRes<{
-  recipes: IRecipe<IIngredient>;
-}>;
+export type GetRecipeRes = BaseRes<IRecipe<IIngredient>>;

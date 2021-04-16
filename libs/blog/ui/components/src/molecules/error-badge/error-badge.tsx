@@ -10,19 +10,20 @@ export interface ErrorBadgeProps {
 export function ErrorBadge(props: ErrorBadgeProps) {
   const { errors } = props;
 
-  return (
-    errors &&
-    errors.map((e, index) => (
-      <Alert
-        key={index}
-        severity="error"
-        className="mb-1"
-        style={{ width: '100%' }}
-      >
-        {e.msg}
-      </Alert>
-    ))
-  );
+  return errors ? (
+    <>
+      {errors.map((e, index) => (
+        <Alert
+          key={index}
+          severity="error"
+          className="mb-1"
+          style={{ width: '100%' }}
+        >
+          {e.msg}
+        </Alert>
+      ))}
+    </>
+  ) : null;
 }
 
 export default ErrorBadge;

@@ -1,3 +1,4 @@
+import { IIngredient, IUser } from '@cookingblog/api-interfaces';
 import { Document } from 'mongoose';
 
 export interface IRecipe<TIngredient = string, TUser = string> {
@@ -19,6 +20,8 @@ export interface IRecipe<TIngredient = string, TUser = string> {
   }[];
 }
 
-export interface IRecipeModel extends IRecipe, Document {
+export interface IRecipeModel
+  extends IRecipe<IUser | string, IIngredient | string>,
+    Document {
   _id: string;
 }

@@ -15,15 +15,13 @@ class SearchRecipe {
 
       let recipes: IRecipeModel[];
       if (query) {
+        console.log(query);
         recipes = await Recipe.find(
           {
             $text: { $search: query },
           },
           { score: { $meta: 'textScore' } }
-        )
-          .sort('score')
-          .populate('ingredients.ingredient')
-          .exec();
+        ).sort('score');
       } else {
         recipes = await Recipe.find().sort('title').exec();
       }
@@ -35,7 +33,7 @@ class SearchRecipe {
       }
 
       return res.status(200).json({
-        data: { recipes },
+        data: { recipes } as SearchRecipeRes['data'],
         message: 'List recipe',
         success: true,
       });

@@ -54,9 +54,12 @@ export function IngredientInput<TFieldValues>(
 
   return (
     <Controller
-      render={(renderProp) => (
+      name={name as Path<TFieldValues>}
+      control={control}
+      defaultValue={defaultValue}
+      render={({ field, formState }) => (
         <Autocomplete
-          {...renderProp}
+          value={(field.value as string) || ''}
           options={options}
           getOptionLabel={(option) => option}
           renderOption={(option, { inputValue }) => {
@@ -82,13 +85,14 @@ export function IngredientInput<TFieldValues>(
           renderInput={(params) => (
             <TextField
               {...params}
+              {...field}
               {...rest}
               variant={rest.variant}
               InputProps={{
                 ...params.InputProps,
                 endAdornment: (
                   <React.Fragment>
-                    {loading ? (
+                    {loading.current ? (
                       <CircularProgress color="inherit" size={20} />
                     ) : null}
                     {params.InputProps.endAdornment}
@@ -97,13 +101,9 @@ export function IngredientInput<TFieldValues>(
               }}
             />
           )}
-          onChange={(_, data) => renderProp.field.onChange(data)}
           freeSolo
         />
       )}
-      name={name as Path<TFieldValues>}
-      control={control}
-      defaultValue={defaultValue}
     />
   );
 }

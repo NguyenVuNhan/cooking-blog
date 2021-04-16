@@ -1,5 +1,6 @@
 import {
   AddRecipeReq,
+  GetRecipeRes,
   IRecipe,
   UpdateRecipeReq,
 } from '@cookingblog/api-interfaces';
@@ -18,9 +19,7 @@ export interface EditIngredientModalProps {
 export function EditIngredientModal(props: EditIngredientModalProps) {
   const { defaultIngredients, onUpdate, ...rest } = props;
   const { register, control, reset } = useForm<AddRecipeReq>({
-    defaultValues: {
-      ingredients: defaultIngredients,
-    },
+    defaultValues: { ingredients: defaultIngredients },
   });
   const handleModalSave = (ingredients: IRecipe['ingredients']) => {
     onUpdate({ ingredients });

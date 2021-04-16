@@ -1,5 +1,5 @@
 import { AddRecipeReq, IRecipe } from '@cookingblog/api-interfaces';
-import { IngredientInput } from '@cookingblog/blog/ui/components';
+import { IngredientInput, TextField } from '@cookingblog/blog/ui/components';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -8,7 +8,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import DeleteIcon from '@material-ui/icons/Delete';
 import React, { Fragment } from 'react';
@@ -46,6 +45,7 @@ export function AddIngredientModal(props: AddIngredientModalProps) {
 
   const _handleSave = () => {
     handleClose();
+    console.log(ingredientsWatcher);
     handleSave && handleSave(ingredientsWatcher || []);
   };
 
@@ -77,13 +77,12 @@ export function AddIngredientModal(props: AddIngredientModalProps) {
               <Grid item sm={4}>
                 <TextField
                   label="quantity"
-                  name={`ingredients.${index}.quantity`}
-                  inputRef={register}
+                  {...register(`ingredients.${index}.quantity` as const)}
                   defaultValue={ingredient.quantity}
                   fullWidth
                   margin="none"
                   size="small"
-                ></TextField>
+                />
               </Grid>
               <Grid item sm={1}>
                 <IconButton onClick={deleteIngredient(index)} className="p-0">

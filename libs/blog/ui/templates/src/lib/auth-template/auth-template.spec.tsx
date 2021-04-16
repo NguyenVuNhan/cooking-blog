@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import BlogUiViews from './blog-ui-views';
+import AuthTemplate from './auth-template';
 
-describe('BlogUiViews', () => {
+describe('AuthTemplate', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<BlogUiViews />);
+    const { baseElement } = render(<AuthTemplate />);
     expect(baseElement).toBeTruthy();
   });
 });

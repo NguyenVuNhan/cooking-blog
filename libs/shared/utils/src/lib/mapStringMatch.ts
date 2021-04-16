@@ -1,20 +1,16 @@
 export const mapStringMatch = <T>(
   value: string,
-  query: string,
+  query: string | RegExp,
   fn: (element: string, match: boolean, i?: number) => T
 ): (string | T)[] => {
   const result = value.split(query);
 
-  const ret: T[] = result.reduce(
-    (prev, curr, i) => [
-      ...prev,
-      fn(curr, false, i * 2),
-      fn(query, true, i * 2 + 1),
-    ],
-    [] as T[]
-  );
+  const ret: (string | T)[] = [...result];
 
-  ret.pop();
+  for (let i = 1, length = result.length; i < length; i += 2) {
+    ret[i - 1] = fn(result[i - 1], false, i - 1);
+    ret[i] = fn(result[i], true, i);
+  }
 
   return ret;
 };
