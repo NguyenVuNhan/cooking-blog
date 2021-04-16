@@ -57,9 +57,9 @@ export function IngredientInput<TFieldValues>(
       name={name as Path<TFieldValues>}
       control={control}
       defaultValue={defaultValue}
-      render={({ field, formState }) => (
+      render={({ field: { onChange, value, name }, formState }) => (
         <Autocomplete
-          value={(field.value as string) || ''}
+          value={(value as string) || ''}
           options={options}
           getOptionLabel={(option) => option}
           renderOption={(option, { inputValue }) => {
@@ -74,19 +74,18 @@ export function IngredientInput<TFieldValues>(
             );
           }}
           open={open}
-          onOpen={() => {
-            setOpen(true);
+          onOpen={() => setOpen(true)}
+          onClose={() => setOpen(false)}
+          onInputChange={(...args) => {
+            onInputChange(args[0], args[1]);
+            onChange(args[1]);
           }}
-          onClose={() => {
-            setOpen(false);
-          }}
-          onInputChange={onInputChange}
           loading={loading.current}
           renderInput={(params) => (
             <TextField
               {...params}
-              {...field}
               {...rest}
+              name={name}
               variant={rest.variant}
               InputProps={{
                 ...params.InputProps,

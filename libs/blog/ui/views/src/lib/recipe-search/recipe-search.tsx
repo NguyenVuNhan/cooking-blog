@@ -25,13 +25,9 @@ export function RecipeSearch() {
 
   useEffect(() => {
     const query = getQuery('q');
-    console.log('init');
     if (query === false) return;
-    console.log('fetch');
     dispatch(recipeActions.searchRecipe(query));
   }, [dispatch]);
-
-  console.log(recipes);
 
   return (
     <RecipeTemplate hideGoBack>

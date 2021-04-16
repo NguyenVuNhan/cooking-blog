@@ -45,7 +45,6 @@ export function AddIngredientModal(props: AddIngredientModalProps) {
 
   const _handleSave = () => {
     handleClose();
-    console.log(ingredientsWatcher);
     handleSave && handleSave(ingredientsWatcher || []);
   };
 

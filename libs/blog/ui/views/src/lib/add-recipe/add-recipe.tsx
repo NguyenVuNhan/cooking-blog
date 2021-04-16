@@ -61,7 +61,6 @@ export function AddRecipe() {
         ingredients: stepIngredient.current[index],
       }));
     }
-
     dispatch(recipeActions.addRecipe(data));
   };
 
