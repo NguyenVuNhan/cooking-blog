@@ -8,8 +8,7 @@ import {
   SearchInputProps,
 } from '@cookingblog/blog/ui/components';
 import { RecipeTemplate } from '@cookingblog/blog/ui/templates';
-import { appendToPath } from '@cookingblog/blog/utils';
-import { useQuery } from '@cookingblog/shared/web/hooks';
+import { appendToPath, getQuery } from '@cookingblog/blog/utils';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import React, { useEffect } from 'react';
@@ -18,7 +17,6 @@ import { useDispatch, useSelector } from 'react-redux';
 export function RecipeSearch() {
   const recipes = useSelector(recipeSelector.recipes);
   const dispatch = useDispatch();
-  const q = useQuery();
 
   const onSearch: SearchInputProps['onSearch'] = ({ query }) => {
     dispatch(recipeActions.searchRecipe(query));
@@ -26,16 +24,12 @@ export function RecipeSearch() {
   };
 
   useEffect(() => {
+    const query = getQuery('q');
     console.log('init');
-    console.log(q.has('q'));
-
-    if (!q.get('q')) return;
-    const query = q.get('q') || '';
-
+    if (query === false) return;
+    console.log('fetch');
     dispatch(recipeActions.searchRecipe(query));
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, q]);
+  }, [dispatch]);
 
   console.log(recipes);
 
