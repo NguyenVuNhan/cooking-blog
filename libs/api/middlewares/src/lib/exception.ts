@@ -1,7 +1,7 @@
 import { Application, NextFunction, Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-import { log } from '@cookingblog/utils';
-import { APIError } from '@utils/exception';
+import { log } from '@cookingblog/shared/api/utils';
+import { APIError } from '@cookingblog/shared/exception';
 
 interface ErrorResponse {
   msg: string;

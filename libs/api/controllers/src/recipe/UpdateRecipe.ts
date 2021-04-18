@@ -6,7 +6,7 @@ import {
   UpdateRecipeReq,
   UpdateRecipeRes,
 } from '@cookingblog/api-interfaces';
-import { APIError } from '@utils/exception';
+import { APIError } from '@cookingblog/shared/exception';
 import { exception } from '@api/middlewares';
 import { Recipe, Ingredient } from '@api/models';
 

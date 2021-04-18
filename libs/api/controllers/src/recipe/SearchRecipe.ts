@@ -1,6 +1,6 @@
 import { Recipe } from '@api/models';
 import { IRecipeModel, SearchRecipeRes } from '@cookingblog/api-interfaces';
-import { APIError } from '@utils/exception';
+import { APIError } from '@cookingblog/shared/exception';
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 

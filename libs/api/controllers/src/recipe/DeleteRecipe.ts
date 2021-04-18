@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { NextFunction, Request, Response } from 'express';
 import { param } from 'express-validator';
-import { APIError } from '@utils/exception';
+import { APIError } from '@cookingblog/shared/exception';
 import { exception } from '@api/middlewares';
 import { Recipe } from '@api/models';
 import { DeleteRecipeRes } from '@cookingblog/api-interfaces';

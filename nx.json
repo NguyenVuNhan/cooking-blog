@@ -24,10 +24,8 @@
     "api-models": { "tags": [] },
     "api-middlewares": { "tags": [] },
     "api-configs": { "tags": [] },
-    "utils-exception": { "tags": [] },
     "api-routes": { "tags": [] },
     "api-controllers": { "tags": [] },
-    "utils": { "tags": [] },
     "shared-data-access-cooking-blog-api": { "tags": [] },
     "blog-data-access": { "tags": [] },
     "shared-web-utils": { "tags": [] },
@@ -36,6 +34,8 @@
     "blog-utils": { "tags": [] },
     "shared-utils": { "tags": [] },
     "shared-web-hooks": { "tags": [] },
-    "blog-ui-templates": { "tags": [] }
+    "blog-ui-templates": { "tags": [] },
+    "shared-api-utils": { "tags": [] },
+    "shared-exception": { "tags": [] }
   }
 }

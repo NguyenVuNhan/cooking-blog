@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import bluebird from 'bluebird';
 import { MongoError } from 'mongodb';
 
-import { log } from '@cookingblog/utils';
+import { log } from '@cookingblog/shared/api/utils';
 import { APIConfig } from '@cookingblog/api-interfaces';
 
 class Database {

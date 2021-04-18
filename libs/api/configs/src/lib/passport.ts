@@ -2,7 +2,7 @@ import { Application } from 'express';
 import passport from 'passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { User } from '@api/models';
-import { log } from '@cookingblog/utils';
+import { log } from '@cookingblog/shared/api/utils';
 
 class JWT {
   public static init(

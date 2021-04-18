@@ -1,5 +1,5 @@
 import { APIConfig } from '@cookingblog/api-interfaces';
-import { log } from '@cookingblog/utils';
+import { log } from '@cookingblog/shared/api/utils';
 import { Application } from 'express';
 import apiRouter from '@api/routes';
 

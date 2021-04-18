@@ -1,6 +1,6 @@
 import { LoginReq, LoginRes } from '@cookingblog/api-interfaces';
 import { exception } from '@api/middlewares';
-import { APIError } from '@utils/exception';
+import { APIError } from '@cookingblog/shared/exception';
 import { NextFunction, Request, Response } from 'express';
 import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';

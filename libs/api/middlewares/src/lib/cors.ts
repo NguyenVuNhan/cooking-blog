@@ -1,7 +1,7 @@
 import cors from 'cors';
 import { Application } from 'express';
 
-import { log } from '@cookingblog/utils';
+import { log } from '@cookingblog/shared/api/utils';
 
 class CORS {
   public mount(_express: Application, config: { url: string }): Application {

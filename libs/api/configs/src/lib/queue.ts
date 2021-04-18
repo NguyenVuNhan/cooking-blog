@@ -1,4 +1,4 @@
-import { log } from '@cookingblog/utils';
+import { log } from '@cookingblog/shared/api/utils';
 import { APIConfig } from '@cookingblog/api-interfaces';
 import kue, { DoneCallback, Job, JobCallback } from 'kue';
 

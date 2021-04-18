@@ -2,7 +2,6 @@ module.exports = {
   projects: [
     '<rootDir>/apps/blog',
     '<rootDir>/apps/api',
-    '<rootDir>/libs/utils/exception',
     '<rootDir>/libs/api/routes',
     '<rootDir>/libs/api/controllers',
     '<rootDir>/libs/utils',
@@ -15,5 +14,7 @@ module.exports = {
     '<rootDir>/libs/shared/utils',
     '<rootDir>/libs/shared/web/hooks',
     '<rootDir>/libs/blog/ui/templates',
+    '<rootDir>/libs/shared/api/utils',
+    '<rootDir>/libs/shared//exception',
   ],
 };

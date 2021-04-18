@@ -5,7 +5,7 @@ import {
   AddRecipeRes,
   IRecipe,
 } from '@cookingblog/api-interfaces';
-import { APIError } from '@utils/exception';
+import { APIError } from '@cookingblog/shared/exception';
 import { Recipe, Ingredient } from '@api/models';
 import { exception } from '@api/middlewares';
 

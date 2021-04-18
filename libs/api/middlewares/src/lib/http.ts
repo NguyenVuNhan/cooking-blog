@@ -3,7 +3,7 @@ import compress from 'compression';
 import MongoStore from 'connect-mongo';
 import { Application, json, urlencoded } from 'express';
 import session from 'express-session';
-import { log } from '@cookingblog/utils';
+import { log } from '@cookingblog/shared/api/utils';
 
 class Http {
   public static mount(express: Application, config: APIConfig): Application {
