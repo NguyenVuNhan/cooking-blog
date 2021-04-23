@@ -30,7 +30,7 @@ jobs:
         run: yarn install
 
       - name: Build project
-        run: yarn nx run-many --target=build --projects=api,blog --parallel
+        run: yarn nx run-many --target=build --projects=api,blog --parallel --configuration=production
       # - name: Run Affected Build
       #   shell: bash
       #   run: yarn run affected:build --base=remotes/origin/master
@@ -42,7 +42,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSHKEY }}
           port: ${{ secrets.PORT }}
-          source: 'dist'
+          source: 'dist,docker-compose.prod.yml,Dockerfile.prod,nginx'
           target: ${{ secrets.WORK_DIR }}
 
       - name: Executing remote command
@@ -54,11 +54,6 @@ jobs:
           KEY: ${{ secrets.SSHKEY }}
           script: |
             cd ${{ secrets.WORK_DIR }}
-            cd ..
-            tree -L 3
-
-          # script: |
-          #   cd ${{ secrets.WORK_DIR }}
-          #   cd ..
-          #   docker-compose down
-          #   docker-compose up -d
+            docker-compose -f docker-compose.prod.yml build
+            docker-compose -f docker-compose.prod.yml down
+            docker-compose -f docker-compose.prod.yml up

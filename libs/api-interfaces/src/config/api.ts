@@ -1,4 +1,5 @@
 export interface APIConfig {
+  production: boolean;
   port: number;
   isCORSEnabled: boolean;
   appSecret: string;

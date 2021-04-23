@@ -51,6 +51,8 @@ class Log {
   private addLog(_kind: string, _string: string): void {
     _kind = _kind.toUpperCase();
 
+    console.log(`${this.baseDir}${this.fileName}`);
+
     fs.open(`${this.baseDir}${this.fileName}`, 'a', (_err, _fileDescriptor) => {
       if (!_err && _fileDescriptor) {
         // Append to file and close it

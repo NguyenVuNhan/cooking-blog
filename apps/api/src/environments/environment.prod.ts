@@ -1,6 +1,10 @@
 import { APIConfig } from '@cookingblog/api-interfaces';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export const environment: APIConfig = {
+  production: true,
   port: parseInt(process.env.PORT),
   isCORSEnabled: Boolean(process.env.CORS_ENABLED),
   appSecret: process.env.APP_SECRET,

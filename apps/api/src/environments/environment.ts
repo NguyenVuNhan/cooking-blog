@@ -1,6 +1,7 @@
 import { APIConfig } from '@cookingblog/api-interfaces';
 
 export const environment: APIConfig = {
+  production: false,
   port: 5000,
   isCORSEnabled: true,
   appSecret: 'SeCrEt',

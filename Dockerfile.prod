@@ -1,0 +1,14 @@
+FROM node:14-alpine
+
+WORKDIR /app
+
+COPY ./dist/apps/api .
+COPY ./apps/api/.env .
+
+RUN mkdir /.logs
+RUN ls -a
+
+RUN yarn install --prod
+RUN yarn add tslib compression dotenv
+
+CMD node ./main.js

@@ -1,0 +1,45 @@
+version: '3.8'
+
+networks:
+  cooking-blog:
+    name: 'cooking-blog-network'
+  default:
+    name: 'default-network'
+
+services:
+  cookingblog:
+    container_name: cookingblog
+    image: nginx:1.19-alpine
+    restart: always
+    networks:
+      - cooking-blog
+      - default
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./dist/apps/blog:/usr/share/nginx/html
+    links:
+      - server
+    ports:
+      - 3000:80
+
+  server:
+    # image: node:14-alpine
+    build:
+      context: .
+      dockerfile: ./Dockerfile.prod
+    container_name: 'cooking-blog-server'
+    networks:
+      - cooking-blog
+    volumes:
+      - ./.logs:/.logs
+    links:
+      - redis
+
+  redis:
+    image: redis
+    container_name: 'cooking-blog-redis'
+    networks:
+      - cooking-blog
+    environment:
+      REDIS_QUEUE_PORT: 6379
+    command: ['redis-server', '--bind', 'redis', '--port', '6379']
