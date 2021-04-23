@@ -1,0 +1,62 @@
+name: Nx Affected CI
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Fetch git history
+        run: git fetch origin master
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Install Packages
+        run: yarn install
+
+      - name: Run Affected Build
+        shell: bash
+        run: npm run affected:build -- --base=remotes/origin/master
+
+      - name: Copy repository contents via scp
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSHKEY }}
+          port: ${{ secrets.PORT }}
+          source: 'build'
+          target: ${{ secrets.WORK_DIR }}
+
+      - name: Executing remote command
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PORT: ${{ secrets.PORT }}
+          KEY: ${{ secrets.SSHKEY }}
+          script: |
+            cd ${{ secrets.WORK_DIR }}
+            cd ..
+            tree -L 3
+
+          # script: |
+          #   cd ${{ secrets.WORK_DIR }}
+          #   cd ..
+          #   docker-compose down
+          #   docker-compose up -d
