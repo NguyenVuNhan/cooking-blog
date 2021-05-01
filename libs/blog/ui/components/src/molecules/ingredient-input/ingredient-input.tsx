@@ -30,7 +30,7 @@ export function IngredientInput<TFieldValues>(
           ingredientServices
             .getIngredients(name)
             .then((res) => {
-              isMounted && setOptions(res.data.ingredients);
+              isMounted() && setOptions(res.data.ingredients);
               loading.current = false;
             })
             .catch(() => {
@@ -45,7 +45,7 @@ export function IngredientInput<TFieldValues>(
     value: string
   ): void => {
     if (value === '') {
-      isMounted && setOptions([]);
+      isMounted() && setOptions([]);
       return;
     }
 

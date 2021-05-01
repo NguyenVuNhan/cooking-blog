@@ -13,6 +13,8 @@
     "openapi",
     "reduxjs",
     "resave",
-    "rootpassword"
+    "rootpassword",
+    "testid",
+    "unmount"
   ]
 }

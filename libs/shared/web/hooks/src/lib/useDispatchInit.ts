@@ -11,3 +11,5 @@ export const useDispatchInit = <Fn extends (...args: unknown[]) => void>(
     dispatch(fn(...args));
   }, [fn, ...args]);
 };
+
+export default useDispatchInit;
