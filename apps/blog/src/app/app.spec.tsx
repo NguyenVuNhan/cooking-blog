@@ -1,5 +1,8 @@
-import { cleanup, getByText, render, waitFor } from '@testing-library/react';
+import store from '@cookingblog/blog/data-access/store';
+import { cleanup, render } from '@testing-library/react';
 import React from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 import App from './app';
 
 describe('App', () => {
@@ -9,13 +12,14 @@ describe('App', () => {
   });
 
   it('should render successfully', async () => {
-    global['fetch'] = jest.fn().mockResolvedValueOnce({
-      json: () => ({
-        message: 'my message',
-      }),
-    });
+    const { baseElement } = render(
+      <Provider store={store}>
+        <Router>
+          <App />
+        </Router>
+      </Provider>
+    );
 
-    const { baseElement } = render(<App />);
-    await waitFor(() => getByText(baseElement, 'my message'));
+    expect(baseElement).toBeTruthy();
   });
 });
