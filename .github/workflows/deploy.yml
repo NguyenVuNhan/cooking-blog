@@ -4,8 +4,11 @@ on:
   push:
     branches: [master]
 
+env:
+  BEFORE_SHA: ${{ github.event.before }}
+
 jobs:
-  build:
+  test: 
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -20,8 +23,34 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Install Packages
+        run: yarn install
+
       - name: Fetch git history
-        run: git fetch origin master
+          run: git fetch origin master
+
+      - name: Run Affected Test
+          shell: bash
+          run: yarn run affected:test --base=$BEFORE_SHA
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
       - name: Install Yarn
         run: npm install -g yarn
@@ -31,9 +60,6 @@ jobs:
 
       - name: Build project
         run: yarn nx run-many --target=build --projects=api,blog --parallel --configuration=production
-      # - name: Run Affected Build
-      #   shell: bash
-      #   run: yarn run affected:build --base=remotes/origin/master
 
       - name: Copy repository contents via scp
         uses: appleboy/scp-action@master
@@ -45,6 +71,10 @@ jobs:
           source: 'dist,docker-compose.prod.yml,Dockerfile.prod,nginx'
           target: ${{ secrets.WORK_DIR }}
 
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
       - name: Executing remote command
         uses: appleboy/ssh-action@master
         with:
