@@ -25,7 +25,6 @@ services:
       - 3000:80
 
   server:
-    # image: node:14-alpine
     build:
       context: .
       dockerfile: ./Dockerfile.prod
