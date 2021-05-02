@@ -25,3 +25,5 @@ export const mapStringMatch = <T>(
 
   return ret;
 };
+
+export default mapStringMatch;

@@ -1,5 +1,5 @@
 export const strToDuration = (rawDuration: string): number => {
-  const reg = /(\d*).*\s\s*(\w\w*)$/;
+  const reg = /(\d*)\s*(\w\w*)$/;
   const result = reg.exec(rawDuration);
 
   if (result?.length !== 3) return 0;
@@ -31,3 +31,5 @@ export const strToDuration = (rawDuration: string): number => {
 
   return value * multiplier;
 };
+
+export default strToDuration;
