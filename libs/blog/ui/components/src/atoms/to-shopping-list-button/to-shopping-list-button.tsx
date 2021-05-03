@@ -18,11 +18,16 @@ export function ToShoppingListButton(props: ToShoppingListButtonProps) {
   };
 
   return (
-    <IconButton size="small" color="primary" onClick={onClick}>
+    <IconButton
+      size="small"
+      color="primary"
+      onClick={onClick}
+      data-testid="btn"
+    >
       {added ? (
-        <RemoveIcon fontSize="inherit" />
+        <RemoveIcon fontSize="inherit" data-testid="remove-icon" />
       ) : (
-        <AddCircleIcon fontSize="inherit" />
+        <AddCircleIcon fontSize="inherit" data-testid="add-icon" />
       )}
     </IconButton>
   );

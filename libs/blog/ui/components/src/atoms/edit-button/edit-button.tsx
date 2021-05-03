@@ -8,11 +8,11 @@ export interface EditButtonProps {
 }
 
 export function EditButton(props: EditButtonProps) {
-  const { show, onClick } = props;
+  const { show = true, onClick } = props;
 
   return (
     show && (
-      <IconButton size="small" onClick={onClick}>
+      <IconButton size="small" onClick={onClick} data-testid="icon-btn">
         <EditIcon fontSize="inherit" />
       </IconButton>
     )
