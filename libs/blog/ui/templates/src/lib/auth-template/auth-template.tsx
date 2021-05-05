@@ -6,8 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import React, { FormEventHandler, ReactNode } from 'react';
 
 export interface AuthTemplateProps {
-  children: ReactNode;
-  onSubmit: FormEventHandler;
+  children?: ReactNode;
+  onSubmit?: FormEventHandler;
   title: string;
   subTitle: string;
 }
@@ -27,6 +27,7 @@ export function AuthTemplate(props: AuthTemplateProps) {
       component="form"
       noValidate
       onSubmit={_onSubmit}
+      data-testid="form"
     >
       <Paper elevation={24}>
         <Grid container alignItems="flex-start" spacing={2}>

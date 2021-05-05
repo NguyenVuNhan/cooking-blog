@@ -7,7 +7,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import React, { ReactNode } from 'react';
 
 export interface RecipeTemplateProps {
-  children: ReactNode;
+  children?: ReactNode;
   showToolBox?: boolean;
   hideGoBack?: boolean;
 }
@@ -18,7 +18,7 @@ export function RecipeTemplate(props: RecipeTemplateProps) {
     <Container className="relative" maxWidth="md">
       <Box overflow="auto" className="vh-100 noScrollBar">
         {!hideGoBack && (
-          <IconButton onClick={goBack}>
+          <IconButton onClick={goBack} data-testid="go-back-btn">
             <ArrowBackIcon />
           </IconButton>
         )}

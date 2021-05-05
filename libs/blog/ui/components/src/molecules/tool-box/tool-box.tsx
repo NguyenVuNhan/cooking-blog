@@ -50,6 +50,7 @@ export function ToolBox(props: ToolBoxProps) {
         onClose={handleClose}
         onOpen={handleOpen}
         open={open}
+        data-testid="toolbox-btn"
       >
         {isAuthenticated ? (
           <SpeedDialAction
