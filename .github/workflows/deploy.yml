@@ -73,7 +73,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: test
+    needs: [test, build]
     steps:
       - name: Executing remote command
         uses: appleboy/ssh-action@master
