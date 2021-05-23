@@ -4,7 +4,7 @@ import {
   SearchRecipeRes,
 } from '@cookingblog/api-interfaces';
 import { storeUtils } from '@cookingblog/shared/web/utils';
-import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import {
   addRecipe,
   deleteRecipe,
@@ -28,8 +28,6 @@ export interface RecipeState {
   loading: boolean;
   errors?: ErrorRes['data']['errors'];
 }
-
-export const recipeAdapter = createEntityAdapter<RecipeEntity>();
 
 export const recipeSlice = createSlice({
   name: RECIPE_FEATURE_KEY,

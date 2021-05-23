@@ -39,5 +39,6 @@ testem.log
 Thumbs.db
 
 .vim
+.vscode
 .git
 .env

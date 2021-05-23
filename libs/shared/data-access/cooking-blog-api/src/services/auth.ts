@@ -6,12 +6,12 @@ import {
 } from '@cookingblog/api-interfaces';
 import axios from 'axios';
 
-export const login = async (user: LoginReq): Promise<LoginRes> => {
+export async function login(user: LoginReq): Promise<LoginRes> {
   const res = await axios.post<LoginRes>('/api/auth/login', user);
   return res.data;
-};
+}
 
-export const register = async (user: RegisterReq): Promise<RegisterRes> => {
+export async function register(user: RegisterReq): Promise<RegisterRes> {
   const res = await axios.post<RegisterRes>('/api/auth/register', user);
   return res.data;
-};
+}
