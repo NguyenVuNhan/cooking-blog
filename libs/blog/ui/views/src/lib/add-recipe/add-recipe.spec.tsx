@@ -1,10 +1,20 @@
+import store from '@cookingblog/blog/data-access/store';
 import { render } from '@testing-library/react';
-
+import React from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 import AddRecipe from './add-recipe';
 
 describe('AddRecipe', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<AddRecipe />);
+    const { baseElement } = render(
+      <Provider store={store}>
+        <Router>
+          <AddRecipe />
+        </Router>
+      </Provider>
+    );
+
     expect(baseElement).toBeTruthy();
   });
 });
