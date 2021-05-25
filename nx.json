@@ -36,6 +36,11 @@
     "shared-web-hooks": { "tags": [] },
     "blog-ui-templates": { "tags": [] },
     "shared-api-utils": { "tags": [] },
-    "shared-exception": { "tags": [] }
+    "shared-exception": { "tags": [] },
+    "express-api-core": { "tags": [] },
+    "express-api-common": { "tags": [] },
+    "express-api-auth": { "tags": [] },
+    "express-api-mongoose": { "tags": [] },
+    "express-api-cache": { "tags": [] }
   }
 }
