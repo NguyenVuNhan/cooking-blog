@@ -42,9 +42,6 @@
         "libs/express/api/common/src/index.ts"
       ],
       "@cookingblog/express/api/auth": ["libs/express/api/auth/src/index.ts"],
-      "@cookingblog/express/api/mongoose": [
-        "libs/express/api/mongoose/src/index.ts"
-      ],
       "@cookingblog/express/api/cache": ["libs/express/api/cache/src/index.ts"]
     }
   },
