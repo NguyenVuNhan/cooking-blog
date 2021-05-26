@@ -16,5 +16,10 @@ module.exports = {
     '<rootDir>/libs/blog/ui/templates',
     '<rootDir>/libs/shared/api/utils',
     '<rootDir>/libs/shared//exception',
+    '<rootDir>/libs/express/api/core',
+    '<rootDir>/libs/express/api/common',
+    '<rootDir>/libs/express/api/auth',
+    '<rootDir>/libs/express/api/mongoose',
+    '<rootDir>/libs/express/api/cache',
   ],
 };
