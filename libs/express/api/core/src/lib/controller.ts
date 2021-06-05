@@ -7,7 +7,6 @@ export abstract class Controller implements IController {
 
   constructor(public prefix?: string) {
     this.router = Router();
-    this.setupRouter();
   }
 
   setupRouter(): void {

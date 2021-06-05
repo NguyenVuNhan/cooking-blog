@@ -1,7 +1,23 @@
-import { IUserModel } from '@cookingblog/api-interfaces';
-import bcrypt from 'bcrypt-nodejs';
+import { genSalt, hash, compare } from 'bcrypt-nodejs';
 import { createHash } from 'crypto';
-import { model, Schema } from 'mongoose';
+import { model, Schema, Document } from 'mongoose';
+import { IBaseRepository } from '@cookingblog/express/api/core';
+import { BaseRepository, BaseEntity } from '@cookingblog/express/api/mongoose';
+
+export interface IUser extends BaseEntity {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface IUserModel extends IUser, Document<string> {
+  id: string;
+  comparePassword(
+    password: string,
+    cb: (error: Error, result: boolean) => void
+  ): string;
+  gravatar(_size: number): string;
+}
 
 // Define the User Schema
 const UserSchema = new Schema<IUserModel>(
@@ -12,6 +28,8 @@ const UserSchema = new Schema<IUserModel>(
   },
   {
     timestamps: true,
+    autoCreate: true,
+    versionKey: false,
   }
 );
 
@@ -21,12 +39,12 @@ UserSchema.pre<IUserModel>('save', function (next) {
     return next(null);
   }
 
-  bcrypt.genSalt(10, (err, salt) => {
+  genSalt(10, (err, salt) => {
     if (err) {
       return next(err);
     }
 
-    bcrypt.hash(this.password, salt, null, (err, _hash) => {
+    hash(this.password, salt, null, (err, _hash) => {
       if (err) {
         return next(err);
       }
@@ -42,7 +60,7 @@ UserSchema.methods.comparePassword = function (
   requestPassword: string,
   cb: (error: Error, result: boolean) => void
 ): void {
-  bcrypt.compare(requestPassword, this.password, (err, isMatch) => {
+  compare(requestPassword, this.password, (err, isMatch) => {
     return cb(err, isMatch);
   });
 };
@@ -63,5 +81,15 @@ UserSchema.methods.gravatar = function (size: number): string {
 };
 
 const User = model<IUserModel>('User', UserSchema);
+
+export type IUserRepository = IBaseRepository<IUserModel>;
+
+export class UserRepository
+  extends BaseRepository<IUserModel>
+  implements IUserRepository {
+  constructor() {
+    super('user', UserSchema, 'users');
+  }
+}
 
 export default User;

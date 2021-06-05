@@ -32,10 +32,9 @@ export abstract class BaseApp {
   private app: Application;
   private server: Server;
 
-  constructor(
-    public logger: ILogger,
-    private config: Config = defaultAppConfig
-  ) {
+  constructor(public logger: ILogger, private config: Config = {}) {
+    this.config = { ...defaultAppConfig, ...config };
+
     this.app = express();
 
     this.handleRequestError = this.handleRequestError.bind(this);
@@ -53,7 +52,7 @@ export abstract class BaseApp {
   protected setupControllers(...controllers: IController[]): void {
     this.logger.info('Booting controllers...');
     controllers.forEach((controller) => {
-      this.logger.info('--> Mount controller: ' + controller.prefix);
+      this.logger.info('--> Mount controller at ' + controller.prefix);
       if (controller.prefix) {
         this.app.use(controller.prefix, controller.router);
       } else {

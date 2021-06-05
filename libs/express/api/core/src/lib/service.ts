@@ -23,7 +23,7 @@ export abstract class BaseService<T extends { id: string }>
   ) {
     this.repo = repo;
     this.cache = cache?.cache;
-    this.prefix = cache?.appName ? cache.appName + cache.uniqueKey : 'c';
+    this.prefix = cache?.appName ? cache.appName + '/' + cache.uniqueKey : 'c';
     this.ttl = cache?.second;
     this.logger = logger;
   }

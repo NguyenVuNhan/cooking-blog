@@ -1,4 +1,6 @@
 export interface APIConfig {
+  appName: string;
+  appVersion: string;
   production: boolean;
   port: number;
   isCORSEnabled: boolean;
@@ -14,5 +16,6 @@ export interface APIConfig {
   redisHttpPort: number;
   redisHttpHost: string;
   redisDB: number;
+  redisTimeout: number;
   jwtExpiresIn: number;
 }

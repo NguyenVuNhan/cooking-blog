@@ -1,6 +1,8 @@
 import { APIConfig } from '@cookingblog/api-interfaces';
 
 export const environment: APIConfig = {
+  appName: 'Cooking Blog Api',
+  appVersion: '0.0.1',
   production: false,
   port: 5000,
   isCORSEnabled: true,
@@ -18,4 +20,5 @@ export const environment: APIConfig = {
   redisHttpHost: 'localhost',
   redisDB: 3,
   jwtExpiresIn: 60 * 24,
+  redisTimeout: 60,
 };

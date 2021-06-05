@@ -538,6 +538,46 @@
           }
         }
       }
+    },
+    "api-services": {
+      "root": "libs/api/services",
+      "sourceRoot": "libs/api/services/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/api/services/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/services"],
+          "options": {
+            "jestConfig": "libs/api/services/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "express-api-mongoose": {
+      "root": "libs/express/api/mongoose",
+      "sourceRoot": "libs/express/api/mongoose/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/express/api/mongoose/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/express/api/mongoose"],
+          "options": {
+            "jestConfig": "libs/express/api/mongoose/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

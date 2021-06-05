@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const environment: APIConfig = {
+  appName: 'Cooking Blog Api',
+  appVersion: '1.0.0',
   production: true,
   port: parseInt(process.env.PORT),
   isCORSEnabled: Boolean(process.env.CORS_ENABLED),
@@ -19,5 +21,6 @@ export const environment: APIConfig = {
   redisHttpPort: parseInt(process.env.REDIS_QUEUE_PORT),
   redisHttpHost: process.env.REDIS_QUEUE_HOST,
   redisDB: parseInt(process.env.REDIS_QUEUE_DB),
+  redisTimeout: 60,
   jwtExpiresIn: parseInt(process.env.JWT_EXPIRES_IN),
 };

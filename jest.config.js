@@ -20,5 +20,7 @@ module.exports = {
     '<rootDir>/libs/express/api/common',
     '<rootDir>/libs/express/api/auth',
     '<rootDir>/libs/express/api/cache',
+    '<rootDir>/libs/api/services',
+    '<rootDir>/libs/express/api/mongoose',
   ],
 };

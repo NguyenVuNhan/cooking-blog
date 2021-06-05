@@ -13,30 +13,30 @@ import {
   UpdateOptions,
 } from '@cookingblog/express/api/core';
 
-export abstract class BaseRepository<T extends Document>
-  implements IBaseRepository<T> {
-  model: Model<T>;
+export abstract class BaseRepository<TModel extends Document>
+  implements IBaseRepository<TModel> {
+  model: Model<TModel>;
 
   constructor(name: string, schema: Schema, collection: string) {
-    this.model = model<T & Document>(name, schema, collection);
+    this.model = model<TModel & Document>(name, schema, collection);
   }
 
   @Repository(false)
-  async create(entity: Partial<T>): Promise<T> {
+  async create(entity: Partial<TModel>): Promise<TModel> {
     delete entity.id;
 
     const doc = await this.model.create(entity);
-    return doc;
+    return (doc as unknown) as TModel;
   }
 
   @Repository()
-  async updateById(id: string, doc: Partial<T>): Promise<boolean> {
+  async updateById(id: string, doc: Partial<TModel>): Promise<boolean> {
     delete doc.id;
 
     const raw = await this.model.updateOne(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       { _id: id as any },
-      (doc as unknown) as UpdateQuery<T>
+      (doc as unknown) as UpdateQuery<TModel>
     );
     if (raw.ok === 0) {
       throw new Error('Update failed');
@@ -45,45 +45,47 @@ export abstract class BaseRepository<T extends Document>
   }
 
   @Repository()
-  async findOne(query: Partial<T>): Promise<T> {
+  async findOne(query: Partial<TModel>): Promise<TModel> {
     const entity = await this.model.findOne(
-      (query as unknown) as FilterQuery<T>
+      (query as unknown) as FilterQuery<TModel>
     );
-    return entity as T;
+    return entity as TModel;
   }
 
   @Repository()
-  async findMany(query: Partial<T>): Promise<T[]> {
-    const entity = await this.model.find((query as unknown) as FilterQuery<T>);
-    return entity as T[];
+  async findMany(query: Partial<TModel>): Promise<TModel[]> {
+    const entity = await this.model.find(
+      (query as unknown) as FilterQuery<TModel>
+    );
+    return entity as TModel[];
   }
 
   @Repository()
   async findOneAndUpdate(
-    query: Partial<T>,
-    doc: Partial<T>,
+    query: Partial<TModel>,
+    doc: Partial<TModel>,
     options?: UpdateOptions
-  ): Promise<T> {
+  ): Promise<TModel> {
     delete doc.id;
 
     const entity = await this.model
       .findOneAndUpdate(
-        (query as unknown) as FilterQuery<T>,
-        (doc as unknown) as UpdateQuery<T>,
+        (query as unknown) as FilterQuery<TModel>,
+        (doc as unknown) as UpdateQuery<TModel>,
         {
           new: true,
           ...options,
         }
       )
       .lean();
-    return entity as T;
+    return entity as TModel;
   }
 
   @Repository()
   async findAll(
-    query: Partial<T>,
+    query: Partial<TModel>,
     option: Partial<FindAllOption>
-  ): Promise<FindAllResponse<T>> {
+  ): Promise<FindAllResponse<TModel>> {
     if (!option) option = {};
     const { fields } = option;
     let { sort = 'id', limit = 50, page = 1 } = option;
@@ -96,11 +98,11 @@ export abstract class BaseRepository<T extends Document>
     if (page < 1) page = 1;
 
     const count = await this.model.countDocuments(
-      (query as unknown) as FilterQuery<T>
+      (query as unknown) as FilterQuery<TModel>
     );
 
     const items = await this.model
-      .find((query as unknown) as FilterQuery<T>)
+      .find((query as unknown) as FilterQuery<TModel>)
       .select(selectFieldsShow(fields))
       .limit(limit)
       .skip(limit * (page - 1))
@@ -113,7 +115,7 @@ export abstract class BaseRepository<T extends Document>
       limit,
       page,
       totalPages: Math.ceil(count / limit),
-      data: items as T[],
+      data: items as TModel[],
     };
   }
 
@@ -129,9 +131,9 @@ export abstract class BaseRepository<T extends Document>
   }
 
   @Repository()
-  async count(query: Partial<T>): Promise<number> {
+  async count(query: Partial<TModel>): Promise<number> {
     const count = await this.model.countDocuments(
-      (query as unknown) as FilterQuery<T>
+      (query as unknown) as FilterQuery<TModel>
     );
     return count;
   }

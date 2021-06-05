@@ -40,6 +40,8 @@
     "express-api-core": { "tags": [] },
     "express-api-common": { "tags": [] },
     "express-api-auth": { "tags": [] },
-    "express-api-cache": { "tags": [] }
+    "express-api-cache": { "tags": [] },
+    "api-services": { "tags": [] },
+    "express-api-mongoose": { "tags": [] }
   }
 }

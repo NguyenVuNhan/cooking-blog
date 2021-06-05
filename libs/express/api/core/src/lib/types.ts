@@ -3,6 +3,14 @@ import { OptionsJson, OptionsUrlencoded } from 'body-parser';
 import { CorsOptions, CorsOptionsDelegate } from 'cors';
 import { Router } from 'express';
 
+// Response
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface BaseResponse<T = any> {
+  data: T;
+  message: string;
+  success: boolean;
+}
+
 // Application
 export type Config = {
   name?: string;
@@ -12,7 +20,8 @@ export type Config = {
   cors?: CorsOptions | CorsOptionsDelegate;
   urlEncoded?: OptionsUrlencoded;
   json?: OptionsJson;
-  locals?: Record<string, unknown>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  locals?: Record<string, any>;
 };
 
 // Controllers

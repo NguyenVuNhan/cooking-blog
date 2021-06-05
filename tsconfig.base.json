@@ -19,6 +19,7 @@
       "@blog/components": ["libs/blog/components/src/index.ts"],
       "@api/models": ["libs/api/models/src/index.ts"],
       "@api/middlewares": ["libs/api/middlewares/src/index.ts"],
+      "@api/services": ["libs/api/services/src/index.ts"],
       "@api/configs": ["libs/api/configs/src/index.ts"],
       "@api/routes": ["libs/api/routes/src/index.ts"],
       "@api/controllers": ["libs/api/controllers/src/index.ts"],
@@ -42,7 +43,10 @@
         "libs/express/api/common/src/index.ts"
       ],
       "@cookingblog/express/api/auth": ["libs/express/api/auth/src/index.ts"],
-      "@cookingblog/express/api/cache": ["libs/express/api/cache/src/index.ts"]
+      "@cookingblog/express/api/cache": ["libs/express/api/cache/src/index.ts"],
+      "@cookingblog/express/api/mongoose": [
+        "libs/express/api/mongoose/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
