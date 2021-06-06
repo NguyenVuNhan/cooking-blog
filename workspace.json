@@ -578,6 +578,27 @@
           }
         }
       }
+    },
+    "shared-validator-decorator": {
+      "root": "libs/shared/validator-decorator",
+      "sourceRoot": "libs/shared/validator-decorator/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/validator-decorator/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/validator-decorator"],
+          "options": {
+            "jestConfig": "libs/shared/validator-decorator/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

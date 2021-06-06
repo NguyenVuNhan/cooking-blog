@@ -1,6 +1,6 @@
-import { IUserRepository, IUser, IUserModel } from '@api/models';
+import { IUserModel, IUserRepository } from '@api/models';
 import { ILogger } from '@cookingblog/express/api/common';
-import { ServiceCache, IBaseService } from '@cookingblog/express/api/core';
+import { IBaseService, ServiceCache } from '@cookingblog/express/api/core';
 
 export type UserServiceProp = {
   repo: IUserRepository;
@@ -8,12 +8,31 @@ export type UserServiceProp = {
   serviceCache: ServiceCache;
 };
 
-export interface IUserService extends IBaseService<IUser> {
+export interface IUserService extends IBaseService<IUserModel> {
   /**
    * Get user service
    *
-   * @param {string} email user email
+   * @param {string} emailOrName user email or name
+   * @param {boolean} throwOnFound if this set to true, throw error when user found. Default is found
    * @return {Promise} Promise object of IUserModel
    */
-  get(email: string): Promise<IUserModel>;
+  get(emailOrName: string, throwOnFound?: boolean): Promise<IUserModel>;
+
+  /**
+   * Get user by name service
+   *
+   * @param {string} name user name
+   * @param {boolean} throwOnFound if this set to true, throw error when user found. Default is found
+   * @return {Promise} Promise object of IUserModel
+   */
+  getByName(name: string, throwOnFound?: boolean): Promise<IUserModel>;
+
+  /**
+   * Get user by email service
+   *
+   * @param {string} email user email
+   * @param {boolean} throwOnFound if this set to true, throw error when user found. Default is found
+   * @return {Promise} Promise object of IUserModel
+   */
+  getByEmail(email: string, throwOnFound?: boolean): Promise<IUserModel>;
 }

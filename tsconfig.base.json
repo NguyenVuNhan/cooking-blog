@@ -46,6 +46,9 @@
       "@cookingblog/express/api/cache": ["libs/express/api/cache/src/index.ts"],
       "@cookingblog/express/api/mongoose": [
         "libs/express/api/mongoose/src/index.ts"
+      ],
+      "@cookingblog/shared/validator-decorator": [
+        "libs/shared/validator-decorator/src/index.ts"
       ]
     }
   },

@@ -18,7 +18,9 @@ class ValidationError extends AppError {
   constructor(errors: ClsValidationError[]) {
     const message = errors.reduce(
       (acc: string, val) =>
-        `${acc}, ${Object.values(val.constraints).join(', ')}`,
+        `${acc}${acc == '' ? '' : ', '}${Object.values(val.constraints).join(
+          ', '
+        )}`,
       ''
     );
     const details = errors.reduce(
@@ -33,7 +35,7 @@ class ValidationError extends AppError {
   }
 }
 
-const validate = (
+export const validate = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   type: any,
   { subject, continueOnError, ...rest }: ValidateConfig = {
@@ -49,10 +51,8 @@ const validate = (
     if (continueOnError) {
       req.app.locals.errors = errors;
     } else {
-      throw new ValidationError(errors);
+      return next(new ValidationError(errors));
     }
   }
-  next();
+  return next();
 };
-
-export default validate;

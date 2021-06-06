@@ -1,5 +1,7 @@
 import { Types, Schema, model } from 'mongoose';
 import { IRecipeModel } from '@cookingblog/api-interfaces';
+import { IBaseRepository } from '@cookingblog/express/api/core';
+import { BaseRepository } from '@cookingblog/express/api/mongoose';
 
 const ObjectId = Types.ObjectId;
 
@@ -45,5 +47,16 @@ RecipeSchema.index(
 );
 
 const Recipe = model<IRecipeModel>('Recipe', RecipeSchema);
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface IRecipeRepository extends IBaseRepository<IRecipeModel> {}
+
+export class RecipeRepository
+  extends BaseRepository<IRecipeModel>
+  implements IRecipeRepository {
+  constructor() {
+    super('recipe', RecipeSchema, 'recipes');
+  }
+}
 
 export default Recipe;

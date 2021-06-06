@@ -42,6 +42,7 @@
     "express-api-auth": { "tags": [] },
     "express-api-cache": { "tags": [] },
     "api-services": { "tags": [] },
-    "express-api-mongoose": { "tags": [] }
+    "express-api-mongoose": { "tags": [] },
+    "shared-validator-decorator": { "tags": [] }
   }
 }

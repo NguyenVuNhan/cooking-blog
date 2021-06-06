@@ -19,6 +19,20 @@ export default class AuthService implements IAuthService {
     this.userService = userService;
   }
 
+  async register(
+    name: string,
+    email: string,
+    password: string
+  ): Promise<IUserModel> {
+    await this.userService.getByEmail(email, true);
+    await this.userService.getByName(name, true);
+
+    const user = await this.userService.create({ name, email, password });
+    delete user.password;
+
+    return user;
+  }
+
   async login(
     email: string,
     password: string,
@@ -26,9 +40,8 @@ export default class AuthService implements IAuthService {
   ): Promise<{ user: IUserModel; token: JWTToken }> {
     const user = await this.userService.get(email);
 
-    await compare(password, user.password).catch((e: Error) => {
-      throw new ValidationError('Password not match', e);
-    });
+    if (!(await compare(password, user.password)))
+      throw new ValidationError('Password not match');
 
     delete user.password;
     const token = this.generateJWT(user.id, jwtOptions);
@@ -45,10 +58,7 @@ export default class AuthService implements IAuthService {
     const exp = new Date();
     exp.setSeconds(today.getSeconds() + expiresIn);
 
-    this.logger.debug(expiresIn);
-    this.logger.debug(typeof expiresIn);
     const token = sign({ id }, appSecret, { expiresIn });
-    console.log(token);
 
     return {
       token: 'Bearer ' + token,

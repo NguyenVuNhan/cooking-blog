@@ -22,5 +22,6 @@ module.exports = {
     '<rootDir>/libs/express/api/cache',
     '<rootDir>/libs/api/services',
     '<rootDir>/libs/express/api/mongoose',
+    '<rootDir>/libs/shared/validator-decorator',
   ],
 };

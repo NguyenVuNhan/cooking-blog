@@ -31,28 +31,20 @@ const defaultAppConfig: Config = {
 export abstract class BaseApp {
   private app: Application;
   private server: Server;
+  private controllers: IController[] = [];
 
   constructor(public logger: ILogger, private config: Config = {}) {
     this.config = { ...defaultAppConfig, ...config };
 
     this.app = express();
+    this.server = http.createServer(this.app);
 
     this.handleRequestError = this.handleRequestError.bind(this);
-
-    logger.info('Mounting local variables...');
-    this.app.locals = this.config.locals;
-    logger.info('Booting middleware...');
-    this.app.use(cors(this.config.cors));
-    this.app.use(urlencoded(this.config.json));
-    this.app.use(json(this.config.json));
-    this.app.use(compression());
-    this.server = http.createServer(this.app);
   }
 
-  protected setupControllers(...controllers: IController[]): void {
-    this.logger.info('Booting controllers...');
-    controllers.forEach((controller) => {
-      this.logger.info('--> Mount controller at ' + controller.prefix);
+  private setupControllers(): void {
+    this.controllers.forEach((controller) => {
+      this.logger.info('--> Add controller at ' + controller.prefix);
       if (controller.prefix) {
         this.app.use(controller.prefix, controller.router);
       } else {
@@ -64,33 +56,54 @@ export abstract class BaseApp {
     this.app.use(this.handleRequestError);
   }
 
-  protected handleNotImplementedError(_req: Request, _res: Response): void {
+  private handleNotImplementedError(_req: Request, _res: Response): void {
     throw new NotFoundError('Resource Not Found');
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  protected handleRequestError(
+  private handleRequestError(
     err: AppError | Error,
     req: Request,
     res: Response,
     _next: NextFunction
   ): void {
+    const e = createErrorResponse(err);
     if (this.config.debug) {
-      this.logger.warn(
-        `API Error: ${req.url}`,
-        (createErrorResponse(err) as unknown) as never
-      );
+      this.logger.warn(`API Error: ${req.url}`, e);
     }
 
+    if (!this.config.debug && e.code && e.code == 500)
+      return sendErrorResponse(new Error(), res);
     sendErrorResponse(err, res);
   }
 
+  protected addController(controller: IController): void {
+    this.controllers.push(controller);
+  }
+
   showInfo(): void {
+    this.logger.info(
+      '\n\n======================================================================'
+    );
     this.logger.info(`Application: ${this.config.name}`);
-    this.logger.info(`Version: ${this.config.version} \n`);
+    this.logger.info(`Version: ${this.config.version}`);
+    this.logger.info(
+      '======================================================================\n\n'
+    );
   }
 
   start(): void {
+    this.logger.info('Mounting local variables...');
+    this.app.locals = this.config.locals;
+    this.logger.info('Booting middleware...');
+    this.app.use(cors(this.config.cors));
+    this.app.use(urlencoded(this.config.json));
+    this.app.use(json(this.config.json));
+    this.app.use(compression());
+
+    this.logger.info('Mounting controllers...');
+    this.setupControllers();
+
     this.logger.info(`Starting server...`);
     this.server.listen(this.config.port, () => {
       this.logger.info(`Server running at Port: ${this.config.port}`);

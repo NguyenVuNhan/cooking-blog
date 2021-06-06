@@ -1,5 +1,6 @@
 import { IAuthService, JWTOptions } from '@api/services';
-import { ILogger } from '@cookingblog/express/api/common';
+import { LoginReq, RegisterReq } from '@cookingblog/api-interfaces';
+import { ILogger, validate } from '@cookingblog/express/api/common';
 import { Controller, sendSuccessResponse } from '@cookingblog/express/api/core';
 import { Request, Response } from 'express';
 
@@ -12,7 +13,16 @@ export default class AuthController extends Controller {
   }
 
   setupRouter() {
-    this.router.post(`/login`, this.wrapTryCatch(this.login));
+    this.router.post(
+      `/login`,
+      validate(LoginReq),
+      this.wrapTryCatch(this.login)
+    );
+    this.router.post(
+      `/register`,
+      validate(RegisterReq),
+      this.wrapTryCatch(this.register)
+    );
   }
 
   private async login(req: Request, res: Response) {
@@ -24,5 +34,13 @@ export default class AuthController extends Controller {
     });
 
     sendSuccessResponse(data, res, 'You have been successfully logged in');
+  }
+
+  private async register(req: Request, res: Response) {
+    const { name, email, password } = req.body;
+
+    const data = await this.authService.register(name, email, password);
+
+    sendSuccessResponse(data, res, 'You have been successfully registered');
   }
 }

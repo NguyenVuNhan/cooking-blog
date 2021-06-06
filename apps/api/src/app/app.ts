@@ -22,9 +22,7 @@ export default class Application extends BaseApp {
       locals: config,
     });
 
-    const authController = new AuthController(authService, logger);
-
-    this.setupControllers(authController);
+    this.addController(new AuthController(authService, logger));
   }
 }
 
@@ -92,4 +90,4 @@ export default class Application extends BaseApp {
 //   }
 // }
 
-// export default new App();
+// export default new App()

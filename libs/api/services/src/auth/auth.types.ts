@@ -18,6 +18,15 @@ export interface IAuthService {
     password: string,
     jwtOptions?: JWTOptions
   ): Promise<{ user: IUserModel; token: JWTToken }>;
+  /**
+   * User register service
+   *
+   * @param {string} name user name
+   * @param {string} email user email
+   * @param {string} password user password
+   * @returns {IUserModel} new uwer info
+   */
+  register(name: string, email: string, password: string): Promise<IUserModel>;
 }
 
 export type AuthServiceProp = {

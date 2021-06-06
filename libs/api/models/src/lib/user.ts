@@ -82,13 +82,21 @@ UserSchema.methods.gravatar = function (size: number): string {
 
 const User = model<IUserModel>('User', UserSchema);
 
-export type IUserRepository = IBaseRepository<IUserModel>;
+export interface IUserRepository extends IBaseRepository<IUserModel> {
+  getByEmailOrName(emailOrName: string): Promise<IUserModel>;
+}
 
 export class UserRepository
   extends BaseRepository<IUserModel>
   implements IUserRepository {
   constructor() {
     super('user', UserSchema, 'users');
+  }
+
+  async getByEmailOrName(emailOrName: string): Promise<IUserModel> {
+    return this.model.findOne({
+      $or: [{ name: emailOrName }, { email: emailOrName }],
+    });
   }
 }
 
