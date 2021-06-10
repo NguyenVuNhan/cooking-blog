@@ -1,8 +1,7 @@
-import { LoginReq, RegisterReq } from '@cookingblog/api-interfaces';
 import { validate } from '@cookingblog/express/api/common';
 import { Controller, sendSuccessResponse } from '@cookingblog/express/api/core';
 import { Request, Response } from 'express';
-import { IAuthService } from './auth.types';
+import { LoginReq, RegisterReq, IAuthService } from './auth.types';
 
 export class AuthController extends Controller {
   constructor(private authService: IAuthService) {
