@@ -1,4 +1,4 @@
-import { AddRecipeReq } from '@cookingblog/api-interfaces';
+import { AddRecipeReq } from '@cookingblog/api/interfaces';
 import { RecipeTemplate } from '@cookingblog/blog/ui/templates';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';

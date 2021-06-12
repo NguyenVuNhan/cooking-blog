@@ -1,4 +1,4 @@
-import { APIConfig } from '@cookingblog/api-interfaces';
+import { APIConfig } from '@cookingblog/api/interfaces';
 import dotenv from 'dotenv';
 
 dotenv.config();

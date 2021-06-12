@@ -3,7 +3,7 @@ import {
   LoginRes,
   RegisterReq,
   RegisterRes,
-} from '@cookingblog/api-interfaces';
+} from '@cookingblog/api/interfaces';
 import axios from 'axios';
 
 export async function login(user: LoginReq): Promise<LoginRes> {

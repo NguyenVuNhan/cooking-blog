@@ -17,7 +17,6 @@ import express, {
 import http, { Server } from 'http';
 import { createErrorResponse, sendErrorResponse } from './helpers';
 import { Config, IController } from './types';
-import * as passport from 'passport';
 
 const defaultAppConfig: Config = {
   port: 5000,

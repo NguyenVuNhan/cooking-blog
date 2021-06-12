@@ -3,7 +3,7 @@ import {
   LoginRes,
   RegisterReq,
   RegisterRes,
-} from '@cookingblog/api-interfaces';
+} from '@cookingblog/api/interfaces';
 import { authServices } from '@cookingblog/shared/data-access/cooking-blog-api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { setAuthToken, storeUtils } from '@cookingblog/shared/web/utils';

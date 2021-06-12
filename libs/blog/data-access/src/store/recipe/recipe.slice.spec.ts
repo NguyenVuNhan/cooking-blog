@@ -7,7 +7,7 @@ import {
   SearchRecipeRes,
   UpdateRecipeReq,
   UpdateRecipeRes,
-} from '@cookingblog/api-interfaces';
+} from '@cookingblog/api/interfaces';
 import { recipeServices } from '@cookingblog/shared/data-access/cooking-blog-api';
 import { AsyncThunkAction, Dispatch } from '@reduxjs/toolkit';
 import { recipeActions, recipeReducer } from './recipe.slice';

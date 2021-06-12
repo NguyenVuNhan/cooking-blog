@@ -1,6 +1,6 @@
 import React from 'react';
 import Alert from '@material-ui/lab/Alert';
-import { ErrorRes } from '@cookingblog/api-interfaces';
+import { ErrorRes } from '@cookingblog/api/interfaces';
 
 /* eslint-disable-next-line */
 export interface ErrorBadgeProps {

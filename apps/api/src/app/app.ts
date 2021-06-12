@@ -1,11 +1,11 @@
-import { APIConfig, IUserModel } from '@cookingblog/api-interfaces';
+import { APIConfig } from '@cookingblog/api/interfaces';
 import { AuthController, IAuthService } from '@cookingblog/api/auth';
 import {
   IIngredientService,
   IngredientsController,
 } from '@cookingblog/api/ingredient';
 import { IRecipeService, RecipeController } from '@cookingblog/api/recipe';
-import { IUserService } from '@cookingblog/api/user';
+import { IUserModel, IUserService } from '@cookingblog/api/user';
 import { ILogger } from '@cookingblog/express/api/common';
 import { BaseApp } from '@cookingblog/express/api/core';
 import passport from 'passport';

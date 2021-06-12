@@ -6,7 +6,7 @@ import {
   SearchRecipeRes,
   UpdateRecipeReq,
   UpdateRecipeRes,
-} from '@cookingblog/api-interfaces';
+} from '@cookingblog/api/interfaces';
 import axios from 'axios';
 
 export const addRecipe = async (data: AddRecipeReq): Promise<AddRecipeRes> => {

@@ -6,7 +6,7 @@ import {
   SearchRecipeRes,
   UpdateRecipeReq,
   UpdateRecipeRes,
-} from '@cookingblog/api-interfaces';
+} from '@cookingblog/api/interfaces';
 import { forwardTo, goBack } from '@cookingblog/blog/utils';
 import { recipeServices } from '@cookingblog/shared/data-access/cooking-blog-api';
 import { storeUtils } from '@cookingblog/shared/web/utils';

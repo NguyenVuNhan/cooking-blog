@@ -15,14 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@cookingblog/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@blog/components": ["libs/blog/components/src/index.ts"],
-      "@api/models": ["libs/api/models/src/index.ts"],
-      "@api/middlewares": ["libs/api/middlewares/src/index.ts"],
-      "@api/services": ["libs/api/services/src/index.ts"],
-      "@api/configs": ["libs/api/configs/src/index.ts"],
-      "@api/routes": ["libs/api/routes/src/index.ts"],
-      "@api/controllers": ["libs/api/controllers/src/index.ts"],
       "@cookingblog/shared/data-access/cooking-blog-api": [
         "libs/shared/data-access/cooking-blog-api/src/index.ts"
       ],
@@ -53,7 +46,7 @@
       "@cookingblog/api/user": ["libs/api/user/src/index.ts"],
       "@cookingblog/api/ingredient": ["libs/api/ingredient/src/index.ts"],
       "@cookingblog/api/recipe": ["libs/api/recipe/src/index.ts"],
-      "@cookingblog/api/types": ["libs/api/types/src/index.ts"]
+      "@cookingblog/api/interfaces": ["libs/api/interfaces/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

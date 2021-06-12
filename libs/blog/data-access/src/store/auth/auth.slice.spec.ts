@@ -8,7 +8,7 @@ import {
   LoginRes,
   RegisterReq,
   RegisterRes,
-} from '@cookingblog/api-interfaces';
+} from '@cookingblog/api/interfaces';
 
 jest.mock('@cookingblog/shared/data-access/cooking-blog-api');
 jest.mock('@cookingblog/blog/utils');

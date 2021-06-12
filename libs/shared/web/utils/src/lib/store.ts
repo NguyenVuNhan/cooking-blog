@@ -1,4 +1,4 @@
-import { ErrorRes } from '@cookingblog/api-interfaces';
+import { ErrorRes } from '@cookingblog/api/interfaces';
 import { AnyAction, AsyncThunkPayloadCreator } from '@reduxjs/toolkit';
 
 const hasPrefix = (action: AnyAction, prefix: string) =>

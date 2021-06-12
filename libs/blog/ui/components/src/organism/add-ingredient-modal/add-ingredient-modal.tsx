@@ -1,4 +1,4 @@
-import { AddRecipeReq, IRecipe } from '@cookingblog/api-interfaces';
+import { AddRecipeReq, IRecipe } from '@cookingblog/api/interfaces';
 import { IngredientInput, TextField } from '@cookingblog/blog/ui/components';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';

@@ -20,7 +20,6 @@
     "blog": { "tags": [] },
     "blog-e2e": { "tags": [], "implicitDependencies": ["blog"] },
     "api": { "tags": [] },
-    "api-interfaces": { "tags": [] },
     "shared-data-access-cooking-blog-api": { "tags": [] },
     "blog-data-access": { "tags": [] },
     "shared-web-utils": { "tags": [] },
@@ -40,6 +39,6 @@
     "api-user": { "tags": [] },
     "api-ingredient": { "tags": [] },
     "api-recipe": { "tags": [] },
-    "api-types": { "tags": [] }
+    "api-interfaces": { "tags": [] }
   }
 }

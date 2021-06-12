@@ -1,4 +1,4 @@
-import { LoginReq } from '@cookingblog/api-interfaces';
+import { LoginReq } from '@cookingblog/api/interfaces';
 import { authActions, authSelector } from '@cookingblog/blog/data-access/store';
 import { ErrorBadge, TextField } from '@cookingblog/blog/ui/components';
 import { AuthTemplate } from '@cookingblog/blog/ui/templates';

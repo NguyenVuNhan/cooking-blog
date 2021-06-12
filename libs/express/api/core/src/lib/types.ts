@@ -1,11 +1,16 @@
 import { ICache } from '@cookingblog/express/api/cache';
 import { OptionsJson, OptionsUrlencoded } from 'body-parser';
 import { CorsOptions, CorsOptionsDelegate } from 'cors';
-import { Router } from 'express';
+import { Request, Router } from 'express';
 
 // ======================================================================
-// Response
+// Response/Request
 // ======================================================================
+interface User {
+  id: string;
+}
+export type RequestWithUser = Request & { user: User };
+
 export interface BaseResponse<T = unknown> {
   data: T;
   message: string;

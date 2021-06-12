@@ -22,6 +22,5 @@ module.exports = {
     '<rootDir>/libs/api/user',
     '<rootDir>/libs/api/ingredient',
     '<rootDir>/libs/api/recipe',
-    '<rootDir>/libs/api/types',
   ],
 };

@@ -1,4 +1,4 @@
-import { IRecipe } from '@cookingblog/api-interfaces';
+import { IRecipe } from '@cookingblog/api/interfaces';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import React, { useEffect } from 'react';

@@ -1,8 +1,4 @@
-export * from './data/user';
-export * from './data/recipe';
-export * from './data/ingredient';
-
-export * from './config/api';
+export * from './lib/config';
 
 export * from './request/auth';
 export * from './request/ingredient';

@@ -1,4 +1,4 @@
-import { UpdateRecipeReq } from '@cookingblog/api-interfaces';
+import { UpdateRecipeReq } from '@cookingblog/api/interfaces';
 import { ShoppingListCtx } from '@cookingblog/blog/data-access/context';
 import {
   recipeActions,

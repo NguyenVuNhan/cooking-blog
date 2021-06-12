@@ -3,7 +3,7 @@ import {
   GetRecipeRes,
   IRecipe,
   UpdateRecipeReq,
-} from '@cookingblog/api-interfaces';
+} from '@cookingblog/api/interfaces';
 import { AddIngredientModal } from '@cookingblog/blog/ui/components';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
