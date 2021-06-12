@@ -65,16 +65,14 @@ export class RecipeController extends Controller {
     );
 
     if (!result) throw new ServerError();
-    sendSuccessResponse(result, res);
+    sendSuccessResponse({ id: result.id, title: result.title }, res);
   }
 
   private async delete(req: RequestWithUser, res: Response) {
-    const result = await this.recipeService.deleteRecipe(
-      req.user.id,
-      req.params.id
-    );
+    const id = req.params.id;
+    const result = await this.recipeService.deleteRecipe(req.user.id, id);
 
     if (!result) throw new ServerError();
-    sendSuccessResponse(result, res);
+    sendSuccessResponse({ id }, res);
   }
 }

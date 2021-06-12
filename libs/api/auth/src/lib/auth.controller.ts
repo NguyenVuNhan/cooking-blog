@@ -1,7 +1,8 @@
 import { validate } from '@cookingblog/express/api/common';
 import { Controller, sendSuccessResponse } from '@cookingblog/express/api/core';
 import { Request, Response } from 'express';
-import { LoginReq, RegisterReq, IAuthService } from './auth.types';
+import { IAuthService } from './auth.types';
+import { LoginDTO, RegisterDTO } from './auth.dto';
 
 export class AuthController extends Controller {
   constructor(private authService: IAuthService) {
@@ -12,12 +13,12 @@ export class AuthController extends Controller {
   setupRouter() {
     this.router.post(
       `/login`,
-      validate(LoginReq),
+      validate(LoginDTO),
       this.wrapTryCatch(this.login)
     );
     this.router.post(
       `/register`,
-      validate(RegisterReq),
+      validate(RegisterDTO),
       this.wrapTryCatch(this.register)
     );
   }

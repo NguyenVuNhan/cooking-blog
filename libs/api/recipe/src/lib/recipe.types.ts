@@ -1,11 +1,13 @@
 import { IIngredientService } from '@cookingblog/api/ingredient';
 import { ILogger } from '@cookingblog/express/api/common';
 import {
+  BaseResponse,
   IBaseRepository,
   IBaseService,
   ServiceCache,
 } from '@cookingblog/express/api/core';
-import { IRecipeModel } from './recipe.entity';
+import { RecipeDTO } from './recipe.dto';
+import { IRecipe, IRecipeModel, IRecipeWithIngredient } from './recipe.entity';
 
 // ======================================================================
 // Repository
@@ -59,3 +61,23 @@ export interface IRecipeService extends IBaseService<IRecipeModel> {
    */
   deleteRecipe(user: string, id: string): Promise<boolean>;
 }
+
+// ======================================================================
+// Request
+// ======================================================================
+export type AddRecipeReq = RecipeDTO;
+export type UpdateRecipeReq = Partial<RecipeDTO>;
+
+// ======================================================================
+// Response
+// ======================================================================
+type CommonData = {
+  id: string;
+  title: string;
+};
+
+export type AddRecipeRes = BaseResponse<CommonData>;
+export type DeleteRecipeRes = BaseResponse<{ id: string }>;
+export type UpdateRecipeRes = BaseResponse<CommonData>;
+export type SearchRecipeRes = BaseResponse<{ recipes: IRecipe[] }>;
+export type GetRecipeRes = BaseResponse<IRecipeWithIngredient>;

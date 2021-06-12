@@ -1,4 +1,3 @@
-import { APIConfig } from '@cookingblog/api/interfaces';
 import { AuthController, IAuthService } from '@cookingblog/api/auth';
 import {
   IIngredientService,
@@ -10,6 +9,7 @@ import { ILogger } from '@cookingblog/express/api/common';
 import { BaseApp } from '@cookingblog/express/api/core';
 import passport from 'passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
+import { APIConfig } from '../types';
 
 type ApplicationProp = {
   authService: IAuthService;

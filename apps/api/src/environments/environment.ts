@@ -1,4 +1,4 @@
-import { APIConfig } from '@cookingblog/api/interfaces';
+import { APIConfig } from '../types';
 
 export const environment: APIConfig = {
   appName: 'Cooking Blog Api',

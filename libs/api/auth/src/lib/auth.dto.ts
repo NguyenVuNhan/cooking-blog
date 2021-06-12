@@ -7,7 +7,7 @@ import {
   MinLength,
 } from 'class-validator';
 
-export class LoginReq {
+export class LoginDTO {
   @IsString()
   @IsEmail()
   email: string;
@@ -16,7 +16,7 @@ export class LoginReq {
   password: string;
 }
 
-export class RegisterReq {
+export class RegisterDTO {
   @IsString()
   name: string;
 
