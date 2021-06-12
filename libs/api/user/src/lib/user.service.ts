@@ -6,7 +6,7 @@ import { BaseService } from '@cookingblog/express/api/core';
 import { IUserModel } from './user.entity';
 import { IUserRepository, IUserService, UserServiceProp } from './user.types';
 
-export default class UserService
+export class UserService
   extends BaseService<IUserModel>
   implements IUserService {
   repo: IUserRepository;

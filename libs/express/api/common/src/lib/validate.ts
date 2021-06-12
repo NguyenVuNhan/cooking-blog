@@ -38,15 +38,20 @@ class ValidationError extends AppError {
 export const validate = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   type: any,
-  { subject, continueOnError, ...rest }: ValidateConfig = {
-    subject: 'body',
-    continueOnError: false,
-    forbidUnknownValues: true,
-    validationError: { target: false },
-  }
+  {
+    subject = 'body',
+    continueOnError = false,
+    ...validatorOptions
+  }: ValidateConfig = {}
 ) => async (req: Request, _res: Response, next: NextFunction) => {
+  console.log(validatorOptions);
+
   try {
-    await validateOrReject(plainToClass(type, req[subject]), { ...rest });
+    await validateOrReject(plainToClass(type, req[subject]), {
+      forbidUnknownValues: true,
+      validationError: { target: false },
+      ...validatorOptions,
+    });
   } catch (errors) {
     if (continueOnError) {
       req.app.locals.errors = errors;

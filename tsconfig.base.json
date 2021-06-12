@@ -42,14 +42,18 @@
       "@cookingblog/express/api/common": [
         "libs/express/api/common/src/index.ts"
       ],
-      "@cookingblog/express/api/auth": ["libs/express/api/auth/src/index.ts"],
       "@cookingblog/express/api/cache": ["libs/express/api/cache/src/index.ts"],
       "@cookingblog/express/api/mongoose": [
         "libs/express/api/mongoose/src/index.ts"
       ],
       "@cookingblog/shared/validator-decorator": [
         "libs/shared/validator-decorator/src/index.ts"
-      ]
+      ],
+      "@cookingblog/api/auth": ["libs/api/auth/src/index.ts"],
+      "@cookingblog/api/user": ["libs/api/user/src/index.ts"],
+      "@cookingblog/api/ingredient": ["libs/api/ingredient/src/index.ts"],
+      "@cookingblog/api/recipe": ["libs/api/recipe/src/index.ts"],
+      "@cookingblog/api/types": ["libs/api/types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

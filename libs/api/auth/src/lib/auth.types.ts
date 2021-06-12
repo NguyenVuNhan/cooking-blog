@@ -1,5 +1,4 @@
-import { IUserModel } from '@api/models';
-import { IUserService } from '@cookingblog/api/user';
+import { IUserModel, IUserService } from '@cookingblog/api/user';
 import { ILogger } from '@cookingblog/express/api/common';
 import { BaseResponse } from '@cookingblog/express/api/core';
 import { Match } from '@cookingblog/shared/validator-decorator';
@@ -34,7 +33,7 @@ export interface IAuthService {
     email: string,
     password: string,
     jwtOptions?: JWTOptions
-  ): Promise<{ user: IUserModel; token: JWTToken }>;
+  ): Promise<JWTToken & { user: IUserModel }>;
   /**
    * User register service
    *

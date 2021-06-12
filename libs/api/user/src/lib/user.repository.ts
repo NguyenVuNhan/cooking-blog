@@ -1,8 +1,7 @@
-import { IBaseRepository } from '@cookingblog/express/api/core';
-import { BaseRepository } from '@cookingblog/express/api/mongoose';
+import { BaseRepository, Repository } from '@cookingblog/express/api/mongoose';
 import { compare, genSalt, hash } from 'bcrypt-nodejs';
 import { createHash } from 'crypto';
-import { model, Schema } from 'mongoose';
+import { Schema } from 'mongoose';
 import { IUserModel } from './user.entity';
 import { IUserRepository } from './user.types';
 
@@ -67,8 +66,6 @@ UserSchema.methods.gravatar = function (size: number): string {
   return `${url}/${md5}?s=${size}&d=retro`;
 };
 
-const User = model<IUserModel>('User', UserSchema);
-
 export class UserRepository
   extends BaseRepository<IUserModel>
   implements IUserRepository {
@@ -76,11 +73,10 @@ export class UserRepository
     super('user', UserSchema, 'users');
   }
 
+  @Repository()
   async getByEmailOrName(emailOrName: string): Promise<IUserModel> {
     return this.model.findOne({
       $or: [{ name: emailOrName }, { email: emailOrName }],
     });
   }
 }
-
-export default User;

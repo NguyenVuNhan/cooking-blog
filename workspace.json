@@ -169,77 +169,6 @@
         }
       }
     },
-    "api-models": {
-      "root": "libs/api/models",
-      "sourceRoot": "libs/api/models/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["libs/api/models/**/*.ts"] }
-        }
-      }
-    },
-    "api-middlewares": {
-      "root": "libs/api/middlewares",
-      "sourceRoot": "libs/api/middlewares/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["libs/api/middlewares/**/*.ts"] }
-        }
-      }
-    },
-    "api-configs": {
-      "root": "libs/api/configs",
-      "sourceRoot": "libs/api/configs/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["libs/api/configs/**/*.ts"] }
-        }
-      }
-    },
-    "api-routes": {
-      "root": "libs/api/routes",
-      "sourceRoot": "libs/api/routes/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["libs/api/routes/**/*.ts"] }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/api/routes"],
-          "options": {
-            "jestConfig": "libs/api/routes/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "api-controllers": {
-      "root": "libs/api/controllers",
-      "sourceRoot": "libs/api/controllers/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["libs/api/controllers/**/*.ts"] }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/api/controllers"],
-          "options": {
-            "jestConfig": "libs/api/controllers/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "shared-data-access-cooking-blog-api": {
       "root": "libs/shared/data-access/cooking-blog-api",
       "sourceRoot": "libs/shared/data-access/cooking-blog-api/src",
@@ -444,25 +373,6 @@
         }
       }
     },
-    "shared-exception": {
-      "root": "libs/shared//exception",
-      "sourceRoot": "libs/shared/exception/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["libs/shared//exception/**/*.ts"] }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/exception"],
-          "options": {
-            "jestConfig": "libs/shared/exception/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "express-api-core": {
       "root": "libs/express/api/core",
       "sourceRoot": "libs/express/api/core/src",
@@ -501,25 +411,6 @@
         }
       }
     },
-    "express-api-auth": {
-      "root": "libs/express/api/auth",
-      "sourceRoot": "libs/express/api/auth/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["libs/express/api/auth/**/*.ts"] }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/express/api/auth"],
-          "options": {
-            "jestConfig": "libs/express/api/auth/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "express-api-cache": {
       "root": "libs/express/api/cache",
       "sourceRoot": "libs/express/api/cache/src",
@@ -534,25 +425,6 @@
           "outputs": ["coverage/libs/express/api/cache"],
           "options": {
             "jestConfig": "libs/express/api/cache/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "api-services": {
-      "root": "libs/api/services",
-      "sourceRoot": "libs/api/services/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["libs/api/services/**/*.ts"] }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/api/services"],
-          "options": {
-            "jestConfig": "libs/api/services/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -595,6 +467,101 @@
           "outputs": ["coverage/libs/shared/validator-decorator"],
           "options": {
             "jestConfig": "libs/shared/validator-decorator/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-auth": {
+      "root": "libs/api/auth",
+      "sourceRoot": "libs/api/auth/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/api/auth/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/auth"],
+          "options": {
+            "jestConfig": "libs/api/auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-user": {
+      "root": "libs/api/user",
+      "sourceRoot": "libs/api/user/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/api/user/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/user"],
+          "options": {
+            "jestConfig": "libs/api/user/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-ingredient": {
+      "root": "libs/api/ingredient",
+      "sourceRoot": "libs/api/ingredient/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/api/ingredient/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/ingredient"],
+          "options": {
+            "jestConfig": "libs/api/ingredient/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-recipe": {
+      "root": "libs/api/recipe",
+      "sourceRoot": "libs/api/recipe/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/api/recipe/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/recipe"],
+          "options": {
+            "jestConfig": "libs/api/recipe/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-types": {
+      "root": "libs/api/types",
+      "sourceRoot": "libs/api/types/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/api/types/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/types"],
+          "options": {
+            "jestConfig": "libs/api/types/jest.config.js",
             "passWithNoTests": true
           }
         }

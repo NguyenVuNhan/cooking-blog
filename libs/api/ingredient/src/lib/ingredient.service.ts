@@ -20,6 +20,15 @@ export class IngredientService
     return ingredients;
   }
 
+  async create(entity: Partial<IIngredientModel>): Promise<IIngredientModel> {
+    const ingredient = await this.findOne({ name: entity.name });
+    if (ingredient) {
+      return ingredient;
+    }
+
+    return await super.create(entity);
+  }
+
   private async searchByName(name: string) {
     const ingredients = await this.repo.searchByName(name);
     return ingredients;

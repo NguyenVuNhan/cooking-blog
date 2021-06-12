@@ -1,19 +1,37 @@
-import { BaseApp } from '@cookingblog/express/api/core';
+import { APIConfig, IUserModel } from '@cookingblog/api-interfaces';
+import { AuthController, IAuthService } from '@cookingblog/api/auth';
+import {
+  IIngredientService,
+  IngredientsController,
+} from '@cookingblog/api/ingredient';
+import { IRecipeService, RecipeController } from '@cookingblog/api/recipe';
+import { IUserService } from '@cookingblog/api/user';
 import { ILogger } from '@cookingblog/express/api/common';
-
-import { IAuthService } from '@api/services';
-
-import { AuthController } from '@api/controllers';
-import { APIConfig } from '@cookingblog/api-interfaces';
+import { BaseApp } from '@cookingblog/express/api/core';
+import passport from 'passport';
+import { ExtractJwt, Strategy } from 'passport-jwt';
 
 type ApplicationProp = {
   authService: IAuthService;
+  ingredientService: IIngredientService;
+  recipeService: IRecipeService;
+  userService: IUserService;
   logger: ILogger;
   config: APIConfig;
 };
 
 export default class Application extends BaseApp {
-  constructor({ authService, logger, config }: ApplicationProp) {
+  private userService: IUserService;
+  private appSecret: string;
+
+  constructor({
+    authService,
+    ingredientService,
+    recipeService,
+    userService,
+    logger,
+    config,
+  }: ApplicationProp) {
     super(logger, {
       name: config.appName,
       version: config.appVersion,
@@ -22,72 +40,50 @@ export default class Application extends BaseApp {
       locals: config,
     });
 
-    this.addController(new AuthController(authService, logger));
+    this.addController(new AuthController(authService));
+    this.addController(new IngredientsController(ingredientService));
+    this.addController(new RecipeController(recipeService));
+
+    this.userService = userService;
+    this.appSecret = config.appSecret;
+  }
+
+  private setupPassport(userService: IUserService, secretOrKey: string) {
+    // Setup user serialize and deserialize
+    passport.serializeUser<string>((user, done) => {
+      done(null, (user as IUserModel).id);
+    });
+
+    passport.deserializeUser((id: string, done) => {
+      userService
+        .findOne({ id })
+        .then((user) => done(null, user))
+        .catch((err) => done(err, false));
+    });
+
+    // JWT strategy
+    passport.use(
+      new Strategy(
+        {
+          jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+          secretOrKey,
+        },
+        (payload, done) => {
+          userService
+            .findOne({ id: payload.id })
+            .then((user) => (user ? done(null, user) : done(null, false)))
+            .catch((err) => done(err, false));
+        }
+      )
+    );
+  }
+
+  protected mountCustomMiddleware() {
+    this.logger.info('Booting custom middleware...');
+
+    // Passport
+    super.mountCustomMiddleware(passport.initialize());
+    super.mountCustomMiddleware(passport.session());
+    this.setupPassport(this.userService, this.appSecret);
   }
 }
-
-// import { Database, Express, Queue } from '@api/configs';
-// import { log } from '@cookingblog/shared/api/utils';
-// import kue from 'kue';
-// import { environment as config } from '../environments/environment';
-
-// class App {
-//   private express: Express;
-//   private queue: Queue;
-
-//   constructor() {
-//     this.express = new Express(config);
-//     this.queue = new Queue(config);
-//   }
-
-//   // Clear the console
-//   public clearConsole(): void {
-//     process.stdout.write('\x1B[2J\x1B[0f');
-
-//     this.queue.dispatch(
-//       'checkout',
-//       { foo: 'bar', fizz: 'buzz' },
-//       function (data: unknown) {
-//         // eslint-disable-next-line no-console
-//         console.log('>> here is the data', data);
-//       }
-//     );
-//   }
-
-//   // Loads your Server
-//   public loadServer(): void {
-//     log.info('Server :: Booting @ Master...');
-
-//     this.express.init();
-//   }
-
-//   // Loads the Database Pool
-//   public loadDatabase(): void {
-//     log.info('Database :: Booting @ Master...');
-
-//     Database.init(config);
-//   }
-
-//   // Loads the Worker Cluster
-//   public loadWorker(): void {
-//     log.info('Worker :: Booting @ Master...');
-//   }
-
-//   // Loads the Queue Monitor
-//   public loadQueue(): void {
-//     const isQueueMonitorEnabled: boolean = config.queueMonitor;
-//     const queueMonitorPort: number = config.queueMonitorHttpPort;
-
-//     if (isQueueMonitorEnabled) {
-//       kue.app.listen(queueMonitorPort);
-
-//       // eslint-disable-next-line no-console
-//       console.log(
-//         '\x1b[33m%s\x1b[0m',
-//         `Queue Monitor :: Running @ 'http://localhost:${queueMonitorPort}'`
-//       );
-//     }
-//   }
-// }
-
-// export default new App()

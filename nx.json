@@ -21,11 +21,6 @@
     "blog-e2e": { "tags": [], "implicitDependencies": ["blog"] },
     "api": { "tags": [] },
     "api-interfaces": { "tags": [] },
-    "api-models": { "tags": [] },
-    "api-middlewares": { "tags": [] },
-    "api-configs": { "tags": [] },
-    "api-routes": { "tags": [] },
-    "api-controllers": { "tags": [] },
     "shared-data-access-cooking-blog-api": { "tags": [] },
     "blog-data-access": { "tags": [] },
     "shared-web-utils": { "tags": [] },
@@ -36,13 +31,15 @@
     "shared-web-hooks": { "tags": [] },
     "blog-ui-templates": { "tags": [] },
     "shared-api-utils": { "tags": [] },
-    "shared-exception": { "tags": [] },
     "express-api-core": { "tags": [] },
     "express-api-common": { "tags": [] },
-    "express-api-auth": { "tags": [] },
     "express-api-cache": { "tags": [] },
-    "api-services": { "tags": [] },
     "express-api-mongoose": { "tags": [] },
-    "shared-validator-decorator": { "tags": [] }
+    "shared-validator-decorator": { "tags": [] },
+    "api-auth": { "tags": [] },
+    "api-user": { "tags": [] },
+    "api-ingredient": { "tags": [] },
+    "api-recipe": { "tags": [] },
+    "api-types": { "tags": [] }
   }
 }

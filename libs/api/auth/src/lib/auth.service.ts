@@ -36,7 +36,7 @@ export class AuthService implements IAuthService {
     email: string,
     password: string,
     jwtOptions?: { appSecret: string; expiresIn: number }
-  ): Promise<{ user: IUserModel; token: JWTToken }> {
+  ): Promise<JWTToken & { user: IUserModel }> {
     const user = await this.userService.get(email);
 
     if (!(await compare(password, user.password)))
@@ -45,7 +45,7 @@ export class AuthService implements IAuthService {
     user.password = undefined;
     const token = this.generateJWT(user.id, jwtOptions);
 
-    return { user, token };
+    return { user, ...token };
   }
 
   private generateJWT(

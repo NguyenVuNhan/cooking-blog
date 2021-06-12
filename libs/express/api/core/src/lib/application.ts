@@ -7,6 +7,7 @@ import compression from 'compression';
 import cors from 'cors';
 import express, {
   Application,
+  Handler,
   json,
   NextFunction,
   Request,
@@ -16,6 +17,7 @@ import express, {
 import http, { Server } from 'http';
 import { createErrorResponse, sendErrorResponse } from './helpers';
 import { Config, IController } from './types';
+import * as passport from 'passport';
 
 const defaultAppConfig: Config = {
   port: 5000,
@@ -33,7 +35,7 @@ export abstract class BaseApp {
   private server: Server;
   private controllers: IController[] = [];
 
-  constructor(public logger: ILogger, private config: Config = {}) {
+  constructor(public logger: ILogger, protected config: Config = {}) {
     this.config = { ...defaultAppConfig, ...config };
 
     this.app = express();
@@ -43,6 +45,7 @@ export abstract class BaseApp {
   }
 
   private setupControllers(): void {
+    this.logger.info('Mounting controllers...');
     this.controllers.forEach((controller) => {
       this.logger.info('--> Add controller at ' + controller.prefix);
       if (controller.prefix) {
@@ -81,6 +84,10 @@ export abstract class BaseApp {
     this.controllers.push(controller);
   }
 
+  protected mountCustomMiddleware(...middlewares: Handler[]) {
+    middlewares.forEach((middleware) => this.app.use(middleware));
+  }
+
   showInfo(): void {
     this.logger.info(
       '\n\n======================================================================'
@@ -100,8 +107,8 @@ export abstract class BaseApp {
     this.app.use(urlencoded(this.config.json));
     this.app.use(json(this.config.json));
     this.app.use(compression());
+    this.mountCustomMiddleware();
 
-    this.logger.info('Mounting controllers...');
     this.setupControllers();
 
     this.logger.info(`Starting server...`);

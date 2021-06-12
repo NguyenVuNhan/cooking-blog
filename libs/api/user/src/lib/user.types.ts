@@ -1,20 +1,32 @@
-import { IUserModel } from '@api/models';
 import { ILogger } from '@cookingblog/express/api/common';
 import {
   IBaseRepository,
   IBaseService,
   ServiceCache,
 } from '@cookingblog/express/api/core';
+import { IUserModel } from './user.entity';
 
+// ======================================================================
+// Repository
+// ======================================================================
+export interface IUserRepository extends IBaseRepository<IUserModel> {
+  /**
+   * Get user by email or name
+   *
+   * @param  {string} emailOrName user email or name
+   * @return {IUserModel} Promise resolved user with given email or name
+   */
+  getByEmailOrName(emailOrName: string): Promise<IUserModel>;
+}
+
+// ======================================================================
+// Service
+// ======================================================================
 export type UserServiceProp = {
   repo: IUserRepository;
   logger: ILogger;
   serviceCache: ServiceCache;
 };
-
-export interface IUserRepository extends IBaseRepository<IUserModel> {
-  getByEmailOrName(emailOrName: string): Promise<IUserModel>;
-}
 
 export interface IUserService extends IBaseService<IUserModel> {
   /**

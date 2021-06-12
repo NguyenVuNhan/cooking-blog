@@ -1,14 +1,20 @@
-/* eslint-disable no-console */
-
+import 'reflect-metadata'; // Required by class-transformer
 import { connect } from 'mongoose';
 import { environment as config } from './environments/environment';
-import { UserRepository } from '@api/models';
-import { AuthService, UserService } from '@api/services';
 import { RedisCache } from '@cookingblog/express/api/cache';
 import { ServiceCache } from '@cookingblog/express/api/core';
 import Application from './app/app';
+import { UserRepository, UserService } from '@cookingblog/api/user';
+import { AuthService } from '@cookingblog/api/auth';
+import { RecipeRepository, RecipeService } from '@cookingblog/api/recipe';
+import {
+  IngredientRepository,
+  IngredientService,
+} from '@cookingblog/api/ingredient';
 
+// ======================================================================
 // General
+// ======================================================================
 const logger = console;
 
 const cache = new RedisCache(
@@ -19,10 +25,16 @@ const cache = new RedisCache(
   logger
 );
 
+// ======================================================================
 // Repositories
+// ======================================================================
 const userRepository = new UserRepository();
+const ingredientRepository = new IngredientRepository();
+const recipeRepository = new RecipeRepository();
 
+// ======================================================================
 // Services
+// ======================================================================
 const serviceCache: ServiceCache = {
   cache,
   appName: config.appName,
@@ -36,8 +48,29 @@ const userService = new UserService({
   serviceCache: { ...serviceCache, uniqueKey: 'user' },
 });
 const authService = new AuthService({ logger, userService });
+const ingredientService = new IngredientService({
+  repo: ingredientRepository,
+  logger,
+  serviceCache: { ...serviceCache, uniqueKey: 'ingredient' },
+});
+const recipeService = new RecipeService({
+  repo: recipeRepository,
+  ingredientService,
+  logger,
+  serviceCache: { ...serviceCache, uniqueKey: 'recipe' },
+});
 
-const app = new Application({ authService, logger, config });
+// ======================================================================
+// Application
+// ======================================================================
+const app = new Application({
+  authService,
+  ingredientService,
+  recipeService,
+  userService,
+  logger,
+  config,
+});
 
 async function main() {
   connect(
@@ -80,60 +113,3 @@ process.on('SIGINT', async () => {
   logger.error(`Process ${process.pid} has been interrupted`);
   process.exit(0);
 });
-
-// import { cpus } from 'os';
-// import * as cluster from 'cluster';
-
-// import App from './app/app';
-// import NativeEvent from './app/nativeEvent';
-
-// import 'reflect-metadata';
-
-// if (cluster.isMaster) {
-//   /**
-//    * Catches the process events
-//    */
-//   NativeEvent.process();
-
-//   /**
-//    * Clear the console before the app runs
-//    */
-//   App.clearConsole();
-
-//   /**
-//    * Find the number of available CPUS
-//    */
-//   const CPUS = cpus();
-
-//   /**
-//    * Fork the process, the number of times we have CPUs available
-//    */
-//   CPUS.forEach(() => cluster.fork());
-
-//   /**
-//    * Catches the cluster events
-//    */
-//   NativeEvent.cluster(cluster);
-
-//   /**
-//    * Loads the Queue Monitor iff enabled
-//    */
-//   App.loadQueue();
-
-//   /**
-//    * Run the Worker every minute
-//    * Note: we normally start worker after
-//    * the entire app is loaded
-//    */
-//   setTimeout(() => App.loadWorker(), 1000 * 60);
-// } else {
-//   /**
-//    * Run the Database pool
-//    */
-//   App.loadDatabase();
-
-//   /**
-//    * Run the Server on Clusters
-//    */
-//   App.loadServer();
-// }

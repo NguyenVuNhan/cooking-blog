@@ -3,15 +3,18 @@ import { OptionsJson, OptionsUrlencoded } from 'body-parser';
 import { CorsOptions, CorsOptionsDelegate } from 'cors';
 import { Router } from 'express';
 
+// ======================================================================
 // Response
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface BaseResponse<T = any> {
+// ======================================================================
+export interface BaseResponse<T = unknown> {
   data: T;
   message: string;
   success: boolean;
 }
 
+// ======================================================================
 // Application
+// ======================================================================
 export type Config = {
   name?: string;
   version?: string;
@@ -24,13 +27,17 @@ export type Config = {
   locals?: Record<string, any>;
 };
 
+// ======================================================================
 // Controllers
+// ======================================================================
 export interface IController {
   router: Router;
   prefix?: string;
 }
 
+// ======================================================================
 // Services
+// ======================================================================
 export type ServiceCache = {
   appName: string;
   uniqueKey: string;
@@ -56,7 +63,9 @@ export interface IBaseService<T> {
   ): Promise<FindAllResponse<T>>;
 }
 
+// ======================================================================
 // Repositories
+// ======================================================================
 export type UpdateOptions = {
   new?: boolean;
   upsert?: boolean;

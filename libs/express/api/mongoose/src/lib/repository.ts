@@ -74,6 +74,7 @@ export abstract class BaseRepository<TModel extends Document>
         (doc as unknown) as UpdateQuery<TModel>,
         {
           new: true,
+          useFindAndModify: true,
           ...options,
         }
       )

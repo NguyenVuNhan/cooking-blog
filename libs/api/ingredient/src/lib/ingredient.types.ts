@@ -6,7 +6,9 @@ import {
 } from '@cookingblog/express/api/core';
 import { IIngredientModel } from './ingredient.entity';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+// ======================================================================
+// Repository
+// ======================================================================
 export interface IIngredientRepository
   extends IBaseRepository<IIngredientModel> {
   /**
@@ -18,6 +20,9 @@ export interface IIngredientRepository
   searchByName(name: string): Promise<IIngredientModel[]>;
 }
 
+// ======================================================================
+// Service
+// ======================================================================
 export type IngredientServiceProp = {
   repo: IIngredientRepository;
   logger: ILogger;
