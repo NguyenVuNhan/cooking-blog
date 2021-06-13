@@ -29,7 +29,6 @@
       "@cookingblog/shared/utils": ["libs/shared/utils/src/index.ts"],
       "@cookingblog/shared/web/hooks": ["libs/shared/web/hooks/src/index.ts"],
       "@cookingblog/blog/ui/templates": ["libs/blog/ui/templates/src/index.ts"],
-      "@cookingblog/shared/api/utils": ["libs/shared/api/utils/src/index.ts"],
       "@cookingblog/shared/exception": ["libs/shared/exception/src/index.ts"],
       "@cookingblog/express/api/core": ["libs/express/api/core/src/index.ts"],
       "@cookingblog/express/api/common": [
@@ -46,7 +45,27 @@
       "@cookingblog/api/user": ["libs/api/user/src/index.ts"],
       "@cookingblog/api/ingredient": ["libs/api/ingredient/src/index.ts"],
       "@cookingblog/api/recipe": ["libs/api/recipe/src/index.ts"],
-      "@cookingblog/api/interfaces": ["libs/api/interfaces/src/index.ts"]
+      "@cookingblog/api/interfaces": ["libs/api/interfaces/src/index.ts"],
+      "@cookingblog/blog/auth/data-access": [
+        "libs/blog/auth/data-access/src/index.ts"
+      ],
+      "@cookingblog/blog/auth/utils": ["libs/blog/auth/utils/src/index.ts"],
+      "@cookingblog/blog/auth/ui/login": [
+        "libs/blog/auth/ui/login/src/index.ts"
+      ],
+      "@cookingblog/blog/auth/ui/register": [
+        "libs/blog/auth/ui/register/src/index.ts"
+      ],
+      "@cookingblog/blog/auth/feature/template": [
+        "libs/blog/auth/feature/template/src/index.ts"
+      ],
+      "@cookingblog/blog/ui/components/atoms": [
+        "libs/blog/ui/components/atoms/src/index.ts"
+      ],
+      "@cookingblog/blog/ui/components/molecules": [
+        "libs/blog/ui/components/molecules/src/index.ts"
+      ],
+      "@cookingblog/api/auth/dto": ["libs/api/auth/dto/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

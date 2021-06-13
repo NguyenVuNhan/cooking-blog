@@ -1,6 +1,5 @@
-import { ShoppingListProvider } from '@cookingblog/blog/data-access/context';
-import { authSelector } from '@cookingblog/blog/data-access/store';
-import { LoadingSpinner, ShoppingList } from '@cookingblog/blog/ui/components';
+import { getAuthenticated } from '@cookingblog/blog/auth/data-access';
+import { LoadingSpinner } from '@cookingblog/blog/ui/components/atoms';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import React, { lazy, Suspense } from 'react';
@@ -11,67 +10,67 @@ import theme from './theme';
 
 const routes = [
   {
-    path: '/register',
-    view: lazy(() => import('@cookingblog/blog/ui/views/register/register')),
-    auth: false,
-  },
-  {
     path: '/login',
-    view: lazy(() => import('@cookingblog/blog/ui/views/login/login')),
+    view: lazy(() => import('@cookingblog/blog/auth/ui/login')),
     auth: false,
   },
   {
-    path: '/recipe/add',
-    view: lazy(
-      () => import('@cookingblog/blog/ui/views/add-recipe/add-recipe')
-    ),
-    auth: true,
-  },
-  {
-    path: '/recipe/search(.*)',
-    view: lazy(
-      () => import('@cookingblog/blog/ui/views/recipe-search/recipe-search')
-    ),
+    path: '/register',
+    view: lazy(() => import('@cookingblog/blog/auth/ui/register')),
     auth: false,
   },
-  {
-    path: '/recipe/:id',
-    view: lazy(
-      () => import('@cookingblog/blog/ui/views/view-recipe/view-recipe')
-    ),
-    auth: false,
-  },
-  {
-    path: '/',
-    view: lazy(() => import('@cookingblog/blog/ui/views/home/home')),
-    auth: false,
-  },
+  //  {
+  //    path: '/recipe/add',
+  //    view: lazy(
+  //      () => import('@cookingblog/blog/ui/views/add-recipe/add-recipe')
+  //    ),
+  //    auth: true,
+  //  },
+  //  {
+  //    path: '/recipe/search(.*)',
+  //    view: lazy(
+  //      () => import('@cookingblog/blog/ui/views/recipe-search/recipe-search')
+  //    ),
+  //    auth: false,
+  //  },
+  //  {
+  //    path: '/recipe/:id',
+  //    view: lazy(
+  //      () => import('@cookingblog/blog/ui/views/view-recipe/view-recipe')
+  //    ),
+  //    auth: false,
+  //  },
+  //  {
+  //    path: '/',
+  //    view: lazy(() => import('@cookingblog/blog/ui/views/home/home')),
+  //    auth: false,
+  //  },
 ];
 
 export const App = () => {
-  const isAuthenticated = useSelector(authSelector.authenticated);
+  const isAuthenticated = useSelector(getAuthenticated);
 
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <GlobalStyle />
-      <ShoppingListProvider>
-        <Switch>
-          {routes.map((route) => (
-            <Route key={route.path} path={route.path} exact>
-              {!route.auth || isAuthenticated ? (
-                <Suspense fallback={<LoadingSpinner />}>
-                  <route.view />
-                </Suspense>
-              ) : (
-                <Redirect key={route.path} to="/login" />
-              )}
-            </Route>
-          ))}
-          <Redirect to={isAuthenticated ? '/' : '/login'} />
-        </Switch>
-        <ShoppingList />
-      </ShoppingListProvider>
+      {/* <ShoppingListProvider> */}
+      <Switch>
+        {routes.map((route) => (
+          <Route key={route.path} path={route.path} exact>
+            {!route.auth || isAuthenticated ? (
+              <Suspense fallback={<LoadingSpinner />}>
+                <route.view />
+              </Suspense>
+            ) : (
+              <Redirect key={route.path} to="/login" />
+            )}
+          </Route>
+        ))}
+        <Redirect to={isAuthenticated ? '/' : '/login'} />
+      </Switch>
+      {/* <ShoppingList /> */}
+      {/* </ShoppingListProvider> */}
     </MuiThemeProvider>
   );
 };

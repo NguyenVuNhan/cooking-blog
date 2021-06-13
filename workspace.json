@@ -343,25 +343,6 @@
         }
       }
     },
-    "shared-api-utils": {
-      "root": "libs/shared/api/utils",
-      "sourceRoot": "libs/shared/api/utils/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["libs/shared/api/utils/**/*.ts"] }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/api/utils"],
-          "options": {
-            "jestConfig": "libs/shared/api/utils/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "express-api-core": {
       "root": "libs/express/api/core",
       "sourceRoot": "libs/express/api/core/src",
@@ -545,6 +526,182 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": { "lintFilePatterns": ["libs/api/interfaces/**/*.ts"] }
+        }
+      }
+    },
+    "blog-auth-data-access": {
+      "root": "libs/blog/auth/data-access",
+      "sourceRoot": "libs/blog/auth/data-access/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/auth/data-access/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/auth/data-access"],
+          "options": {
+            "jestConfig": "libs/blog/auth/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-auth-utils": {
+      "root": "libs/blog/auth/utils",
+      "sourceRoot": "libs/blog/auth/utils/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/blog/auth/utils/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/auth/utils"],
+          "options": {
+            "jestConfig": "libs/blog/auth/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-auth-ui-login": {
+      "root": "libs/blog/auth/ui/login",
+      "sourceRoot": "libs/blog/auth/ui/login/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/blog/auth/ui/login/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/auth/ui/login"],
+          "options": {
+            "jestConfig": "libs/blog/auth/ui/login/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-auth-ui-register": {
+      "root": "libs/blog/auth/ui/register",
+      "sourceRoot": "libs/blog/auth/ui/register/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/auth/ui/register/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/auth/ui/register"],
+          "options": {
+            "jestConfig": "libs/blog/auth/ui/register/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-auth-feature-template": {
+      "root": "libs/blog/auth/feature/template",
+      "sourceRoot": "libs/blog/auth/feature/template/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/auth/feature/template/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/auth/feature/template"],
+          "options": {
+            "jestConfig": "libs/blog/auth/feature/template/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-ui-components-atoms": {
+      "root": "libs/blog/ui/components/atoms",
+      "sourceRoot": "libs/blog/ui/components/atoms/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/ui/components/atoms/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/ui/components/atoms"],
+          "options": {
+            "jestConfig": "libs/blog/ui/components/atoms/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-ui-components-molecules": {
+      "root": "libs/blog/ui/components/molecules",
+      "sourceRoot": "libs/blog/ui/components/molecules/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/ui/components/molecules/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/ui/components/molecules"],
+          "options": {
+            "jestConfig": "libs/blog/ui/components/molecules/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-auth-dto": {
+      "root": "libs/api/auth/dto",
+      "sourceRoot": "libs/api/auth/dto/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/api/auth/dto/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/auth/dto"],
+          "options": {
+            "jestConfig": "libs/api/auth/dto/jest.config.js",
+            "passWithNoTests": true
+          }
         }
       }
     }

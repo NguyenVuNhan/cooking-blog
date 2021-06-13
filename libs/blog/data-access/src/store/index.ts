@@ -1,16 +1,16 @@
+// import {
+//   recipeReducer,
+//   RECIPE_FEATURE_KEY,
+// } from '@cookingblog/blog/data-access/store/recipe';
 import {
-  authReducer,
   AUTH_FEATURE_KEY,
-} from '@cookingblog/blog/data-access/store/auth';
-import {
-  recipeReducer,
-  RECIPE_FEATURE_KEY,
-} from '@cookingblog/blog/data-access/store/recipe';
+  authReducer,
+} from '@cookingblog/blog/auth/data-access';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
 export const store = configureStore({
   reducer: {
-    [RECIPE_FEATURE_KEY]: recipeReducer,
+    // [RECIPE_FEATURE_KEY]: recipeReducer,
     [AUTH_FEATURE_KEY]: authReducer,
   },
   // Additional middleware can be passed to this array
@@ -19,6 +19,5 @@ export const store = configureStore({
   enhancers: [],
 });
 
-export * from './auth';
-export * from './recipe';
+// export * from './recipe';
 export default store;

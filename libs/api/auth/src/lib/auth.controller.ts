@@ -2,7 +2,7 @@ import { validate } from '@cookingblog/express/api/common';
 import { Controller, sendSuccessResponse } from '@cookingblog/express/api/core';
 import { Request, Response } from 'express';
 import { IAuthService } from './auth.types';
-import { LoginDTO, RegisterDTO } from './auth.dto';
+import { LoginDTO, RegisterDTO } from '@cookingblog/api/auth/dto';
 
 export class AuthController extends Controller {
   constructor(private authService: IAuthService) {

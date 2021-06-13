@@ -1,1 +1,2 @@
-export * from './shopping-list/shopping-list';
+// export * from './shopping-list/shopping-list';
+export {};

@@ -29,7 +29,6 @@
     "shared-utils": { "tags": [] },
     "shared-web-hooks": { "tags": [] },
     "blog-ui-templates": { "tags": [] },
-    "shared-api-utils": { "tags": [] },
     "express-api-core": { "tags": [] },
     "express-api-common": { "tags": [] },
     "express-api-cache": { "tags": [] },
@@ -39,6 +38,14 @@
     "api-user": { "tags": [] },
     "api-ingredient": { "tags": [] },
     "api-recipe": { "tags": [] },
-    "api-interfaces": { "tags": [] }
+    "api-interfaces": { "tags": [] },
+    "blog-auth-data-access": { "tags": [] },
+    "blog-auth-utils": { "tags": [] },
+    "blog-auth-ui-login": { "tags": [] },
+    "blog-auth-ui-register": { "tags": [] },
+    "blog-auth-feature-template": { "tags": [] },
+    "blog-ui-components-atoms": { "tags": [] },
+    "blog-ui-components-molecules": { "tags": [] },
+    "api-auth-dto": { "tags": [] }
   }
 }

@@ -38,8 +38,6 @@ export const withErrorHandler = <Returned, ThunkArg>(
   try {
     return await payloadCreator(args, thunkAPI);
   } catch (err) {
-    return thunkAPI.rejectWithValue(
-      (err.response.data as ErrorRes).data.errors
-    );
+    return thunkAPI.rejectWithValue(err.response.data);
   }
 };
