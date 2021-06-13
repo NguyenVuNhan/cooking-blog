@@ -1,6 +1,5 @@
 import { ILogger } from '@cookingblog/express/api/common';
 import {
-  BaseResponse,
   IBaseRepository,
   IBaseService,
   ServiceCache,
@@ -40,14 +39,3 @@ export interface IIngredientService extends IBaseService<IIngredientModel> {
    */
   autocomplete(name: string): Promise<string[]>;
 }
-
-// ======================================================================
-// Request
-// ======================================================================
-
-// ======================================================================
-// Response
-// ======================================================================
-export type GetIngredientsRes = BaseResponse<{
-  ingredients: string[];
-}>;

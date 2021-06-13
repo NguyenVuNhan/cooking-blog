@@ -11,7 +11,7 @@ import {
 } from '@cookingblog/express/api/core';
 import { Request, Response } from 'express';
 import { IRecipeService } from './recipe.types';
-import { RecipeDTO } from './recipe.dto';
+import { RecipeDTO } from '@cookingblog/api/recipe/dto';
 
 export class RecipeController extends Controller {
   constructor(private recipeService: IRecipeService) {
@@ -44,9 +44,9 @@ export class RecipeController extends Controller {
   }
 
   private async get(req: Request, res: Response) {
-    const recipe = await this.recipeService.findOne({ id: req.params.id });
+    const recipe = await this.recipeService.getRecipe(req.params.id);
 
-    if (!recipe) throw new NotFoundError('Recipe not found');
+    if (!recipe) throw new ServerError();
     sendSuccessResponse(recipe, res);
   }
 

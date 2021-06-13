@@ -1,18 +1,23 @@
 import { IIngredientService } from '@cookingblog/api/ingredient';
 import { ILogger } from '@cookingblog/express/api/common';
 import {
-  BaseResponse,
   IBaseRepository,
   IBaseService,
   ServiceCache,
 } from '@cookingblog/express/api/core';
-import { RecipeDTO } from './recipe.dto';
-import { IRecipe, IRecipeModel, IRecipeWithIngredient } from './recipe.entity';
+import { IRecipeModel, IRecipeModelWithIngredient } from './recipe.entity';
 
 // ======================================================================
 // Repository
 // ======================================================================
 export interface IRecipeRepository extends IBaseRepository<IRecipeModel> {
+  /**
+   * @param {string} id Id of recipe
+   *
+   * @return {Promise<IRecipeModelWithIngredient>} Promise object of recipe with ingredient field populated
+   */
+  findById(id: string): Promise<IRecipeModelWithIngredient>;
+
   /**
    * @param {string} query Query to search for.
    *
@@ -54,6 +59,13 @@ export interface IRecipeService extends IBaseService<IRecipeModel> {
   ): Promise<IRecipeModel>;
 
   /**
+   * @param {string} id Recipe id
+   *
+   * @return {Promise<IRecipeModelWithIngredient>} return promise recipe
+   */
+  getRecipe(id: string): Promise<IRecipeModelWithIngredient>;
+
+  /**
    * @param {string} user User id
    * @param {string} id Recipe id
    *
@@ -61,23 +73,3 @@ export interface IRecipeService extends IBaseService<IRecipeModel> {
    */
   deleteRecipe(user: string, id: string): Promise<boolean>;
 }
-
-// ======================================================================
-// Request
-// ======================================================================
-export type AddRecipeReq = RecipeDTO;
-export type UpdateRecipeReq = Partial<RecipeDTO>;
-
-// ======================================================================
-// Response
-// ======================================================================
-type CommonData = {
-  id: string;
-  title: string;
-};
-
-export type AddRecipeRes = BaseResponse<CommonData>;
-export type DeleteRecipeRes = BaseResponse<{ id: string }>;
-export type UpdateRecipeRes = BaseResponse<CommonData>;
-export type SearchRecipeRes = BaseResponse<{ recipes: IRecipe[] }>;
-export type GetRecipeRes = BaseResponse<IRecipeWithIngredient>;

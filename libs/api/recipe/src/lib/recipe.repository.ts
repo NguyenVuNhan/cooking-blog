@@ -1,6 +1,6 @@
-import { BaseRepository } from '@cookingblog/express/api/mongoose';
+import { BaseRepository, Repository } from '@cookingblog/express/api/mongoose';
 import { Schema, Types } from 'mongoose';
-import { IRecipeModel } from './recipe.entity';
+import { IRecipeModel, IRecipeModelWithIngredient } from './recipe.entity';
 import { IRecipeRepository } from './recipe.types';
 
 const ObjectId = Types.ObjectId;
@@ -29,6 +29,13 @@ const RecipeSchema = new Schema<IRecipeModel>(
   },
   {
     timestamps: true,
+    toJSON: {
+      versionKey: false,
+      transform: function (doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+      },
+    },
   }
 );
 
@@ -53,6 +60,23 @@ export class RecipeRepository
     super('recipe', RecipeSchema, 'recipes');
   }
 
+  @Repository()
+  async findById(id: string): Promise<IRecipeModelWithIngredient> {
+    const recipes = ((await this.model
+      .findById(id)
+      .populate({
+        path: 'ingredients',
+        populate: {
+          path: 'ingredient',
+          select: 'name',
+        },
+      })
+      .exec()) as unknown) as IRecipeModelWithIngredient;
+
+    return recipes;
+  }
+
+  @Repository()
   async search(query: string): Promise<IRecipeModel[]> {
     return this.model
       .find(

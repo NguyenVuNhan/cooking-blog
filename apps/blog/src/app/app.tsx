@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import GlobalStyle from './GlobalStyle';
 import theme from './theme';
+import { ShoppingListProvider } from '@cookingblog/blog/shopping-list/feature/provider';
+import { ShoppingCart } from '@cookingblog/blog/shopping-list/feature/shopping-cart';
 
 const routes = [
   {
@@ -19,32 +21,26 @@ const routes = [
     view: lazy(() => import('@cookingblog/blog/auth/ui/register')),
     auth: false,
   },
-  //  {
-  //    path: '/recipe/add',
-  //    view: lazy(
-  //      () => import('@cookingblog/blog/ui/views/add-recipe/add-recipe')
-  //    ),
-  //    auth: true,
-  //  },
-  //  {
-  //    path: '/recipe/search(.*)',
-  //    view: lazy(
-  //      () => import('@cookingblog/blog/ui/views/recipe-search/recipe-search')
-  //    ),
-  //    auth: false,
-  //  },
-  //  {
-  //    path: '/recipe/:id',
-  //    view: lazy(
-  //      () => import('@cookingblog/blog/ui/views/view-recipe/view-recipe')
-  //    ),
-  //    auth: false,
-  //  },
-  //  {
-  //    path: '/',
-  //    view: lazy(() => import('@cookingblog/blog/ui/views/home/home')),
-  //    auth: false,
-  //  },
+  {
+    path: '/recipe/add',
+    view: lazy(() => import('@cookingblog/blog/recipe/ui/add')),
+    auth: true,
+  },
+  {
+    path: '/recipe/search(.*)',
+    view: lazy(() => import('@cookingblog/blog/recipe/ui/search')),
+    auth: false,
+  },
+  {
+    path: '/recipe/:id',
+    view: lazy(() => import('@cookingblog/blog/recipe/ui/view')),
+    auth: false,
+  },
+  {
+    path: '/',
+    view: lazy(() => import('@cookingblog/blog/home/ui/home')),
+    auth: false,
+  },
 ];
 
 export const App = () => {
@@ -54,23 +50,23 @@ export const App = () => {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <GlobalStyle />
-      {/* <ShoppingListProvider> */}
-      <Switch>
-        {routes.map((route) => (
-          <Route key={route.path} path={route.path} exact>
-            {!route.auth || isAuthenticated ? (
-              <Suspense fallback={<LoadingSpinner />}>
-                <route.view />
-              </Suspense>
-            ) : (
-              <Redirect key={route.path} to="/login" />
-            )}
-          </Route>
-        ))}
-        <Redirect to={isAuthenticated ? '/' : '/login'} />
-      </Switch>
-      {/* <ShoppingList /> */}
-      {/* </ShoppingListProvider> */}
+      <ShoppingListProvider>
+        <Switch>
+          {routes.map((route) => (
+            <Route key={route.path} path={route.path} exact>
+              {!route.auth || isAuthenticated ? (
+                <Suspense fallback={<LoadingSpinner />}>
+                  <route.view />
+                </Suspense>
+              ) : (
+                <Redirect key={route.path} to="/login" />
+              )}
+            </Route>
+          ))}
+          <Redirect to={isAuthenticated ? '/' : '/login'} />
+        </Switch>
+        <ShoppingCart />
+      </ShoppingListProvider>
     </MuiThemeProvider>
   );
 };

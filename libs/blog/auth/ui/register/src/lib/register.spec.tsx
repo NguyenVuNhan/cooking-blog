@@ -1,4 +1,4 @@
-import store from '@cookingblog/blog/data-access/store';
+import { authTestStore } from '@cookingblog/blog/auth/data-access';
 import { render } from '@testing-library/react';
 import React from 'react';
 import { Provider } from 'react-redux';
@@ -8,7 +8,7 @@ import Register from './register';
 describe('Register', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
-      <Provider store={store}>
+      <Provider store={authTestStore}>
         <Router>
           <Register />
         </Router>

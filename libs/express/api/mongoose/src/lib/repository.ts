@@ -185,7 +185,7 @@ function transformEntities(entity: any): void {
   if (!isObject(entity)) return;
 
   if (Array.isArray(entity)) {
-    entity.map((item) => {
+    entity.forEach((item) => {
       if (item?._id) {
         item.id = item._id.toString();
         delete item._id;

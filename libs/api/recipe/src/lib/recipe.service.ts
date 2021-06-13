@@ -5,13 +5,13 @@ import {
   PermissionDeniedError,
 } from '@cookingblog/express/api/common';
 import { BaseService } from '@cookingblog/express/api/core';
-import { IRecipeModel } from './recipe.entity';
+import { IRecipeModel, IRecipeModelWithIngredient } from './recipe.entity';
 import {
   IRecipeRepository,
   IRecipeService,
   RecipeServiceProp,
 } from './recipe.types';
-import { IngredientDTO } from './recipe.dto';
+import { IngredientDTO } from '@cookingblog/api/recipe/dto';
 
 export class RecipeService
   extends BaseService<IRecipeModel>
@@ -27,6 +27,13 @@ export class RecipeService
   }: RecipeServiceProp) {
     super(repo, serviceCache, logger);
     this.ingredientService = ingredientService;
+  }
+
+  async getRecipe(id: string): Promise<IRecipeModelWithIngredient> {
+    const recipe = await this.repo.findById(id);
+
+    if (!recipe) throw new NotFoundError('Recipe not found');
+    return recipe;
   }
 
   async deleteRecipe(user: string, id: string): Promise<boolean> {
