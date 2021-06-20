@@ -1,4 +1,8 @@
-import { BaseRepository, Repository } from '@cookingblog/express/api/mongoose';
+import {
+  BaseRepository,
+  removeIdTransform,
+  Repository,
+} from '@cookingblog/express/api/mongoose';
 import { Schema, Types } from 'mongoose';
 import { IRecipeModel, IRecipeModelWithIngredient } from './recipe.entity';
 import { IRecipeRepository } from './recipe.types';
@@ -29,12 +33,10 @@ const RecipeSchema = new Schema<IRecipeModel>(
   },
   {
     timestamps: true,
+    versionKey: false,
     toJSON: {
       versionKey: false,
-      transform: function (doc, ret) {
-        ret.id = ret._id;
-        delete ret._id;
-      },
+      transform: removeIdTransform,
     },
   }
 );

@@ -58,6 +58,8 @@ export class RecipeController extends Controller {
   }
 
   private async update(req: RequestWithUser, res: Response) {
+    console.log(req.user);
+
     const result = await this.recipeService.updateRecipe(
       req.user.id,
       req.params.id,

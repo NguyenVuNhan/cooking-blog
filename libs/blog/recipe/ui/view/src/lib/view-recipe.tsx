@@ -1,5 +1,4 @@
 import { UpdateRecipeReq } from '@cookingblog/api/interfaces';
-import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
 import { EditIngredientModal } from '@cookingblog/blog/ingredient/feature/components';
 import {
   getCurrentRecipe,
@@ -13,6 +12,7 @@ import {
 } from '@cookingblog/blog/recipe/feature/components';
 import { RecipeTemplate } from '@cookingblog/blog/recipe/feature/template';
 import { strToDuration } from '@cookingblog/blog/recipe/utils';
+import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
 import {
   EditButton,
   LoadingSpinner,

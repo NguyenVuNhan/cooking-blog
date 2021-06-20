@@ -85,7 +85,8 @@ export class RecipeService
       throw new NotFoundError(`Recipe not found`);
     }
 
-    if (recipe.user.toString() != user) {
+    if (recipe.user.toString() !== user) {
+      console.log(recipe.user.toString());
       throw new PermissionDeniedError();
     }
 

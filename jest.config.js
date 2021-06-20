@@ -40,5 +40,6 @@ module.exports = {
     '<rootDir>/libs/blog/shopping-list/data-access',
     '<rootDir>/libs/blog/shopping-list/feature/provider',
     '<rootDir>/libs/blog/shopping-list/feature/shopping-cart',
+    '<rootDir>/libs/blog/ui/components/molecule',
   ],
 };

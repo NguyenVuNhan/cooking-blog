@@ -44,8 +44,6 @@ export const validate = (
     ...validatorOptions
   }: ValidateConfig = {}
 ) => async (req: Request, _res: Response, next: NextFunction) => {
-  console.log(validatorOptions);
-
   try {
     await validateOrReject(plainToClass(type, req[subject]), {
       forbidUnknownValues: true,

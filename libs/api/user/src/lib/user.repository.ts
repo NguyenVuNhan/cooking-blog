@@ -1,4 +1,8 @@
-import { BaseRepository, Repository } from '@cookingblog/express/api/mongoose';
+import {
+  BaseRepository,
+  removeIdTransform,
+  Repository,
+} from '@cookingblog/express/api/mongoose';
 import { compare, genSalt, hash } from 'bcrypt-nodejs';
 import { createHash } from 'crypto';
 import { Schema } from 'mongoose';
@@ -15,7 +19,10 @@ const UserSchema = new Schema<IUserModel>(
   {
     timestamps: true,
     autoCreate: true,
-    versionKey: false,
+    toJSON: {
+      versionKey: false,
+      transform: removeIdTransform,
+    },
   }
 );
 

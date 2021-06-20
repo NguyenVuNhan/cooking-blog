@@ -1,5 +1,4 @@
 import { LoginDTO } from '@cookingblog/api/auth/dto';
-import { LoginReq } from '@cookingblog/api/interfaces';
 import { authActions, getErrors } from '@cookingblog/blog/auth/data-access';
 import { AuthTemplate } from '@cookingblog/blog/auth/feature/template';
 import { TextField } from '@cookingblog/blog/ui/components/atoms';

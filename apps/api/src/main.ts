@@ -81,8 +81,7 @@ async function main() {
       // handle the error case
       if (error) {
         logger.info('Failed to connect to the mongodb !!');
-        // eslint-disable-next-line no-console
-        console.log(error);
+        logger.error(error);
         throw error;
       } else {
         logger.info('Connected to mongodb');
