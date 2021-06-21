@@ -10,4 +10,6 @@ export interface IRecipeRank extends BaseEntity {
   }[];
 }
 
-export type IRecipeRankModel = IRecipeRank & Document<string>;
+export interface IRecipeRankModel extends IRecipeRank, Document<string> {
+  id: string;
+}

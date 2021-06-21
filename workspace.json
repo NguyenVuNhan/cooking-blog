@@ -974,6 +974,25 @@
           }
         }
       }
+    },
+    "api-meal-planner": {
+      "root": "libs/api/meal-planner",
+      "sourceRoot": "libs/api/meal-planner/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/api/meal-planner/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/meal-planner"],
+          "options": {
+            "jestConfig": "libs/api/meal-planner/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

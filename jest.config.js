@@ -42,5 +42,6 @@ module.exports = {
     '<rootDir>/libs/blog/shopping-list/feature/shopping-cart',
     '<rootDir>/libs/blog/ui/components/molecule',
     '<rootDir>/libs/api/recipe-rank',
+    '<rootDir>/libs/api/meal-planner',
   ],
 };

@@ -58,6 +58,7 @@
     "blog-shopping-list-feature-shopping-cart": { "tags": [] },
     "blog-ui-components-atoms": { "tags": [] },
     "blog-ui-components-molecules": { "tags": [] },
-    "api-recipe-rank": { "tags": [] }
+    "api-recipe-rank": { "tags": [] },
+    "api-meal-planner": { "tags": [] }
   }
 }
