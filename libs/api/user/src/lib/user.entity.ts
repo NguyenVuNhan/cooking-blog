@@ -5,6 +5,7 @@ export interface IUser extends BaseEntity {
   name: string;
   email: string;
   password: string;
+  recipe_rank: string;
 }
 
 export interface IUserModel extends IUser, Document<string> {

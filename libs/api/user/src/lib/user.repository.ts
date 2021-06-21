@@ -15,6 +15,7 @@ const UserSchema = new Schema<IUserModel>(
     name: { type: String, unique: true },
     email: { type: String, unique: true },
     password: { type: String },
+    recipe_rank: { type: String },
   },
   {
     timestamps: true,
