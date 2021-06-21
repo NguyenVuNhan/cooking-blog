@@ -99,7 +99,8 @@
       ],
       "@cookingblog/blog/ui/components/molecules": [
         "libs/blog/ui/components/molecules/src/index.ts"
-      ]
+      ],
+      "@cookingblog/api/recipe-rank": ["libs/api/recipe-rank/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

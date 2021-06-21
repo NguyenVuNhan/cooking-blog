@@ -1,23 +1,12 @@
 {
   "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
+  "cli": { "defaultCollection": "@nrwl/react" },
   "defaultProject": "blog",
   "generators": {
     "@nrwl/react": {
-      "application": {
-        "style": "scss",
-        "linter": "eslint",
-        "babel": true
-      },
-      "component": {
-        "style": "scss"
-      },
-      "library": {
-        "style": "scss",
-        "linter": "eslint"
-      }
+      "application": { "style": "scss", "linter": "eslint", "babel": true },
+      "component": { "style": "scss" },
+      "library": { "style": "scss", "linter": "eslint" }
     }
   },
   "projects": {
@@ -73,9 +62,7 @@
             "port": 3000
           },
           "configurations": {
-            "production": {
-              "buildTarget": "blog:build:production"
-            }
+            "production": { "buildTarget": "blog:build:production" }
           }
         },
         "serveFull": {
@@ -90,9 +77,7 @@
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/blog/**/*.{ts,tsx,js,jsx}"]
-          }
+          "options": { "lintFilePatterns": ["apps/blog/**/*.{ts,tsx,js,jsx}"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -117,16 +102,12 @@
             "devServerTarget": "blog:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "blog:serve:production"
-            }
+            "production": { "devServerTarget": "blog:serve:production" }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/blog-e2e/**/*.{js,ts}"]
-          }
+          "options": { "lintFilePatterns": ["apps/blog-e2e/**/*.{js,ts}"] }
         }
       }
     },
@@ -161,15 +142,11 @@
         },
         "serve": {
           "executor": "@nrwl/node:execute",
-          "options": {
-            "buildTarget": "api:build"
-          }
+          "options": { "buildTarget": "api:build" }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/api/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["apps/api/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -188,9 +165,7 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/shared/web/utils/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["libs/shared/web/utils/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -230,9 +205,7 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/shared/utils/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["libs/shared/utils/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -251,9 +224,7 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/shared/web/hooks/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["libs/shared/web/hooks/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -272,9 +243,7 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/express/api/core/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["libs/express/api/core/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -293,9 +262,7 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/express/api/common/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["libs/express/api/common/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -314,9 +281,7 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/express/api/cache/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["libs/express/api/cache/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -377,9 +342,7 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/api/auth/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["libs/api/auth/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -398,9 +361,7 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/api/user/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["libs/api/user/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -419,9 +380,7 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/api/ingredient/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["libs/api/ingredient/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -440,9 +399,7 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/api/recipe/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["libs/api/recipe/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -461,9 +418,7 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/api/interfaces/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["libs/api/interfaces/**/*.ts"] }
         }
       }
     },
@@ -608,9 +563,7 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/api/auth/dto/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["libs/api/auth/dto/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -719,9 +672,7 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/api/recipe/dto/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["libs/api/recipe/dto/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1000,6 +951,25 @@
           "outputs": ["coverage/libs/blog/ui/components/molecules"],
           "options": {
             "jestConfig": "libs/blog/ui/components/molecules/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-recipe-rank": {
+      "root": "libs/api/recipe-rank",
+      "sourceRoot": "libs/api/recipe-rank/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/api/recipe-rank/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/recipe-rank"],
+          "options": {
+            "jestConfig": "libs/api/recipe-rank/jest.config.js",
             "passWithNoTests": true
           }
         }
