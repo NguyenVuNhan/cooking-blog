@@ -23,7 +23,6 @@ async function getParsedIngredients(key, raw_data) {
 
 module.exports = {
   async up(db, client) {
-    return;
     // course
     await db.collection('recipes').updateOne({}, { $unset: { course: null } });
     // const recipe = await collection.find({ title: 'Ceasar salad' });

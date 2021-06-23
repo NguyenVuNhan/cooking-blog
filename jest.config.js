@@ -43,5 +43,6 @@ module.exports = {
     '<rootDir>/libs/blog/ui/components/molecule',
     '<rootDir>/libs/api/recipe-rank',
     '<rootDir>/libs/api/meal-planner',
+    '<rootDir>/libs/api/spoonacular/ingredients',
   ],
 };

@@ -1,4 +1,8 @@
-import { BaseRepository, Repository } from '@cookingblog/express/api/mongoose';
+import {
+  BaseRepository,
+  removeIdTransform,
+  Repository,
+} from '@cookingblog/express/api/mongoose';
 import { Schema } from 'mongoose';
 import { IIngredientModel } from './ingredient.entity';
 import { IIngredientRepository } from './ingredient.types';
@@ -13,6 +17,11 @@ const IngredientSchema = new Schema<IIngredientModel>(
   },
   {
     timestamps: true,
+    autoCreate: true,
+    toJSON: {
+      versionKey: false,
+      transform: removeIdTransform,
+    },
   }
 );
 

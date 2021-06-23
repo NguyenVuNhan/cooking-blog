@@ -16,9 +16,11 @@ interface ValidateConfig extends ValidatorOptions {
 
 class ValidationError extends AppError {
   constructor(errors: ClsValidationError[]) {
+    console.log(errors[0].children[0]);
+
     const message = errors.reduce(
       (acc: string, val) =>
-        `${acc}${acc == '' ? '' : ', '}${Object.values(val.constraints).join(
+        `${acc}${acc === '' ? '' : ', '}${Object.values(val.constraints).join(
           ', '
         )}`,
       ''

@@ -1,9 +1,14 @@
 {
   "implicitDependencies": {
-    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
     ".eslintrc.json": "*"
   },
-  "affected": { "defaultBase": "master" },
+  "affected": {
+    "defaultBase": "master"
+  },
   "npmScope": "cookingblog",
   "tasksRunnerOptions": {
     "default": {
@@ -17,48 +22,138 @@
     }
   },
   "projects": {
-    "blog": { "tags": [] },
-    "blog-e2e": { "tags": [], "implicitDependencies": ["blog"] },
-    "api": { "tags": [] },
-    "shared-web-utils": { "tags": [] },
-    "blog-utils": { "tags": [] },
-    "shared-utils": { "tags": [] },
-    "shared-web-hooks": { "tags": [] },
-    "express-api-core": { "tags": [] },
-    "express-api-common": { "tags": [] },
-    "express-api-cache": { "tags": [] },
-    "express-api-mongoose": { "tags": [] },
-    "shared-validator-decorator": { "tags": [] },
-    "api-auth": { "tags": [] },
-    "api-user": { "tags": [] },
-    "api-ingredient": { "tags": [] },
-    "api-recipe": { "tags": [] },
-    "api-interfaces": { "tags": [] },
-    "blog-auth-data-access": { "tags": [] },
-    "blog-auth-utils": { "tags": [] },
-    "blog-auth-ui-login": { "tags": [] },
-    "blog-auth-ui-register": { "tags": [] },
-    "blog-auth-feature-template": { "tags": [] },
-    "api-auth-dto": { "tags": [] },
-    "blog-home-ui-home": { "tags": [] },
-    "blog-home-data-access": { "tags": [] },
-    "blog-feature-tool-box": { "tags": [] },
-    "blog-recipe-data-access": { "tags": [] },
-    "api-recipe-dto": { "tags": [] },
-    "blog-recipe-ui-search": { "tags": [] },
-    "blog-recipe-feature-template": { "tags": [] },
-    "blog-recipe-ui-view": { "tags": [] },
-    "blog-ingredient-data-access": { "tags": [] },
-    "blog-recipe-utils": { "tags": [] },
-    "blog-ingredient-feature-components": { "tags": [] },
-    "blog-recipe-feature-components": { "tags": [] },
-    "blog-recipe-ui-add": { "tags": [] },
-    "blog-shopping-list-data-access": { "tags": [] },
-    "blog-shopping-list-feature-provider": { "tags": [] },
-    "blog-shopping-list-feature-shopping-cart": { "tags": [] },
-    "blog-ui-components-atoms": { "tags": [] },
-    "blog-ui-components-molecules": { "tags": [] },
-    "api-recipe-rank": { "tags": [] },
-    "api-meal-planner": { "tags": [] }
+    "blog": {
+      "tags": []
+    },
+    "blog-e2e": {
+      "tags": [],
+      "implicitDependencies": ["blog"]
+    },
+    "api": {
+      "tags": []
+    },
+    "shared-web-utils": {
+      "tags": []
+    },
+    "blog-utils": {
+      "tags": []
+    },
+    "shared-utils": {
+      "tags": []
+    },
+    "shared-web-hooks": {
+      "tags": []
+    },
+    "express-api-core": {
+      "tags": []
+    },
+    "express-api-common": {
+      "tags": []
+    },
+    "express-api-cache": {
+      "tags": []
+    },
+    "express-api-mongoose": {
+      "tags": []
+    },
+    "shared-validator-decorator": {
+      "tags": []
+    },
+    "api-auth": {
+      "tags": []
+    },
+    "api-user": {
+      "tags": []
+    },
+    "api-ingredient": {
+      "tags": []
+    },
+    "api-recipe": {
+      "tags": []
+    },
+    "api-interfaces": {
+      "tags": []
+    },
+    "blog-auth-data-access": {
+      "tags": []
+    },
+    "blog-auth-utils": {
+      "tags": []
+    },
+    "blog-auth-ui-login": {
+      "tags": []
+    },
+    "blog-auth-ui-register": {
+      "tags": []
+    },
+    "blog-auth-feature-template": {
+      "tags": []
+    },
+    "api-auth-dto": {
+      "tags": []
+    },
+    "blog-home-ui-home": {
+      "tags": []
+    },
+    "blog-home-data-access": {
+      "tags": []
+    },
+    "blog-feature-tool-box": {
+      "tags": []
+    },
+    "blog-recipe-data-access": {
+      "tags": []
+    },
+    "api-recipe-dto": {
+      "tags": []
+    },
+    "blog-recipe-ui-search": {
+      "tags": []
+    },
+    "blog-recipe-feature-template": {
+      "tags": []
+    },
+    "blog-recipe-ui-view": {
+      "tags": []
+    },
+    "blog-ingredient-data-access": {
+      "tags": []
+    },
+    "blog-recipe-utils": {
+      "tags": []
+    },
+    "blog-ingredient-feature-components": {
+      "tags": []
+    },
+    "blog-recipe-feature-components": {
+      "tags": []
+    },
+    "blog-recipe-ui-add": {
+      "tags": []
+    },
+    "blog-shopping-list-data-access": {
+      "tags": []
+    },
+    "blog-shopping-list-feature-provider": {
+      "tags": []
+    },
+    "blog-shopping-list-feature-shopping-cart": {
+      "tags": []
+    },
+    "blog-ui-components-atoms": {
+      "tags": []
+    },
+    "blog-ui-components-molecules": {
+      "tags": []
+    },
+    "api-recipe-rank": {
+      "tags": []
+    },
+    "api-meal-planner": {
+      "tags": []
+    },
+    "api-spoonacular-recipes": {
+      "tags": []
+    }
   }
 }

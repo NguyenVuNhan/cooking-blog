@@ -23,4 +23,9 @@ export const environment: APIConfig = {
   redisDB: parseInt(process.env.REDIS_QUEUE_DB),
   redisTimeout: 60,
   jwtExpiresIn: parseInt(process.env.JWT_EXPIRES_IN),
+  spoonacularApiKeys: [
+    process.env.SPOONACULAR_API_KEY_1,
+    process.env.SPOONACULAR_API_KEY_2,
+    process.env.SPOONACULAR_API_KEY_3,
+  ],
 };

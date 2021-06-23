@@ -1,32 +1,39 @@
 import { IIngredientService } from '@cookingblog/api/ingredient';
+import { ISpoonacularRecipesService } from '@cookingblog/api/spoonacular/recipes';
 import {
   AlreadyExistsError,
   NotFoundError,
   PermissionDeniedError,
 } from '@cookingblog/express/api/common';
 import { BaseService } from '@cookingblog/express/api/core';
-import { IRecipeModel, IRecipeModelWithIngredient } from './recipe.entity';
+import {
+  IRecipeIngredient,
+  IRecipeModel,
+  IRecipeModelWithIngredient,
+} from './recipe.entity';
 import {
   IRecipeRepository,
   IRecipeService,
   RecipeServiceProp,
 } from './recipe.types';
-import { IngredientDTO } from '@cookingblog/api/recipe/dto';
 
 export class RecipeService
   extends BaseService<IRecipeModel>
   implements IRecipeService {
   repo: IRecipeRepository;
   ingredientService: IIngredientService;
+  spoonacularRecipesService: ISpoonacularRecipesService;
 
   constructor({
     repo,
     logger,
     serviceCache,
     ingredientService,
+    spoonacularRecipesService,
   }: RecipeServiceProp) {
     super(repo, serviceCache, logger);
     this.ingredientService = ingredientService;
+    this.spoonacularRecipesService = spoonacularRecipesService;
   }
 
   async getRecipe(id: string): Promise<IRecipeModelWithIngredient> {
@@ -111,15 +118,26 @@ export class RecipeService
 
   private async addNewIngredients(
     recipe: Partial<IRecipeModel>
-  ): Promise<{ ingredients: IngredientDTO[]; ingredientsStr: string }> {
-    const ingredientPromises: Promise<IngredientDTO>[] = recipe.ingredients.map(
-      async (val) => {
-        const ingredient = await this.ingredientService.create({
-          name: val.ingredient.toLowerCase(),
+  ): Promise<{ ingredients: IRecipeIngredient[]; ingredientsStr: string }> {
+    const ingredientPromises: Promise<IRecipeIngredient>[] = recipe.ingredients.map(
+      async ({ quantity, ingredient }) => {
+        const raw_data = quantity + ' of ' + ingredient;
+        const data = await this.spoonacularRecipesService.parseIngredients(
+          raw_data
+        );
+        const newIngredient = await this.ingredientService.create({
+          name: ingredient.toLowerCase(),
+          image: data.image,
+          possibleUnits: data.possibleUnits,
+          aisle: data.aisle,
         });
-        const quantity = val.quantity;
 
-        return { ingredient: ingredient.id, quantity };
+        return {
+          ingredient: newIngredient.id as string,
+          quantity: data.amount,
+          unit: data.unit,
+          raw_data,
+        };
       }
     );
 

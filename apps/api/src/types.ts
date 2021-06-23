@@ -18,4 +18,5 @@ export interface APIConfig {
   redisDB: number;
   redisTimeout: number;
   jwtExpiresIn: number;
+  spoonacularApiKeys: string[];
 }

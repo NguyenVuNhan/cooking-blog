@@ -1,5 +1,4 @@
 import { AddRecipeReq } from '@cookingblog/api/interfaces';
-import { IRecipe } from '@cookingblog/api/recipe';
 import { TextField } from '@cookingblog/blog/ui/components/atoms';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -26,7 +25,7 @@ export interface AddIngredientModalProps {
   register: UseFormRegister<AddRecipeReq>;
   open: boolean;
   handleClose: () => void;
-  handleSave?: (ingredients: IRecipe['ingredients']) => void;
+  handleSave?: (ingredients: AddRecipeReq['ingredients']) => void;
   title: string;
 }
 

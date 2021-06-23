@@ -173,7 +173,11 @@ export function ViewRecipe() {
             <ListItemIcon>
               <ToShoppingListButton
                 onSelect={() =>
-                  addOneToShoppingList(ingredient, recipe.title, quantity)
+                  addOneToShoppingList(
+                    ingredient,
+                    recipe.title,
+                    quantity.toString()
+                  )
                 }
                 onRemove={() => removeItem(recipe.title, ingredient)}
               />

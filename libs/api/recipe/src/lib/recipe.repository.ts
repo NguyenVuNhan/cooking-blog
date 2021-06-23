@@ -14,15 +14,15 @@ const RecipeSchema = new Schema<IRecipeModel>(
   {
     title: { type: String, required: true, unique: true },
     user: { type: ObjectId, ref: 'user', required: true },
+    ingredientsStr: { type: String },
     ingredients: [
       {
-        ingredient: { type: ObjectId, ref: 'ingredients' },
+        ingredient: { type: ObjectId, ref: 'ingredient' },
         quantity: { type: Number },
         unit: { type: String },
         raw_data: { type: String },
       },
     ],
-    ingredientsStr: { type: String },
     duration: { type: String, required: true },
     steps: [
       {

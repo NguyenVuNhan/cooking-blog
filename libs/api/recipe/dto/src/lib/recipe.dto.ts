@@ -6,9 +6,6 @@ export class StepDTO {
   @IsString()
   description: string;
 
-  @IsString()
-  duration: string;
-
   @IsArray()
   @IsString({ each: true })
   ingredients: string[];
@@ -19,7 +16,7 @@ export class IngredientDTO {
   ingredient: string;
 
   @IsString()
-  quantity: string;
+  quantity: string | number;
 }
 
 export class RecipeDTO {

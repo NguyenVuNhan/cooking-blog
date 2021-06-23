@@ -67,9 +67,9 @@ export const getRecipe = createAsyncThunk<IRecipe, string>(
 
     const recipe: IRecipe = {
       ...res.data,
-      ingredients: res.data.ingredients.map(({ ingredient, quantity }) => ({
+      ingredients: res.data.ingredients.map(({ ingredient, ...rest }) => ({
         ingredient: ingredient.name,
-        quantity,
+        ...rest,
       })),
     };
 

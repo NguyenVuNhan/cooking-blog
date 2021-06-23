@@ -6,26 +6,59 @@ import {
   ServiceCache,
   UpdateOptions,
 } from './types';
-import { ILogger } from '@cookingblog/express/api/common';
+import { AppError, ILogger } from '@cookingblog/express/api/common';
 import { ICache } from '@cookingblog/express/api/cache';
 
 const CACHE_REF_ID = '#refId_';
-export abstract class BaseService<T extends { id: string }>
-  implements IBaseService<T> {
-  private cache?: ICache;
-  private prefix?: string;
-  private ttl?: number;
 
-  constructor(
-    public repo: IBaseRepository<T>,
-    cache?: ServiceCache,
-    protected logger: ILogger = console
-  ) {
-    this.repo = repo;
+export abstract class BaseCachingService {
+  protected cache?: ICache;
+  protected prefix?: string;
+  protected ttl?: number;
+
+  constructor(cache?: ServiceCache, protected logger: ILogger = console) {
     this.cache = cache?.cache;
     this.prefix = cache?.appName ? cache.appName + '/' + cache.uniqueKey : 'c';
     this.ttl = cache?.second;
     this.logger = logger;
+  }
+  protected async setCache(key: string, value: string): Promise<void> {
+    await this.cache
+      .setAsync((this.prefix || '') + key, value, 'EX', this.ttl)
+      .catch((error) => {
+        this.logger?.warn(`Set cache with key ${key} error: `, error);
+      });
+  }
+
+  protected async deleteCache(key: string): Promise<void> {
+    await this.cache.delAsync((this.prefix || '') + key).catch((error) => {
+      this.logger?.warn(`Delete cache with key ${key} error: `, error);
+    });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  protected async getCache(key: string): Promise<any> {
+    try {
+      const result = await this.cache.getAsync((this.prefix || '') + key);
+      if (result) {
+        return JSON.parse(result);
+      }
+    } catch (err) {
+      throw new AppError(err);
+    }
+  }
+}
+
+export abstract class BaseService<T extends { id: string }>
+  extends BaseCachingService
+  implements IBaseService<T> {
+  constructor(
+    public repo: IBaseRepository<T>,
+    cache?: ServiceCache,
+    logger: ILogger = console
+  ) {
+    super(cache, logger);
+    this.repo = repo;
   }
 
   async create(entity: Partial<T>): Promise<T> {
@@ -36,24 +69,24 @@ export abstract class BaseService<T extends { id: string }>
   async updateById(id: string, doc: Partial<T>): Promise<boolean> {
     const result = await this.repo.updateById(id, doc);
 
-    this.deleteCache(({ id } as unknown) as Partial<T>);
+    this.deleteQueryCache(({ id } as unknown) as Partial<T>);
     return result;
   }
 
   async deleteById(id: string): Promise<boolean> {
     const result = await this.repo.deleteById(id);
 
-    this.deleteCache(({ id } as unknown) as Partial<T>);
+    this.deleteQueryCache(({ id } as unknown) as Partial<T>);
     return result;
   }
 
   async findOne(query: Partial<T>): Promise<T> {
-    const data = await this.getCache(query);
+    const data = await this.getQueryCache(query);
     if (data) return data;
 
     const _entity = await this.repo.findOne(query);
 
-    if (_entity) this.setCache(query, _entity);
+    if (_entity) this.setQueryCache(query, _entity);
     return _entity;
   }
 
@@ -64,7 +97,7 @@ export abstract class BaseService<T extends { id: string }>
   ): Promise<T> {
     const _entity = await this.repo.findOneAndUpdate(query, doc, options);
 
-    if (_entity) this.setCache(query, _entity);
+    if (_entity) this.setQueryCache(query, _entity);
     return _entity;
   }
 
@@ -81,7 +114,7 @@ export abstract class BaseService<T extends { id: string }>
     return data;
   }
 
-  protected async getCache(query: Partial<T>): Promise<T | null> {
+  protected async getQueryCache(query: Partial<T>): Promise<T | null> {
     if (!this.cache) return null;
     if (!Object.keys(query).length) return null;
 
@@ -103,7 +136,7 @@ export abstract class BaseService<T extends { id: string }>
           id,
         } as unknown) as Partial<T>);
         if (entity) {
-          this.setCache(({ id } as unknown) as Partial<T>, entity);
+          this.setQueryCache(({ id } as unknown) as Partial<T>, entity);
         }
 
         return entity;
@@ -117,38 +150,27 @@ export abstract class BaseService<T extends { id: string }>
     }
   }
 
-  protected deleteCache(query: Partial<T>): void {
+  protected deleteQueryCache(query: Partial<T>): void {
     if (!this.cache) return;
     if (!Object.keys(query).length) return;
 
     const key = this.createCacheKey(query);
 
-    this.cache.delAsync(key).catch((error) => {
-      this.logger?.warn(`Delete cache with key ${key} error: `, error);
-    });
+    this.deleteCache(key);
   }
 
-  protected setCache(query: Partial<T>, entity: T): void {
+  protected setQueryCache(query: Partial<T>, entity: T): void {
     if (!this.cache) return;
     if (!Object.keys(query).length) return;
 
     const key = this.createCacheKey(query);
 
     if (query.id) {
-      this.cache
-        .setAsync(key, JSON.stringify(entity), 'EX', this.ttl)
-        .catch((error) => {
-          this.logger?.warn(`Set cache with key ${key} error: `, error);
-        });
+      this.setCache(key, JSON.stringify(entity));
       return;
     }
 
-    this.cache
-      .setAsync(key, `${CACHE_REF_ID}${entity.id}`, 'EX', this.ttl)
-      .catch((error) => {
-        this.logger?.warn(`Set cache with key ${key} error: `, error);
-      });
-    return;
+    this.setCache(key, `${CACHE_REF_ID}${entity.id}`);
   }
 
   protected createCacheKey(obj: Record<string, unknown>): string {

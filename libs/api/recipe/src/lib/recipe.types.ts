@@ -6,6 +6,7 @@ import {
   ServiceCache,
 } from '@cookingblog/express/api/core';
 import { IRecipeModel, IRecipeModelWithIngredient } from './recipe.entity';
+import { ISpoonacularRecipesService } from '@cookingblog/api/spoonacular/recipes';
 
 // ======================================================================
 // Repository
@@ -34,9 +35,9 @@ export type RecipeServiceProp = {
   repo: IRecipeRepository;
   logger: ILogger;
   serviceCache: ServiceCache;
+  spoonacularRecipesService: ISpoonacularRecipesService;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IRecipeService extends IBaseService<IRecipeModel> {
   /**
    * @param {string} query Query to search for.

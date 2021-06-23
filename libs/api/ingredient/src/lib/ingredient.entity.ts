@@ -1,11 +1,11 @@
-import { Document } from 'mongoose';
 import { BaseEntity } from '@cookingblog/express/api/mongoose';
+import { Document } from 'mongoose';
 
 export interface IIngredient extends BaseEntity {
   name: string;
   image?: string;
+  possibleUnits: string[];
+  aisle: string;
 }
 
-export interface IIngredientModel extends IIngredient, Document<string> {
-  id: string;
-}
+export type IIngredientModel = IIngredient & Document<string>;

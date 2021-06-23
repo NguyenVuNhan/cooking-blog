@@ -11,6 +11,7 @@ import {
   IngredientRepository,
   IngredientService,
 } from '@cookingblog/api/ingredient';
+import { SpoonacularRecipesService } from '@cookingblog/api/spoonacular/recipes';
 
 // ======================================================================
 // General
@@ -42,6 +43,14 @@ const serviceCache: ServiceCache = {
   second: config.redisTimeout,
 };
 
+// spoonacular services
+const spoonacularRecipesService = new SpoonacularRecipesService({
+  apiKeys: config.spoonacularApiKeys,
+  logger,
+  serviceCache: { ...serviceCache, uniqueKey: 'spoonacular_recipes' },
+});
+
+// cooking blog services
 const userService = new UserService({
   repo: userRepository,
   logger,
@@ -56,6 +65,7 @@ const ingredientService = new IngredientService({
 const recipeService = new RecipeService({
   repo: recipeRepository,
   ingredientService,
+  spoonacularRecipesService,
   logger,
   serviceCache: { ...serviceCache, uniqueKey: 'recipe' },
 });
