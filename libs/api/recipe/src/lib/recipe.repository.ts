@@ -16,7 +16,7 @@ const RecipeSchema = new Schema<IRecipeModel>(
     user: { type: ObjectId, ref: 'user', required: true },
     ingredients: [
       {
-        ingredient: { type: ObjectId, ref: 'ingredient' },
+        ingredient: { type: ObjectId, ref: 'ingredients' },
         quantity: { type: Number },
         unit: { type: String },
         raw_data: { type: String },
@@ -42,7 +42,6 @@ const RecipeSchema = new Schema<IRecipeModel>(
   }
 );
 
-// Define indexes for full test search
 RecipeSchema.index(
   {
     title: 'text',
@@ -50,9 +49,11 @@ RecipeSchema.index(
     ingredientsStr: 'text',
   },
   {
-    title: 10,
-    'steps.description': 2,
-    ingredientsStr: 5,
+    weights: {
+      title: 10,
+      'steps.description': 2,
+      ingredientsStr: 5,
+    },
   }
 );
 

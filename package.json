@@ -24,7 +24,10 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "docker:dev": "docker-compose down && docker-compose up -d"
+    "docker:dev": "docker-compose down && docker-compose up -d",
+    "migrate-mongo:up": "npx migrate-mongo up",
+    "migrate-mongo:down": "npx migrate-mongo down",
+    "migrate-mongo:status": "npx migrate-mongo status"
   },
   "private": true,
   "dependencies": {
