@@ -1,6 +1,6 @@
 const dotenv = require('dotenv');
 
-dotenv.config({ path: './apps/api/.env' });
+// dotenv.config({ path: './apps/api/.env' });
 
 const config = {
   mongodb: {
