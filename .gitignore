@@ -44,3 +44,5 @@ Thumbs.db
 .env
 /.logs
 /architecture
+
+environment.ts
