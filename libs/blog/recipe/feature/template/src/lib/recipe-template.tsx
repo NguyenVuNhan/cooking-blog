@@ -1,6 +1,5 @@
 import { ToolBox } from '@cookingblog/blog/feature/tool-box';
 import { goBack } from '@cookingblog/blog/utils';
-import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
@@ -15,15 +14,15 @@ export interface RecipeTemplateProps {
 export function RecipeTemplate(props: RecipeTemplateProps) {
   const { children, showToolBox = true, hideGoBack = false } = props;
   return (
-    <Container className="relative" maxWidth="md">
-      <Box overflow="auto" className="vh-100 noScrollBar">
+    <Container className="relative overflow-auto">
+      <div className="min-h-screen overflow-hidden">
         {!hideGoBack && (
           <IconButton onClick={goBack} data-testid="go-back-btn">
             <ArrowBackIcon />
           </IconButton>
         )}
         {children}
-      </Box>
+      </div>
       {showToolBox && <ToolBox />}
     </Container>
   );

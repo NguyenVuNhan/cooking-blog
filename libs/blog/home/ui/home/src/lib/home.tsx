@@ -18,7 +18,7 @@ export function Home() {
   };
 
   return (
-    <Container className={classes.container} maxWidth={false}>
+    <Container className={classes.container}>
       <ToolBox />
       <Box
         height="100vh"
@@ -42,6 +42,7 @@ const useStyles = makeStyles({
     width: '100vw',
     height: '100vh',
     alignItems: 'center',
+    position: 'relative',
     '& .MuiPaper-root': {
       padding: 16,
       width: 500,
