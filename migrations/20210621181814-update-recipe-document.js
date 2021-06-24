@@ -42,15 +42,20 @@ module.exports = {
 
         let data;
         try {
-          data = await getParsedIngredients(process.env.SPOONACULAR_API_KEY_1);
+          data = await getParsedIngredients(
+            process.env.SPOONACULAR_API_KEY_1,
+            raw_data
+          );
         } catch {
           try {
             data = await getParsedIngredients(
-              process.env.SPOONACULAR_API_KEY_2
+              process.env.SPOONACULAR_API_KEY_2,
+              raw_data
             );
           } catch {
             data = await getParsedIngredients(
-              process.env.SPOONACULAR_API_KEY_3
+              process.env.SPOONACULAR_API_KEY_3,
+              raw_data
             );
           }
         }
