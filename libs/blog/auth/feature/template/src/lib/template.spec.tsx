@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react';
-import AuthTemplate from './auth-template';
+import AuthTemplate from './template';
 
 describe('AuthTemplate', () => {
   it('should trigger onSubmit', async () => {

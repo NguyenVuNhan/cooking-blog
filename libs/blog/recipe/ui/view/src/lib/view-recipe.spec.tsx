@@ -1,3 +1,4 @@
+import 'reflect-metadata'; // Required by class-transformer
 import { recipeTestStore } from '@cookingblog/blog/recipe/data-access';
 import { render } from '@testing-library/react';
 import React from 'react';
