@@ -10,6 +10,6 @@ RUN ls -al
 
 RUN apk --no-cache add --virtual builds-deps build-base python
 RUN yarn install --prod
-RUN yarn add tslib compression dotenv
+RUN yarn add tslib compression dotenv redis axios
 
 CMD node ./main.js
