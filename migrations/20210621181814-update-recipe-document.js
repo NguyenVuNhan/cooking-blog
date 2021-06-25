@@ -38,25 +38,22 @@ module.exports = {
           .collection('ingredients')
           .findOne({ _id: ObjectId(doc.ingredient) });
 
-        const raw_data = doc.quantity + ' of ' + ingredient.name;
+        const raw_data = `${doc.quantity} of ${ingredient.name}`;
 
         let data;
-        try {
-          data = await getParsedIngredients(
-            process.env.SPOONACULAR_API_KEY_1,
-            raw_data
-          );
-        } catch {
+        const apiKeys = [
+          process.env.SPOONACULAR_API_KEY_1,
+          process.env.SPOONACULAR_API_KEY_2,
+          process.env.SPOONACULAR_API_KEY_3,
+          process.env.SPOONACULAR_API_KEY_4,
+          process.env.SPOONACULAR_API_KEY_5,
+        ];
+        for (const key of apiKeys) {
           try {
-            data = await getParsedIngredients(
-              process.env.SPOONACULAR_API_KEY_2,
-              raw_data
-            );
-          } catch {
-            data = await getParsedIngredients(
-              process.env.SPOONACULAR_API_KEY_3,
-              raw_data
-            );
+            data = await getParsedIngredients(key, raw_data);
+            break;
+          } catch (err) {
+            continue;
           }
         }
 

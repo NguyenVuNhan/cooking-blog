@@ -14,6 +14,7 @@ const RecipeSchema = new Schema<IRecipeModel>(
   {
     title: { type: String, required: true, unique: true },
     user: { type: ObjectId, ref: 'user', required: true },
+    serving: { type: String, required: true, default: 1 },
     ingredientsStr: { type: String },
     ingredients: [
       {

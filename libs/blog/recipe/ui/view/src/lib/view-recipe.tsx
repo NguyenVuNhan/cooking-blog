@@ -212,9 +212,7 @@ export function ViewRecipe() {
                 <Box fontWeight={500}>Step {index + 1}:</Box>
               </Typography>
               <p>
-                <Box component="span" fontWeight={450}>
-                  Ingredients:{' '}
-                </Box>
+                <span className="font-semibold">Ingredients:</span>{' '}
                 {step.ingredients.join(', ')}
               </p>
               <Box lineHeight={2}>

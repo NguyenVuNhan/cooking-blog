@@ -6,7 +6,11 @@ import {
   ServiceCache,
   UpdateOptions,
 } from './types';
-import { AppError, ILogger } from '@cookingblog/express/api/common';
+import {
+  AppError,
+  ILogger,
+  NotFoundError,
+} from '@cookingblog/express/api/common';
 import { ICache } from '@cookingblog/express/api/cache';
 
 const CACHE_REF_ID = '#refId_';
@@ -84,7 +88,13 @@ export abstract class BaseService<T extends { id: string }>
     const data = await this.getQueryCache(query);
     if (data) return data;
 
-    const _entity = await this.repo.findOne(query);
+    let _entity: T | PromiseLike<T>;
+    try {
+      _entity = await this.repo.findOne(query);
+    } catch (err) {
+      this.logger.warn(err);
+      throw new NotFoundError('Unable to find value');
+    }
 
     if (_entity) this.setQueryCache(query, _entity);
     return _entity;

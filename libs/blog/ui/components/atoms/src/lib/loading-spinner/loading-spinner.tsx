@@ -12,7 +12,11 @@ export function LoadingSpinnerWrapper(props: LoadingSpinnerProps) {
   const { overlay, children } = props;
 
   return overlay ? (
-    <Backdrop open style={{ zIndex: 1000 }}>
+    <Backdrop
+      open
+      className="h-screen w-screen flex items-center justify-center"
+      style={{ zIndex: 1000 }}
+    >
       {children}
     </Backdrop>
   ) : (

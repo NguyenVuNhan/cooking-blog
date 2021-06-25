@@ -1,6 +1,6 @@
 import { AddRecipeReq, UpdateRecipeReq } from '@cookingblog/api/interfaces';
 import React, { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { AddIngredientModal } from '../add-ingredient-modal/add-ingredient-modal';
 
 export interface EditIngredientModalProps {
@@ -12,9 +12,10 @@ export interface EditIngredientModalProps {
 
 export function EditIngredientModal(props: EditIngredientModalProps) {
   const { defaultIngredients, onUpdate, ...rest } = props;
-  const { register, control, reset } = useForm<AddRecipeReq>({
+  const formMethods = useForm<AddRecipeReq>({
     defaultValues: { ingredients: defaultIngredients },
   });
+  const { reset } = formMethods;
   const handleModalSave = (ingredients: AddRecipeReq['ingredients']) => {
     onUpdate({ ingredients });
   };
@@ -24,13 +25,13 @@ export function EditIngredientModal(props: EditIngredientModalProps) {
   }, [defaultIngredients, reset]);
 
   return (
-    <AddIngredientModal
-      title="Edit Ingredient"
-      control={control}
-      register={register}
-      handleSave={handleModalSave}
-      {...rest}
-    />
+    <FormProvider {...formMethods}>
+      <AddIngredientModal
+        title="Edit Ingredient"
+        handleSave={handleModalSave}
+        {...rest}
+      />
+    </FormProvider>
   );
 }
 

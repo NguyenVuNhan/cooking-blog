@@ -21,6 +21,7 @@ export interface IRecipeGeneric<TIngredient extends string | IIngredient>
   extends BaseEntity {
   title: string;
   user: string;
+  serving: number;
   ingredientsStr: string;
   ingredients: IRecipeIngredient<TIngredient>[];
   duration: string;

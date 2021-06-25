@@ -1,4 +1,4 @@
-import { AddRecipeReq } from '@cookingblog/api/interfaces';
+import { RecipeDTO } from '@cookingblog/api/recipe/dto';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
 import Grid from '@material-ui/core/Grid';
@@ -9,23 +9,21 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import React from 'react';
 import {
-  Control,
-  FieldErrors,
+  Controller,
   useFieldArray,
-  UseFormRegister,
+  useFormContext,
+  useFormState,
 } from 'react-hook-form';
 
 export interface AddStepGroupProps {
-  control: Control<AddRecipeReq>;
-  errors: FieldErrors<AddRecipeReq>;
-  register: UseFormRegister<AddRecipeReq>;
   ingredients: string[];
   stepIngredient: string[][];
 }
 
 export function AddStepGroup(props: AddStepGroupProps) {
-  const { control, errors, register, ingredients, stepIngredient } = props;
-
+  const { ingredients, stepIngredient } = props;
+  const { register, control } = useFormContext<RecipeDTO>();
+  const { errors } = useFormState();
   const { append, remove, fields } = useFieldArray({
     control,
     keyName: 'id',
@@ -39,10 +37,7 @@ export function AddStepGroup(props: AddStepGroupProps) {
     <>
       {fields.map((step, index) => {
         const { ref: descriptionRef, ...descriptionRest } = register(
-          `steps.${index}.description` as const,
-          {
-            required: 'Description required',
-          }
+          `steps.${index}.description` as const
         );
 
         return (
@@ -69,32 +64,40 @@ export function AddStepGroup(props: AddStepGroupProps) {
               />
             </Grid>
             <Grid item sm={4}>
-              <Autocomplete
-                multiple
-                filterSelectedOptions
-                onChange={(_event, value) => {
-                  stepIngredient[index] = value;
-                }}
-                id="tags-filled"
-                options={ingredients}
-                defaultValue={step.ingredients}
-                renderTags={(value: string[], getTagProps) =>
-                  value.map((option: string, index: number) => (
-                    <Chip
-                      key={index}
-                      size="small"
-                      label={option}
-                      {...getTagProps({ index })}
-                    />
-                  ))
-                }
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    name={`steps[${index}].ingredients`}
-                    label="Ingredients"
+              <Controller
+                render={(props) => (
+                  <Autocomplete
+                    {...props.field}
+                    multiple
+                    filterSelectedOptions
+                    onChange={(_event, value) => {
+                      stepIngredient[index] = value;
+                      props.field.onChange(value);
+                    }}
+                    options={ingredients}
+                    renderTags={(value: string[], getTagProps) =>
+                      value.map((option: string, index: number) => (
+                        <Chip
+                          key={index}
+                          size="small"
+                          label={option}
+                          {...getTagProps({ index })}
+                        />
+                      ))
+                    }
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Ingredients"
+                        error={props.fieldState.invalid}
+                        helperText={props.fieldState.error?.message ?? ''}
+                      />
+                    )}
                   />
                 )}
+                name={`steps.${index}.ingredients` as const}
+                control={control}
+                defaultValue={step.ingredients}
               />
             </Grid>
           </React.Fragment>

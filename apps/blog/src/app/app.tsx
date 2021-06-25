@@ -55,7 +55,7 @@ export const App = () => {
           {routes.map((route) => (
             <Route key={route.path} path={route.path} exact>
               {!route.auth || isAuthenticated ? (
-                <Suspense fallback={<LoadingSpinner />}>
+                <Suspense fallback={<LoadingSpinner overlay />}>
                   <route.view />
                 </Suspense>
               ) : (

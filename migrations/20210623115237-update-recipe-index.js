@@ -1,9 +1,14 @@
 module.exports = {
   async up(db, client) {
     // Remove index
-    await db
-      .collection('recipes')
-      .dropIndex('title_text_steps.description_text_ingredientsStr_text');
+    try {
+      await db
+        .collection('recipes')
+        .dropIndex('title_text_steps.description_text_ingredientsStr_text');
+    } catch (err) {
+      console.log('Index not removed');
+    }
+
     // Create new index
     await db.collection('recipes').createIndex(
       {
@@ -23,7 +28,11 @@ module.exports = {
   },
 
   async down(db, client) {
-    await db.collection('recipes').dropIndex('text_search');
+    try {
+      await db.collection('recipes').dropIndex('text_search');
+    } catch (err) {
+      console.log('Index not removed');
+    }
 
     // Create new index
     await db.collection('recipes').createIndex({

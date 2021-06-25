@@ -14,12 +14,7 @@ export interface EditStepGroupProps {
 
 export function EditStepGroup(props: EditStepGroupProps) {
   const { recipe, onUpdate, handleClose, ...rest } = props;
-  const {
-    register,
-    formState: { errors },
-    control,
-    handleSubmit,
-  } = useForm<RecipeDTO>({
+  const formMethods = useForm<RecipeDTO>({
     defaultValues: {
       steps: recipe.steps,
     },
@@ -27,8 +22,8 @@ export function EditStepGroup(props: EditStepGroupProps) {
       skipMissingProperties: true,
     }),
   });
+  const { handleSubmit } = formMethods;
 
-  // Handle ingredients autosuggestion for each step
   const stepIngredient = useRef<string[][]>(
     recipe.steps.map((step) => step.ingredients)
   );
@@ -65,9 +60,6 @@ export function EditStepGroup(props: EditStepGroupProps) {
         </Grid>
       </Grid>
       <AddStepGroup
-        control={control}
-        errors={errors}
-        register={register}
         ingredients={recipe.ingredients.map((val) => val.ingredient)}
         stepIngredient={stepIngredient.current}
         {...rest}

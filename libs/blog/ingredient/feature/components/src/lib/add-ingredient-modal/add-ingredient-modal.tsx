@@ -1,5 +1,7 @@
 import { AddRecipeReq } from '@cookingblog/api/interfaces';
+import { RecipeDTO } from '@cookingblog/api/recipe/dto';
 import { TextField } from '@cookingblog/blog/ui/components/atoms';
+import { ErrorBadge } from '@cookingblog/blog/ui/components/molecules';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -12,17 +14,16 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import DeleteIcon from '@material-ui/icons/Delete';
 import React, { Fragment } from 'react';
 import {
-  Control,
+  FieldError,
   useFieldArray,
-  UseFormRegister,
+  useFormContext,
+  useFormState,
   useWatch,
 } from 'react-hook-form';
 import { IngredientInput } from '../ingredient-input/ingredient-input';
 
 /* eslint-disable-next-line */
 export interface AddIngredientModalProps {
-  control: Control<AddRecipeReq>;
-  register: UseFormRegister<AddRecipeReq>;
   open: boolean;
   handleClose: () => void;
   handleSave?: (ingredients: AddRecipeReq['ingredients']) => void;
@@ -30,8 +31,10 @@ export interface AddIngredientModalProps {
 }
 
 export function AddIngredientModal(props: AddIngredientModalProps) {
-  const { control, handleClose, handleSave, register, title, open } = props;
+  const { handleClose, handleSave, title, open } = props;
   const classes = useStyle();
+  const { register, control, trigger } = useFormContext<RecipeDTO>();
+  const { errors } = useFormState({ control });
   const { append, remove, fields } = useFieldArray({
     name: 'ingredients',
     control,
@@ -44,9 +47,12 @@ export function AddIngredientModal(props: AddIngredientModalProps) {
   const deleteIngredient = (index: number) => () => remove(index);
   const addIngredient = () => append({ ingredient: '', quantity: '' });
 
-  const _handleSave = () => {
-    handleClose();
-    handleSave && handleSave(ingredientsWatcher || []);
+  const _handleSave = async () => {
+    const isValid = await trigger('ingredients');
+    if (isValid) {
+      handleClose();
+      handleSave && handleSave(ingredientsWatcher || []);
+    }
   };
 
   return (
@@ -60,6 +66,11 @@ export function AddIngredientModal(props: AddIngredientModalProps) {
     >
       <DialogTitle>Ingredients</DialogTitle>
       <DialogContent dividers>
+        <Grid item sm={12}>
+          <ErrorBadge
+            message={((errors.ingredients as unknown) as FieldError)?.message}
+          />
+        </Grid>
         {fields.map((ingredient, index) => (
           <Fragment key={ingredient.id}>
             <Grid item sm={12} container alignItems="flex-end" spacing={3}>
@@ -72,6 +83,13 @@ export function AddIngredientModal(props: AddIngredientModalProps) {
                   fullWidth
                   margin="none"
                   size="small"
+                  error={Boolean(
+                    errors.ingredients && errors.ingredients[index]?.ingredient
+                  )}
+                  helperText={
+                    errors.ingredients &&
+                    errors.ingredients[index]?.ingredient?.message
+                  }
                 />
               </Grid>
               <Grid item sm={4}>
@@ -82,6 +100,13 @@ export function AddIngredientModal(props: AddIngredientModalProps) {
                   fullWidth
                   margin="none"
                   size="small"
+                  error={Boolean(
+                    errors.ingredients && errors.ingredients[index]?.quantity
+                  )}
+                  helperText={
+                    errors.ingredients &&
+                    errors.ingredients[index]?.quantity?.message
+                  }
                 />
               </Grid>
               <Grid item sm={1}>
