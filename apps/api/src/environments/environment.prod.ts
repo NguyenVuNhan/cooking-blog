@@ -27,5 +27,7 @@ export const environment: APIConfig = {
     process.env.SPOONACULAR_API_KEY_1,
     process.env.SPOONACULAR_API_KEY_2,
     process.env.SPOONACULAR_API_KEY_3,
+    process.env.SPOONACULAR_API_KEY_4,
+    process.env.SPOONACULAR_API_KEY_5,
   ],
 };

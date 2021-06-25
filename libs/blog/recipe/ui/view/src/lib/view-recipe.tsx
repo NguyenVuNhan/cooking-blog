@@ -140,8 +140,8 @@ export function ViewRecipe() {
             </Box>
           </Typography>
           <Typography align="center" noWrap>
-            {recipe?.ingredients.length} ingredients - {recipe?.duration} -{' '}
-            {recipe?.steps.length} steps
+            {recipe?.ingredients.length} ingredients - {recipe?.duration}{' '}
+            serving - {recipe?.serving} -{recipe?.steps.length} steps
             <EditButton
               show={isOwner && !ingredientEdit}
               onClick={() => setTitleEdit(true)}
@@ -168,26 +168,17 @@ export function ViewRecipe() {
         </Box>
       </Typography>
       <List>
-        {recipe?.ingredients.map(({ ingredient, quantity }, index) => (
+        {recipe?.ingredients.map(({ ingredient, raw_data }, index) => (
           <ListItem key={index} className={classes.ingredientItem}>
             <ListItemIcon>
               <ToShoppingListButton
                 onSelect={() =>
-                  addOneToShoppingList(
-                    ingredient,
-                    recipe.title,
-                    quantity.toString()
-                  )
+                  addOneToShoppingList(ingredient, recipe.title, raw_data)
                 }
                 onRemove={() => removeItem(recipe.title, ingredient)}
               />
             </ListItemIcon>
-            <Typography>
-              {quantity ? quantity + ' of ' : ''}{' '}
-              <Box component="span" fontWeight={401}>
-                {ingredient}
-              </Box>
-            </Typography>
+            <Typography>{raw_data}</Typography>
           </ListItem>
         ))}
       </List>

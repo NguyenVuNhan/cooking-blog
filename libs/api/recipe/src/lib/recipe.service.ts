@@ -121,7 +121,7 @@ export class RecipeService
   ): Promise<{ ingredients: IRecipeIngredient[]; ingredientsStr: string }> {
     const ingredientPromises: Promise<IRecipeIngredient>[] = recipe.ingredients.map(
       async ({ quantity, ingredient }) => {
-        const raw_data = quantity + ' of ' + ingredient;
+        const raw_data = (quantity ? quantity + ' of ' : '') + ingredient;
         const data = await this.spoonacularRecipesService.parseIngredients(
           raw_data
         );

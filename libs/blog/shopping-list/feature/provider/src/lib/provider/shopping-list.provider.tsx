@@ -41,7 +41,7 @@ export const ShoppingListProvider: FC = ({ children }) => {
     recipe: string,
     quantity: string
   ) => {
-    const description = quantity ? `${quantity} of item` : item;
+    const description = quantity ?? item;
     const newList = [
       ...shoppingList,
       { item, recipe, description, checked: false },

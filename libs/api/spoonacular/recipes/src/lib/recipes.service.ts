@@ -6,6 +6,7 @@ import {
   ParseIngredientsRes,
   SpoonacularRecipesServiceProp,
 } from './recipes.types';
+import { StatusCodes } from 'http-status-codes';
 
 export class SpoonacularRecipesService
   extends BaseCachingService
@@ -51,6 +52,9 @@ export class SpoonacularRecipesService
 
     // If non of api key was working
     this.logger.warn("Spoonacular wasn't able to parse Ingredients");
-    throw new AppError();
+    throw new AppError(
+      StatusCodes.SERVICE_UNAVAILABLE,
+      'Service unavailable, please try again later'
+    );
   }
 }
