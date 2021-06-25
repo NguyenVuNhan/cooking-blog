@@ -12,6 +12,7 @@
     "middlewares",
     "nrwl",
     "openapi",
+    "printf",
     "reduxjs",
     "rerender",
     "resave",

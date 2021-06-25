@@ -7,9 +7,11 @@ import { IRecipeService, RecipeController } from '@cookingblog/api/recipe';
 import { IUserModel, IUserService } from '@cookingblog/api/user';
 import { ILogger } from '@cookingblog/express/api/common';
 import { BaseApp } from '@cookingblog/express/api/core';
+import { default as expressWinston } from 'express-winston';
 import passport from 'passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { APIConfig } from '../types';
+import { transports } from './logger';
 
 type ApplicationProp = {
   authService: IAuthService;
@@ -81,6 +83,9 @@ export default class Application extends BaseApp {
 
   protected mountCustomMiddleware() {
     this.logger.info('Booting custom middleware...');
+
+    // Setup logging
+    super.mountCustomMiddleware(expressWinston.logger({ transports }));
 
     // Passport
     super.mountCustomMiddleware(passport.initialize());

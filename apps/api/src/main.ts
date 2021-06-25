@@ -12,11 +12,16 @@ import {
   IngredientService,
 } from '@cookingblog/api/ingredient';
 import { SpoonacularRecipesService } from '@cookingblog/api/spoonacular/recipes';
+import { default as winston } from 'winston';
+import { transports } from './app/logger';
 
 // ======================================================================
 // General
 // ======================================================================
-const logger = console;
+for (const transport of transports) {
+  winston.add(transport);
+}
+const logger = winston;
 
 const cache = new RedisCache(
   {

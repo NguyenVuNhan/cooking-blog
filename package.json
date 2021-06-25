@@ -47,6 +47,7 @@
     "express": "4.17.1",
     "express-session": "^1.17.1",
     "express-validator": "^6.10.0",
+    "express-winston": "^4.1.0",
     "http-status-codes": "^2.1.4",
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
@@ -65,7 +66,9 @@
     "regenerator-runtime": "0.13.7",
     "swagger-jsdoc": "6",
     "swagger-ui-express": "^4.1.6",
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.5"
   },
   "devDependencies": {
     "@babel/core": "7.12.13",
