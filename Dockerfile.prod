@@ -2,12 +2,11 @@ FROM node:14-alpine
 
 WORKDIR /app
 
-RUN rm -rf *
-COPY ./dist/apps/api .
-COPY ./apps/api/.env .
+COPY ./dist/apps/api  .
+COPY ./apps/api/.env .env
 
 RUN mkdir /.logs
-RUN ls -a
+RUN ls -al
 
 RUN yarn install --prod
 RUN yarn add tslib compression dotenv

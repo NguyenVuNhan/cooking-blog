@@ -3,7 +3,7 @@ import {
   removeIdTransform,
   Repository,
 } from '@cookingblog/express/api/mongoose';
-import { compare, genSalt, hash } from 'bcrypt-nodejs';
+import { compare, genSalt, hash } from 'bcrypt';
 import { createHash } from 'crypto';
 import { Schema } from 'mongoose';
 import { IUserModel } from './user.entity';
@@ -38,7 +38,7 @@ UserSchema.pre<IUserModel>('save', function (next) {
       return next(err);
     }
 
-    hash(this.password, salt, null, (err, _hash) => {
+    hash(this.password, salt, (err, _hash) => {
       if (err) {
         return next(err);
       }
