@@ -2,6 +2,7 @@ FROM node:14-alpine
 
 WORKDIR /app
 
+RUN rm -rf *
 COPY ./dist/apps/api .
 COPY ./apps/api/.env .
 
