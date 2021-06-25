@@ -38,6 +38,7 @@ export default class Application extends BaseApp {
       debug: process.env.NODE_ENV === 'development',
       port: config.port,
       locals: config,
+      cors: { origin: config.url, optionsSuccessStatus: 200 },
     });
 
     this.addController(new AuthController(authService));
