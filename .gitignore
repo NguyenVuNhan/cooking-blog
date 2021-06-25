@@ -42,7 +42,6 @@ Thumbs.db
 .vscode
 .git
 .env
+.env.local
 /.logs
 /architecture
-
-environment.ts
