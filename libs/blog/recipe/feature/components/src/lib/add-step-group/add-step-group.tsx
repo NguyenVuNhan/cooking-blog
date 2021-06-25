@@ -97,7 +97,7 @@ export function AddStepGroup(props: AddStepGroupProps) {
                 )}
                 name={`steps.${index}.ingredients` as const}
                 control={control}
-                defaultValue={step.ingredients}
+                defaultValue={step.ingredients as never}
               />
             </Grid>
           </React.Fragment>
