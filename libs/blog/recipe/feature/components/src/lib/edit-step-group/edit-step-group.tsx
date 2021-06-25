@@ -4,7 +4,7 @@ import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import React, { useRef } from 'react';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 
 export interface EditStepGroupProps {
   recipe: Partial<RecipeDTO>;
@@ -39,32 +39,34 @@ export function EditStepGroup(props: EditStepGroupProps) {
   };
 
   return (
-    <Grid
-      container
-      alignItems="flex-start"
-      noValidate
-      component="form"
-      spacing={3}
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <Grid item sm={12} container alignItems="flex-end" spacing={3}>
-        <Grid item container sm={6} justify="center">
-          <Button variant="contained" color="primary" type="submit">
-            Save
-          </Button>
+    <FormProvider {...formMethods}>
+      <Grid
+        container
+        alignItems="flex-start"
+        noValidate
+        component="form"
+        spacing={3}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Grid item sm={12} container alignItems="flex-end" spacing={3}>
+          <Grid item container sm={6} justify="center">
+            <Button variant="contained" color="primary" type="submit">
+              Save
+            </Button>
+          </Grid>
+          <Grid item container sm={6} justify="center">
+            <Button variant="contained" onClick={handleClose}>
+              Cancel
+            </Button>
+          </Grid>
         </Grid>
-        <Grid item container sm={6} justify="center">
-          <Button variant="contained" onClick={handleClose}>
-            Cancel
-          </Button>
-        </Grid>
+        <AddStepGroup
+          ingredients={recipe.ingredients.map((val) => val.ingredient)}
+          stepIngredient={stepIngredient.current}
+          {...rest}
+        />
       </Grid>
-      <AddStepGroup
-        ingredients={recipe.ingredients.map((val) => val.ingredient)}
-        stepIngredient={stepIngredient.current}
-        {...rest}
-      />
-    </Grid>
+    </FormProvider>
   );
 }
 

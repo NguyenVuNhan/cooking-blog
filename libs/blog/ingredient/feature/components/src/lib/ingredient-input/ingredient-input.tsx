@@ -24,18 +24,22 @@ export function IngredientInput<TFieldValues>(
 
   const fetch = React.useMemo(
     () =>
-      throttle((name: string) => {
-        loading.current = true;
-        if (name.length > 0)
-          getIngredients(name)
-            .then((res) => {
-              isMounted() && setOptions(res.data.ingredients);
-              loading.current = false;
-            })
-            .catch(() => {
-              loading.current = false;
-            });
-      }, 2000),
+      throttle(
+        (name: string) => {
+          loading.current = true;
+          if (name.length > 0)
+            getIngredients(name)
+              .then((res) => {
+                isMounted() && setOptions(res.data.ingredients);
+                loading.current = false;
+              })
+              .catch(() => {
+                loading.current = false;
+              });
+        },
+        2000,
+        { leading: false }
+      ),
     [isMounted]
   );
 

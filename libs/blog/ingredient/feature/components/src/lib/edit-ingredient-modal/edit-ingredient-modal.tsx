@@ -1,4 +1,6 @@
 import { AddRecipeReq, UpdateRecipeReq } from '@cookingblog/api/interfaces';
+import { RecipeDTO } from '@cookingblog/api/recipe/dto';
+import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import React, { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { AddIngredientModal } from '../add-ingredient-modal/add-ingredient-modal';
@@ -13,6 +15,7 @@ export interface EditIngredientModalProps {
 export function EditIngredientModal(props: EditIngredientModalProps) {
   const { defaultIngredients, onUpdate, ...rest } = props;
   const formMethods = useForm<AddRecipeReq>({
+    resolver: classValidatorResolver(RecipeDTO),
     defaultValues: { ingredients: defaultIngredients },
   });
   const { reset } = formMethods;

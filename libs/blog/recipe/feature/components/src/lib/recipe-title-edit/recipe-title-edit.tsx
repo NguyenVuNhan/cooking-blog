@@ -1,9 +1,11 @@
 import { UpdateRecipeReq } from '@cookingblog/api/interfaces';
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import { useForm } from 'react-hook-form';
+import { RecipeDTO } from '@cookingblog/api/recipe/dto';
 import { TextField } from '@cookingblog/blog/ui/components/atoms';
+import { classValidatorResolver } from '@hookform/resolvers/class-validator';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import React from 'react';
+import { useForm, useFormState } from 'react-hook-form';
 
 export interface RecipeTitleEditProps {
   onUpdate: (data: UpdateRecipeReq) => void;
@@ -14,13 +16,11 @@ export interface RecipeTitleEditProps {
 export function RecipeTitleEdit(props: RecipeTitleEditProps) {
   const { onUpdate, handleClose, data } = props;
 
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm<UpdateRecipeReq>({
+  const { register, control, handleSubmit } = useForm<UpdateRecipeReq>({
+    resolver: classValidatorResolver(RecipeDTO),
     defaultValues: data,
   });
+  const { errors } = useFormState({ control });
 
   const onSubmit = (data: UpdateRecipeReq) => {
     onUpdate(data);
