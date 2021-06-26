@@ -84,6 +84,7 @@ export function IngredientInput<TFieldValues>(
             onChange(args[1]);
           }}
           loading={loading.current}
+          fullWidth={rest.fullWidth}
           renderInput={(params) => (
             <TextField
               {...params}

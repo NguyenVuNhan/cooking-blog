@@ -130,7 +130,7 @@ export function ViewRecipe() {
           </Typography>
           <Typography align="center" noWrap>
             {recipe?.ingredients.length} ingredients - {recipe?.duration} -{' '}
-            {recipe?.serving} serving -{recipe?.steps.length} steps
+            {recipe?.serving} serving
             <EditButton
               show={isOwner && !ingredientEdit}
               onClick={() => setTitleEdit(true)}

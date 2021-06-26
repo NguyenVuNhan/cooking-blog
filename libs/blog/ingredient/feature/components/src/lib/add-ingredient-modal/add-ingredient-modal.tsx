@@ -74,7 +74,7 @@ export function AddIngredientModal(props: AddIngredientModalProps) {
         {fields.map((ingredient, index) => (
           <Fragment key={ingredient.id}>
             <Grid item sm={12} container alignItems="flex-end" spacing={3}>
-              <Grid item sm={7}>
+              <Grid item xs={12} sm={7}>
                 <IngredientInput
                   control={control}
                   label="Ingredients"
@@ -92,7 +92,7 @@ export function AddIngredientModal(props: AddIngredientModalProps) {
                   }
                 />
               </Grid>
-              <Grid item sm={4}>
+              <Grid item xs={10} sm={4}>
                 <TextField
                   label="quantity"
                   {...register(`ingredients.${index}.quantity` as const)}
@@ -109,7 +109,7 @@ export function AddIngredientModal(props: AddIngredientModalProps) {
                   }
                 />
               </Grid>
-              <Grid item sm={1}>
+              <Grid item xs={2} sm={1}>
                 <IconButton onClick={deleteIngredient(index)} className="p-0">
                   <DeleteIcon color="error" />
                 </IconButton>
