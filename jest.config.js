@@ -44,5 +44,6 @@ module.exports = {
     '<rootDir>/libs/api/recipe-rank',
     '<rootDir>/libs/api/meal-planner',
     '<rootDir>/libs/api/spoonacular/ingredients',
+    '<rootDir>/libs/blog/ui/error',
   ],
 };

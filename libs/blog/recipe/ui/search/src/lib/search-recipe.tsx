@@ -10,6 +10,7 @@ import { appendToPath, getQuery } from '@cookingblog/blog/utils';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import React, { useState } from 'react';
+import { RTKQueryError } from '@cookingblog/blog/ui/error';
 
 export function RecipeSearch() {
   const [query, setQuery] = useState(getQuery('q') || '');
@@ -34,7 +35,7 @@ export function RecipeSearch() {
       {isLoading ? (
         <LoadingSpinner />
       ) : error ? (
-        JSON.stringify(error)
+        <RTKQueryError error={error} apiError />
       ) : (
         <ListRecipe recipes={data.recipes} />
       )}

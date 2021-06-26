@@ -104,7 +104,8 @@
       "@cookingblog/api/meal-planner": ["libs/api/meal-planner/src/index.ts"],
       "@cookingblog/api/spoonacular/recipes": [
         "libs/api/spoonacular/recipes/src/index.ts"
-      ]
+      ],
+      "@cookingblog/blog/ui/error": ["libs/blog/ui/error/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
