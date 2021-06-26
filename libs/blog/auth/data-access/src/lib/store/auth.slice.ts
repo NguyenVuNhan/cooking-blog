@@ -1,21 +1,21 @@
 import {
-  LoginRes,
   ErrorRes,
   LoginReq,
-  RegisterRes,
+  LoginRes,
   RegisterReq,
+  RegisterRes,
 } from '@cookingblog/api/interfaces';
 import { clearAuthToken, setAuthToken } from '@cookingblog/blog/auth/utils';
+import { forwardTo } from '@cookingblog/blog/utils';
 import {
   isFulfilledAction,
   isPendingAction,
   isRejectedAction,
   withErrorHandler,
 } from '@cookingblog/shared/web/utils';
-import * as authServices from './auth.service';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import jwt_decode from 'jwt-decode';
-import { forwardTo } from '@cookingblog/blog/utils';
+import * as authServices from './auth.service';
 
 export const AUTH_FEATURE_KEY = 'auth';
 
@@ -49,6 +49,7 @@ const register = createAsyncThunk<RegisterRes['data'], RegisterReq>(
 export interface AuthState {
   authenticated: boolean;
   user?: LoginRes['data']['user'];
+  token?: string;
   loading: boolean;
   errors?: ErrorRes;
 }
@@ -70,6 +71,7 @@ if (localStorage.jwtToken) {
   } else {
     setAuthToken(localStorage.jwtToken);
     initialState.user = decoded;
+    initialState.token = localStorage.jwtToken;
     initialState.authenticated = true;
   }
 }
@@ -91,6 +93,7 @@ export const authSlice = createSlice({
     builder
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload.user;
+        state.token = action.payload.token;
         state.authenticated = true;
       })
       .addMatcher(isFulfilledAction(AUTH_FEATURE_KEY), (state) => {
@@ -117,3 +120,6 @@ export const getAuthenticated = (rootState: unknown) =>
 
 export const getErrors = (rootState: unknown) =>
   (rootState[AUTH_FEATURE_KEY] as AuthState).errors;
+
+export const getUserId = (rootState: unknown) =>
+  (rootState[AUTH_FEATURE_KEY] as AuthState).user?.id;

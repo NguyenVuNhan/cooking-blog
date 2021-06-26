@@ -1,6 +1,6 @@
+import { IRecipe } from '@cookingblog/api/recipe';
 import { RecipeDTO } from '@cookingblog/api/recipe/dto';
 import { BaseResponse } from '@cookingblog/express/api/core';
-import { IRecipe, IRecipeWithIngredient } from '@cookingblog/api/recipe';
 
 // ======================================================================
 // Request
@@ -20,4 +20,4 @@ export type AddRecipeRes = BaseResponse<CommonData>;
 export type DeleteRecipeRes = BaseResponse<{ id: string }>;
 export type UpdateRecipeRes = BaseResponse<CommonData>;
 export type SearchRecipeRes = BaseResponse<{ recipes: IRecipe[] }>;
-export type GetRecipeRes = BaseResponse<IRecipeWithIngredient>;
+export type GetRecipeRes = BaseResponse<IRecipe>;

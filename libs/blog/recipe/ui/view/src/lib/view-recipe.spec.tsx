@@ -1,21 +1,37 @@
 import 'reflect-metadata'; // Required by class-transformer
-import { recipeTestStore } from '@cookingblog/blog/recipe/data-access';
-import { render } from '@testing-library/react';
-import React from 'react';
-import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
-import ViewRecipe from './view-recipe';
 
 describe('ViewRecipe', () => {
-  it('should render successfully', () => {
-    const { baseElement } = render(
-      <Provider store={recipeTestStore}>
-        <Router>
-          <ViewRecipe />
-        </Router>
-      </Provider>
-    );
+  it.todo('fetches the recipe from the given id');
 
-    expect(baseElement).toBeTruthy();
+  describe('while loading', () => {
+    it.todo('should render a loader');
+  });
+
+  describe('with error', () => {
+    it.todo('should render an error message');
+  });
+
+  describe('with data', () => {
+    it.todo('should render recipe successfully');
+
+    describe('on time click', () => {
+      it.todo('should show timer snack bar');
+    });
+
+    describe('on title update', () => {
+      it.todo('should update title and refetch recipe');
+    });
+
+    describe('on ingredient update', () => {
+      it.todo('should update ingredients list and refetch recipe');
+    });
+
+    describe('on step update', () => {
+      it.todo('should update step  and refetch recipe');
+    });
+
+    describe('on delete recipe', () => {
+      it.todo('should delete recipe and go back');
+    });
   });
 });

@@ -6,11 +6,7 @@ import {
   PermissionDeniedError,
 } from '@cookingblog/express/api/common';
 import { BaseService } from '@cookingblog/express/api/core';
-import {
-  IRecipeIngredient,
-  IRecipeModel,
-  IRecipeModelWithIngredient,
-} from './recipe.entity';
+import { IRecipeIngredient, IRecipeModel } from './recipe.entity';
 import {
   IRecipeRepository,
   IRecipeService,
@@ -36,7 +32,7 @@ export class RecipeService
     this.spoonacularRecipesService = spoonacularRecipesService;
   }
 
-  async getRecipe(id: string): Promise<IRecipeModelWithIngredient> {
+  async getRecipe(id: string): Promise<IRecipeModel> {
     const recipe = await this.repo.findById(id);
 
     if (!recipe) throw new NotFoundError('Recipe not found');

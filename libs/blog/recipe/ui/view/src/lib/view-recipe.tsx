@@ -1,10 +1,9 @@
-import { UpdateRecipeReq } from '@cookingblog/api/interfaces';
+import { getUserId } from '@cookingblog/blog/auth/data-access';
 import { EditIngredientModal } from '@cookingblog/blog/ingredient/feature/components';
 import {
-  getCurrentRecipe,
-  getLoadingStatus,
-  getOwnerStatus,
-  recipeActions,
+  useDeleteRecipe,
+  useGetRecipeQuery,
+  useUpdateRecipe,
 } from '@cookingblog/blog/recipe/data-access';
 import {
   EditStepGroup,
@@ -20,7 +19,6 @@ import {
 } from '@cookingblog/blog/ui/components/atoms';
 import { TimerSnackbar } from '@cookingblog/blog/ui/components/molecules';
 import { mapStringMatch } from '@cookingblog/shared/utils';
-import { useDispatchInit } from '@cookingblog/shared/web/hooks';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -36,19 +34,19 @@ import CloseIcon from '@material-ui/icons/Close';
 import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
 import React, { Fragment, SyntheticEvent, useContext, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 export function ViewRecipe() {
   const classes = useStyle();
-  const dispatch = useDispatch();
 
   // Fetch data
   const { id } = useParams<{ id: string }>();
-  useDispatchInit(recipeActions.getRecipe, id);
-  const loading = useSelector(getLoadingStatus);
-  const recipe = useSelector(getCurrentRecipe);
-  const isOwner = useSelector(getOwnerStatus);
+  const deleteRecipe = useDeleteRecipe();
+  const updateRecipe = useUpdateRecipe(id);
+  const { data: recipe, isLoading } = useGetRecipeQuery(id);
+  const userId = useSelector(getUserId);
+  const isOwner = recipe?.user === userId;
 
   const { addAllToShoppingList, addOneToShoppingList, removeItem } = useContext(
     ShoppingListCtx
@@ -60,8 +58,6 @@ export function ViewRecipe() {
   const [timerOpen, setTimerOpen] = useState(false);
   const [timeoutOpen, setTimeoutOpen] = useState(false);
   const [duration, setDuration] = useState(0);
-
-  if (!recipe) return <LoadingSpinner />;
 
   const handleClose = () => {
     setTimeoutOpen(false);
@@ -84,17 +80,10 @@ export function ViewRecipe() {
     }
   };
 
-  const updateRecipe = (data: UpdateRecipeReq) => {
-    dispatch(recipeActions.updateRecipe({ id, data }));
-  };
-
-  const deleteRecipe = () => {
-    dispatch(recipeActions.deleteRecipe(id));
-  };
-
-  return (
+  return isLoading ? (
+    <LoadingSpinner overlay />
+  ) : (
     <RecipeTemplate>
-      {loading && <LoadingSpinner overlay />}
       <EditIngredientModal
         defaultIngredients={recipe.ingredients}
         open={ingredientEdit}
@@ -140,8 +129,8 @@ export function ViewRecipe() {
             </Box>
           </Typography>
           <Typography align="center" noWrap>
-            {recipe?.ingredients.length} ingredients - {recipe?.duration}{' '}
-            serving - {recipe?.serving} -{recipe?.steps.length} steps
+            {recipe?.ingredients.length} ingredients - {recipe?.duration} -{' '}
+            {recipe?.serving} serving -{recipe?.steps.length} steps
             <EditButton
               show={isOwner && !ingredientEdit}
               onClick={() => setTitleEdit(true)}
@@ -256,7 +245,7 @@ export function ViewRecipe() {
             <Button
               variant="contained"
               color="secondary"
-              onClick={deleteRecipe}
+              onClick={() => deleteRecipe(id)}
             >
               Delete
             </Button>

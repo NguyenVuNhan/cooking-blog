@@ -1,11 +1,7 @@
-import { AddRecipeReq } from '@cookingblog/api/interfaces';
+import { AddRecipeReq, ErrorRes } from '@cookingblog/api/interfaces';
 import { RecipeDTO } from '@cookingblog/api/recipe/dto';
 import { AddIngredientModal } from '@cookingblog/blog/ingredient/feature/components';
-import {
-  getErrors,
-  getLoadingStatus,
-  recipeActions,
-} from '@cookingblog/blog/recipe/data-access';
+import { useAddRecipe } from '@cookingblog/blog/recipe/data-access';
 import { AddStepGroup } from '@cookingblog/blog/recipe/feature/components';
 import { RecipeTemplate } from '@cookingblog/blog/recipe/feature/template';
 import {
@@ -20,6 +16,7 @@ import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query/react';
 import React, { useRef, useState } from 'react';
 import {
   FieldError,
@@ -27,7 +24,6 @@ import {
   useForm,
   useFormState,
 } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
 
 export function AddRecipe() {
   const formMethods = useForm<RecipeDTO>({
@@ -39,10 +35,7 @@ export function AddRecipe() {
   });
   const { register, handleSubmit, control } = formMethods;
   const { errors } = useFormState({ control });
-
-  const dispatch = useDispatch();
-  const loading = useSelector(getLoadingStatus);
-  const addRecipeErrors = useSelector(getErrors);
+  const { addRecipe, isLoading, addRecipeError } = useAddRecipe();
 
   // Handle ingredients autosuggestion for each step
   const [ingredients, setIngredients] = useState<string[]>([]);
@@ -56,22 +49,17 @@ export function AddRecipe() {
     setIngredients(ingredients.map((val) => val.ingredient));
   };
 
-  // Submits
-  const onAddRecipe = (data: AddRecipeReq) => {
-    dispatch(recipeActions.addRecipe(data));
-  };
-
   return (
     <FormProvider {...formMethods}>
       <RecipeTemplate showToolBox={false}>
-        {loading && <LoadingSpinner overlay />}
+        {isLoading && <LoadingSpinner overlay />}
         <Grid
           container
           alignItems="flex-start"
           noValidate
           component="form"
           spacing={3}
-          onSubmit={handleSubmit(onAddRecipe)}
+          onSubmit={handleSubmit(addRecipe)}
         >
           <Grid item sm={12}>
             <Typography variant="h2" align="center" noWrap>
@@ -79,7 +67,10 @@ export function AddRecipe() {
             </Typography>
           </Grid>
           <Grid item sm={12}>
-            <ErrorBadge {...addRecipeErrors} />
+            <ErrorBadge
+              {...((addRecipeError as FetchBaseQueryError)?.data as ErrorRes)
+                ?.data}
+            />
             <ErrorBadge
               message={((errors.steps as unknown) as FieldError)?.message}
             />

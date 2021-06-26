@@ -1,12 +1,12 @@
 import { IIngredientService } from '@cookingblog/api/ingredient';
+import { ISpoonacularRecipesService } from '@cookingblog/api/spoonacular/recipes';
 import { ILogger } from '@cookingblog/express/api/common';
 import {
   IBaseRepository,
   IBaseService,
   ServiceCache,
 } from '@cookingblog/express/api/core';
-import { IRecipeModel, IRecipeModelWithIngredient } from './recipe.entity';
-import { ISpoonacularRecipesService } from '@cookingblog/api/spoonacular/recipes';
+import { IRecipeModel } from './recipe.entity';
 
 // ======================================================================
 // Repository
@@ -15,9 +15,9 @@ export interface IRecipeRepository extends IBaseRepository<IRecipeModel> {
   /**
    * @param {string} id Id of recipe
    *
-   * @return {Promise<IRecipeModelWithIngredient>} Promise object of recipe with ingredient field populated
+   * @return {Promise<IRecipeModel>} Promise object of recipe with ingredient field populated
    */
-  findById(id: string): Promise<IRecipeModelWithIngredient>;
+  findById(id: string): Promise<IRecipeModel>;
 
   /**
    * @param {string} query Query to search for.
@@ -62,9 +62,9 @@ export interface IRecipeService extends IBaseService<IRecipeModel> {
   /**
    * @param {string} id Recipe id
    *
-   * @return {Promise<IRecipeModelWithIngredient>} return promise recipe
+   * @return {Promise<IRecipeModel>} return promise recipe
    */
-  getRecipe(id: string): Promise<IRecipeModelWithIngredient>;
+  getRecipe(id: string): Promise<IRecipeModel>;
 
   /**
    * @param {string} user User id

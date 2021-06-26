@@ -17,8 +17,14 @@ export function RecipeTitleEdit(props: RecipeTitleEditProps) {
   const { onUpdate, handleClose, data } = props;
 
   const { register, control, handleSubmit } = useForm<UpdateRecipeReq>({
-    resolver: classValidatorResolver(RecipeDTO),
-    defaultValues: data,
+    resolver: classValidatorResolver(RecipeDTO, {
+      skipMissingProperties: true,
+    }),
+    defaultValues: {
+      title: data.title,
+      serving: data.serving,
+      duration: data.duration,
+    },
   });
   const { errors } = useFormState({ control });
 
@@ -35,20 +41,29 @@ export function RecipeTitleEdit(props: RecipeTitleEditProps) {
       onSubmit={handleSubmit(onSubmit)}
       spacing={3}
     >
-      <Grid item sm={9}>
+      <Grid item sm={8}>
         <TextField
-          {...register('title', { required: 'Title is required' })}
-          error={Boolean(errors.title)}
+          {...register('title')}
+          error={!!errors.title}
           helperText={errors.title?.message}
           label="Title"
           fullWidth
         />
       </Grid>
-      <Grid item sm={3}>
+      <Grid item sm={2}>
+        <TextField
+          label="Serving"
+          {...register('serving', { valueAsNumber: true })}
+          error={!!errors.serving}
+          helperText={errors.serving?.message}
+          fullWidth
+        />
+      </Grid>
+      <Grid item sm={2}>
         <TextField
           label="Duration"
-          {...register('duration', { required: 'Duration is required' })}
-          error={Boolean(errors.duration)}
+          {...register('duration')}
+          error={!!errors.duration}
           helperText={errors.duration?.message}
           fullWidth
         />

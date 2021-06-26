@@ -4,7 +4,7 @@ import {
   Repository,
 } from '@cookingblog/express/api/mongoose';
 import { Schema, Types } from 'mongoose';
-import { IRecipeModel, IRecipeModelWithIngredient } from './recipe.entity';
+import { IRecipeModel } from './recipe.entity';
 import { IRecipeRepository } from './recipe.types';
 
 const ObjectId = Types.ObjectId;
@@ -66,17 +66,10 @@ export class RecipeRepository
   }
 
   @Repository()
-  async findById(id: string): Promise<IRecipeModelWithIngredient> {
+  async findById(id: string): Promise<IRecipeModel> {
     const recipes = ((await this.model
       .findById(id)
-      .populate({
-        path: 'ingredients',
-        populate: {
-          path: 'ingredient',
-          select: 'name',
-        },
-      })
-      .exec()) as unknown) as IRecipeModelWithIngredient;
+      .exec()) as unknown) as IRecipeModel;
 
     return recipes;
   }

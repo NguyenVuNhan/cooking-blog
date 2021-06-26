@@ -1,9 +1,7 @@
-import {
-  getRecipes,
-  recipeActions,
-} from '@cookingblog/blog/recipe/data-access';
+import { useSearchRecipeQuery } from '@cookingblog/blog/recipe/data-access';
 import { ListRecipe } from '@cookingblog/blog/recipe/feature/components';
 import { RecipeTemplate } from '@cookingblog/blog/recipe/feature/template';
+import { LoadingSpinner } from '@cookingblog/blog/ui/components/atoms';
 import {
   SearchInput,
   SearchInputProps,
@@ -11,23 +9,16 @@ import {
 import { appendToPath, getQuery } from '@cookingblog/blog/utils';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
 
 export function RecipeSearch() {
-  const recipes = useSelector(getRecipes);
-  const dispatch = useDispatch();
+  const [query, setQuery] = useState(getQuery('q') || '');
+  const { data, isLoading } = useSearchRecipeQuery(query);
 
   const onSearch: SearchInputProps['onSearch'] = ({ query }) => {
-    dispatch(recipeActions.searchRecipe(query));
+    setQuery(query);
     appendToPath(`?q=${query}`);
   };
-
-  useEffect(() => {
-    const query = getQuery('q');
-    if (query === false) return;
-    dispatch(recipeActions.searchRecipe(query));
-  }, [dispatch]);
 
   return (
     <RecipeTemplate hideGoBack>
@@ -40,7 +31,7 @@ export function RecipeSearch() {
         </div>
       </Box>
       <div className="my-3" />
-      <ListRecipe recipes={recipes} />
+      {isLoading ? <LoadingSpinner /> : <ListRecipe recipes={data.recipes} />}
     </RecipeTemplate>
   );
 }
