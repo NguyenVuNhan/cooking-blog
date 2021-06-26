@@ -13,7 +13,7 @@ import React, { useState } from 'react';
 
 export function RecipeSearch() {
   const [query, setQuery] = useState(getQuery('q') || '');
-  const { data, isLoading } = useSearchRecipeQuery(query);
+  const { data, error, isLoading } = useSearchRecipeQuery(query);
 
   const onSearch: SearchInputProps['onSearch'] = ({ query }) => {
     setQuery(query);
@@ -31,7 +31,13 @@ export function RecipeSearch() {
         </div>
       </Box>
       <div className="my-3" />
-      {isLoading ? <LoadingSpinner /> : <ListRecipe recipes={data.recipes} />}
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : error ? (
+        JSON.stringify(error)
+      ) : (
+        <ListRecipe recipes={data.recipes} />
+      )}
     </RecipeTemplate>
   );
 }
