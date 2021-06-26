@@ -13,7 +13,7 @@ const IngredientSchema = new Schema<IIngredientModel>(
     name: { type: String, required: true },
     image: { type: String },
     possibleUnits: [{ type: String, required: true }],
-    aisle: { type: String, required: true },
+    aisle: { type: String, required: true, default: 'unknown' },
   },
   {
     timestamps: true,
