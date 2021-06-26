@@ -41,7 +41,7 @@ export function ToolBox(props: ToolBoxProps) {
   };
 
   return (
-    <div className="fixed inset-0 flex justify-center">
+    <div className="fixed inset-0 flex justify-center pointer-events-none">
       <Backdrop open={open} style={{ zIndex: 10 }} />
       <div className="container relative">
         <SpeedDial
