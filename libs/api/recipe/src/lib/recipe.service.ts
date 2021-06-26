@@ -116,13 +116,14 @@ export class RecipeService
     recipe: Partial<IRecipeModel>
   ): Promise<{ ingredients: IRecipeIngredient[]; ingredientsStr: string }> {
     const ingredientPromises: Promise<IRecipeIngredient>[] = recipe.ingredients.map(
-      async ({ quantity, ingredient }) => {
+      async ({ quantity, ingredient }): Promise<IRecipeIngredient> => {
         const raw_data = (quantity ? quantity + ' of ' : '') + ingredient;
         const data = await this.spoonacularRecipesService.parseIngredients(
           raw_data
         );
+        const name = ingredient.toLowerCase();
         const newIngredient = await this.ingredientService.create({
-          name: ingredient.toLowerCase(),
+          name,
           image: data.image,
           possibleUnits: data.possibleUnits,
           aisle: data.aisle,
@@ -130,6 +131,7 @@ export class RecipeService
 
         return {
           ingredient: newIngredient.id as string,
+          ingredient_name: name,
           quantity: data.amount,
           unit: data.unit,
           raw_data,

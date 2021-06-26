@@ -1,3 +1,5 @@
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { RecipeDTO } from '@cookingblog/api/recipe/dto';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
@@ -24,7 +26,7 @@ export function AddStepGroup(props: AddStepGroupProps) {
   const { ingredients, stepIngredient } = props;
   const { register, control } = useFormContext<RecipeDTO>();
   const { errors } = useFormState();
-  const { append, remove, fields } = useFieldArray({
+  const { append, remove, fields, move } = useFieldArray({
     control,
     keyName: 'id',
     name: 'steps',
@@ -40,13 +42,27 @@ export function AddStepGroup(props: AddStepGroupProps) {
           `steps.${index}.description` as const
         );
 
+        const key = index + step.description + step.ingredients.length;
         return (
-          <React.Fragment key={index}>
+          <React.Fragment key={key}>
             <Grid item sm={12} className="d-flex align-items-center">
               <Typography variant="h6">Step: {index + 1}</Typography>
               <IconButton aria-label="delete" onClick={removeStep(index)}>
                 <DeleteIcon color="error" fontSize="small" />
               </IconButton>
+              {index > 0 && (
+                <IconButton
+                  onClick={() => move(index, index - 1)}
+                  color="secondary"
+                >
+                  <ArrowUpwardIcon color="primary" fontSize="small" />
+                </IconButton>
+              )}
+              {index < fields.length - 1 && (
+                <IconButton onClick={() => move(index, index + 1)}>
+                  <ArrowDownwardIcon color="primary" fontSize="small" />
+                </IconButton>
+              )}
             </Grid>
             <Grid item sm={8}>
               <TextField

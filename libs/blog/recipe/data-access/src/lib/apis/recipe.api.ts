@@ -45,7 +45,13 @@ export const recipeApi = createApi({
     }),
     getRecipe: builder.query<GetRecipeRes['data'], string>({
       query: (query) => `/${query}`,
-      transformResponse: (response: GetRecipeRes) => response.data,
+      transformResponse: (response: GetRecipeRes) => {
+        response.data.ingredients = response.data.ingredients.map((val) => ({
+          ...val,
+          ingredient: val.ingredient_name,
+        }));
+        return response.data;
+      },
       providesTags: (result, _error, args) =>
         result ? [{ type: 'Recipe' as const, id: args }] : ['Recipe'],
     }),

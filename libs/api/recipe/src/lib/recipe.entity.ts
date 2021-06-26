@@ -6,6 +6,7 @@ export interface IRecipeIngredient<
   TIngredient extends string | IIngredient = string
 > {
   ingredient: TIngredient;
+  ingredient_name: string;
   quantity: number;
   unit?: string;
   raw_data: string;

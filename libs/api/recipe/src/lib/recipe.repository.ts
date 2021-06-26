@@ -19,9 +19,10 @@ const RecipeSchema = new Schema<IRecipeModel>(
     ingredients: [
       {
         ingredient: { type: ObjectId, ref: 'ingredient' },
-        quantity: { type: Number },
+        ingredient_name: { type: String, required: true },
+        quantity: { type: Number, required: true },
         unit: { type: String },
-        raw_data: { type: String },
+        raw_data: { type: String, required: true },
       },
     ],
     duration: { type: String, required: true },
