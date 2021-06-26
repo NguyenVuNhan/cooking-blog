@@ -35,7 +35,7 @@ export function RecipeSearch() {
       {isLoading ? (
         <LoadingSpinner />
       ) : error ? (
-        <RTKQueryError error={error} apiError />
+        <RTKQueryError error={error} type="api" />
       ) : (
         <ListRecipe recipes={data.recipes} />
       )}

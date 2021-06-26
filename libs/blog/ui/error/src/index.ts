@@ -1,1 +1,1 @@
-export * from './lib/rtk-error-error';
+export * from './lib/rtk-query-error';
