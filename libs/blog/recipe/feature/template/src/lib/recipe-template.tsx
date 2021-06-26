@@ -14,7 +14,7 @@ export interface RecipeTemplateProps {
 export function RecipeTemplate(props: RecipeTemplateProps) {
   const { children, showToolBox = true, hideGoBack = false } = props;
   return (
-    <Container className="relative overflow-auto">
+    <Container className="overflow-auto">
       <div className="min-h-screen overflow-hidden">
         {!hideGoBack && (
           <IconButton onClick={goBack} data-testid="go-back-btn">

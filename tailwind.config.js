@@ -5,7 +5,9 @@ module.exports = {
     content: ['**/*.html', '**/*.tsx', './apps/frontend/safelist.txt'],
   },
   darkMode: 'class',
-  theme: {},
+  theme: {
+    extend: {},
+  },
   variants: {},
   plugins: [],
 };

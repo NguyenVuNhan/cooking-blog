@@ -1,11 +1,10 @@
-import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
 import {
   authActions,
   getAuthenticated,
 } from '@cookingblog/blog/auth/data-access';
+import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
 import { forwardTo } from '@cookingblog/blog/utils';
 import Backdrop from '@material-ui/core/Backdrop';
-import { makeStyles } from '@material-ui/core/styles';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AddIcon from '@material-ui/icons/Add';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -23,7 +22,6 @@ export interface ToolBoxProps {
 export function ToolBox(props: ToolBoxProps) {
   const { hidden } = props;
 
-  const classes = useStyles();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(getAuthenticated);
   const [open, setOpen] = React.useState(false);
@@ -43,64 +41,57 @@ export function ToolBox(props: ToolBoxProps) {
   };
 
   return (
-    <>
+    <div className="container fixed inset-0 flex justify-center pointer-events-none">
       <Backdrop open={open} style={{ zIndex: 10 }} />
-      <SpeedDial
-        ariaLabel="Tool Box"
-        className={classes.speedDial}
-        hidden={hidden}
-        icon={<MenuIcon />}
-        onClose={handleClose}
-        onOpen={handleOpen}
-        open={open}
-        data-testid="toolbox-btn"
-      >
-        {isAuthenticated ? (
+      <div className="container relative">
+        <SpeedDial
+          ariaLabel="Tool Box"
+          className="absolute right-1 bottom-2"
+          hidden={hidden}
+          icon={<MenuIcon />}
+          onClose={handleClose}
+          onOpen={handleOpen}
+          open={open}
+          data-testid="toolbox-btn"
+        >
+          {isAuthenticated ? (
+            <SpeedDialAction
+              icon={<ExitToAppIcon />}
+              tooltipTitle="Logout"
+              tooltipOpen
+              open={open}
+              onClick={onLogout}
+            />
+          ) : (
+            <SpeedDialAction
+              icon={<AccountCircleIcon />}
+              tooltipTitle="Login"
+              tooltipOpen
+              open={open}
+              onClick={() => forwardTo('/login')}
+            />
+          )}
           <SpeedDialAction
-            icon={<ExitToAppIcon />}
-            tooltipTitle="Logout"
+            icon={<AddIcon />}
+            tooltipTitle="Add Recipe"
             tooltipOpen
             open={open}
-            onClick={onLogout}
+            onClick={() => forwardTo('/recipe/add')}
           />
-        ) : (
           <SpeedDialAction
-            icon={<AccountCircleIcon />}
-            tooltipTitle="Login"
+            icon={<ShoppingBasketIcon />}
+            tooltipTitle="View ShoppingList"
             tooltipOpen
             open={open}
-            onClick={() => forwardTo('/login')}
+            onClick={() => {
+              openShoppingList();
+              handleClose();
+            }}
           />
-        )}
-        <SpeedDialAction
-          icon={<AddIcon />}
-          tooltipTitle="Add Recipe"
-          tooltipOpen
-          open={open}
-          onClick={() => forwardTo('/recipe/add')}
-        />
-        <SpeedDialAction
-          icon={<ShoppingBasketIcon />}
-          tooltipTitle="View ShoppingList"
-          tooltipOpen
-          open={open}
-          onClick={() => {
-            openShoppingList();
-            handleClose();
-          }}
-        />
-      </SpeedDial>
-    </>
+        </SpeedDial>
+      </div>
+    </div>
   );
 }
-
-const useStyles = makeStyles((theme) => ({
-  speedDial: {
-    position: 'absolute',
-    zIndex: 20,
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-  },
-}));
 
 export default ToolBox;
