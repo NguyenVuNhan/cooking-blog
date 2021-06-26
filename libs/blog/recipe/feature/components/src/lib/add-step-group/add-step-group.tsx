@@ -64,7 +64,7 @@ export function AddStepGroup(props: AddStepGroupProps) {
                 </IconButton>
               )}
             </Grid>
-            <Grid item sm={8}>
+            <Grid item xs={12} sm={8}>
               <TextField
                 label="Description"
                 inputRef={descriptionRef}
@@ -79,7 +79,7 @@ export function AddStepGroup(props: AddStepGroupProps) {
                 fullWidth
               />
             </Grid>
-            <Grid item sm={4}>
+            <Grid item xs={12} sm={4}>
               <Controller
                 render={(props) => (
                   <Autocomplete
