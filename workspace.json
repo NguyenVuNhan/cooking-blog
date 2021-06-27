@@ -1035,6 +1035,48 @@
           }
         }
       }
+    },
+    "api-spoonacular-ingredients": {
+      "root": "libs/api/spoonacular/ingredients",
+      "sourceRoot": "libs/api/spoonacular/ingredients/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/spoonacular/ingredients/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/spoonacular/ingredients"],
+          "options": {
+            "jestConfig": "libs/api/spoonacular/ingredients/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-spoonacular-base": {
+      "root": "libs/api/spoonacular/base",
+      "sourceRoot": "libs/api/spoonacular/base/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/spoonacular/base/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/spoonacular/base"],
+          "options": {
+            "jestConfig": "libs/api/spoonacular/base/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

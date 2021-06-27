@@ -1,60 +1,46 @@
-import { AppError } from '@cookingblog/express/api/common';
-import { BaseCachingService } from '@cookingblog/express/api/core';
-import axios from 'axios';
+import { SpoonacularBaseService } from '@cookingblog/api/spoonacular/base';
 import {
+  ExtractRes,
   ISpoonacularRecipesService,
   ParseIngredientsRes,
   SpoonacularRecipesServiceProp,
 } from './recipes.types';
-import { StatusCodes } from 'http-status-codes';
 
 export class SpoonacularRecipesService
-  extends BaseCachingService
+  extends SpoonacularBaseService
   implements ISpoonacularRecipesService {
-  private baseUrl = `https://api.spoonacular.com/recipes`;
-  private apiKeys: string[];
-
   constructor({
     apiKeys,
     serviceCache,
     logger,
   }: SpoonacularRecipesServiceProp) {
-    super(serviceCache, logger);
-    this.apiKeys = apiKeys;
+    super({
+      serviceCache,
+      logger,
+      baseUrl: `https://api.spoonacular.com/recipes`,
+      apiKeys,
+    });
   }
 
-  async parseIngredients(raw_data: string) {
-    const result = (await this.getCache(raw_data)) as ParseIngredientsRes;
-    if (result) return result;
-
-    const params = new URLSearchParams();
-    params.append('ingredientList', raw_data);
-    const config = {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    };
-
-    // try different api key
-    for (const key of this.apiKeys) {
-      const url = `${this.baseUrl}/parseIngredients?apiKey=${key}`;
-      this.logger.info('Calling ext api at: ' + url);
-
-      try {
-        const data = (await axios.post(url, params, config)).data[0];
-        this.setCache(raw_data, JSON.stringify(data));
-        return data;
-      } catch {
-        // Ignore errors from spoonacular
-        continue;
-      }
-    }
-
-    // If non of api key was working
-    this.logger.warn("Spoonacular wasn't able to parse Ingredients");
-    throw new AppError(
-      StatusCodes.SERVICE_UNAVAILABLE,
-      'Service unavailable, please try again later'
+  async extract(url: string): Promise<ExtractRes> {
+    const data = await this.getData<ExtractRes>(
+      `/extract?url=${url}&forceExtraction=true`,
+      'get',
+      (data) => data.data as ExtractRes
     );
+
+    return data;
+  }
+
+  async parseIngredients(raw_data: string): Promise<ParseIngredientsRes> {
+    const params = new URLSearchParams({ ingredientList: raw_data });
+
+    const data = this.getData<ParseIngredientsRes>(
+      '/parseIngredients?',
+      'post',
+      (data) => data.data[0],
+      params
+    );
+    return data;
   }
 }

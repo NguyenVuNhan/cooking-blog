@@ -58,3 +58,9 @@ export class RecipeDTO {
   @ArrayNotEmpty({ message: 'At least one ingredient is required' })
   ingredients: IngredientDTO[];
 }
+
+export class ExtractDTO {
+  @IsString()
+  @IsNotEmpty({ message: 'Url is required' })
+  url: string;
+}

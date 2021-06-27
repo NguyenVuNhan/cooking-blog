@@ -1,5 +1,5 @@
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
-export { ReasonPhrases, StatusCodes } from 'http-status-codes';
+export { ReasonPhrases, StatusCodes, getReasonPhrase } from 'http-status-codes';
 
 export interface ErrorDetails {
   platform?: string;

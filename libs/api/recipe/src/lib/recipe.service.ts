@@ -1,12 +1,18 @@
 import { IIngredientService } from '@cookingblog/api/ingredient';
 import { ISpoonacularRecipesService } from '@cookingblog/api/spoonacular/recipes';
+import { ISpoonacularIngredientsService } from '@cookingblog/api/spoonacular/ingredients';
 import {
   AlreadyExistsError,
   NotFoundError,
   PermissionDeniedError,
 } from '@cookingblog/express/api/common';
 import { BaseService } from '@cookingblog/express/api/core';
-import { IRecipeIngredient, IRecipeModel } from './recipe.entity';
+import {
+  IRecipeIngredient,
+  IRecipeModel,
+  IRecipe,
+  IRecipeStep,
+} from './recipe.entity';
 import {
   IRecipeRepository,
   IRecipeService,
@@ -19,6 +25,7 @@ export class RecipeService
   repo: IRecipeRepository;
   ingredientService: IIngredientService;
   spoonacularRecipesService: ISpoonacularRecipesService;
+  spoonacularIngredientsService: ISpoonacularIngredientsService;
 
   constructor({
     repo,
@@ -26,10 +33,93 @@ export class RecipeService
     serviceCache,
     ingredientService,
     spoonacularRecipesService,
+    spoonacularIngredientsService,
   }: RecipeServiceProp) {
     super(repo, serviceCache, logger);
     this.ingredientService = ingredientService;
     this.spoonacularRecipesService = spoonacularRecipesService;
+    this.spoonacularIngredientsService = spoonacularIngredientsService;
+  }
+
+  async extractRecipe(user: string, url: string): Promise<IRecipe> {
+    const extractedRecipe = await this.spoonacularRecipesService.extract(url);
+
+    const findRecipe = await this.repo.findOne({
+      title: extractedRecipe.title,
+      user,
+    });
+    if (findRecipe) {
+      throw new AlreadyExistsError('Recipe already exists');
+    }
+
+    const ingredientPromises: Promise<IRecipeIngredient>[] = extractedRecipe.extendedIngredients
+      .filter(({ name }) => name ?? false)
+      .map(
+        async (ingredient): Promise<IRecipeIngredient> => {
+          const raw_data = ingredient.originalString;
+          const findIngredient = await this.ingredientService.findOne({
+            name: ingredient.name,
+          });
+
+          let id = findIngredient?.id;
+          // Ingredient already exist
+          if (!findIngredient) {
+            const possibleUnits = ingredient.id
+              ? (
+                  await this.spoonacularIngredientsService.information(
+                    ingredient.id
+                  )
+                ).possibleUnits
+              : [];
+            !ingredient.name && console.log(ingredient);
+
+            const newIngredient = await this.ingredientService.create({
+              name: ingredient.name,
+              image: ingredient.image,
+              possibleUnits,
+              aisle: ingredient.aisle,
+            });
+
+            id = newIngredient.id;
+          }
+
+          return {
+            ingredient: id,
+            ingredient_name: ingredient.name,
+            quantity: ingredient.amount,
+            unit: ingredient.unit,
+            raw_data: raw_data,
+          };
+        }
+      );
+    // Check ingredient list
+    const ingredients = await Promise.all(ingredientPromises);
+    const ingredientsStr = ingredients.map((v) => v.ingredient_name).join(', ');
+
+    return {
+      id: '-1',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      title: extractedRecipe.title,
+      user,
+      serving: extractedRecipe.servings,
+      ingredientsStr,
+      ingredients,
+      duration: '',
+      steps: extractedRecipe.analyzedInstructions.reduce(
+        (acc, curr) => [
+          ...acc,
+          ...curr.steps.map((step) => ({
+            description: step.step,
+            duration: '',
+            ingredients: step.ingredients.map((ingredient) => ingredient.name),
+          })),
+        ],
+        [] as IRecipeStep[]
+      ),
+      sourceUrl: url,
+      image: extractedRecipe.image,
+    };
   }
 
   async getRecipe(id: string): Promise<IRecipeModel> {
@@ -89,7 +179,6 @@ export class RecipeService
     }
 
     if (recipe.user.toString() !== user) {
-      console.log(recipe.user.toString());
       throw new PermissionDeniedError();
     }
 

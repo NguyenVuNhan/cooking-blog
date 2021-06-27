@@ -1,11 +1,11 @@
 {
-  "extends": "../../../../.eslintrc.json",
+  "extends": ["../../../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "parserOptions": {
-        "project": ["libs/api/spoonacular/recipes/tsconfig.*?.json"]
+        "project": ["libs/api/spoonacular/base/tsconfig.*?.json"]
       },
       "rules": {}
     },

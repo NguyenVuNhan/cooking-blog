@@ -61,6 +61,8 @@
     "api-recipe-rank": { "tags": [] },
     "api-meal-planner": { "tags": [] },
     "api-spoonacular-recipes": { "tags": [] },
-    "blog-ui-error": { "tags": [] }
+    "blog-ui-error": { "tags": [] },
+    "api-spoonacular-ingredients": { "tags": [] },
+    "api-spoonacular-base": { "tags": [] }
   }
 }

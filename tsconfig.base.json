@@ -105,7 +105,13 @@
       "@cookingblog/api/spoonacular/recipes": [
         "libs/api/spoonacular/recipes/src/index.ts"
       ],
-      "@cookingblog/blog/ui/error": ["libs/blog/ui/error/src/index.ts"]
+      "@cookingblog/blog/ui/error": ["libs/blog/ui/error/src/index.ts"],
+      "@cookingblog/api/spoonacular/ingredients": [
+        "libs/api/spoonacular/ingredients/src/index.ts"
+      ],
+      "@cookingblog/api/spoonacular/base": [
+        "libs/api/spoonacular/base/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

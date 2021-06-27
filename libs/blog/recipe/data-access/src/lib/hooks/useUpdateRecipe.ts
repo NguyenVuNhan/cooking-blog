@@ -7,8 +7,6 @@ export const useUpdateRecipe = (id: string) => {
 
   const _updateRecipe = useCallback(
     (body: UpdateRecipeReq) => {
-      console.log('Update');
-
       updateRecipe({ id, body });
     },
     [id, updateRecipe]

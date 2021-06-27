@@ -27,6 +27,8 @@ export interface IRecipeGeneric<TIngredient extends string | IIngredient>
   ingredients: IRecipeIngredient<TIngredient>[];
   duration: string;
   steps: IRecipeStep[];
+  sourceUrl?: string;
+  image?: string;
 }
 
 export type IRecipe = IRecipeGeneric<string>;

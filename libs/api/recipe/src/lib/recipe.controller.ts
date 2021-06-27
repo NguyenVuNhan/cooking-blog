@@ -1,17 +1,17 @@
+import { ExtractDTO, RecipeDTO } from '@cookingblog/api/recipe/dto';
 import {
   NotFoundError,
   ServerError,
   validate,
 } from '@cookingblog/express/api/common';
-import { authenticate } from 'passport';
 import {
   Controller,
   RequestWithUser,
   sendSuccessResponse,
 } from '@cookingblog/express/api/core';
 import { Request, Response } from 'express';
+import { authenticate } from 'passport';
 import { IRecipeService } from './recipe.types';
-import { RecipeDTO } from '@cookingblog/api/recipe/dto';
 
 export class RecipeController extends Controller {
   constructor(private recipeService: IRecipeService) {
@@ -20,6 +20,12 @@ export class RecipeController extends Controller {
   }
 
   setupRouter() {
+    this.router.get(
+      `/extract`,
+      authenticate('jwt', { session: false }),
+      validate(ExtractDTO, { subject: 'query' }),
+      this.wrapTryCatch(this.extract)
+    );
     this.router.get(`/:id`, this.wrapTryCatch(this.get));
     this.router.get(`/`, this.wrapTryCatch(this.search));
     this.router.use(authenticate('jwt', { session: false }));
@@ -30,6 +36,16 @@ export class RecipeController extends Controller {
       this.wrapTryCatch(this.update)
     );
     this.router.post(`/`, validate(RecipeDTO), this.wrapTryCatch(this.create));
+  }
+
+  private async extract(req: RequestWithUser, res: Response) {
+    const result = await this.recipeService.extractRecipe(
+      req.user.id,
+      req.query.url as string
+    );
+
+    if (!result) throw new ServerError();
+    sendSuccessResponse(result, res);
   }
 
   private async create(req: RequestWithUser, res: Response) {

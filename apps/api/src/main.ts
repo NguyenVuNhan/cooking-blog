@@ -14,10 +14,12 @@ import {
 import { SpoonacularRecipesService } from '@cookingblog/api/spoonacular/recipes';
 import { default as winston } from 'winston';
 import { transports } from './app/logger';
+import { SpoonacularIngredientsService } from '../../../libs/api/spoonacular/ingredients/src/lib/ingredients.service';
 
 // ======================================================================
 // General
 // ======================================================================
+winston.level = config.production ? 'warn' : 'debug';
 for (const transport of transports) {
   winston.add(transport);
 }
@@ -49,6 +51,11 @@ const serviceCache: ServiceCache = {
 };
 
 // spoonacular services
+const spoonacularIngredientsService = new SpoonacularIngredientsService({
+  apiKeys: config.spoonacularApiKeys,
+  logger,
+  serviceCache: { ...serviceCache, uniqueKey: 'spoonacular_ingredients' },
+});
 const spoonacularRecipesService = new SpoonacularRecipesService({
   apiKeys: config.spoonacularApiKeys,
   logger,
@@ -71,6 +78,7 @@ const recipeService = new RecipeService({
   repo: recipeRepository,
   ingredientService,
   spoonacularRecipesService,
+  spoonacularIngredientsService,
   logger,
   serviceCache: { ...serviceCache, uniqueKey: 'recipe' },
 });

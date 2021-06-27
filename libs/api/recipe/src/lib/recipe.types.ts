@@ -6,7 +6,8 @@ import {
   IBaseService,
   ServiceCache,
 } from '@cookingblog/express/api/core';
-import { IRecipeModel } from './recipe.entity';
+import { IRecipe, IRecipeModel } from './recipe.entity';
+import { ISpoonacularIngredientsService } from '../../../spoonacular/ingredients/src/lib/ingredient.types';
 
 // ======================================================================
 // Repository
@@ -36,9 +37,18 @@ export type RecipeServiceProp = {
   logger: ILogger;
   serviceCache: ServiceCache;
   spoonacularRecipesService: ISpoonacularRecipesService;
+  spoonacularIngredientsService: ISpoonacularIngredientsService;
 };
 
 export interface IRecipeService extends IBaseService<IRecipeModel> {
+  /**
+   * @param {string} user The current user id.
+   * @param {string} url The web site url to extract data
+   *
+   * @return {Promise<IRecipe>} Promise of extracted recipe
+   */
+  extractRecipe(user: string, url: string): Promise<IRecipe>;
+
   /**
    * @param {string} query Query to search for.
    *
