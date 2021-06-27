@@ -2,6 +2,7 @@ import {
   authActions,
   getAuthenticated,
 } from '@cookingblog/blog/auth/data-access';
+import { ImportRecipeModal } from '@cookingblog/blog/feature/import-recipe-modal';
 import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
 import { forwardTo } from '@cookingblog/blog/utils';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -10,9 +11,10 @@ import AddIcon from '@material-ui/icons/Add';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MenuIcon from '@material-ui/icons/Menu';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 export interface ToolBoxProps {
@@ -24,8 +26,9 @@ export function ToolBox(props: ToolBoxProps) {
 
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(getAuthenticated);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const { openShoppingList } = useContext(ShoppingListCtx);
+  const [importRecipeOpen, setImportRecipeOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -72,6 +75,13 @@ export function ToolBox(props: ToolBoxProps) {
             />
           )}
           <SpeedDialAction
+            icon={<SystemUpdateAltIcon />}
+            tooltipTitle="Import Recipe"
+            tooltipOpen
+            open={open}
+            onClick={() => setImportRecipeOpen(true)}
+          />
+          <SpeedDialAction
             icon={<AddIcon />}
             tooltipTitle="Add Recipe"
             tooltipOpen
@@ -90,6 +100,10 @@ export function ToolBox(props: ToolBoxProps) {
           />
         </SpeedDial>
       </div>
+      <ImportRecipeModal
+        open={importRecipeOpen}
+        onClose={() => setImportRecipeOpen(false)}
+      />
     </div>
   );
 }

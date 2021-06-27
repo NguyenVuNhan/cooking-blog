@@ -71,7 +71,11 @@ export class SpoonacularBaseService extends BaseCachingService {
         const { status, message } = err.response.data;
         this.logger.debug(`Spoonacular error ${status} - ${message}`);
         this.logger.debug(`\tStatus: ${status}`);
-        this.logger.debug(`\tReason: ${getReasonPhrase(status)}`);
+        try {
+          this.logger.debug(`\tReason: ${getReasonPhrase(status)}`);
+        } catch {
+          this.logger.debug(`\tReason: unknown`);
+        }
         this.logger.debug(`\tMessage: ${message}`);
         continue;
       }

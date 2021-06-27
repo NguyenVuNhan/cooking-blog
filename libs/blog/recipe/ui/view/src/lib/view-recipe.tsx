@@ -80,10 +80,9 @@ export function ViewRecipe() {
     }
   };
 
-  return isLoading ? (
-    <LoadingSpinner overlay />
-  ) : (
+  return (
     <RecipeTemplate>
+      {isLoading && <LoadingSpinner overlay />}
       <EditIngredientModal
         defaultIngredients={recipe.ingredients}
         open={ingredientEdit}

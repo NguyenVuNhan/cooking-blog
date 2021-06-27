@@ -62,7 +62,6 @@ export function EditStepGroup(props: EditStepGroupProps) {
         </Grid>
         <AddStepGroup
           ingredients={recipe.ingredients.map((val) => val.ingredient)}
-          stepIngredient={stepIngredient.current}
           {...rest}
         />
       </Grid>

@@ -19,11 +19,10 @@ import {
 
 export interface AddStepGroupProps {
   ingredients: string[];
-  stepIngredient: string[][];
 }
 
 export function AddStepGroup(props: AddStepGroupProps) {
-  const { ingredients, stepIngredient } = props;
+  const { ingredients } = props;
   const { register, control } = useFormContext<RecipeDTO>();
   const { errors } = useFormState();
   const { append, remove, fields, move } = useFieldArray({
@@ -77,6 +76,7 @@ export function AddStepGroup(props: AddStepGroupProps) {
                   errors.steps && errors.steps[index]?.description?.message
                 }
                 fullWidth
+                multiline
               />
             </Grid>
             <Grid item xs={12} sm={4}>
@@ -87,7 +87,6 @@ export function AddStepGroup(props: AddStepGroupProps) {
                     multiple
                     filterSelectedOptions
                     onChange={(_event, value) => {
-                      stepIngredient[index] = value;
                       props.field.onChange(value);
                     }}
                     options={ingredients}

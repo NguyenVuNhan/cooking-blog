@@ -17,8 +17,6 @@ export class StepDTO {
 
   @IsArray()
   @IsString({ each: true })
-  @IsNotEmpty({ message: 'Ingredients is required' })
-  @ArrayNotEmpty({ message: 'At least one ingredient is required' })
   ingredients: string[];
 }
 

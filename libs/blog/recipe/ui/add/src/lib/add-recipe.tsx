@@ -1,7 +1,11 @@
 import { AddRecipeReq, ErrorRes } from '@cookingblog/api/interfaces';
 import { RecipeDTO } from '@cookingblog/api/recipe/dto';
 import { AddIngredientModal } from '@cookingblog/blog/ingredient/feature/components';
-import { useAddRecipe } from '@cookingblog/blog/recipe/data-access';
+import { mapIngredients } from '@cookingblog/blog/ingredient/utils';
+import {
+  useAddRecipe,
+  useExtractRecipe,
+} from '@cookingblog/blog/recipe/data-access';
 import { AddStepGroup } from '@cookingblog/blog/recipe/feature/components';
 import { RecipeTemplate } from '@cookingblog/blog/recipe/feature/template';
 import {
@@ -17,7 +21,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query/react';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FieldError,
   FormProvider,
@@ -26,20 +30,34 @@ import {
 } from 'react-hook-form';
 
 export function AddRecipe() {
+  const { addRecipe, isLoading, addRecipeError } = useAddRecipe();
+  const {
+    data,
+    isLoading: isExtractLoading,
+    isUninitialized,
+  } = useExtractRecipe();
+  const loading = (!isUninitialized && isExtractLoading) || isLoading;
+
   const formMethods = useForm<RecipeDTO>({
     resolver: classValidatorResolver(RecipeDTO),
     defaultValues: {
-      steps: [],
       ingredients: [],
+      ...data,
     },
   });
-  const { register, handleSubmit, control } = formMethods;
+  const { register, handleSubmit, control, reset } = formMethods;
   const { errors } = useFormState({ control });
-  const { addRecipe, isLoading, addRecipeError } = useAddRecipe();
+  useEffect(() => {
+    if (data) {
+      setIngredients(data.ingredients.map((v) => v.ingredient_name));
+      console.log(mapIngredients(data.ingredients));
+
+      reset({ ...data, ingredients: mapIngredients(data.ingredients) });
+    }
+  }, [data, reset]);
 
   // Handle ingredients autosuggestion for each step
   const [ingredients, setIngredients] = useState<string[]>([]);
-  const stepIngredient = useRef<string[][]>([]);
 
   // Handle modal
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -52,7 +70,7 @@ export function AddRecipe() {
   return (
     <FormProvider {...formMethods}>
       <RecipeTemplate showToolBox={false}>
-        {isLoading && <LoadingSpinner overlay />}
+        {loading && <LoadingSpinner overlay />}
         <Grid
           container
           alignItems="flex-start"
@@ -81,10 +99,12 @@ export function AddRecipe() {
           <Grid item sm={8}>
             <TextField
               {...register('title')}
+              defaultValue={data?.title}
               error={Boolean(errors.title)}
               helperText={errors.title?.message}
               label="Title"
               fullWidth
+              InputLabelProps={{ shrink: !!data?.title }}
             />
           </Grid>
 
@@ -92,10 +112,12 @@ export function AddRecipe() {
             <TextField
               label="Serving"
               {...register('serving', { valueAsNumber: true })}
-              error={Boolean(errors.serving)}
+              defaultValue={data?.serving}
+              error={!!errors.serving}
               helperText={errors.serving?.message}
               fullWidth
               type="number"
+              InputLabelProps={{ shrink: !!data?.serving }}
             />
           </Grid>
 
@@ -103,9 +125,11 @@ export function AddRecipe() {
             <TextField
               label="Duration"
               {...register('duration')}
-              error={Boolean(errors.duration)}
+              defaultValue={data?.duration}
+              error={!!errors.duration}
               helperText={errors.duration?.message}
               fullWidth
+              InputLabelProps={{ shrink: !!data?.duration }}
             />
           </Grid>
 
@@ -121,16 +145,13 @@ export function AddRecipe() {
               {ingredients.map((ingredient: string, index: number) => (
                 <Chip key={index} size="small" label={ingredient} />
               ))}
+              <IconButton color="primary" onClick={handleModalOpen}>
+                <AddCircleOutlineIcon />
+              </IconButton>
             </div>
-            <IconButton color="primary" onClick={handleModalOpen}>
-              <AddCircleOutlineIcon />
-            </IconButton>
           </Grid>
 
-          <AddStepGroup
-            ingredients={ingredients}
-            stepIngredient={stepIngredient.current}
-          />
+          <AddStepGroup ingredients={ingredients} />
           <Grid item container sm={12}>
             <Button color="primary" variant="contained" type="submit">
               Submit

@@ -22,7 +22,7 @@ const routes = [
     auth: false,
   },
   {
-    path: '/recipe/add',
+    path: '/recipe/add(.*)',
     view: lazy(() => import('@cookingblog/blog/recipe/ui/add')),
     auth: true,
   },

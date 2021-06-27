@@ -89,7 +89,7 @@ export abstract class BaseApp {
 
   showInfo(): void {
     this.logger.info(
-      '\n\n======================================================================'
+      '======================================================================'
     );
     this.logger.info(`Application: ${this.config.name}`);
     this.logger.info(`Version: ${this.config.version}`);

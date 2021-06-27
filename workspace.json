@@ -1077,6 +1077,52 @@
           }
         }
       }
+    },
+    "blog-ingredient-utils": {
+      "root": "libs/blog/ingredient/utils",
+      "sourceRoot": "libs/blog/ingredient/utils/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/ingredient/utils/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/ingredient/utils"],
+          "options": {
+            "jestConfig": "libs/blog/ingredient/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-feature-import-recipe-modal": {
+      "root": "libs/blog/feature/import-recipe-modal",
+      "sourceRoot": "libs/blog/feature/import-recipe-modal/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/feature/import-recipe-modal/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/feature/import-recipe-modal"],
+          "options": {
+            "jestConfig": "libs/blog/feature/import-recipe-modal/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

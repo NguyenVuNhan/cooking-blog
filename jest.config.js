@@ -2,7 +2,6 @@ module.exports = {
   projects: [
     '<rootDir>/apps/blog',
     '<rootDir>/apps/api',
-    '<rootDir>/libs/utils',
     '<rootDir>/libs/shared/web/utils',
     '<rootDir>/libs/blog/utils',
     '<rootDir>/libs/shared/utils',
@@ -46,5 +45,7 @@ module.exports = {
     '<rootDir>/libs/api/spoonacular/ingredients',
     '<rootDir>/libs/blog/ui/error',
     '<rootDir>/libs/api/spoonacular/base',
+    '<rootDir>/libs/blog/ingredient/utils',
+    '<rootDir>/libs/blog/feature/import-recipe-modal',
   ],
 };

@@ -6,6 +6,7 @@ import {
   SearchRecipeRes,
   UpdateRecipeReq,
   UpdateRecipeRes,
+  ExtractRecipeRes,
 } from '@cookingblog/api/interfaces';
 import {
   AuthState,
@@ -55,6 +56,11 @@ export const recipeApi = createApi({
       providesTags: (result, _error, args) =>
         result ? [{ type: 'Recipe' as const, id: args }] : ['Recipe'],
     }),
+    extractRecipe: builder.query<ExtractRecipeRes['data'], string>({
+      query: (query) => ({ url: `/extract`, params: { url: query } }),
+      transformResponse: (response: ExtractRecipeRes) => response.data,
+      keepUnusedDataFor: 60,
+    }),
     deleteRecipe: builder.mutation<DeleteRecipeRes['data'], string>({
       query: (query) => ({ url: `/${query}`, method: 'delete' }),
       transformResponse: (response: DeleteRecipeRes) => response.data,
@@ -82,4 +88,6 @@ export const {
   useDeleteRecipeMutation,
   useUpdateRecipeMutation,
   useAddRecipeMutation,
+  useExtractRecipeQuery,
+  useLazyExtractRecipeQuery,
 } = recipeApi;

@@ -21,3 +21,4 @@ export type DeleteRecipeRes = BaseResponse<{ id: string }>;
 export type UpdateRecipeRes = BaseResponse<CommonData>;
 export type SearchRecipeRes = BaseResponse<{ recipes: IRecipe[] }>;
 export type GetRecipeRes = BaseResponse<IRecipe>;
+export type ExtractRecipeRes = BaseResponse<IRecipe>;

@@ -111,6 +111,12 @@
       ],
       "@cookingblog/api/spoonacular/base": [
         "libs/api/spoonacular/base/src/index.ts"
+      ],
+      "@cookingblog/blog/ingredient/utils": [
+        "libs/blog/ingredient/utils/src/index.ts"
+      ],
+      "@cookingblog/blog/feature/import-recipe-modal": [
+        "libs/blog/feature/import-recipe-modal/src/index.ts"
       ]
     }
   },

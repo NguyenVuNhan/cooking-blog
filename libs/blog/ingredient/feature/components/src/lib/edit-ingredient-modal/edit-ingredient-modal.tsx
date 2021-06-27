@@ -1,5 +1,6 @@
 import { GetRecipeRes, UpdateRecipeReq } from '@cookingblog/api/interfaces';
-import { IngredientDTO, RecipeDTO } from '@cookingblog/api/recipe/dto';
+import { RecipeDTO } from '@cookingblog/api/recipe/dto';
+import { mapIngredients } from '@cookingblog/blog/ingredient/utils';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import React, { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -11,14 +12,6 @@ export interface EditIngredientModalProps {
   handleClose: () => void;
   onUpdate: (data: UpdateRecipeReq) => void;
 }
-
-const mapIngredients = (
-  ingredients: GetRecipeRes['data']['ingredients']
-): IngredientDTO[] =>
-  ingredients.map((val) => ({
-    ...val,
-    quantity: val.quantity + val.unit,
-  }));
 
 export function EditIngredientModal(props: EditIngredientModalProps) {
   const { defaultIngredients, onUpdate, ...rest } = props;
