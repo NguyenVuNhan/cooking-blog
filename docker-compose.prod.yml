@@ -32,7 +32,7 @@ services:
     networks:
       - cooking-blog
     volumes:
-      - ./.logs:/.logs
+      - ./.logs:/app/.logs
     links:
       - redis
 

@@ -15,14 +15,16 @@ export const transports = [
         (info) => `${info.timestamp} [${info.level}]: ${info.message}`
       )
     ),
+    level: 'info',
   }),
   new winston.transports.Console({
     format: format.combine(format.colorize(), format.simple()),
+    level: config.production ? 'info' : 'debug',
   }),
 ];
 
 // Configuration for default logger
-winston.level = config.production ? 'warn' : 'debug';
+winston.level = config.production ? 'info' : 'debug';
 for (const transport of transports) {
   winston.add(transport);
 }
