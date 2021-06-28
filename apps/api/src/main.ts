@@ -1,101 +1,15 @@
 import 'reflect-metadata'; // Required by class-transformer
+
+import cluster from 'cluster';
 import { connect } from 'mongoose';
+import app from './app/app';
+import { logger } from './app/logger';
 import { environment as config } from './environments/environment';
-import { RedisCache } from '@cookingblog/express/api/cache';
-import { ServiceCache } from '@cookingblog/express/api/core';
-import Application from './app/app';
-import { UserRepository, UserService } from '@cookingblog/api/user';
-import { AuthService } from '@cookingblog/api/auth';
-import { RecipeRepository, RecipeService } from '@cookingblog/api/recipe';
-import {
-  IngredientRepository,
-  IngredientService,
-} from '@cookingblog/api/ingredient';
-import { SpoonacularRecipesService } from '@cookingblog/api/spoonacular/recipes';
-import { default as winston } from 'winston';
-import { transports } from './app/logger';
-import { SpoonacularIngredientsService } from '../../../libs/api/spoonacular/ingredients/src/lib/ingredients.service';
-
-// ======================================================================
-// General
-// ======================================================================
-winston.level = config.production ? 'warn' : 'debug';
-for (const transport of transports) {
-  winston.add(transport);
-}
-const logger = winston;
-
-const cache = new RedisCache(
-  {
-    host: config.redisHttpHost,
-    port: config.redisHttpPort,
-  },
-  logger
-);
-
-// ======================================================================
-// Repositories
-// ======================================================================
-const userRepository = new UserRepository();
-const ingredientRepository = new IngredientRepository();
-const recipeRepository = new RecipeRepository();
-
-// ======================================================================
-// Services
-// ======================================================================
-const serviceCache: ServiceCache = {
-  cache,
-  appName: config.appName,
-  uniqueKey: config.redisPrefix,
-  second: config.redisTimeout,
-};
-
-// spoonacular services
-const spoonacularIngredientsService = new SpoonacularIngredientsService({
-  apiKeys: config.spoonacularApiKeys,
-  logger,
-  serviceCache: { ...serviceCache, uniqueKey: 'spoonacular_ingredients' },
-});
-const spoonacularRecipesService = new SpoonacularRecipesService({
-  apiKeys: config.spoonacularApiKeys,
-  logger,
-  serviceCache: { ...serviceCache, uniqueKey: 'spoonacular_recipes' },
-});
-
-// cooking blog services
-const userService = new UserService({
-  repo: userRepository,
-  logger,
-  serviceCache: { ...serviceCache, uniqueKey: 'user' },
-});
-const authService = new AuthService({ logger, userService });
-const ingredientService = new IngredientService({
-  repo: ingredientRepository,
-  logger,
-  serviceCache: { ...serviceCache, uniqueKey: 'ingredient' },
-});
-const recipeService = new RecipeService({
-  repo: recipeRepository,
-  ingredientService,
-  spoonacularRecipesService,
-  spoonacularIngredientsService,
-  logger,
-  serviceCache: { ...serviceCache, uniqueKey: 'recipe' },
-});
-
-// ======================================================================
-// Application
-// ======================================================================
-const app = new Application({
-  authService,
-  ingredientService,
-  recipeService,
-  userService,
-  logger,
-  config,
-});
+import { cpus } from 'os';
 
 async function main() {
+  // Load database
+  logger.info('Booting Database...');
   connect(
     config.mongodbUrl,
     { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
@@ -116,22 +30,70 @@ async function main() {
   app.start();
 }
 
-main().catch((e) => {
-  logger.error('Running app error: ', e);
-  process.exit(1);
-});
+if (cluster.isMaster) {
+  /**
+   * Catch Process event
+   */
+  process.on('beforeExit', async (code) => {
+    logger.error(`Process beforeExit event with code ${code}`);
+    process.exit(1);
+  });
 
-process.on('beforeExit', async (code) => {
-  logger.error(`Process beforeExit event with code ${code}`);
-  process.exit(1);
-});
+  process.on('SIGTERM', async () => {
+    logger.error(`Process ${process.pid} received a SIGTERM signal`);
+    process.exit(0);
+  });
 
-process.on('SIGTERM', async () => {
-  logger.error(`Process ${process.pid} received a SIGTERM signal`);
-  process.exit(0);
-});
+  process.on('SIGINT', async () => {
+    logger.error(`Process ${process.pid} has been interrupted`);
+    process.exit(0);
+  });
 
-process.on('SIGINT', async () => {
-  logger.error(`Process ${process.pid} has been interrupted`);
-  process.exit(0);
-});
+  process.on('uncaughtException', (exception) => {
+    logger.error(exception.stack);
+    process.exit(0);
+  });
+
+  process.on('warning', (warning) => logger.warn(warning.stack));
+
+  /**
+   * Cluster
+   */
+  const CPUS = cpus();
+  CPUS.forEach(() => cluster.fork());
+
+  // Catch cluster listening event...
+  cluster.on('listening', (worker) =>
+    logger.info(
+      `Server :: Cluster with ProcessID '${worker.process.pid}' Connected!`
+    )
+  );
+
+  // Catch cluster once it is back online event...
+  cluster.on('online', (worker) =>
+    logger.info(
+      `Server :: Cluster with ProcessID '${worker.process.pid}' has responded after it was forked! `
+    )
+  );
+
+  // Catch cluster disconnect event...
+  cluster.on('disconnect', (worker) =>
+    logger.info(
+      `Server :: Cluster with ProcessID '${worker.process.pid}' Disconnected!`
+    )
+  );
+
+  // Catch cluster exit event...
+  cluster.on('exit', (worker, code, signal) => {
+    logger.info(
+      `Server :: Cluster with ProcessID '${worker.process.pid}' is Dead with Code '${code}, and signal: '${signal}'`
+    );
+    // Ensuring a new cluster will start if an old one dies
+    cluster.fork();
+  });
+} else {
+  main().catch((e) => {
+    logger.error('Running app error: ', e);
+    process.exit(1);
+  });
+}

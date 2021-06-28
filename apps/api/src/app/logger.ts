@@ -1,7 +1,9 @@
 import path from 'path';
 import winston, { format } from 'winston';
 import 'winston-daily-rotate-file';
+import { environment as config } from '../environments/environment';
 
+// Logger transports
 export const transports = [
   new winston.transports.DailyRotateFile({
     zippedArchive: true,
@@ -18,3 +20,10 @@ export const transports = [
     format: format.combine(format.colorize(), format.simple()),
   }),
 ];
+
+// Configuration for default logger
+winston.level = config.production ? 'warn' : 'debug';
+for (const transport of transports) {
+  winston.add(transport);
+}
+export const logger = winston;

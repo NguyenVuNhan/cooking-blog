@@ -1,39 +1,25 @@
-import { AuthController, IAuthService } from '@cookingblog/api/auth';
-import {
-  IIngredientService,
-  IngredientsController,
-} from '@cookingblog/api/ingredient';
-import { IRecipeService, RecipeController } from '@cookingblog/api/recipe';
+import { AuthController } from '@cookingblog/api/auth';
+import { IngredientsController } from '@cookingblog/api/ingredient';
+import { RecipeController } from '@cookingblog/api/recipe';
 import { IUserModel, IUserService } from '@cookingblog/api/user';
-import { ILogger } from '@cookingblog/express/api/common';
 import { BaseApp } from '@cookingblog/express/api/core';
 import { default as expressWinston } from 'express-winston';
 import passport from 'passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { APIConfig } from '../types';
-import { transports } from './logger';
+import { environment as config } from '../environments/environment';
+import { logger, transports } from './logger';
+import {
+  authService,
+  ingredientService,
+  recipeService,
+  userService,
+} from './services';
 
-type ApplicationProp = {
-  authService: IAuthService;
-  ingredientService: IIngredientService;
-  recipeService: IRecipeService;
-  userService: IUserService;
-  logger: ILogger;
-  config: APIConfig;
-};
-
-export default class Application extends BaseApp {
+class Application extends BaseApp {
   private userService: IUserService;
   private appSecret: string;
 
-  constructor({
-    authService,
-    ingredientService,
-    recipeService,
-    userService,
-    logger,
-    config,
-  }: ApplicationProp) {
+  constructor() {
     super(logger, {
       name: config.appName,
       version: config.appVersion,
@@ -93,3 +79,5 @@ export default class Application extends BaseApp {
     this.setupPassport(this.userService, this.appSecret);
   }
 }
+
+export default new Application();
