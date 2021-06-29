@@ -1,3 +1,4 @@
+import { RTKQueryError } from '@cookingblog/blog/ui/error';
 import { getUserId } from '@cookingblog/blog/auth/data-access';
 import { EditIngredientModal } from '@cookingblog/blog/ingredient/feature/components';
 import {
@@ -44,9 +45,8 @@ export function ViewRecipe() {
   const { id } = useParams<{ id: string }>();
   const deleteRecipe = useDeleteRecipe();
   const updateRecipe = useUpdateRecipe(id);
-  const { data: recipe, isLoading } = useGetRecipeQuery(id);
+  const { data: recipe, isLoading, error } = useGetRecipeQuery(id);
   const userId = useSelector(getUserId);
-  const isOwner = recipe?.user === userId;
 
   const { addAllToShoppingList, addOneToShoppingList, removeItem } = useContext(
     ShoppingListCtx
@@ -80,9 +80,13 @@ export function ViewRecipe() {
     }
   };
 
+  const isOwner = recipe?.user === userId;
+
+  if (isLoading) return <LoadingSpinner overlay />;
+  if (!recipe) return <RTKQueryError error={error} />;
+
   return (
     <RecipeTemplate>
-      {isLoading && <LoadingSpinner overlay />}
       <EditIngredientModal
         defaultIngredients={recipe.ingredients}
         open={ingredientEdit}
