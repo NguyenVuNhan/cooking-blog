@@ -11,7 +11,7 @@ export class BaseQueue<T, R = void> {
   queue: Queue<T, R, string>;
 
   constructor(
-    private name: string,
+    protected name: string,
     option: QueueOptions,
     protected logger: ILogger
   ) {
@@ -34,16 +34,18 @@ export class BaseQueue<T, R = void> {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected onCompleted(jobId: string, returnvalue: any) {
-    this.logger.info(`Queue Job ${jobId} finished`);
+    this.logger.info(`Queue ${this.name} :: Job ${jobId} finished`);
     this.logger.debug(returnvalue);
   }
 
   protected onFailed(jobId: string, failedReason: string) {
-    this.logger.info(`Queue Job ${jobId} failed. Reason: ${failedReason}`);
+    this.logger.info(
+      `Queue ${this.name} :: Job ${jobId} failed. Reason: ${failedReason}`
+    );
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types
   protected onProcess(jobId: string, progress: number | object) {
-    this.logger.info(`Job ${jobId} process: ${progress}`);
+    this.logger.info(`Queue ${this.name} :: Job ${jobId} process: ${progress}`);
   }
 }

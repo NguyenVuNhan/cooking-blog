@@ -22,7 +22,6 @@ export class BaseWorker<T, R = void> {
       },
       option
     );
-
     this.worker.on('active', (job: Job<T, R>, prev: string) =>
       this.onActive(job, prev)
     );
@@ -38,31 +37,37 @@ export class BaseWorker<T, R = void> {
   }
 
   protected async process(job: Job<T, R, string>): Promise<R> {
-    this.logger.error(`Unable to process job ${job.id}`);
+    this.logger.error(`Worker ${this.name} :: Unable to process job ${job.id}`);
     throw new AppError(500, `Job ${job.name} not setup correctly`);
   }
 
   protected onActive(job: Job<T, R>, prev: string) {
-    this.logger.info(`Job ${job.name} - ${job.id} active. Previously ${prev}`);
+    this.logger.info(
+      `Worker ${this.name} :: Job ${job.name} - ${job.id} active. Previously ${prev}`
+    );
   }
 
   protected onCompleted(job: Job<T, R>) {
-    this.logger.info(`Job ${job.name} - ${job.id} completed`);
+    this.logger.info(
+      `Worker ${this.name} :: Job ${job.name} - ${job.id} completed`
+    );
   }
 
   protected onDrained() {
-    this.logger.info(`Worker ${this.name} drained`);
+    this.logger.info(`Worker ${this.name} :: worker drained`);
   }
 
   protected onError(failedReason: Error) {
     this.logger.warn(
-      `Job failed with error ${failedReason.name}: ${failedReason.message}`
+      `Worker ${this.name} :: Job failed with error ${failedReason.name}: ${failedReason.message}`
     );
     this.logger.debug(failedReason.stack);
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types
   protected onProcess(job: Job, progress: number | object) {
-    this.logger.info(`Job ${job.name} - ${job.id} process: ${progress}`);
+    this.logger.info(
+      `Worker ${this.name} :: Job ${job.name} - ${job.id} process: ${progress}`
+    );
   }
 }

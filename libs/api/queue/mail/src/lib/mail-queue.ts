@@ -1,6 +1,6 @@
 import { BaseQueue } from '@cookingblog/api/base/queue';
 import { ILogger } from '@cookingblog/express/api/common';
-import { ConnectionOptions } from 'bullmq';
+import { ConnectionOptions, JobsOptions, QueueScheduler } from 'bullmq';
 import { MailJob, queueName } from './types';
 
 export class MailQueue extends BaseQueue<MailJob, void> {
@@ -16,10 +16,25 @@ export class MailQueue extends BaseQueue<MailJob, void> {
       },
       logger
     );
+
+    const scheduler = new QueueScheduler(queueName, { connection });
+    scheduler.on('failed', (jobId, failedReason, prev) => {
+      this.logger.warn(
+        `Queue ${this.name} :: Job ${jobId} failed. Previous ${prev}`
+      );
+      this.logger.info(
+        `\tReason: ${failedReason.name} - ${failedReason.message}`
+      );
+    });
+    scheduler.on('stalled', (jobId, prev) => {
+      this.logger.warn(
+        `Queue ${this.name} :: Job ${jobId} stalled. Previous ${prev}`
+      );
+    });
   }
 
-  async enqueue(jobName: string, mail: MailJob) {
-    await this.queue.add(jobName, mail);
+  async enqueue(jobName: string, mail: MailJob, jobOpts?: JobsOptions) {
+    await this.queue.add(jobName, mail, jobOpts);
 
     this.logger.info(`Enqueued an email sending to ${mail.mailOpts.to}`);
   }

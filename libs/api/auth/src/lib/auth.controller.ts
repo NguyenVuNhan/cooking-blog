@@ -34,15 +34,18 @@ export class AuthController extends Controller {
 
   private async resetPassword(req: Request, res: Response) {
     const mail = req.query.mail as string;
-    this.mailQueue.enqueue('mail_queue', {
-      mailOpts: {
-        from: 'manast@taskforce.sh',
-        to: mail,
-        subject: `This is your email`,
-        text: 'You are receiving email',
+    this.mailQueue.enqueue(
+      'mail_queue',
+      {
+        mailOpts: {
+          from: 'non-reply@cookingblog.nvnapp.ga',
+          to: mail,
+          subject: `Reset Password`,
+          text: 'This is an email from future.',
+        },
       },
-    });
-
+      { delay: 60 * 1000 }
+    );
     sendSuccessResponse(null, res, 'You have been successfully logged in');
   }
 

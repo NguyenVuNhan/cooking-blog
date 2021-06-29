@@ -19,4 +19,13 @@ export interface APIConfig {
   redisTimeout: number;
   jwtExpiresIn: number;
   spoonacularApiKeys: string[];
+  smtp: {
+    host: string;
+    port: number;
+    secure: boolean;
+    auth: {
+      user: string;
+      pass: string;
+    };
+  };
 }

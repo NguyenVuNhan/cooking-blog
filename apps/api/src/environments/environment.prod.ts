@@ -30,4 +30,13 @@ export const environment: APIConfig = {
     process.env.SPOONACULAR_API_KEY_4,
     process.env.SPOONACULAR_API_KEY_5,
   ],
+  smtp: {
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT ? parseInt(process.env.SMTP_PORT) : void 0,
+    secure: process.env.SMTP_SECURE === 'true' ? true : false,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  },
 };

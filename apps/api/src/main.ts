@@ -1,10 +1,10 @@
-import { MailQueue, MailWorker } from '@cookingblog/api/queue/mail';
-import { ConnectionOptions, Job, Queue, Worker } from 'bullmq';
+import 'reflect-metadata'; // Required by class-transformer
+import { MailWorker } from '@cookingblog/api/queue/mail';
+import { ConnectionOptions } from 'bullmq';
 import cluster from 'cluster';
 import IORedis from 'ioredis';
 import { connect } from 'mongoose';
 import { cpus } from 'os';
-import 'reflect-metadata'; // Required by class-transformer
 import Application from './app/app';
 import { logger } from './app/logger';
 import { clusterEvent, processEvent } from './app/nativeEvent';
@@ -35,7 +35,7 @@ async function main(connection: ConnectionOptions) {
   app.start();
 
   // Start up worker
-  new MailWorker(connection, logger);
+  new MailWorker(connection, config.smtp, logger);
 }
 
 // Only start cluster mode in production env
