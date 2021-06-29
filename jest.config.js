@@ -47,5 +47,7 @@ module.exports = {
     '<rootDir>/libs/api/spoonacular/base',
     '<rootDir>/libs/blog/ingredient/utils',
     '<rootDir>/libs/blog/feature/import-recipe-modal',
+    '<rootDir>/libs/api/base/queue',
+    '<rootDir>/libs/api/queue/mail',
   ],
 };

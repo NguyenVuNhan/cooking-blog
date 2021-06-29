@@ -117,7 +117,9 @@
       ],
       "@cookingblog/blog/feature/import-recipe-modal": [
         "libs/blog/feature/import-recipe-modal/src/index.ts"
-      ]
+      ],
+      "@cookingblog/api/base/queue": ["libs/api/base/queue/src/index.ts"],
+      "@cookingblog/api/queue/mail": ["libs/api/queue/mail/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

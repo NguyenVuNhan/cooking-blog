@@ -10,6 +10,7 @@ export const transports = [
     filename: path.resolve(__dirname, '.logs/%DATE%.log'),
     datePattern: 'DD-MM-yyyy',
     format: format.combine(
+      format.errors({ stack: true }),
       format.timestamp(),
       format.printf(
         (info) => `${info.timestamp} [${info.level}]: ${info.message}`
@@ -18,13 +19,17 @@ export const transports = [
     level: 'info',
   }),
   new winston.transports.Console({
-    format: format.combine(format.colorize(), format.simple()),
+    format: format.combine(
+      format.errors({ stack: true }),
+      format.colorize(),
+      format.simple()
+    ),
     level: config.production ? 'info' : 'debug',
   }),
 ];
 
 // Configuration for default logger
-winston.level = config.production ? 'info' : 'debug';
+winston.level = 'debug';
 for (const transport of transports) {
   winston.add(transport);
 }

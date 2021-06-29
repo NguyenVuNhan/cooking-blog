@@ -65,6 +65,8 @@
     "api-spoonacular-ingredients": { "tags": [] },
     "api-spoonacular-base": { "tags": [] },
     "blog-ingredient-utils": { "tags": [] },
-    "blog-feature-import-recipe-modal": { "tags": [] }
+    "blog-feature-import-recipe-modal": { "tags": [] },
+    "api-base-queue": { "tags": [] },
+    "api-queue-mail": { "tags": [] }
   }
 }

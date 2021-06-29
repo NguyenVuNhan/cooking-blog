@@ -24,7 +24,6 @@ export abstract class BaseCachingService {
     this.cache = cache?.cache;
     this.prefix = cache?.appName ? cache.appName + '/' + cache.uniqueKey : 'c';
     this.ttl = cache?.second;
-    this.logger = logger;
   }
   protected async setCache(key: string, value: string): Promise<void> {
     await this.cache

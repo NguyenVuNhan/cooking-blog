@@ -1123,6 +1123,44 @@
           }
         }
       }
+    },
+    "api-base-queue": {
+      "root": "libs/api/base/queue",
+      "sourceRoot": "libs/api/base/queue/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/api/base/queue/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/base/queue"],
+          "options": {
+            "jestConfig": "libs/api/base/queue/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-queue-mail": {
+      "root": "libs/api/queue/mail",
+      "sourceRoot": "libs/api/queue/mail/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/api/queue/mail/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/queue/mail"],
+          "options": {
+            "jestConfig": "libs/api/queue/mail/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }
