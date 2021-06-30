@@ -35,7 +35,7 @@ export class UserService
   async getByEmail(email: string, throwOnFound = false): Promise<IUserModel> {
     const user = await this.findOne({ email });
     if (!user && !throwOnFound)
-      throw new NotFoundError('User with email ${email} Not Found');
+      throw new NotFoundError(`User with email ${email} Not Found`);
     else if (user && throwOnFound)
       throw new AlreadyExistsError(`User email ${email} already exists`);
     return user;

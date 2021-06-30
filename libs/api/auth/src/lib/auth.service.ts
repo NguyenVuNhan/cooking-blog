@@ -1,5 +1,11 @@
+import { MailQueue } from '@cookingblog/api/queue/mail';
+import { ITokenService } from '@cookingblog/api/token';
 import { IUserModel, IUserService } from '@cookingblog/api/user';
-import { ILogger, ValidationError } from '@cookingblog/express/api/common';
+import {
+  AppError,
+  ILogger,
+  ValidationError,
+} from '@cookingblog/express/api/common';
 import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import {
@@ -10,12 +16,51 @@ import {
 } from './auth.types';
 
 export class AuthService implements IAuthService {
-  logger: ILogger;
-  userService: IUserService;
+  private logger: ILogger;
+  private userService: IUserService;
+  private mailQueue: MailQueue;
+  private tokenService: ITokenService;
 
-  constructor({ logger, userService }: AuthServiceProp) {
+  constructor({
+    logger,
+    userService,
+    connection,
+    tokenService,
+  }: AuthServiceProp) {
     this.logger = logger;
     this.userService = userService;
+    this.tokenService = tokenService;
+    this.mailQueue = new MailQueue(connection, logger);
+  }
+
+  async reset(user: string, token: string, password: string): Promise<boolean> {
+    const findToken = await this.tokenService.findOne({ user, token });
+    if (!findToken) {
+      throw new AppError(
+        406,
+        'Invalid request. Some thing went wrong with this link. Please try to request password reset again'
+      );
+    }
+    const findUser = await this.userService.findOne({ id: user });
+    if (!findUser) {
+      throw new AppError(
+        406,
+        'Invalid request. Some thing went wrong with this link. Please try to request password reset again'
+      );
+    }
+    return this.userService.updateById(user, { password });
+  }
+
+  async resetRequest(email: string, baseUrl: string): Promise<void> {
+    const token = await this.tokenService.generate(email);
+    this.mailQueue.enqueue('mail_queue', {
+      mailOpts: {
+        from: 'non-reply@cookingblog.nvnapp.ga',
+        to: email,
+        subject: `Reset Password`,
+        text: `${baseUrl}/password-reset?token=${token.resetToken}&id=${token.user}`,
+      },
+    });
   }
 
   async register(

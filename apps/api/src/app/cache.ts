@@ -1,5 +1,6 @@
-import { environment as config } from '../environments/environment';
 import { RedisCache } from '@cookingblog/express/api/cache';
+import IORedis from 'ioredis';
+import { environment as config } from '../environments/environment';
 import { logger } from './logger';
 
 export const cache = new RedisCache(
@@ -9,3 +10,9 @@ export const cache = new RedisCache(
   },
   logger
 );
+
+export const connection = new IORedis({
+  host: config.redisHttpHost,
+  port: config.redisHttpPort,
+  db: 3,
+});

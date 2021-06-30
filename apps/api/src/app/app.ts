@@ -3,7 +3,6 @@ import { IngredientsController } from '@cookingblog/api/ingredient';
 import { RecipeController } from '@cookingblog/api/recipe';
 import { IUserModel, IUserService } from '@cookingblog/api/user';
 import { BaseApp } from '@cookingblog/express/api/core';
-import { ConnectionOptions } from 'bullmq';
 import { default as expressWinston } from 'express-winston';
 import passport from 'passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
@@ -20,7 +19,7 @@ class Application extends BaseApp {
   private userService: IUserService;
   private appSecret: string;
 
-  constructor(connection: ConnectionOptions) {
+  constructor() {
     super(logger, {
       name: config.appName,
       version: config.appVersion,
@@ -29,7 +28,7 @@ class Application extends BaseApp {
       locals: config,
       cors: { origin: config.url, optionsSuccessStatus: 200 },
     });
-    this.addController(new AuthController(authService, connection, logger));
+    this.addController(new AuthController(authService));
     this.addController(new IngredientsController(ingredientService));
     this.addController(new RecipeController(recipeService));
 

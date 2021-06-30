@@ -1161,6 +1161,25 @@
           }
         }
       }
+    },
+    "api-token": {
+      "root": "libs/api/token",
+      "sourceRoot": "libs/api/token/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/api/token/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/token"],
+          "options": {
+            "jestConfig": "libs/api/token/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

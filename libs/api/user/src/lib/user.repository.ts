@@ -48,6 +48,27 @@ UserSchema.pre<IUserModel>('save', function (next) {
     });
   });
 });
+UserSchema.pre<IUserModel>('updateOne', function (next) {
+  const _this = ((this as unknown) as { _update: IUserModel })._update;
+  if (!_this.password) {
+    return next(null);
+  }
+
+  genSalt(10, (err, salt) => {
+    if (err) {
+      return next(err);
+    }
+
+    hash(_this.password, salt, (err, _hash) => {
+      if (err) {
+        return next(err);
+      }
+
+      _this.password = _hash;
+      return next(null);
+    });
+  });
+});
 
 // Compares the user's password with the request password
 UserSchema.methods.comparePassword = function (

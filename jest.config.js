@@ -49,5 +49,6 @@ module.exports = {
     '<rootDir>/libs/blog/feature/import-recipe-modal',
     '<rootDir>/libs/api/base/queue',
     '<rootDir>/libs/api/queue/mail',
+    '<rootDir>/libs/api/token',
   ],
 };

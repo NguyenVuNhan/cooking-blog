@@ -1,5 +1,7 @@
 import { IUserModel, IUserService } from '@cookingblog/api/user';
+import { ITokenService } from '@cookingblog/api/token';
 import { ILogger } from '@cookingblog/express/api/common';
+import { ConnectionOptions } from 'bullmq/dist/interfaces';
 
 export type JWTToken = { token: string; exp: number };
 export type JWTOptions = { appSecret: string; expiresIn: number };
@@ -10,6 +12,8 @@ export type JWTOptions = { appSecret: string; expiresIn: number };
 export type AuthServiceProp = {
   logger: ILogger;
   userService: IUserService;
+  tokenService: ITokenService;
+  connection: ConnectionOptions;
 };
 
 export interface IAuthService {
@@ -25,6 +29,7 @@ export interface IAuthService {
     password: string,
     jwtOptions?: JWTOptions
   ): Promise<JWTToken & { user: IUserModel }>;
+
   /**
    * User register service
    *
@@ -34,4 +39,23 @@ export interface IAuthService {
    * @returns {IUserModel} new user info
    */
   register(name: string, email: string, password: string): Promise<IUserModel>;
+
+  /**
+   * Password reset request
+   *
+   * @param {string} email user email
+   * @param {string} baseUrl The base url of the app
+   * @returns {Promise<void>}
+   */
+  resetRequest(email: string, baseUrl: string): Promise<void>;
+
+  /**
+   * Reset user password
+   *
+   * @param {string} userId user id
+   * @param {string} token The password reset token
+   * @param {string} password The new password
+   * @returns {Promise<boolean>}
+   */
+  reset(user: string, token: string, password: string): Promise<boolean>;
 }

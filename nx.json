@@ -67,6 +67,7 @@
     "blog-ingredient-utils": { "tags": [] },
     "blog-feature-import-recipe-modal": { "tags": [] },
     "api-base-queue": { "tags": [] },
-    "api-queue-mail": { "tags": [] }
+    "api-queue-mail": { "tags": [] },
+    "api-token": { "tags": [] }
   }
 }

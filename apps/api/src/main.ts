@@ -1,17 +1,16 @@
 import 'reflect-metadata'; // Required by class-transformer
 import { MailWorker } from '@cookingblog/api/queue/mail';
-import { ConnectionOptions } from 'bullmq';
 import cluster from 'cluster';
-import IORedis from 'ioredis';
 import { connect } from 'mongoose';
 import { cpus } from 'os';
 import Application from './app/app';
 import { logger } from './app/logger';
 import { clusterEvent, processEvent } from './app/nativeEvent';
 import { environment as config } from './environments/environment';
+import { connection } from './app/cache';
 
-async function main(connection: ConnectionOptions) {
-  const app = new Application(connection);
+async function main() {
+  const app = new Application();
 
   // Load database
   logger.info('Booting Database...');
@@ -50,15 +49,8 @@ if (config.production) {
 
     clusterEvent(cluster);
   } else {
-    // Enable worker
-    const connection = new IORedis({
-      host: config.redisHttpHost,
-      port: config.redisHttpPort,
-      db: 3,
-    });
-
     // Main entry
-    main(connection).catch((e) => {
+    main().catch((e) => {
       logger.error('Running app error: ', e);
       process.exit(1);
     });
@@ -67,15 +59,8 @@ if (config.production) {
   // Catch Process event
   processEvent();
 
-  // Enable worker
-  const connection = new IORedis({
-    host: config.redisHttpHost,
-    port: config.redisHttpPort,
-    db: 3,
-  });
-
   // Main entry
-  main(connection).catch((e) => {
+  main().catch((e) => {
     logger.error('Running app error: ', e);
     process.exit(1);
   });

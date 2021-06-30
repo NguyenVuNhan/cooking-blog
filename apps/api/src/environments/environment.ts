@@ -10,7 +10,7 @@ export const environment: APIConfig = {
   port: 5000,
   isCORSEnabled: true,
   appSecret: 'SeCrEt',
-  url: 'http://localhost:5000',
+  url: 'http://localhost:3000',
   maxUploadLimit: '50mb',
   maxParameterLimit: 5000,
   mongodbUrl:

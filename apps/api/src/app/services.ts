@@ -5,14 +5,17 @@ import { SpoonacularIngredientsService } from '@cookingblog/api/spoonacular/ingr
 import { SpoonacularRecipesService } from '@cookingblog/api/spoonacular/recipes';
 import { UserService } from '@cookingblog/api/user';
 import { ServiceCache } from '@cookingblog/express/api/core';
+import { TokenService } from '@cookingblog/api/token';
 import { cache } from './cache';
 import {
   userRepository,
   ingredientRepository,
   recipeRepository,
+  tokenRepository,
 } from './repositories';
 import { environment as config } from '../environments/environment';
 import { logger } from './logger';
+import { connection } from './cache';
 
 const serviceCache: ServiceCache = {
   cache,
@@ -39,7 +42,18 @@ export const userService = new UserService({
   logger,
   serviceCache: { ...serviceCache, uniqueKey: 'user' },
 });
-export const authService = new AuthService({ logger, userService });
+export const tokenService = new TokenService({
+  repo: tokenRepository,
+  logger,
+  serviceCache: { ...serviceCache, uniqueKey: 'token' },
+  userService,
+});
+export const authService = new AuthService({
+  logger,
+  userService,
+  tokenService,
+  connection,
+});
 export const ingredientService = new IngredientService({
   repo: ingredientRepository,
   logger,
