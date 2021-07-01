@@ -21,39 +21,45 @@ export function AuthTemplate(props: AuthTemplateProps) {
   };
 
   return (
-    <Container
-      className={`${classes.container} d-flex align-items-center justify-content-center`}
-      maxWidth={false}
-      component="form"
-      noValidate
-      onSubmit={_onSubmit}
-      data-testid="form"
+    <div
+      className={`${classes.background} w-screen h-screen d-flex items-center justify-center`}
     >
-      <Paper elevation={24}>
-        <Grid container alignItems="flex-start" spacing={2}>
-          <Grid item xs={12}>
-            <Typography variant="h2" align="center" noWrap>
-              {title}
-            </Typography>
-            <Typography variant="subtitle1" align="center" noWrap>
-              {subTitle}
-            </Typography>
+      <Container
+        className={`bg-transparent rounded-2xl`}
+        maxWidth="sm"
+        component="form"
+        noValidate
+        onSubmit={_onSubmit}
+        data-testid="form"
+      >
+        <Paper elevation={24} className="sm:min-w-min px-2">
+          <Grid container spacing={3} className="px-2">
+            <Grid item xs={12}>
+              <Typography variant="h2" align="center" noWrap>
+                {title}
+              </Typography>
+              <Typography variant="subtitle1" align="center" noWrap>
+                {subTitle}
+              </Typography>
+            </Grid>
+            {children}
           </Grid>
-          {children}
-        </Grid>
-      </Paper>
-    </Container>
+        </Paper>
+      </Container>
+    </div>
   );
 }
 
 const useStyle = makeStyles({
-  container: {
-    width: '100vw',
-    height: '100vh',
+  background: {
     backgroundImage: `url(/assets/landing.jpg)`,
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
+  },
+  container: {
+    width: '100vw',
+    height: '100vh',
     alignItems: 'center',
     '& .MuiPaper-root': {
       padding: 16,

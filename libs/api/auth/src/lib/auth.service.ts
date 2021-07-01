@@ -41,6 +41,7 @@ export class AuthService implements IAuthService {
         'Invalid request. Some thing went wrong with this link. Please try to request password reset again'
       );
     }
+    await this.tokenService.deleteById(findToken.id);
     const findUser = await this.userService.findOne({ id: user });
     if (!findUser) {
       throw new AppError(
@@ -58,7 +59,7 @@ export class AuthService implements IAuthService {
         from: 'non-reply@cookingblog.nvnapp.ga',
         to: email,
         subject: `Reset Password`,
-        text: `${baseUrl}/password-reset?token=${token.resetToken}&id=${token.user}`,
+        text: `${baseUrl}/password-reset/${token.user}/${token.resetToken}`,
       },
     });
   }

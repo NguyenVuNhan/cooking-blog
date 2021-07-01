@@ -1,4 +1,5 @@
 import {
+  authApi,
   authReducer,
   AUTH_FEATURE_KEY,
 } from '@cookingblog/blog/auth/data-access';
@@ -15,6 +16,7 @@ import './styles.scss';
 export const store = configureStore({
   reducer: {
     [AUTH_FEATURE_KEY]: authReducer,
+    [authApi.reducerPath]: authApi.reducer,
     [recipeApi.reducerPath]: recipeApi.reducer,
   },
   // Additional middleware can be passed to this array

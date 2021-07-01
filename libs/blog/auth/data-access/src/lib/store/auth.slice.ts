@@ -33,16 +33,6 @@ const login = createAsyncThunk<LoginRes['data'], LoginReq>(
   })
 );
 
-const register = createAsyncThunk<RegisterRes['data'], RegisterReq>(
-  'auth/register',
-  withErrorHandler(async (data) => {
-    const res = await authServices.register(data);
-
-    forwardTo('/login');
-    return res.data;
-  })
-);
-
 // ======================================================================
 // Slice
 // ======================================================================
@@ -110,7 +100,7 @@ export const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
-export const authActions = { ...authSlice.actions, login, register };
+export const authActions = { ...authSlice.actions, login };
 
 // ======================================================================
 // Selector

@@ -1,5 +1,6 @@
 import { Match } from '@cookingblog/shared/validator-decorator';
 import {
+  Allow,
   IsEmail,
   IsNotEmpty,
   IsString,
@@ -17,10 +18,12 @@ export class ResetRequestDTO {
 export class ResetDTO {
   @IsString()
   @IsNotEmpty({ message: 'User id is required' })
+  @Allow()
   user: string;
 
   @IsString()
   @IsNotEmpty({ message: 'Reset password token is required' })
+  @Allow()
   token: string;
 
   @IsString()

@@ -50,7 +50,7 @@ export class AuthController extends Controller {
 
   private async resetRequest(req: Request, res: Response) {
     const mail = req.query.mail as string;
-    this.authService.resetRequest(mail, req.app.locals.url);
+    await this.authService.resetRequest(mail, req.app.locals.url);
     sendSuccessResponse(
       null,
       res,

@@ -50,5 +50,8 @@ module.exports = {
     '<rootDir>/libs/api/base/queue',
     '<rootDir>/libs/api/queue/mail',
     '<rootDir>/libs/api/token',
+    '<rootDir>/libs/blog/auth/ui/password-reset',
+    '<rootDir>/libs/blog/auth/ui/password-reset-request',
+    '<rootDir>/libs/blog/auth/ui/components',
   ],
 };

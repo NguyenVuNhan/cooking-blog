@@ -1180,6 +1180,75 @@
           }
         }
       }
+    },
+    "blog-auth-ui-password-reset": {
+      "root": "libs/blog/auth/ui/password-reset",
+      "sourceRoot": "libs/blog/auth/ui/password-reset/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/auth/ui/password-reset/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/auth/ui/password-reset"],
+          "options": {
+            "jestConfig": "libs/blog/auth/ui/password-reset/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-auth-ui-password-reset-request": {
+      "root": "libs/blog/auth/ui/password-reset-request",
+      "sourceRoot": "libs/blog/auth/ui/password-reset-request/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/auth/ui/password-reset-request/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/auth/ui/password-reset-request"],
+          "options": {
+            "jestConfig": "libs/blog/auth/ui/password-reset-request/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-auth-ui-components": {
+      "root": "libs/blog/auth/ui/components",
+      "sourceRoot": "libs/blog/auth/ui/components/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/auth/ui/components/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/auth/ui/components"],
+          "options": {
+            "jestConfig": "libs/blog/auth/ui/components/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

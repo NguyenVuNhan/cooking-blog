@@ -1,5 +1,9 @@
 import { RegisterDTO } from '@cookingblog/api/auth/dto';
-import { authActions, getErrors } from '@cookingblog/blog/auth/data-access';
+import { PasswordField } from '@cookingblog/blog/auth/ui/components';
+import EmailIcon from '@material-ui/icons/Email';
+import { ErrorRes } from '@cookingblog/api/interfaces';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { useRegisterMutation } from '@cookingblog/blog/auth/data-access';
 import { AuthTemplate } from '@cookingblog/blog/auth/feature/template';
 import { TextField } from '@cookingblog/blog/ui/components/atoms';
 import { ErrorBadge } from '@cookingblog/blog/ui/components/molecules';
@@ -7,87 +11,106 @@ import { forwardTo } from '@cookingblog/blog/utils';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Alert from '@material-ui/lab/Alert/Alert';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 export function Register() {
   const {
     handleSubmit,
     register,
-    watch,
     formState: { errors },
   } = useForm<RegisterDTO>({ resolver: classValidatorResolver(RegisterDTO) });
-  const registerErrors = useSelector(getErrors);
-  const dispatch = useDispatch();
 
+  const toPasswordReset = () => forwardTo('/password-reset');
   const toLogin = () => forwardTo('/login');
-
-  const onSubmit = (data: RegisterDTO) => {
-    dispatch(authActions.register(data));
-  };
+  const [trigger, { error, data, isSuccess }] = useRegisterMutation();
 
   return (
     <AuthTemplate
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(trigger)}
       title="Register"
       subTitle="Create new Cooking Blog account"
     >
       <Grid item sm={12}>
-        <ErrorBadge {...registerErrors} />
+        <ErrorBadge
+          {...((error as FetchBaseQueryError)?.data as ErrorRes)?.data}
+        />
       </Grid>
+      {isSuccess && data && (
+        <Grid item xs={12}>
+          <Alert severity="info">{data.message}</Alert>
+        </Grid>
+      )}
       <Grid item xs={12}>
         <TextField
           fullWidth
           {...register('name', { required: 'User name is required' })}
-          error={Boolean(errors.name)}
+          error={!!errors.name}
           helperText={errors.name?.message}
           label="User Name"
-          variant="outlined"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AccountCircleIcon />
+              </InputAdornment>
+            ),
+          }}
         />
       </Grid>
+
       <Grid item xs={12}>
         <TextField
           fullWidth
           {...register('email', { required: 'Email is required' })}
-          error={Boolean(errors.email)}
+          error={!!errors.email}
           helperText={errors.email?.message}
           label="Email Address"
           type="email"
-          variant="outlined"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <EmailIcon />
+              </InputAdornment>
+            ),
+          }}
         />
       </Grid>
+
       <Grid item xs={12}>
-        <TextField
+        <PasswordField
           fullWidth
-          {...register('password', {
-            required: 'You must specify a password',
-            minLength: {
-              value: 6,
-              message: 'Password must have at least 6 characters',
-            },
-          })}
-          error={Boolean(errors.password)}
+          {...register('password')}
+          error={!!errors.password}
           helperText={errors.password?.message}
           label="Password"
-          variant="outlined"
-          type="password"
         />
       </Grid>
+
       <Grid item xs={12}>
-        <TextField
+        <PasswordField
           fullWidth
-          {...register('cpassword', {
-            validate: (value) =>
-              value === watch('password') || 'The passwords do not match',
-          })}
-          error={Boolean(errors.cpassword)}
+          {...register('cpassword')}
+          error={!!errors.cpassword}
           helperText={errors.cpassword?.message}
           label="Confirm Password"
-          variant="outlined"
-          type="password"
         />
       </Grid>
+
+      <Grid item xs={12} className="flex justify-center">
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+          size="large"
+          fullWidth
+        >
+          Register
+        </Button>
+      </Grid>
+
       <Grid
         className="p-2"
         container
@@ -95,11 +118,11 @@ export function Register() {
         justify="space-between"
         alignItems="center"
       >
+        <Button color="primary" onClick={toPasswordReset}>
+          Forgot password?
+        </Button>
         <Button color="primary" onClick={toLogin}>
           Login
-        </Button>
-        <Button variant="contained" color="primary" type="submit">
-          Submit
         </Button>
       </Grid>
     </AuthTemplate>

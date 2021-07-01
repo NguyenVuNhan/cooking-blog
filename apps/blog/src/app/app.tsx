@@ -22,6 +22,18 @@ const routes = [
     auth: false,
   },
   {
+    path: '/password-reset/:id/:token',
+    view: lazy(() => import('@cookingblog/blog/auth/ui/password-reset')),
+    auth: false,
+  },
+  {
+    path: '/password-reset',
+    view: lazy(
+      () => import('@cookingblog/blog/auth/ui/password-reset-request')
+    ),
+    auth: false,
+  },
+  {
     path: '/recipe/add(.*)',
     view: lazy(() => import('@cookingblog/blog/recipe/ui/add')),
     auth: true,

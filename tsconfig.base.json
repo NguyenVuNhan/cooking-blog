@@ -120,7 +120,16 @@
       ],
       "@cookingblog/api/base/queue": ["libs/api/base/queue/src/index.ts"],
       "@cookingblog/api/queue/mail": ["libs/api/queue/mail/src/index.ts"],
-      "@cookingblog/api/token": ["libs/api/token/src/index.ts"]
+      "@cookingblog/api/token": ["libs/api/token/src/index.ts"],
+      "@cookingblog/blog/auth/ui/password-reset": [
+        "libs/blog/auth/ui/password-reset/src/index.ts"
+      ],
+      "@cookingblog/blog/auth/ui/password-reset-request": [
+        "libs/blog/auth/ui/password-reset-request/src/index.ts"
+      ],
+      "@cookingblog/blog/auth/ui/components": [
+        "libs/blog/auth/ui/components/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

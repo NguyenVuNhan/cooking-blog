@@ -1,4 +1,9 @@
-import { LoginDTO, RegisterDTO } from '@cookingblog/api/auth/dto';
+import {
+  LoginDTO,
+  RegisterDTO,
+  ResetDTO,
+  ResetRequestDTO,
+} from '@cookingblog/api/auth/dto';
 import { BaseResponse } from '@cookingblog/express/api/core';
 
 // ======================================================================
@@ -6,6 +11,8 @@ import { BaseResponse } from '@cookingblog/express/api/core';
 // ======================================================================
 export type LoginReq = LoginDTO;
 export type RegisterReq = RegisterDTO;
+export type PasswordResetRequestReq = ResetRequestDTO;
+export type PasswordResetReq = ResetDTO;
 
 // ======================================================================
 // Response
@@ -19,3 +26,6 @@ export type LoginRes = BaseResponse<{
 export type RegisterRes = BaseResponse<{
   email: string;
 }>;
+
+export type PasswordResetRequestRes = BaseResponse<null>;
+export type PasswordResetRes = BaseResponse<null>;

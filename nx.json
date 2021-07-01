@@ -68,6 +68,9 @@
     "blog-feature-import-recipe-modal": { "tags": [] },
     "api-base-queue": { "tags": [] },
     "api-queue-mail": { "tags": [] },
-    "api-token": { "tags": [] }
+    "api-token": { "tags": [] },
+    "blog-auth-ui-password-reset": { "tags": [] },
+    "blog-auth-ui-password-reset-request": { "tags": [] },
+    "blog-auth-ui-components": { "tags": [] }
   }
 }
