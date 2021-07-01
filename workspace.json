@@ -1249,6 +1249,29 @@
           }
         }
       }
+    },
+    "blog-auth-feature-routes": {
+      "root": "libs/blog/auth/feature/routes",
+      "sourceRoot": "libs/blog/auth/feature/routes/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/auth/feature/routes/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/auth/feature/routes"],
+          "options": {
+            "jestConfig": "libs/blog/auth/feature/routes/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

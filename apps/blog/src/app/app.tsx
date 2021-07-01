@@ -12,28 +12,6 @@ import { ShoppingCart } from '@cookingblog/blog/shopping-list/feature/shopping-c
 
 const routes = [
   {
-    path: '/login',
-    view: lazy(() => import('@cookingblog/blog/auth/ui/login')),
-    auth: false,
-  },
-  {
-    path: '/register',
-    view: lazy(() => import('@cookingblog/blog/auth/ui/register')),
-    auth: false,
-  },
-  {
-    path: '/password-reset/:id/:token',
-    view: lazy(() => import('@cookingblog/blog/auth/ui/password-reset')),
-    auth: false,
-  },
-  {
-    path: '/password-reset',
-    view: lazy(
-      () => import('@cookingblog/blog/auth/ui/password-reset-request')
-    ),
-    auth: false,
-  },
-  {
     path: '/recipe/add(.*)',
     view: lazy(() => import('@cookingblog/blog/recipe/ui/add')),
     auth: true,
@@ -55,6 +33,8 @@ const routes = [
   },
 ];
 
+const AuthRoutes = lazy(() => import('@cookingblog/blog/auth/feature/routes'));
+
 export const App = () => {
   const isAuthenticated = useSelector(getAuthenticated);
 
@@ -75,7 +55,13 @@ export const App = () => {
               )}
             </Route>
           ))}
-          <Redirect to={isAuthenticated ? '/' : '/login'} />
+          {!isAuthenticated ? (
+            <Suspense fallback={<LoadingSpinner overlay />}>
+              <AuthRoutes />
+            </Suspense>
+          ) : (
+            <Redirect to="/" />
+          )}
         </Switch>
         <ShoppingCart />
       </ShoppingListProvider>

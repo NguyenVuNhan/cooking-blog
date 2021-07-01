@@ -129,6 +129,9 @@
       ],
       "@cookingblog/blog/auth/ui/components": [
         "libs/blog/auth/ui/components/src/index.ts"
+      ],
+      "@cookingblog/blog/auth/feature/routes": [
+        "libs/blog/auth/feature/routes/src/index.ts"
       ]
     }
   },

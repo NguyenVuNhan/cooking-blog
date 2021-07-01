@@ -21,32 +21,28 @@ export function AuthTemplate(props: AuthTemplateProps) {
   };
 
   return (
-    <div
-      className={`${classes.background} w-screen h-screen d-flex items-center justify-center`}
+    <Container
+      className={`bg-transparent rounded-2xl`}
+      maxWidth="sm"
+      component="form"
+      noValidate
+      onSubmit={_onSubmit}
+      data-testid="form"
     >
-      <Container
-        className={`bg-transparent rounded-2xl`}
-        maxWidth="sm"
-        component="form"
-        noValidate
-        onSubmit={_onSubmit}
-        data-testid="form"
-      >
-        <Paper elevation={24} className="sm:min-w-min px-2">
-          <Grid container spacing={3} className="px-2">
-            <Grid item xs={12}>
-              <Typography variant="h2" align="center" noWrap>
-                {title}
-              </Typography>
-              <Typography variant="subtitle1" align="center" noWrap>
-                {subTitle}
-              </Typography>
-            </Grid>
-            {children}
+      <Paper elevation={24} className="sm:min-w-min px-2">
+        <Grid container spacing={3} className="px-2">
+          <Grid item xs={12}>
+            <Typography variant="h2" align="center" noWrap>
+              {title}
+            </Typography>
+            <Typography variant="subtitle1" align="center" noWrap>
+              {subTitle}
+            </Typography>
           </Grid>
-        </Paper>
-      </Container>
-    </div>
+          {children}
+        </Grid>
+      </Paper>
+    </Container>
   );
 }
 

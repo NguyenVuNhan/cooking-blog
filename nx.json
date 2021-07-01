@@ -71,6 +71,7 @@
     "api-token": { "tags": [] },
     "blog-auth-ui-password-reset": { "tags": [] },
     "blog-auth-ui-password-reset-request": { "tags": [] },
-    "blog-auth-ui-components": { "tags": [] }
+    "blog-auth-ui-components": { "tags": [] },
+    "blog-auth-feature-routes": { "tags": [] }
   }
 }
