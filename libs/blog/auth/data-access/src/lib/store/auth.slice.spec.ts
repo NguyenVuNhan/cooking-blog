@@ -58,7 +58,14 @@ describe('Auth reducer', () => {
       };
       expect(
         authReducer(
-          { ...expected, errors: { error: 'error' } },
+          {
+            ...expected,
+            errors: {
+              data: { error: { error: 'error' } },
+              message: 'error',
+              success: false,
+            },
+          },
           { type: 'auth/clearError' }
         )
       ).toEqual(expected);
@@ -81,66 +88,6 @@ describe('Auth reducer', () => {
           { loading: false, authenticated: true },
           { type: 'auth/logout' }
         )
-      ).toEqual(expected);
-    });
-  });
-
-  // ----------------------------------------------------------------------
-  // Other actions
-  // ----------------------------------------------------------------------
-  describe('register', () => {
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    let action: AsyncThunkAction<RegisterRes['data'], RegisterReq, {}>;
-
-    let dispatch: Dispatch; // Create the "spy" properties
-    let getState: () => unknown;
-
-    let arg: RegisterReq;
-    let result: RegisterRes;
-
-    beforeEach(() => {
-      // initialize new spies
-      dispatch = jest.fn();
-      getState = jest.fn();
-
-      authServicesMock.register.mockClear();
-      authServicesMock.register.mockResolvedValue(result);
-
-      arg = {
-        name: 'name',
-        email: 'me@myemail.com',
-        password: 'password',
-        cpassword: 'password',
-      };
-      result = {
-        data: { email: 'me@myemail.com' },
-        message: 'message',
-        success: true,
-      };
-
-      action = authActions.register(arg);
-    });
-
-    it('should call the api correctly', async () => {
-      await action(dispatch, getState, undefined);
-      expect(authServices.register).toHaveBeenCalledWith(arg);
-    });
-
-    it('should forward to login page', async () => {
-      await action(dispatch, getState, undefined);
-      expect(forwardToMock).toHaveBeenCalledWith('/login');
-    });
-
-    it('should update store', async () => {
-      const expected = {
-        loading: false,
-        authenticated: false,
-      };
-      expect(
-        authReducer(undefined, {
-          type: authActions.register.fulfilled.toString(),
-          payload: { user: {} },
-        })
       ).toEqual(expected);
     });
   });
