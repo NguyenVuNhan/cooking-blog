@@ -54,14 +54,12 @@ export class AuthService implements IAuthService {
 
   async resetRequest(email: string, baseUrl: string): Promise<void> {
     const token = await this.tokenService.generate(email);
-    this.mailQueue.enqueue('mail_queue', {
-      mailOpts: {
-        from: 'non-reply@cookingblog.nvnapp.ga',
-        to: email,
-        subject: `Reset Password`,
-        text: `${baseUrl}/password-reset/${token.user}/${token.resetToken}`,
-      },
-    });
+    await this.mailQueue.passwordReset(
+      email,
+      baseUrl,
+      token.user,
+      token.resetToken
+    );
   }
 
   async register(

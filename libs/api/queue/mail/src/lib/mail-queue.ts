@@ -33,6 +33,28 @@ export class MailQueue extends BaseQueue<MailJob, void> {
     });
   }
 
+  async passwordReset(to: string, url: string, user: string, token: string) {
+    await this.queue.add('password_reset_mail', {
+      mailOpts: {
+        from: 'non-reply@cookingblog.nvnapp.ga',
+        to,
+        subject: `Reset Password`,
+        text: `
+Dear user,
+
+you have requested a password reset on ${new Date().toString()}. If you want to reset your password, please follow this links
+
+${url}/password-reset/${user}/${token}
+
+If you need assistance, please contact our support at nvn.raspberrypi@gmail.com
+
+Thanks
+
+Cooking Blog team`,
+      },
+    });
+  }
+
   async enqueue(jobName: string, mail: MailJob, jobOpts?: JobsOptions) {
     await this.queue.add(jobName, mail, jobOpts);
 
