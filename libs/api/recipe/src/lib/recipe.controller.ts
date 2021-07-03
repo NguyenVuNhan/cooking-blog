@@ -26,6 +26,7 @@ export class RecipeController extends Controller {
       validate(ExtractDTO, { subject: 'query' }),
       this.wrapTryCatch(this.extract)
     );
+    this.router.get(`/random`, this.wrapTryCatch(this.random));
     this.router.get(`/:id`, this.wrapTryCatch(this.get));
     this.router.get(`/`, this.wrapTryCatch(this.search));
     this.router.use(authenticate('jwt', { session: false }));
@@ -36,6 +37,13 @@ export class RecipeController extends Controller {
       this.wrapTryCatch(this.update)
     );
     this.router.post(`/`, validate(RecipeDTO), this.wrapTryCatch(this.create));
+  }
+
+  private async random(req: Request, res: Response) {
+    const result = await this.recipeService.getRandomRecipe();
+
+    if (!result) throw new ServerError();
+    sendSuccessResponse(result, res);
   }
 
   private async extract(req: RequestWithUser, res: Response) {
@@ -60,9 +68,9 @@ export class RecipeController extends Controller {
   }
 
   private async get(req: Request, res: Response) {
-    const recipe = await this.recipeService.getRecipe(req.params.id);
+    const recipe = await this.recipeService.findOne({ id: req.params.id });
 
-    if (!recipe) throw new ServerError();
+    if (!recipe) throw new NotFoundError('Recipe not found');
     sendSuccessResponse(recipe, res);
   }
 

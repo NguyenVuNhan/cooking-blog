@@ -14,11 +14,9 @@ import { ISpoonacularIngredientsService } from '../../../spoonacular/ingredients
 // ======================================================================
 export interface IRecipeRepository extends IBaseRepository<IRecipeModel> {
   /**
-   * @param {string} id Id of recipe
-   *
    * @return {Promise<IRecipeModel>} Promise object of recipe with ingredient field populated
    */
-  findById(id: string): Promise<IRecipeModel>;
+  getRandom(): Promise<IRecipeModel>;
 
   /**
    * @param {string} query Query to search for.
@@ -70,11 +68,9 @@ export interface IRecipeService extends IBaseService<IRecipeModel> {
   ): Promise<IRecipeModel>;
 
   /**
-   * @param {string} id Recipe id
-   *
    * @return {Promise<IRecipeModel>} return promise recipe
    */
-  getRecipe(id: string): Promise<IRecipeModel>;
+  getRandomRecipe(): Promise<IRecipeModel>;
 
   /**
    * @param {string} user User id

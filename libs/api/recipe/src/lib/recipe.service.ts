@@ -122,8 +122,8 @@ export class RecipeService
     };
   }
 
-  async getRecipe(id: string): Promise<IRecipeModel> {
-    const recipe = await this.repo.findById(id);
+  async getRandomRecipe(): Promise<IRecipeModel> {
+    const recipe = await this.repo.getRandom();
 
     if (!recipe) throw new NotFoundError('Recipe not found');
     return recipe;

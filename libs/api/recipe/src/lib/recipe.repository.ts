@@ -8,7 +8,6 @@ import { IRecipeModel } from './recipe.entity';
 import { IRecipeRepository } from './recipe.types';
 
 const ObjectId = Types.ObjectId;
-
 // Define the Recipe Schema
 const RecipeSchema = new Schema<IRecipeModel>(
   {
@@ -69,10 +68,11 @@ export class RecipeRepository
   }
 
   @Repository()
-  async findById(id: string): Promise<IRecipeModel> {
-    const recipes = ((await this.model
-      .findById(id)
-      .exec()) as unknown) as IRecipeModel;
+  async getRandom(): Promise<IRecipeModel> {
+    const count = await this.model.countDocuments();
+    const random = Math.floor(Math.random() * count);
+
+    const recipes = await this.model.findOne().skip(random);
 
     return recipes;
   }
