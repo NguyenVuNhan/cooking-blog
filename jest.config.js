@@ -54,5 +54,9 @@ module.exports = {
     '<rootDir>/libs/blog/auth/ui/password-reset-request',
     '<rootDir>/libs/blog/auth/ui/components',
     '<rootDir>/libs/blog/auth/feature/routes',
+    '<rootDir>/libs/blog/home/feature/shell',
+    '<rootDir>/libs/blog/home/ui/components',
+    '<rootDir>/libs/blog/home/feature/sidebar',
+    '<rootDir>/libs/blog/recipe/feature/random-recipe',
   ],
 };

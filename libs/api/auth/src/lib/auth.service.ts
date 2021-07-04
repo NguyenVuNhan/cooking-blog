@@ -87,13 +87,16 @@ export class AuthService implements IAuthService {
       throw new ValidationError('Password not match');
 
     user.password = undefined;
-    const token = this.generateJWT(user.id, jwtOptions);
+    const token = this.generateJWT(
+      { id: user.id, email: user.email, name: user.name },
+      jwtOptions
+    );
 
     return { user, ...token };
   }
 
   private generateJWT(
-    id: string,
+    data: Partial<IUserModel>,
     jwtOptions: Partial<JWTOptions> = {}
   ): JWTToken {
     const { appSecret = 'Secret', expiresIn } = jwtOptions;
@@ -101,7 +104,7 @@ export class AuthService implements IAuthService {
     const exp = new Date();
     exp.setSeconds(today.getSeconds() + expiresIn);
 
-    const token = sign({ id }, appSecret, { expiresIn });
+    const token = sign({ ...data }, appSecret, { expiresIn });
 
     return {
       token: 'Bearer ' + token,

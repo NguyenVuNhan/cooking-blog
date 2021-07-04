@@ -1,3 +1,5 @@
+const materialColors = require('./material-color');
+
 module.exports = {
   mode: 'jit',
   prefix: '',
@@ -6,6 +8,12 @@ module.exports = {
   },
   darkMode: 'class',
   theme: {
+    colors: {
+      white: '#ffffff',
+      black: '#000000',
+      transparent: 'transparent',
+      ...materialColors,
+    },
     extend: {},
   },
   variants: {},

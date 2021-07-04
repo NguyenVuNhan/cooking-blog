@@ -18,7 +18,7 @@ export type PasswordResetReq = ResetDTO;
 // Response
 // ======================================================================
 export type LoginRes = BaseResponse<{
-  user: { id: string; email: string };
+  user: { id: string; email: string; name: string };
   token: string;
   exp: number;
 }>;

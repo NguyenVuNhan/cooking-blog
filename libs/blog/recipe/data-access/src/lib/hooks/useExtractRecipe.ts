@@ -1,9 +1,9 @@
-import { getQuery } from '@cookingblog/blog/utils';
+import { getDefaultQuery } from '@cookingblog/blog/utils';
 import { useState } from 'react';
 import { useExtractRecipeQuery } from '../apis/recipe.api';
 
 export const useExtractRecipe = () => {
-  const [url] = useState<string | false>(getQuery('url'));
+  const [url] = useState<string | false>(getDefaultQuery('url'));
   const { isLoading, isUninitialized, data } = useExtractRecipeQuery(
     url || '',
     { skip: !url }

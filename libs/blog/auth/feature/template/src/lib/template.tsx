@@ -14,7 +14,7 @@ export interface AuthTemplateProps {
 
 export function AuthTemplate(props: AuthTemplateProps) {
   const { children, onSubmit, title, subTitle } = props;
-  const classes = useStyle();
+  const classes = useStyles();
 
   const _onSubmit: FormEventHandler = (...args) => {
     onSubmit(...args);
@@ -46,7 +46,7 @@ export function AuthTemplate(props: AuthTemplateProps) {
   );
 }
 
-const useStyle = makeStyles({
+const useStyles = makeStyles({
   background: {
     backgroundImage: `url(/assets/landing.jpg)`,
     backgroundPosition: 'center',

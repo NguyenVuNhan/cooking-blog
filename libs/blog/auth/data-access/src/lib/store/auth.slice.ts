@@ -113,3 +113,6 @@ export const getErrors = (rootState: unknown) =>
 
 export const getUserId = (rootState: unknown) =>
   (rootState[AUTH_FEATURE_KEY] as AuthState).user?.id;
+
+export const getUser = (rootState: unknown) =>
+  (rootState[AUTH_FEATURE_KEY] as AuthState).user;

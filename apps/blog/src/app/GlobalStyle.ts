@@ -3,6 +3,11 @@ import { FC } from 'react';
 
 const styles = (theme: Theme) => ({
   '@global': {
+    // Background colors
+    '.bg-primary': {
+      backgroundColor: theme.palette.primary.main,
+    },
+
     // Styling
     '.noScrollBar': {
       scrollbarWidth: 'none',
@@ -23,11 +28,6 @@ const styles = (theme: Theme) => ({
     //Positioning
     '.relative': {
       position: 'relative',
-    },
-
-    // Floating
-    '.float-right': {
-      float: 'right',
     },
 
     // Text

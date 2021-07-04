@@ -63,14 +63,8 @@
         "libs/blog/recipe/data-access/src/index.ts"
       ],
       "@cookingblog/api/recipe/dto": ["libs/api/recipe/dto/src/index.ts"],
-      "@cookingblog/blog/recipe/ui/search": [
-        "libs/blog/recipe/ui/search/src/index.ts"
-      ],
       "@cookingblog/blog/recipe/feature/template": [
         "libs/blog/recipe/feature/template/src/index.ts"
-      ],
-      "@cookingblog/blog/recipe/ui/view": [
-        "libs/blog/recipe/ui/view/src/index.ts"
       ],
       "@cookingblog/blog/ingredient/data-access": [
         "libs/blog/ingredient/data-access/src/index.ts"
@@ -78,12 +72,6 @@
       "@cookingblog/blog/recipe/utils": ["libs/blog/recipe/utils/src/index.ts"],
       "@cookingblog/blog/ingredient/feature/components": [
         "libs/blog/ingredient/feature/components/src/index.ts"
-      ],
-      "@cookingblog/blog/recipe/feature/components": [
-        "libs/blog/recipe/feature/components/src/index.ts"
-      ],
-      "@cookingblog/blog/recipe/ui/add": [
-        "libs/blog/recipe/ui/add/src/index.ts"
       ],
       "@cookingblog/blog/shopping-list/data-access": [
         "libs/blog/shopping-list/data-access/src/index.ts"
@@ -130,8 +118,32 @@
       "@cookingblog/blog/auth/ui/components": [
         "libs/blog/auth/ui/components/src/index.ts"
       ],
-      "@cookingblog/blog/auth/feature/routes": [
-        "libs/blog/auth/feature/routes/src/index.ts"
+      "@cookingblog/blog/home/feature/shell": [
+        "libs/blog/home/feature/shell/src/index.ts"
+      ],
+      "@cookingblog/blog/auth/feature/shell": [
+        "libs/blog/auth/feature/shell/src/index.ts"
+      ],
+      "@cookingblog/blog/home/ui/components": [
+        "libs/blog/home/ui/components/src/index.ts"
+      ],
+      "@cookingblog/blog/home/feature/sidebar": [
+        "libs/blog/home/feature/sidebar/src/index.ts"
+      ],
+      "@cookingblog/blog/recipe/feature/random-recipe": [
+        "libs/blog/recipe/feature/random-recipe/src/index.ts"
+      ],
+      "@cookingblog/blog/recipe/ui/components": [
+        "libs/blog/recipe/ui/components/src/index.ts"
+      ],
+      "@cookingblog/blog/recipe/feature/add": [
+        "libs/blog/recipe/feature/add/src/index.ts"
+      ],
+      "@cookingblog/blog/recipe/feature/search": [
+        "libs/blog/recipe/feature/search/src/index.ts"
+      ],
+      "@cookingblog/blog/recipe/feature/view": [
+        "libs/blog/recipe/feature/view/src/index.ts"
       ]
     }
   },

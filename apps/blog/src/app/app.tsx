@@ -13,27 +13,18 @@ import { ShoppingCart } from '@cookingblog/blog/shopping-list/feature/shopping-c
 const routes = [
   {
     path: '/recipe/add(.*)',
-    view: lazy(() => import('@cookingblog/blog/recipe/ui/add')),
+    view: lazy(() => import('@cookingblog/blog/recipe/feature/add')),
     auth: true,
   },
   {
-    path: '/recipe/search(.*)',
-    view: lazy(() => import('@cookingblog/blog/recipe/ui/search')),
-    auth: false,
-  },
-  {
     path: '/recipe/:id',
-    view: lazy(() => import('@cookingblog/blog/recipe/ui/view')),
-    auth: false,
-  },
-  {
-    path: '/',
-    view: lazy(() => import('@cookingblog/blog/home/ui/home')),
+    view: lazy(() => import('@cookingblog/blog/recipe/feature/view')),
     auth: false,
   },
 ];
 
-const AuthRoutes = lazy(() => import('@cookingblog/blog/auth/feature/routes'));
+const AuthShell = lazy(() => import('@cookingblog/blog/auth/feature/shell'));
+const HomeShell = lazy(() => import('@cookingblog/blog/home/feature/shell'));
 
 export const App = () => {
   const isAuthenticated = useSelector(getAuthenticated);
@@ -43,26 +34,27 @@ export const App = () => {
       <CssBaseline />
       <GlobalStyle />
       <ShoppingListProvider>
-        <Switch>
-          {routes.map((route) => (
-            <Route key={route.path} path={route.path} exact>
-              {!route.auth || isAuthenticated ? (
-                <Suspense fallback={<LoadingSpinner overlay />}>
-                  <route.view />
-                </Suspense>
-              ) : (
-                <Redirect key={route.path} to="/login" />
-              )}
-            </Route>
-          ))}
-          {!isAuthenticated ? (
-            <Suspense fallback={<LoadingSpinner overlay />}>
-              <AuthRoutes />
-            </Suspense>
-          ) : (
-            <Redirect to="/" />
-          )}
-        </Switch>
+        {routes.map((route) => (
+          <Route key={route.path} path={route.path} exact>
+            {!route.auth || isAuthenticated ? (
+              <Suspense fallback={<LoadingSpinner overlay />}>
+                <route.view />
+              </Suspense>
+            ) : (
+              <Redirect key={route.path} to="/login" />
+            )}
+          </Route>
+        ))}
+        {!isAuthenticated ? (
+          <Suspense fallback={<LoadingSpinner overlay />}>
+            <AuthShell />
+          </Suspense>
+        ) : (
+          <Redirect to="/" />
+        )}
+        <Suspense fallback={<LoadingSpinner overlay />}>
+          <HomeShell />
+        </Suspense>
         <ShoppingCart />
       </ShoppingListProvider>
     </MuiThemeProvider>
