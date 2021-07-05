@@ -426,6 +426,7 @@
         "serve": {
           "executor": "@nrwl/web:dev-server",
           "options": {
+            "hmr": true,
             "buildTarget": "blog:build",
             "proxyConfig": "apps/blog/proxy.conf.json",
             "port": 3000
