@@ -15,64 +15,106 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@cookingblog/blog/data-access/*": ["libs/blog/data-access/src/*"],
-      "@cookingblog/shared/web/utils": ["libs/shared/web/utils/src/index.ts"],
-      "@cookingblog/blog/ui/views/*": ["libs/blog/ui/views/src/lib/*"],
-      "@cookingblog/blog/utils": ["libs/blog/utils/src/index.ts"],
-      "@cookingblog/shared/utils": ["libs/shared/utils/src/index.ts"],
-      "@cookingblog/shared/web/hooks": ["libs/shared/web/hooks/src/index.ts"],
-      "@cookingblog/shared/exception": ["libs/shared/exception/src/index.ts"],
-      "@cookingblog/express/api/core": ["libs/express/api/core/src/index.ts"],
-      "@cookingblog/express/api/common": [
-        "libs/express/api/common/src/index.ts"
-      ],
-      "@cookingblog/express/api/cache": ["libs/express/api/cache/src/index.ts"],
-      "@cookingblog/express/api/mongoose": [
-        "libs/express/api/mongoose/src/index.ts"
-      ],
-      "@cookingblog/shared/validator-decorator": [
-        "libs/shared/validator-decorator/src/index.ts"
-      ],
       "@cookingblog/api/auth": ["libs/api/auth/src/index.ts"],
-      "@cookingblog/api/user": ["libs/api/user/src/index.ts"],
+      "@cookingblog/api/auth/dto": ["libs/api/auth/dto/src/index.ts"],
+      "@cookingblog/api/base/queue": ["libs/api/base/queue/src/index.ts"],
       "@cookingblog/api/ingredient": ["libs/api/ingredient/src/index.ts"],
-      "@cookingblog/api/recipe": ["libs/api/recipe/src/index.ts"],
       "@cookingblog/api/interfaces": ["libs/api/interfaces/src/index.ts"],
+      "@cookingblog/api/meal-planner": ["libs/api/meal-planner/src/index.ts"],
+      "@cookingblog/api/queue/mail": ["libs/api/queue/mail/src/index.ts"],
+      "@cookingblog/api/recipe": ["libs/api/recipe/src/index.ts"],
+      "@cookingblog/api/recipe-rank": ["libs/api/recipe-rank/src/index.ts"],
+      "@cookingblog/api/recipe/dto": ["libs/api/recipe/dto/src/index.ts"],
+      "@cookingblog/api/spoonacular/base": [
+        "libs/api/spoonacular/base/src/index.ts"
+      ],
+      "@cookingblog/api/spoonacular/ingredients": [
+        "libs/api/spoonacular/ingredients/src/index.ts"
+      ],
+      "@cookingblog/api/spoonacular/recipes": [
+        "libs/api/spoonacular/recipes/src/index.ts"
+      ],
+      "@cookingblog/api/token": ["libs/api/token/src/index.ts"],
+      "@cookingblog/api/user": ["libs/api/user/src/index.ts"],
       "@cookingblog/blog/auth/data-access": [
         "libs/blog/auth/data-access/src/index.ts"
       ],
-      "@cookingblog/blog/auth/utils": ["libs/blog/auth/utils/src/index.ts"],
-      "@cookingblog/blog/auth/ui/login": [
-        "libs/blog/auth/ui/login/src/index.ts"
-      ],
-      "@cookingblog/blog/auth/ui/register": [
-        "libs/blog/auth/ui/register/src/index.ts"
+      "@cookingblog/blog/auth/feature/shell": [
+        "libs/blog/auth/feature/shell/src/index.ts"
       ],
       "@cookingblog/blog/auth/feature/template": [
         "libs/blog/auth/feature/template/src/index.ts"
       ],
-      "@cookingblog/api/auth/dto": ["libs/api/auth/dto/src/index.ts"],
-      "@cookingblog/blog/home/ui/home": ["libs/blog/home/ui/home/src/index.ts"],
-      "@cookingblog/blog/home/data-access": [
-        "libs/blog/home/data-access/src/index.ts"
+      "@cookingblog/blog/auth/ui/components": [
+        "libs/blog/auth/ui/components/src/index.ts"
+      ],
+      "@cookingblog/blog/auth/ui/login": [
+        "libs/blog/auth/ui/login/src/index.ts"
+      ],
+      "@cookingblog/blog/auth/ui/password-reset": [
+        "libs/blog/auth/ui/password-reset/src/index.ts"
+      ],
+      "@cookingblog/blog/auth/ui/password-reset-request": [
+        "libs/blog/auth/ui/password-reset-request/src/index.ts"
+      ],
+      "@cookingblog/blog/auth/ui/register": [
+        "libs/blog/auth/ui/register/src/index.ts"
+      ],
+      "@cookingblog/blog/auth/utils": ["libs/blog/auth/utils/src/index.ts"],
+      "@cookingblog/blog/data-access/*": ["libs/blog/data-access/src/*"],
+      "@cookingblog/blog/feature/import-recipe-modal": [
+        "libs/blog/feature/import-recipe-modal/src/index.ts"
       ],
       "@cookingblog/blog/feature/tool-box": [
         "libs/blog/feature/tool-box/src/index.ts"
       ],
-      "@cookingblog/blog/recipe/data-access": [
-        "libs/blog/recipe/data-access/src/index.ts"
+      "@cookingblog/blog/home/data-access": [
+        "libs/blog/home/data-access/src/index.ts"
       ],
-      "@cookingblog/api/recipe/dto": ["libs/api/recipe/dto/src/index.ts"],
-      "@cookingblog/blog/recipe/feature/template": [
-        "libs/blog/recipe/feature/template/src/index.ts"
+      "@cookingblog/blog/home/feature/mobile-header": [
+        "libs/blog/home/feature/mobile-header/src/index.ts"
       ],
+      "@cookingblog/blog/home/feature/shell": [
+        "libs/blog/home/feature/shell/src/index.ts"
+      ],
+      "@cookingblog/blog/home/feature/sidebar": [
+        "libs/blog/home/feature/sidebar/src/index.ts"
+      ],
+      "@cookingblog/blog/home/ui/components": [
+        "libs/blog/home/ui/components/src/index.ts"
+      ],
+      "@cookingblog/blog/home/ui/home": ["libs/blog/home/ui/home/src/index.ts"],
       "@cookingblog/blog/ingredient/data-access": [
         "libs/blog/ingredient/data-access/src/index.ts"
       ],
-      "@cookingblog/blog/recipe/utils": ["libs/blog/recipe/utils/src/index.ts"],
       "@cookingblog/blog/ingredient/feature/components": [
         "libs/blog/ingredient/feature/components/src/index.ts"
       ],
+      "@cookingblog/blog/ingredient/utils": [
+        "libs/blog/ingredient/utils/src/index.ts"
+      ],
+      "@cookingblog/blog/recipe/data-access": [
+        "libs/blog/recipe/data-access/src/index.ts"
+      ],
+      "@cookingblog/blog/recipe/feature/add": [
+        "libs/blog/recipe/feature/add/src/index.ts"
+      ],
+      "@cookingblog/blog/recipe/feature/random-recipe": [
+        "libs/blog/recipe/feature/random-recipe/src/index.ts"
+      ],
+      "@cookingblog/blog/recipe/feature/search": [
+        "libs/blog/recipe/feature/search/src/index.ts"
+      ],
+      "@cookingblog/blog/recipe/feature/template": [
+        "libs/blog/recipe/feature/template/src/index.ts"
+      ],
+      "@cookingblog/blog/recipe/feature/view": [
+        "libs/blog/recipe/feature/view/src/index.ts"
+      ],
+      "@cookingblog/blog/recipe/ui/components": [
+        "libs/blog/recipe/ui/components/src/index.ts"
+      ],
+      "@cookingblog/blog/recipe/utils": ["libs/blog/recipe/utils/src/index.ts"],
       "@cookingblog/blog/shopping-list/data-access": [
         "libs/blog/shopping-list/data-access/src/index.ts"
       ],
@@ -88,66 +130,24 @@
       "@cookingblog/blog/ui/components/molecules": [
         "libs/blog/ui/components/molecules/src/index.ts"
       ],
-      "@cookingblog/api/recipe-rank": ["libs/api/recipe-rank/src/index.ts"],
-      "@cookingblog/api/meal-planner": ["libs/api/meal-planner/src/index.ts"],
-      "@cookingblog/api/spoonacular/recipes": [
-        "libs/api/spoonacular/recipes/src/index.ts"
-      ],
       "@cookingblog/blog/ui/error": ["libs/blog/ui/error/src/index.ts"],
-      "@cookingblog/api/spoonacular/ingredients": [
-        "libs/api/spoonacular/ingredients/src/index.ts"
+      "@cookingblog/blog/ui/views/*": ["libs/blog/ui/views/src/lib/*"],
+      "@cookingblog/blog/utils": ["libs/blog/utils/src/index.ts"],
+      "@cookingblog/express/api/cache": ["libs/express/api/cache/src/index.ts"],
+      "@cookingblog/express/api/common": [
+        "libs/express/api/common/src/index.ts"
       ],
-      "@cookingblog/api/spoonacular/base": [
-        "libs/api/spoonacular/base/src/index.ts"
+      "@cookingblog/express/api/core": ["libs/express/api/core/src/index.ts"],
+      "@cookingblog/express/api/mongoose": [
+        "libs/express/api/mongoose/src/index.ts"
       ],
-      "@cookingblog/blog/ingredient/utils": [
-        "libs/blog/ingredient/utils/src/index.ts"
+      "@cookingblog/shared/exception": ["libs/shared/exception/src/index.ts"],
+      "@cookingblog/shared/utils": ["libs/shared/utils/src/index.ts"],
+      "@cookingblog/shared/validator-decorator": [
+        "libs/shared/validator-decorator/src/index.ts"
       ],
-      "@cookingblog/blog/feature/import-recipe-modal": [
-        "libs/blog/feature/import-recipe-modal/src/index.ts"
-      ],
-      "@cookingblog/api/base/queue": ["libs/api/base/queue/src/index.ts"],
-      "@cookingblog/api/queue/mail": ["libs/api/queue/mail/src/index.ts"],
-      "@cookingblog/api/token": ["libs/api/token/src/index.ts"],
-      "@cookingblog/blog/auth/ui/password-reset": [
-        "libs/blog/auth/ui/password-reset/src/index.ts"
-      ],
-      "@cookingblog/blog/auth/ui/password-reset-request": [
-        "libs/blog/auth/ui/password-reset-request/src/index.ts"
-      ],
-      "@cookingblog/blog/auth/ui/components": [
-        "libs/blog/auth/ui/components/src/index.ts"
-      ],
-      "@cookingblog/blog/home/feature/shell": [
-        "libs/blog/home/feature/shell/src/index.ts"
-      ],
-      "@cookingblog/blog/auth/feature/shell": [
-        "libs/blog/auth/feature/shell/src/index.ts"
-      ],
-      "@cookingblog/blog/home/ui/components": [
-        "libs/blog/home/ui/components/src/index.ts"
-      ],
-      "@cookingblog/blog/home/feature/sidebar": [
-        "libs/blog/home/feature/sidebar/src/index.ts"
-      ],
-      "@cookingblog/blog/recipe/feature/random-recipe": [
-        "libs/blog/recipe/feature/random-recipe/src/index.ts"
-      ],
-      "@cookingblog/blog/recipe/ui/components": [
-        "libs/blog/recipe/ui/components/src/index.ts"
-      ],
-      "@cookingblog/blog/recipe/feature/add": [
-        "libs/blog/recipe/feature/add/src/index.ts"
-      ],
-      "@cookingblog/blog/recipe/feature/search": [
-        "libs/blog/recipe/feature/search/src/index.ts"
-      ],
-      "@cookingblog/blog/recipe/feature/view": [
-        "libs/blog/recipe/feature/view/src/index.ts"
-      ],
-      "@cookingblog/blog/home/feature/mobile-header": [
-        "libs/blog/home/feature/mobile-header/src/index.ts"
-      ]
+      "@cookingblog/shared/web/hooks": ["libs/shared/web/hooks/src/index.ts"],
+      "@cookingblog/shared/web/utils": ["libs/shared/web/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

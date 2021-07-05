@@ -4,11 +4,6 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "parserOptions": {
-        "project": [
-          "libs/blog/shopping-list/feature/shopping-cart/tsconfig.*?.json"
-        ]
-      },
       "rules": {}
     },
     {
