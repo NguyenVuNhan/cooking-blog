@@ -51,9 +51,6 @@ const styles = (theme: Theme) => ({
     },
 
     // Flex
-    '.flex': {
-      display: 'flex',
-    },
     '.d-flex': {
       display: 'flex !important',
     },
@@ -120,13 +117,6 @@ const styles = (theme: Theme) => ({
       obj[`.px-${i}`] = {
         paddingLeft: theme.spacing(i),
         paddingRight: theme.spacing(i),
-      };
-      return obj;
-    }, {}),
-    ...[0, 1, 2, 3, 4, 5].reduce(function (obj: Record<string, unknown>, i) {
-      obj[`.py-${i}`] = {
-        paddingTop: theme.spacing(i),
-        paddingBottom: theme.spacing(i),
       };
       return obj;
     }, {}),

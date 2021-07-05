@@ -4,6 +4,7 @@ import { SideBar } from '@cookingblog/blog/home/feature/sidebar';
 import { RandomRecipe } from '@cookingblog/blog/recipe/feature/random-recipe';
 import { Route } from 'react-router-dom';
 import { LoadingSpinner } from '@cookingblog/blog/ui/components/atoms';
+import { MobileHeader } from '@cookingblog/blog/home/feature/mobile-header';
 
 /* eslint-disable-next-line */
 export interface HomeShellProps {}
@@ -26,10 +27,11 @@ export function HomeShell(props: HomeShellProps) {
     <AnimatedRoute exitBeforeEnter>
       {routes.map((route) => (
         <Route key={route.path} path={route.path} exact>
-          <div className="flex w-screen h-screen overflow-hidden">
+          <div className="flex flex-col md:flex md:flex-row w-screen h-screen overflow-hidden">
             <SideBar />
+            <MobileHeader />
             <div className="flex-grow-1">
-              <Suspense fallback={<LoadingSpinner overlay />}>
+              <Suspense fallback={<LoadingSpinner />}>
                 <route.view />
               </Suspense>
             </div>

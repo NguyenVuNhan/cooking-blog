@@ -18,13 +18,17 @@ export function RecipeSearch() {
 
   useEffect(() => {
     const query = getQuery(search.substring(1), 'q') || '';
-    console.log(query);
     trigger(query);
   }, [search]);
 
   return (
     <RecipeTemplate hideGoBack>
-      <Box display="flex" alignItems="center" justifyContent="center">
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        className="hidden md:block"
+      >
         <div>
           <Typography align="center" variant="h1">
             Cooking Blog

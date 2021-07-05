@@ -58,5 +58,6 @@ module.exports = {
     '<rootDir>/libs/blog/home/ui/components',
     '<rootDir>/libs/blog/home/feature/sidebar',
     '<rootDir>/libs/blog/recipe/feature/random-recipe',
+    '<rootDir>/libs/blog/home/feature/mobile-header',
   ],
 };

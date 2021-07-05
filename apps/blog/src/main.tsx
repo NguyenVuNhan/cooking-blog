@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import {
   authApi,
   authReducer,
@@ -9,7 +10,6 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
-import 'reflect-metadata';
 import App from './app/app';
 import './styles.scss';
 

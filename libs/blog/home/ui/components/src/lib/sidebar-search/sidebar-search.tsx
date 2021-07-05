@@ -15,16 +15,17 @@ export function SidebarSearch(props: SidebarSearchProps) {
 
   return (
     <div className="flex flex-col justify-center">
-      <p className="text-4xl text-center">Search</p>
-      <form onSubmit={handleSubmit(onSearch)} className="px-2">
+      <p className="hidden md:block text-4xl text-center">Search</p>
+      <form onSubmit={handleSubmit(onSearch)} className="md:px-2">
         <InputBase
           placeholder="Search recipe or Ingredient"
           inputProps={{ 'aria-label': 'Search recipe' }}
-          className="rounded-full pl-2 w-100 bg-white mt-2 border"
+          className="rounded-full pl-1 md:px-2 bg-white py-0 md:py-2 md:my-2 border"
           inputRef={ref}
           {...rest}
+          fullWidth
           endAdornment={
-            <IconButton type="submit">
+            <IconButton type="submit" size="small">
               <SearchIcon />
             </IconButton>
           }

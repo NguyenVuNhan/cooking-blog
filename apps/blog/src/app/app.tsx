@@ -1,14 +1,14 @@
 import { getAuthenticated } from '@cookingblog/blog/auth/data-access';
+import { ShoppingListProvider } from '@cookingblog/blog/shopping-list/feature/provider';
+import { ShoppingCart } from '@cookingblog/blog/shopping-list/feature/shopping-cart';
 import { LoadingSpinner } from '@cookingblog/blog/ui/components/atoms';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import React, { lazy, Suspense } from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import GlobalStyle from './GlobalStyle';
 import theme from './theme';
-import { ShoppingListProvider } from '@cookingblog/blog/shopping-list/feature/provider';
-import { ShoppingCart } from '@cookingblog/blog/shopping-list/feature/shopping-cart';
 
 const routes = [
   {
@@ -45,13 +45,9 @@ export const App = () => {
             )}
           </Route>
         ))}
-        {!isAuthenticated ? (
-          <Suspense fallback={<LoadingSpinner overlay />}>
-            <AuthShell />
-          </Suspense>
-        ) : (
-          <Redirect to="/" />
-        )}
+        <Suspense fallback={<LoadingSpinner overlay />}>
+          <AuthShell />
+        </Suspense>
         <Suspense fallback={<LoadingSpinner overlay />}>
           <HomeShell />
         </Suspense>

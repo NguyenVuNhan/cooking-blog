@@ -144,6 +144,9 @@
       ],
       "@cookingblog/blog/recipe/feature/view": [
         "libs/blog/recipe/feature/view/src/index.ts"
+      ],
+      "@cookingblog/blog/home/feature/mobile-header": [
+        "libs/blog/home/feature/mobile-header/src/index.ts"
       ]
     }
   },

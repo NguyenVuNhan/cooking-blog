@@ -5,12 +5,6 @@ import {
   SidebarSearch,
   SidebarSearchProps,
 } from '@cookingblog/blog/home/ui/components';
-import { usePrefetch } from '@cookingblog/blog/recipe/data-access';
-import {
-  appendToPath,
-  forwardTo,
-  getDefaultQuery,
-} from '@cookingblog/blog/utils';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import React, { useState } from 'react';
@@ -22,15 +16,10 @@ export interface SideBarProps {}
 
 export function SideBar(props: SideBarProps) {
   const authenticated = useSelector(getAuthenticated);
-  // const [query, setQuery] = useState(getQuery('q') || '');
   const [importRecipeOpen, setImportRecipeOpen] = useState(false);
-  const prefetchRecipe = usePrefetch('searchRecipe');
   const history = useHistory();
 
   const onSearch: SidebarSearchProps['onSearch'] = ({ query }) => {
-    // setQuery(query);
-    // prefetchRecipe(query);
-    // forwardTo(`/search/?q=${query}`);
     history.push({
       pathname: '/search',
       search: `?q=${query}`,
@@ -38,7 +27,10 @@ export function SideBar(props: SideBarProps) {
   };
 
   return (
-    <Paper className="w-[400px] flex flex-col bg-white" elevation={3}>
+    <Paper
+      className="hidden md:w-[400px] md:flex md:flex-col bg-white"
+      elevation={3}
+    >
       <SidebarHeader />
       <div className="flex-grow-1 flex flex-col align-center">
         <div className="h-2/5"></div>

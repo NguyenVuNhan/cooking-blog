@@ -17,10 +17,10 @@ export function RandomRecipe(props: RandomRecipeProps) {
 
   return (
     <div className="w-full h-full flex flex-col">
-      <Typography align="center" variant="h1" className="mb-2">
+      <Typography align="center" variant="h1" className="mb-2 hidden md:block">
         Cooking Blog
       </Typography>
-      <div className="w-full flex-grow-1 flex flex-col justify-center items-center">
+      <div className="w-full flex-grow-1 flex flex-col justify-center items-center px-1">
         <Paper
           className={`flex flex-col overflow-hidden ${classes.recipe} ${
             isLoading && 'loading'
@@ -61,7 +61,7 @@ export function RandomRecipe(props: RandomRecipeProps) {
   );
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   recipe: {
     backgroundImage: `url(/assets/default/recipe.jpg)`,
     backgroundPosition: 'center',
@@ -69,12 +69,15 @@ const useStyles = makeStyles({
     backgroundRepeat: 'no-repeat',
     maxWidth: 400,
     width: '100%',
+    maxHeight: 'calc(100vh - 99px)',
     height: 667,
-    maxHeight: 'calc(100%-20px)',
+    // [theme.breakpoints.up('md')]: {
+    //   height: '100%',
+    // },
     '&.loading': {
       backgroundImage: `url(/assets/default/recipe-loading.png)`,
     },
   },
-});
+}));
 
 export default RandomRecipe;
