@@ -33,11 +33,11 @@
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": ["apps/api/src/assets"],
-            "generatePackageJson": true
+            "assets": ["apps/api/src/assets"]
           },
           "configurations": {
             "production": {
+              "generatePackageJson": true,
               "optimization": true,
               "extractLicenses": true,
               "inspect": false,
@@ -435,16 +435,6 @@
             "production": {
               "buildTarget": "blog:build:production"
             }
-          }
-        },
-        "serveFull": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "commands": [
-              "yarn docker:dev",
-              "sleep 5 && nx run api:serve",
-              "sleep 5 && nx run blog:serve"
-            ]
           }
         },
         "lint": {
