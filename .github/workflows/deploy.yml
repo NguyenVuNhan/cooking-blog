@@ -31,7 +31,7 @@ jobs:
 
       - name: Run Affected Test
         shell: bash
-        run: yarn run affected:test --base=remotes/origin/main
+        run: yarn run affected:test --base=remotes/origin/master
 
   build:
     runs-on: ubuntu-latest
