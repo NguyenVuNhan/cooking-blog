@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -25,6 +25,9 @@ jobs:
 
       - name: Install Packages
         run: yarn install
+
+      - name: Fetch git history
+        run: git fetch origin master
 
       - name: Run Affected Test
         shell: bash
