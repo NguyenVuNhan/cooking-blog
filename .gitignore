@@ -16,6 +16,8 @@
 *.launch
 .settings/
 *.sublime-workspace
+.vim
+.vscode
 
 # IDE - VSCode
 .vscode/*
@@ -39,8 +41,7 @@ testem.log
 .DS_Store
 Thumbs.db
 
-.vim
-.vscode
+# Local 
 .git
 .env
 .env.local

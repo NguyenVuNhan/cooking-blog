@@ -24,7 +24,11 @@ export const store = configureStore({
     [recipeApi.reducerPath]: recipeApi.reducer,
   },
   // Additional middleware can be passed to this array
-  middleware: [...getDefaultMiddleware(), recipeApi.middleware],
+  middleware: [
+    ...getDefaultMiddleware(),
+    authApi.middleware,
+    recipeApi.middleware,
+  ],
   devTools: process.env.NODE_ENV !== 'production',
   enhancers: [],
 });
