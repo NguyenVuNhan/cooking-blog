@@ -33,7 +33,7 @@ describe('Auth reducer', () => {
   });
 
   afterAll(() => {
-    jest.unmock('@cookingblog/shared/data-access/cooking-blog-api');
+    jest.unmock('./auth.service');
     jest.unmock('@cookingblog/blog/utils');
     jest.unmock('@cookingblog/shared/web/utils');
   });
@@ -113,7 +113,7 @@ describe('Auth reducer', () => {
       arg = { email: 'me@myemail.com', password: 'yeetmageet123' };
       result = {
         data: {
-          user: { id: 'id', email: 'me@myemail.com' },
+          user: { id: 'id', email: 'me@myemail.com', name: 'me' },
           token: 'Token',
           exp: 3600,
         },
