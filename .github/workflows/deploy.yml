@@ -4,9 +4,6 @@ on:
   push:
     branches: [master]
 
-env:
-  BEFORE_SHA: ${{ github.event.before }}
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -34,7 +31,7 @@ jobs:
 
       - name: Run Affected Test
         shell: bash
-        run: yarn run affected:test --base=$BEFORE_SHA
+        run: yarn run affected:test --base=remotes/origin/main
 
   build:
     runs-on: ubuntu-latest
