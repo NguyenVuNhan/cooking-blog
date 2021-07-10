@@ -5,9 +5,10 @@ import {
   SidebarSearch,
   SidebarSearchProps,
 } from '@cookingblog/blog/home/ui/components';
+import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ export function SideBar(props: SideBarProps) {
   const authenticated = useSelector(getAuthenticated);
   const [importRecipeOpen, setImportRecipeOpen] = useState(false);
   const history = useHistory();
+  const { openShoppingList } = useContext(ShoppingListCtx);
 
   const onSearch: SidebarSearchProps['onSearch'] = ({ query }) => {
     history.push({
@@ -60,7 +62,11 @@ export function SideBar(props: SideBarProps) {
         </div>
       </div>
       <div className="flex px-3 py-1 justify-center">
-        <Button variant="contained" color="secondary">
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={openShoppingList}
+        >
           View shopping List
         </Button>
       </div>

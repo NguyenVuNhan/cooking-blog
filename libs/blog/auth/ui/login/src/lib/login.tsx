@@ -23,8 +23,8 @@ export function Login() {
   const loginErrors = useSelector(getErrors);
   const dispatch = useDispatch();
 
-  const toRegister = () => forwardTo('/register');
-  const toPasswordReset = () => forwardTo('/password-reset');
+  const toRegister = () => forwardTo('/auth/register');
+  const toPasswordReset = () => forwardTo('/auth/password-reset');
 
   const onSubmit = (data: LoginDTO) => {
     dispatch(authActions.login(data));

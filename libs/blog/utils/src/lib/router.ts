@@ -7,7 +7,7 @@ export const forwardTo = (location: string): void => {
 };
 
 export const toLogin = (): void => {
-  forwardTo('/login');
+  forwardTo('/auth/login');
 };
 
 export const goBack = (): void => {

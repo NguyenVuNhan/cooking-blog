@@ -44,7 +44,7 @@ Dear user,
 
 you have requested a password reset on ${new Date().toString()}. If you want to reset your password, please follow this links
 
-${url}/password-reset/${user}/${token}
+${url}/auth/password-reset/${user}/${token}
 
 If you need assistance, please contact our support at nvn.raspberrypi@gmail.com
 

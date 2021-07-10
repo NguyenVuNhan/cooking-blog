@@ -32,7 +32,7 @@ export function SidebarHeader(props: SidebarHeaderProps) {
       <Toolbar>
         <Avatar src="/assets/default/avatar.png" className="mr-1" />
         {!authenticated ? (
-          <Link to="/login">
+          <Link to="/auth/login">
             <Typography variant="h6">
               {user?.name ?? 'Anonymous User'}
             </Typography>

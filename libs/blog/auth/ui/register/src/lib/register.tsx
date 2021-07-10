@@ -24,8 +24,8 @@ export function Register() {
     formState: { errors },
   } = useForm<RegisterDTO>({ resolver: classValidatorResolver(RegisterDTO) });
 
-  const toPasswordReset = () => forwardTo('/password-reset');
-  const toLogin = () => forwardTo('/login');
+  const toPasswordReset = () => forwardTo('/auth/password-reset');
+  const toLogin = () => forwardTo('/auth/login');
   const [trigger, { error, data, isSuccess }] = useRegisterMutation();
 
   return (

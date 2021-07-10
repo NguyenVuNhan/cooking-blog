@@ -29,7 +29,7 @@ import { useDispatch, useSelector } from 'react-redux';
 export interface MobileDrawerProps {}
 
 export function MobileDrawer(props: MobileDrawerProps) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const authenticated = useSelector(getAuthenticated);
   const user = useSelector(getUser);
   const classes = useStyles();
@@ -39,7 +39,7 @@ export function MobileDrawer(props: MobileDrawerProps) {
   const dispatch = useDispatch();
   const onAuth = () => {
     if (authenticated) return dispatch(authActions.logout());
-    forwardTo('/login');
+    forwardTo('/auth/login');
   };
 
   return (
@@ -83,7 +83,7 @@ export function MobileDrawer(props: MobileDrawerProps) {
               </ListItem>
             </>
           )}
-          <ListItem button onClick={() => openShoppingList()}>
+          <ListItem button onClick={openShoppingList}>
             <ListItemIcon>
               <ShoppingBasketIcon />
             </ListItemIcon>

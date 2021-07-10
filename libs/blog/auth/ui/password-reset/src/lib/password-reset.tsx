@@ -27,7 +27,7 @@ export function PasswordReset() {
     resolver: classValidatorResolver(ResetDTO, { whitelist: true }),
   });
 
-  const toLogin = () => forwardTo('/login');
+  const toLogin = () => forwardTo('/auth/login');
 
   const [trigger, { data, error, isSuccess }] = usePasswordResetMutation();
 

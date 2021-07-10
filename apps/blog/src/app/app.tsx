@@ -2,13 +2,9 @@ import { getAuthenticated } from '@cookingblog/blog/auth/data-access';
 import { ShoppingListProvider } from '@cookingblog/blog/shopping-list/feature/provider';
 import { ShoppingCart } from '@cookingblog/blog/shopping-list/feature/shopping-cart';
 import { LoadingSpinner } from '@cookingblog/blog/ui/components/atoms';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { MuiThemeProvider } from '@material-ui/core/styles';
 import React, { lazy, Suspense } from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect, Route } from 'react-router-dom';
-import GlobalStyle from './GlobalStyle';
-import theme from './theme';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 const routes = [
   {
@@ -30,10 +26,8 @@ export const App = () => {
   const isAuthenticated = useSelector(getAuthenticated);
 
   return (
-    <MuiThemeProvider theme={theme}>
-      <CssBaseline />
-      <GlobalStyle />
-      <ShoppingListProvider>
+    <ShoppingListProvider>
+      <Switch>
         {routes.map((route) => (
           <Route key={route.path} path={route.path} exact>
             {!route.auth || isAuthenticated ? (
@@ -41,19 +35,33 @@ export const App = () => {
                 <route.view />
               </Suspense>
             ) : (
-              <Redirect key={route.path} to="/login" />
+              <Redirect key={route.path} to="/auth/login" />
             )}
           </Route>
         ))}
-        <Suspense fallback={<LoadingSpinner overlay />}>
-          <AuthShell />
-        </Suspense>
-        <Suspense fallback={<LoadingSpinner overlay />}>
-          <HomeShell />
-        </Suspense>
-        <ShoppingCart />
-      </ShoppingListProvider>
-    </MuiThemeProvider>
+        <Route
+          exact
+          path="/auth/(.*)"
+          render={() => {
+            console.log('route');
+
+            return (
+              <Suspense fallback={<LoadingSpinner overlay />}>
+                <AuthShell />
+              </Suspense>
+            );
+          }}
+        />
+        <Route exact path="/">
+          <Suspense fallback={<LoadingSpinner overlay />}>
+            <HomeShell />
+          </Suspense>
+        </Route>
+
+        {/* <Route render={() => <Redirect to="/" />} /> */}
+      </Switch>
+      <ShoppingCart />
+    </ShoppingListProvider>
   );
 };
 

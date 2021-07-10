@@ -20,7 +20,7 @@ export function SidebarSearch(props: SidebarSearchProps) {
         <InputBase
           placeholder="Search recipe or Ingredient"
           inputProps={{ 'aria-label': 'Search recipe' }}
-          className="rounded-full pl-1 md:px-2 bg-white py-0 md:py-2 md:my-2 border"
+          className="rounded-full pl-2 md:px-2 bg-white py-0 md:py-2 md:my-2 border"
           inputRef={ref}
           {...rest}
           fullWidth

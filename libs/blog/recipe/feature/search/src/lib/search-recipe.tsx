@@ -11,10 +11,8 @@ import { useLocation } from 'react-router-dom';
 
 export function RecipeSearch() {
   const { search } = useLocation();
-  const [
-    trigger,
-    { data, error, isLoading, isUninitialized },
-  ] = useLazySearchRecipeQuery();
+  const [trigger, { data, error, isLoading, isUninitialized }] =
+    useLazySearchRecipeQuery();
 
   useEffect(() => {
     const query = getQuery(search.substring(1), 'q') || '';
@@ -22,7 +20,7 @@ export function RecipeSearch() {
   }, [search]);
 
   return (
-    <RecipeTemplate hideGoBack>
+    <RecipeTemplate hideGoBack showToolBox={false}>
       <Box
         display="flex"
         alignItems="center"

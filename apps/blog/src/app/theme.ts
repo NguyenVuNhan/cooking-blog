@@ -8,6 +8,7 @@ const theme = responsiveFontSizes(
     palette: {
       primary: {
         main: deepOrange[900],
+        contrastText: 'white',
       },
       secondary: {
         main: lightBlue['A700'],

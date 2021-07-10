@@ -71,7 +71,7 @@ export function ToolBox(props: ToolBoxProps) {
               tooltipTitle="Login"
               tooltipOpen
               open={open}
-              onClick={() => forwardTo('/login')}
+              onClick={() => forwardTo('/auth/login')}
             />
           )}
           <SpeedDialAction

@@ -17,7 +17,7 @@ export function AuthRoutes(props: AuthRoutesProps) {
   return (
     <AnimatedRoute exitBeforeEnter>
       {routes.map((route, index) => (
-        <Route key={index} path={route.path} exact>
+        <Route key={index} path={`/auth${route.path}`} exact>
           {!isAuthenticated ? (
             <div
               className={`${classes.background} w-screen h-screen d-flex items-center justify-center overflow-hidden`}

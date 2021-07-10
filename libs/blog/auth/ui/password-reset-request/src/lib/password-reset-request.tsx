@@ -24,12 +24,10 @@ export function PasswordResetRequest() {
     resolver: classValidatorResolver(ResetRequestDTO),
   });
 
-  const toLogin = () => forwardTo('/login');
+  const toLogin = () => forwardTo('/auth/login');
 
-  const [
-    trigger,
-    { data, error, isSuccess },
-  ] = useLazyPasswordResetRequestQuery();
+  const [trigger, { data, error, isSuccess }] =
+    useLazyPasswordResetRequestQuery();
 
   const onSubmit = ({ mail }: ResetRequestDTO) => {
     trigger(mail);
