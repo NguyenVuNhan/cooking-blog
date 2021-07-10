@@ -9,8 +9,4 @@ export interface MailJob {
     html?: string;
     generateTextFromHTML?: boolean;
   };
-  htmlAttachments?: {
-    name: string;
-    html: string;
-  }[];
 }
