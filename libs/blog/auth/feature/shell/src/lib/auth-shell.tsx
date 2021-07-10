@@ -30,7 +30,7 @@ export function AuthRoutes(props: AuthRoutesProps) {
                 transition={{
                   type: 'tween',
                   ease: 'anticipate',
-                  duration: 0.4,
+                  duration: 0.3,
                 }}
               >
                 <Suspense fallback={<LoadingSpinner />}>

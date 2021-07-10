@@ -4,6 +4,9 @@ on:
   push:
     branches: [master]
 
+env:
+  BEFORE_SHA: ${{ github.event.before }}
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -13,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 1
+          fetch-depth: 0
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -31,7 +34,7 @@ jobs:
 
       - name: Run Affected Test
         shell: bash
-        run: yarn run affected:test --base=remotes/origin/master
+        run: yarn run affected:test --base=$BEFORE_SHA
 
   build:
     runs-on: ubuntu-latest
