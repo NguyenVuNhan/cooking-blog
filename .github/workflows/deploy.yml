@@ -26,9 +26,6 @@ jobs:
       - name: Install Packages
         run: yarn install
 
-      - name: Fetch git history
-        run: git fetch origin master
-
       - name: Run Affected Test
         shell: bash
         run: yarn run affected:test --base=remotes/origin/master
