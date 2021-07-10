@@ -42,7 +42,7 @@ export function ListRecipe(props: ListRecipeProps) {
               <div className="aspect-w-12 aspect-h-9"></div>
               <CardMedia
                 className="absolute inset-0"
-                image={recipe.image ?? '/assets/default/recipe.webp'}
+                image={recipe.image ?? '/assets/default/recipe.jpg'}
               />
               <CardContent className="flex-grow-1 z-10 bg-gradient-to-t from-black via-grey-900 to-transparent text-white">
                 <Typography variant="h5" className="mt-4">
