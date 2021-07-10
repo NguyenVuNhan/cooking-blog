@@ -30,16 +30,16 @@ export function SidebarHeader(props: SidebarHeaderProps) {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Avatar src="/assets/default/avatar.png" className="mr-1" />
+        <Avatar src="/assets/default/avatar.png" />
         {!authenticated ? (
-          <Link to="/auth/login">
+          <Link to="/auth/login" className="pl-2">
             <Typography variant="h6">
               {user?.name ?? 'Anonymous User'}
             </Typography>
           </Link>
         ) : (
           <>
-            <Typography className="flex-grow-1" variant="h6">
+            <Typography className="flex-grow-1 pl-2" variant="h6">
               {user?.name ?? 'Anonymous User'}
             </Typography>
             <IconButton onClick={onLogout} size="small">

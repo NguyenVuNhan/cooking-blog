@@ -30,7 +30,7 @@ export function HomeShell(props: HomeShellProps) {
           <div className="flex flex-col md:flex md:flex-row w-screen h-screen overflow-hidden">
             <SideBar />
             <MobileHeader />
-            <div className="flex-grow-1">
+            <div className="flex-grow-1 overflow-y-auto">
               <Suspense fallback={<LoadingSpinner />}>
                 <route.view />
               </Suspense>
