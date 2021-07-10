@@ -38,6 +38,7 @@ export function HomeShell(props: HomeShellProps) {
           </div>
         </Route>
       ))}
+      <Route render={() => <Redirect to="/" />} />
     </AnimatedRoute>
   );
 }

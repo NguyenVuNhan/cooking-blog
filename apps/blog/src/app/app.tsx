@@ -26,42 +26,24 @@ export const App = () => {
   const isAuthenticated = useSelector(getAuthenticated);
 
   return (
-    <ShoppingListProvider>
-      <Switch>
-        {routes.map((route) => (
-          <Route key={route.path} path={route.path} exact>
-            {!route.auth || isAuthenticated ? (
-              <Suspense fallback={<LoadingSpinner overlay />}>
+    <Suspense fallback={<LoadingSpinner overlay />}>
+      <ShoppingListProvider>
+        <Switch>
+          {routes.map((route) => (
+            <Route key={route.path} path={route.path} exact>
+              {!route.auth || isAuthenticated ? (
                 <route.view />
-              </Suspense>
-            ) : (
-              <Redirect key={route.path} to="/auth/login" />
-            )}
-          </Route>
-        ))}
-        <Route
-          exact
-          path="/auth/(.*)"
-          render={() => {
-            console.log('route');
-
-            return (
-              <Suspense fallback={<LoadingSpinner overlay />}>
-                <AuthShell />
-              </Suspense>
-            );
-          }}
-        />
-        <Route exact path="/">
-          <Suspense fallback={<LoadingSpinner overlay />}>
-            <HomeShell />
-          </Suspense>
-        </Route>
-
-        {/* <Route render={() => <Redirect to="/" />} /> */}
-      </Switch>
-      <ShoppingCart />
-    </ShoppingListProvider>
+              ) : (
+                <Redirect key={route.path} to="/auth/login" />
+              )}
+            </Route>
+          ))}
+          <Route path="/auth" component={AuthShell} />
+          <Route path="/" component={HomeShell} />
+        </Switch>
+        <ShoppingCart />
+      </ShoppingListProvider>
+    </Suspense>
   );
 };
 

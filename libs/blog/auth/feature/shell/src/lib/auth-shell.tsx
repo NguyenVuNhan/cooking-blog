@@ -43,6 +43,7 @@ export function AuthRoutes(props: AuthRoutesProps) {
           )}
         </Route>
       ))}
+      <Route render={() => <Redirect to="/" />} />
     </AnimatedRoute>
   );
 }
