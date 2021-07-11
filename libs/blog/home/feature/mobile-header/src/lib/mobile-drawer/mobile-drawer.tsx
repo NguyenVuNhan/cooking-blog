@@ -3,9 +3,9 @@ import {
   getAuthenticated,
   getUser,
 } from '@cookingblog/blog/auth/data-access';
-import { ImportRecipeModal } from '@cookingblog/blog/feature/import-recipe-modal';
+import { ImportRecipeModal } from '@cookingblog/blog/shared/feature/import-recipe-modal';
 import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
-import { forwardTo } from '@cookingblog/blog/utils';
+import { forwardTo } from '@cookingblog/blog/shared/utils';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';

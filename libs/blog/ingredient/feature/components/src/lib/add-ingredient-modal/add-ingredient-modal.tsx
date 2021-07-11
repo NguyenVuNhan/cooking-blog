@@ -1,7 +1,7 @@
 import { AddRecipeReq } from '@cookingblog/api/interfaces';
 import { RecipeDTO } from '@cookingblog/api/recipe/dto';
-import { TextField } from '@cookingblog/blog/ui/components/atoms';
-import { ErrorBadge } from '@cookingblog/blog/ui/components/molecules';
+import { TextField } from '@cookingblog/blog/shared/ui/components/atoms';
+import { ErrorBadge } from '@cookingblog/blog/shared/ui/components/molecules';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -68,7 +68,7 @@ export function AddIngredientModal(props: AddIngredientModalProps) {
       <DialogContent dividers>
         <Grid item sm={12}>
           <ErrorBadge
-            message={((errors.ingredients as unknown) as FieldError)?.message}
+            message={(errors.ingredients as unknown as FieldError)?.message}
           />
         </Grid>
         {fields.map((ingredient, index) => (
@@ -79,7 +79,7 @@ export function AddIngredientModal(props: AddIngredientModalProps) {
                   control={control}
                   label="Ingredients"
                   name={`ingredients.${index}.ingredient`}
-                  defaultValue={ingredient.ingredient}
+                  defaultValue={ingredient.ingredient ?? ''}
                   fullWidth
                   margin="none"
                   size="small"
@@ -96,7 +96,7 @@ export function AddIngredientModal(props: AddIngredientModalProps) {
                 <TextField
                   label="quantity"
                   {...register(`ingredients.${index}.quantity` as const)}
-                  defaultValue={ingredient.quantity}
+                  defaultValue={ingredient.quantity ?? ''}
                   fullWidth
                   margin="none"
                   size="small"

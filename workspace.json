@@ -476,6 +476,98 @@
         }
       }
     },
+    "blog-auth-feature-login": {
+      "root": "libs/blog/auth/feature/login",
+      "sourceRoot": "libs/blog/auth/feature/login/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/auth/feature/login/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/auth/feature/login"],
+          "options": {
+            "jestConfig": "libs/blog/auth/feature/login/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-auth-feature-password-reset": {
+      "root": "libs/blog/auth/feature/password-reset",
+      "sourceRoot": "libs/blog/auth/feature/password-reset/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/auth/feature/password-reset/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/auth/feature/password-reset"],
+          "options": {
+            "jestConfig": "libs/blog/auth/feature/password-reset/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-auth-feature-password-reset-request": {
+      "root": "libs/blog/auth/feature/password-reset-request",
+      "sourceRoot": "libs/blog/auth/feature/password-reset-request/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/auth/feature/password-reset-request/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/auth/feature/password-reset-request"],
+          "options": {
+            "jestConfig": "libs/blog/auth/feature/password-reset-request/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-auth-feature-register": {
+      "root": "libs/blog/auth/feature/register",
+      "sourceRoot": "libs/blog/auth/feature/register/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/auth/feature/register/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/auth/feature/register"],
+          "options": {
+            "jestConfig": "libs/blog/auth/feature/register/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "blog-auth-feature-shell": {
       "root": "libs/blog/auth/feature/shell",
       "sourceRoot": "libs/blog/auth/feature/shell/src",
@@ -494,29 +586,6 @@
           "outputs": ["coverage/libs/blog/auth/feature/shell"],
           "options": {
             "jestConfig": "libs/blog/auth/feature/shell/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "blog-auth-feature-template": {
-      "root": "libs/blog/auth/feature/template",
-      "sourceRoot": "libs/blog/auth/feature/template/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/blog/auth/feature/template/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/blog/auth/feature/template"],
-          "options": {
-            "jestConfig": "libs/blog/auth/feature/template/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -545,91 +614,24 @@
         }
       }
     },
-    "blog-auth-ui-login": {
-      "root": "libs/blog/auth/ui/login",
-      "sourceRoot": "libs/blog/auth/ui/login/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/blog/auth/ui/login/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/blog/auth/ui/login"],
-          "options": {
-            "jestConfig": "libs/blog/auth/ui/login/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "blog-auth-ui-password-reset": {
-      "root": "libs/blog/auth/ui/password-reset",
-      "sourceRoot": "libs/blog/auth/ui/password-reset/src",
+    "blog-auth-ui-template": {
+      "root": "libs/blog/auth/ui/template",
+      "sourceRoot": "libs/blog/auth/ui/template/src",
       "projectType": "library",
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/blog/auth/ui/password-reset/**/*.{ts,tsx,js,jsx}"
+              "libs/blog/auth/ui/template/**/*.{ts,tsx,js,jsx}"
             ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/blog/auth/ui/password-reset"],
+          "outputs": ["coverage/libs/blog/auth/ui/template"],
           "options": {
-            "jestConfig": "libs/blog/auth/ui/password-reset/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "blog-auth-ui-password-reset-request": {
-      "root": "libs/blog/auth/ui/password-reset-request",
-      "sourceRoot": "libs/blog/auth/ui/password-reset-request/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/blog/auth/ui/password-reset-request/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/blog/auth/ui/password-reset-request"],
-          "options": {
-            "jestConfig": "libs/blog/auth/ui/password-reset-request/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "blog-auth-ui-register": {
-      "root": "libs/blog/auth/ui/register",
-      "sourceRoot": "libs/blog/auth/ui/register/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/blog/auth/ui/register/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/blog/auth/ui/register"],
-          "options": {
-            "jestConfig": "libs/blog/auth/ui/register/jest.config.js",
+            "jestConfig": "libs/blog/auth/ui/template/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -678,52 +680,6 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/blog-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "blog-feature-import-recipe-modal": {
-      "root": "libs/blog/feature/import-recipe-modal",
-      "sourceRoot": "libs/blog/feature/import-recipe-modal/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/blog/feature/import-recipe-modal/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/blog/feature/import-recipe-modal"],
-          "options": {
-            "jestConfig": "libs/blog/feature/import-recipe-modal/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "blog-feature-tool-box": {
-      "root": "libs/blog/feature/tool-box",
-      "sourceRoot": "libs/blog/feature/tool-box/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/blog/feature/tool-box/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/blog/feature/tool-box"],
-          "options": {
-            "jestConfig": "libs/blog/feature/tool-box/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -838,27 +794,6 @@
           "outputs": ["coverage/libs/blog/home/ui/components"],
           "options": {
             "jestConfig": "libs/blog/home/ui/components/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "blog-home-ui-home": {
-      "root": "libs/blog/home/ui/home",
-      "sourceRoot": "libs/blog/home/ui/home/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/blog/home/ui/home/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/blog/home/ui/home"],
-          "options": {
-            "jestConfig": "libs/blog/home/ui/home/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -1025,24 +960,24 @@
         }
       }
     },
-    "blog-recipe-feature-template": {
-      "root": "libs/blog/recipe/feature/template",
-      "sourceRoot": "libs/blog/recipe/feature/template/src",
+    "blog-recipe-feature-shell": {
+      "root": "libs/blog/recipe/feature/shell",
+      "sourceRoot": "libs/blog/recipe/feature/shell/src",
       "projectType": "library",
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/blog/recipe/feature/template/**/*.{ts,tsx,js,jsx}"
+              "libs/blog/recipe/feature/shell/**/*.{ts,tsx,js,jsx}"
             ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/blog/recipe/feature/template"],
+          "outputs": ["coverage/libs/blog/recipe/feature/shell"],
           "options": {
-            "jestConfig": "libs/blog/recipe/feature/template/jest.config.js",
+            "jestConfig": "libs/blog/recipe/feature/shell/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -1094,6 +1029,29 @@
         }
       }
     },
+    "blog-recipe-ui-template": {
+      "root": "libs/blog/recipe/ui/template",
+      "sourceRoot": "libs/blog/recipe/ui/template/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/recipe/ui/template/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/recipe/ui/template"],
+          "options": {
+            "jestConfig": "libs/blog/recipe/ui/template/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "blog-recipe-utils": {
       "root": "libs/blog/recipe/utils",
       "sourceRoot": "libs/blog/recipe/utils/src",
@@ -1110,6 +1068,142 @@
           "outputs": ["coverage/libs/blog/recipe/utils"],
           "options": {
             "jestConfig": "libs/blog/recipe/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-shared-feature-import-recipe-modal": {
+      "root": "libs/blog/shared/feature/import-recipe-modal",
+      "sourceRoot": "libs/blog/shared/feature/import-recipe-modal/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/shared/feature/import-recipe-modal/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/shared/feature/import-recipe-modal"],
+          "options": {
+            "jestConfig": "libs/blog/shared/feature/import-recipe-modal/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-shared-feature-tool-box": {
+      "root": "libs/blog/shared/feature/tool-box",
+      "sourceRoot": "libs/blog/shared/feature/tool-box/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/shared/feature/tool-box/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/shared/feature/tool-box"],
+          "options": {
+            "jestConfig": "libs/blog/shared/feature/tool-box/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-shared-ui-components-atoms": {
+      "root": "libs/blog/shared/ui/components/atoms",
+      "sourceRoot": "libs/blog/shared/ui/components/atoms/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/shared/ui/components/atoms/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/shared/ui/components/atoms"],
+          "options": {
+            "jestConfig": "libs/blog/shared/ui/components/atoms/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-shared-ui-components-molecules": {
+      "root": "libs/blog/shared/ui/components/molecules",
+      "sourceRoot": "libs/blog/shared/ui/components/molecules/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/shared/ui/components/molecules/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/shared/ui/components/molecules"],
+          "options": {
+            "jestConfig": "libs/blog/shared/ui/components/molecules/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-shared-ui-error": {
+      "root": "libs/blog/shared/ui/error",
+      "sourceRoot": "libs/blog/shared/ui/error/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/blog/shared/ui/error/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/shared/ui/error"],
+          "options": {
+            "jestConfig": "libs/blog/shared/ui/error/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-shared-utils": {
+      "root": "libs/blog/shared/utils",
+      "sourceRoot": "libs/blog/shared/utils/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/blog/shared/utils/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/shared/utils"],
+          "options": {
+            "jestConfig": "libs/blog/shared/utils/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -1184,89 +1278,24 @@
         }
       }
     },
-    "blog-ui-components-atoms": {
-      "root": "libs/blog/ui/components/atoms",
-      "sourceRoot": "libs/blog/ui/components/atoms/src",
+    "blog-shopping-list-ui": {
+      "root": "libs/blog/shopping-list/ui",
+      "sourceRoot": "libs/blog/shopping-list/ui/src",
       "projectType": "library",
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/blog/ui/components/atoms/**/*.{ts,tsx,js,jsx}"
+              "libs/blog/shopping-list/ui/**/*.{ts,tsx,js,jsx}"
             ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/blog/ui/components/atoms"],
+          "outputs": ["coverage/libs/blog/shopping-list/ui"],
           "options": {
-            "jestConfig": "libs/blog/ui/components/atoms/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "blog-ui-components-molecules": {
-      "root": "libs/blog/ui/components/molecules",
-      "sourceRoot": "libs/blog/ui/components/molecules/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/blog/ui/components/molecules/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/blog/ui/components/molecules"],
-          "options": {
-            "jestConfig": "libs/blog/ui/components/molecules/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "blog-ui-error": {
-      "root": "libs/blog/ui/error",
-      "sourceRoot": "libs/blog/ui/error/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/blog/ui/error/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/blog/ui/error"],
-          "options": {
-            "jestConfig": "libs/blog/ui/error/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "blog-utils": {
-      "root": "libs/blog/utils",
-      "sourceRoot": "libs/blog/utils/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/blog/utils/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/blog/utils"],
-          "options": {
-            "jestConfig": "libs/blog/utils/jest.config.js",
+            "jestConfig": "libs/blog/shopping-list/ui/jest.config.js",
             "passWithNoTests": true
           }
         }

@@ -1,4 +1,4 @@
-import { getDefaultQuery } from '@cookingblog/blog/utils';
+import { getDefaultQuery } from '@cookingblog/blog/shared/utils';
 import { useState } from 'react';
 import { useExtractRecipeQuery } from '../apis/recipe.api';
 

@@ -1,4 +1,4 @@
-import { RTKQueryError } from '@cookingblog/blog/ui/error';
+import { RTKQueryError } from '@cookingblog/blog/shared/ui/error';
 import { getUserId } from '@cookingblog/blog/auth/data-access';
 import { EditIngredientModal } from '@cookingblog/blog/ingredient/feature/components';
 import {
@@ -10,15 +10,15 @@ import {
   EditStepGroup,
   RecipeTitleEdit,
 } from '@cookingblog/blog/recipe/ui/components';
-import { RecipeTemplate } from '@cookingblog/blog/recipe/feature/template';
+import { RecipeTemplate } from '@cookingblog/blog/recipe/ui/template';
 import { strToDuration } from '@cookingblog/blog/recipe/utils';
 import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
 import {
   EditButton,
   LoadingSpinner,
   ToShoppingListButton,
-} from '@cookingblog/blog/ui/components/atoms';
-import { TimerSnackbar } from '@cookingblog/blog/ui/components/molecules';
+} from '@cookingblog/blog/shared/ui/components/atoms';
+import { TimerSnackbar } from '@cookingblog/blog/shared/ui/components/molecules';
 import { mapStringMatch } from '@cookingblog/shared/utils';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
@@ -48,9 +48,8 @@ export function ViewRecipe() {
   const { data: recipe, isLoading, error } = useGetRecipeQuery(id);
   const userId = useSelector(getUserId);
 
-  const { addAllToShoppingList, addOneToShoppingList, removeItem } = useContext(
-    ShoppingListCtx
-  );
+  const { addAllToShoppingList, addOneToShoppingList, removeItem } =
+    useContext(ShoppingListCtx);
 
   const [ingredientEdit, setIngredientEdit] = useState(false);
   const [stepEdit, setStepEdit] = useState(false);
@@ -126,7 +125,7 @@ export function ViewRecipe() {
       </Dialog>
       {!titleEdit ? (
         <>
-          <Typography variant="h2" align="center" noWrap>
+          <Typography variant="h2" align="center">
             <Box fontWeight="fontWeightBold" pb={2}>
               {recipe?.title}
             </Box>

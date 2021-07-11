@@ -1,9 +1,9 @@
-import { AnimatedRoute } from '@cookingblog/blog/ui/components/molecules';
+import { AnimatedRoute } from '@cookingblog/blog/shared/ui/components/molecules';
 import React, { lazy, Suspense } from 'react';
 import { SideBar } from '@cookingblog/blog/home/feature/sidebar';
 import { RandomRecipe } from '@cookingblog/blog/recipe/feature/random-recipe';
 import { Redirect, Route } from 'react-router-dom';
-import { LoadingSpinner } from '@cookingblog/blog/ui/components/atoms';
+import { LoadingSpinner } from '@cookingblog/blog/shared/ui/components/atoms';
 import { MobileHeader } from '@cookingblog/blog/home/feature/mobile-header';
 
 /* eslint-disable-next-line */

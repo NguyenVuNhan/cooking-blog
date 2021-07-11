@@ -1,5 +1,5 @@
 import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
-import { AislesView, RecipesView } from './components';
+import { AislesView, RecipesView } from '@cookingblog/blog/shopping-list/ui';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -16,10 +16,9 @@ import React, { useContext, useState } from 'react';
 /* eslint-disable-next-line */
 export interface ShoppingCartProps {}
 
-export function ShoppingCart() {
-  const { open, closeShoppingList, clearShoppingList } = useContext(
-    ShoppingListCtx
-  );
+export function ShoppingCart(props: ShoppingCartProps) {
+  const { open, closeShoppingList, clearShoppingList } =
+    useContext(ShoppingListCtx);
   const [view, setView] = useState<'aisles' | 'recipes'>('aisles');
 
   let listView;

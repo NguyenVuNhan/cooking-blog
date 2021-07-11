@@ -1,9 +1,9 @@
 import { useLazySearchRecipeQuery } from '@cookingblog/blog/recipe/data-access';
-import { RecipeTemplate } from '@cookingblog/blog/recipe/feature/template';
+import { RecipeTemplate } from '@cookingblog/blog/recipe/ui/template';
 import { ListRecipe } from '@cookingblog/blog/recipe/ui/components';
-import { LoadingSpinner } from '@cookingblog/blog/ui/components/atoms';
-import { RTKQueryError } from '@cookingblog/blog/ui/error';
-import { getQuery } from '@cookingblog/blog/utils';
+import { LoadingSpinner } from '@cookingblog/blog/shared/ui/components/atoms';
+import { RTKQueryError } from '@cookingblog/blog/shared/ui/error';
+import { getQuery } from '@cookingblog/blog/shared/utils';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import React, { useEffect } from 'react';

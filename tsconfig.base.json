@@ -39,35 +39,29 @@
       "@cookingblog/blog/auth/data-access": [
         "libs/blog/auth/data-access/src/index.ts"
       ],
+      "@cookingblog/blog/auth/feature/login": [
+        "libs/blog/auth/feature/login/src/index.ts"
+      ],
+      "@cookingblog/blog/auth/feature/password-reset": [
+        "libs/blog/auth/feature/password-reset/src/index.ts"
+      ],
+      "@cookingblog/blog/auth/feature/password-reset-request": [
+        "libs/blog/auth/feature/password-reset-request/src/index.ts"
+      ],
+      "@cookingblog/blog/auth/feature/register": [
+        "libs/blog/auth/feature/register/src/index.ts"
+      ],
       "@cookingblog/blog/auth/feature/shell": [
         "libs/blog/auth/feature/shell/src/index.ts"
-      ],
-      "@cookingblog/blog/auth/feature/template": [
-        "libs/blog/auth/feature/template/src/index.ts"
       ],
       "@cookingblog/blog/auth/ui/components": [
         "libs/blog/auth/ui/components/src/index.ts"
       ],
-      "@cookingblog/blog/auth/ui/login": [
-        "libs/blog/auth/ui/login/src/index.ts"
-      ],
-      "@cookingblog/blog/auth/ui/password-reset": [
-        "libs/blog/auth/ui/password-reset/src/index.ts"
-      ],
-      "@cookingblog/blog/auth/ui/password-reset-request": [
-        "libs/blog/auth/ui/password-reset-request/src/index.ts"
-      ],
-      "@cookingblog/blog/auth/ui/register": [
-        "libs/blog/auth/ui/register/src/index.ts"
+      "@cookingblog/blog/auth/ui/template": [
+        "libs/blog/auth/ui/template/src/index.ts"
       ],
       "@cookingblog/blog/auth/utils": ["libs/blog/auth/utils/src/index.ts"],
       "@cookingblog/blog/data-access/*": ["libs/blog/data-access/src/*"],
-      "@cookingblog/blog/feature/import-recipe-modal": [
-        "libs/blog/feature/import-recipe-modal/src/index.ts"
-      ],
-      "@cookingblog/blog/feature/tool-box": [
-        "libs/blog/feature/tool-box/src/index.ts"
-      ],
       "@cookingblog/blog/home/data-access": [
         "libs/blog/home/data-access/src/index.ts"
       ],
@@ -83,7 +77,6 @@
       "@cookingblog/blog/home/ui/components": [
         "libs/blog/home/ui/components/src/index.ts"
       ],
-      "@cookingblog/blog/home/ui/home": ["libs/blog/home/ui/home/src/index.ts"],
       "@cookingblog/blog/ingredient/data-access": [
         "libs/blog/ingredient/data-access/src/index.ts"
       ],
@@ -105,8 +98,8 @@
       "@cookingblog/blog/recipe/feature/search": [
         "libs/blog/recipe/feature/search/src/index.ts"
       ],
-      "@cookingblog/blog/recipe/feature/template": [
-        "libs/blog/recipe/feature/template/src/index.ts"
+      "@cookingblog/blog/recipe/feature/shell": [
+        "libs/blog/recipe/feature/shell/src/index.ts"
       ],
       "@cookingblog/blog/recipe/feature/view": [
         "libs/blog/recipe/feature/view/src/index.ts"
@@ -114,7 +107,26 @@
       "@cookingblog/blog/recipe/ui/components": [
         "libs/blog/recipe/ui/components/src/index.ts"
       ],
+      "@cookingblog/blog/recipe/ui/template": [
+        "libs/blog/recipe/ui/template/src/index.ts"
+      ],
       "@cookingblog/blog/recipe/utils": ["libs/blog/recipe/utils/src/index.ts"],
+      "@cookingblog/blog/shared/feature/import-recipe-modal": [
+        "libs/blog/shared/feature/import-recipe-modal/src/index.ts"
+      ],
+      "@cookingblog/blog/shared/feature/tool-box": [
+        "libs/blog/shared/feature/tool-box/src/index.ts"
+      ],
+      "@cookingblog/blog/shared/ui/components/atoms": [
+        "libs/blog/shared/ui/components/atoms/src/index.ts"
+      ],
+      "@cookingblog/blog/shared/ui/components/molecules": [
+        "libs/blog/shared/ui/components/molecules/src/index.ts"
+      ],
+      "@cookingblog/blog/shared/ui/error": [
+        "libs/blog/shared/ui/error/src/index.ts"
+      ],
+      "@cookingblog/blog/shared/utils": ["libs/blog/shared/utils/src/index.ts"],
       "@cookingblog/blog/shopping-list/data-access": [
         "libs/blog/shopping-list/data-access/src/index.ts"
       ],
@@ -124,15 +136,10 @@
       "@cookingblog/blog/shopping-list/feature/shopping-cart": [
         "libs/blog/shopping-list/feature/shopping-cart/src/index.ts"
       ],
-      "@cookingblog/blog/ui/components/atoms": [
-        "libs/blog/ui/components/atoms/src/index.ts"
+      "@cookingblog/blog/shopping-list/ui": [
+        "libs/blog/shopping-list/ui/src/index.ts"
       ],
-      "@cookingblog/blog/ui/components/molecules": [
-        "libs/blog/ui/components/molecules/src/index.ts"
-      ],
-      "@cookingblog/blog/ui/error": ["libs/blog/ui/error/src/index.ts"],
       "@cookingblog/blog/ui/views/*": ["libs/blog/ui/views/src/lib/*"],
-      "@cookingblog/blog/utils": ["libs/blog/utils/src/index.ts"],
       "@cookingblog/express/api/cache": ["libs/express/api/cache/src/index.ts"],
       "@cookingblog/express/api/common": [
         "libs/express/api/common/src/index.ts"

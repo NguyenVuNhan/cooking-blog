@@ -21,7 +21,8 @@ import {
 
 export class RecipeService
   extends BaseService<IRecipeModel>
-  implements IRecipeService {
+  implements IRecipeService
+{
   repo: IRecipeRepository;
   ingredientService: IIngredientService;
   spoonacularRecipesService: ISpoonacularRecipesService;
@@ -52,10 +53,10 @@ export class RecipeService
       throw new AlreadyExistsError('Recipe already exists');
     }
 
-    const ingredientPromises: Promise<IRecipeIngredient>[] = extractedRecipe.extendedIngredients
-      .filter(({ name }) => name ?? false)
-      .map(
-        async (ingredient): Promise<IRecipeIngredient> => {
+    const ingredientPromises: Promise<IRecipeIngredient>[] =
+      extractedRecipe.extendedIngredients
+        .filter(({ name }) => name ?? false)
+        .map(async (ingredient): Promise<IRecipeIngredient> => {
           const raw_data = ingredient.originalString;
           const findIngredient = await this.ingredientService.findOne({
             name: ingredient.name,
@@ -71,7 +72,6 @@ export class RecipeService
                   )
                 ).possibleUnits
               : [];
-            !ingredient.name && console.log(ingredient);
 
             const newIngredient = await this.ingredientService.create({
               name: ingredient.name,
@@ -90,8 +90,7 @@ export class RecipeService
             unit: ingredient.unit,
             raw_data: raw_data,
           };
-        }
-      );
+        });
     // Check ingredient list
     const ingredients = await Promise.all(ingredientPromises);
     const ingredientsStr = ingredients.map((v) => v.ingredient_name).join(', ');
@@ -204,29 +203,30 @@ export class RecipeService
   private async addNewIngredients(
     recipe: Partial<IRecipeModel>
   ): Promise<{ ingredients: IRecipeIngredient[]; ingredientsStr: string }> {
-    const ingredientPromises: Promise<IRecipeIngredient>[] = recipe.ingredients.map(
-      async ({ quantity, ingredient }): Promise<IRecipeIngredient> => {
-        const raw_data = (quantity ? quantity + ' of ' : '') + ingredient;
-        const data = await this.spoonacularRecipesService.parseIngredients(
-          raw_data
-        );
-        const name = ingredient.toLowerCase();
-        const newIngredient = await this.ingredientService.create({
-          name,
-          image: data.image,
-          possibleUnits: data.possibleUnits,
-          aisle: data.aisle,
-        });
+    const ingredientPromises: Promise<IRecipeIngredient>[] =
+      recipe.ingredients.map(
+        async ({ quantity, ingredient }): Promise<IRecipeIngredient> => {
+          const raw_data = (quantity ? quantity + ' of ' : '') + ingredient;
+          const data = await this.spoonacularRecipesService.parseIngredients(
+            raw_data
+          );
+          const name = ingredient.toLowerCase();
+          const newIngredient = await this.ingredientService.create({
+            name,
+            image: data.image,
+            possibleUnits: data.possibleUnits,
+            aisle: data.aisle,
+          });
 
-        return {
-          ingredient: newIngredient.id as string,
-          ingredient_name: name,
-          quantity: data.amount,
-          unit: data.unit,
-          raw_data,
-        };
-      }
-    );
+          return {
+            ingredient: newIngredient.id as string,
+            ingredient_name: name,
+            quantity: data.amount,
+            unit: data.unit,
+            raw_data,
+          };
+        }
+      );
 
     // Add new ingredients to database
     const ingredients = await Promise.all(ingredientPromises);

@@ -76,25 +76,25 @@
     "blog-auth-data-access": {
       "tags": []
     },
-    "blog-auth-feature-shell": {
+    "blog-auth-feature-login": {
       "tags": []
     },
-    "blog-auth-feature-template": {
+    "blog-auth-feature-password-reset": {
+      "tags": []
+    },
+    "blog-auth-feature-password-reset-request": {
+      "tags": []
+    },
+    "blog-auth-feature-register": {
+      "tags": []
+    },
+    "blog-auth-feature-shell": {
       "tags": []
     },
     "blog-auth-ui-components": {
       "tags": []
     },
-    "blog-auth-ui-login": {
-      "tags": []
-    },
-    "blog-auth-ui-password-reset": {
-      "tags": []
-    },
-    "blog-auth-ui-password-reset-request": {
-      "tags": []
-    },
-    "blog-auth-ui-register": {
+    "blog-auth-ui-template": {
       "tags": []
     },
     "blog-auth-utils": {
@@ -103,12 +103,6 @@
     "blog-e2e": {
       "tags": [],
       "implicitDependencies": ["blog"]
-    },
-    "blog-feature-import-recipe-modal": {
-      "tags": []
-    },
-    "blog-feature-tool-box": {
-      "tags": []
     },
     "blog-home-data-access": {
       "tags": []
@@ -123,9 +117,6 @@
       "tags": []
     },
     "blog-home-ui-components": {
-      "tags": []
-    },
-    "blog-home-ui-home": {
       "tags": []
     },
     "blog-ingredient-data-access": {
@@ -149,7 +140,7 @@
     "blog-recipe-feature-search": {
       "tags": []
     },
-    "blog-recipe-feature-template": {
+    "blog-recipe-feature-shell": {
       "tags": []
     },
     "blog-recipe-feature-view": {
@@ -158,7 +149,28 @@
     "blog-recipe-ui-components": {
       "tags": []
     },
+    "blog-recipe-ui-template": {
+      "tags": []
+    },
     "blog-recipe-utils": {
+      "tags": []
+    },
+    "blog-shared-feature-import-recipe-modal": {
+      "tags": []
+    },
+    "blog-shared-feature-tool-box": {
+      "tags": []
+    },
+    "blog-shared-ui-components-atoms": {
+      "tags": []
+    },
+    "blog-shared-ui-components-molecules": {
+      "tags": []
+    },
+    "blog-shared-ui-error": {
+      "tags": []
+    },
+    "blog-shared-utils": {
       "tags": []
     },
     "blog-shopping-list-data-access": {
@@ -170,16 +182,7 @@
     "blog-shopping-list-feature-shopping-cart": {
       "tags": []
     },
-    "blog-ui-components-atoms": {
-      "tags": []
-    },
-    "blog-ui-components-molecules": {
-      "tags": []
-    },
-    "blog-ui-error": {
-      "tags": []
-    },
-    "blog-utils": {
+    "blog-shopping-list-ui": {
       "tags": []
     },
     "express-api-cache": {

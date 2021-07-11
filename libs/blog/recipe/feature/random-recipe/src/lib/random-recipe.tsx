@@ -1,8 +1,12 @@
+import AutorenewIcon from '@material-ui/icons/Autorenew';
 import UndoIcon from '@material-ui/icons/Undo';
 import RedoIcon from '@material-ui/icons/Redo';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { useGetRandomRecipeQuery } from '@cookingblog/blog/recipe/data-access';
+import {
+  useGetRandomRecipeQuery,
+  usePrefetch,
+} from '@cookingblog/blog/recipe/data-access';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,6 +18,11 @@ export interface RandomRecipeProps {}
 export function RandomRecipe(props: RandomRecipeProps) {
   const classes = useStyles();
   const { data, isLoading, refetch } = useGetRandomRecipeQuery({});
+  const prefetchRecipe = usePrefetch('getRecipe');
+
+  useEffect(() => {
+    data && data.id && prefetchRecipe(data.id);
+  }, [data]);
 
   return (
     <div className="w-full h-full flex flex-col">
@@ -25,11 +34,16 @@ export function RandomRecipe(props: RandomRecipeProps) {
           className={`flex flex-col overflow-hidden ${classes.recipe} ${
             isLoading && 'loading'
           }`}
+          style={{
+            backgroundImage: `url(${
+              data?.image ?? '/assets/default/recipe.jpg'
+            })`,
+          }}
           elevation={3}
         >
           <span className="flex-grow-1"></span>
           {data && (
-            <div className="px-2 pt-10 pb-2 bg-gradient-to-t from-black to-transparent text-white">
+            <div className="px-2 pt-16 pb-2 bg-gradient-to-t from-black to-transparent text-white">
               <Link className="text-4xl" to={`/recipe/${data.id}`}>
                 {data.title}
               </Link>
@@ -39,20 +53,8 @@ export function RandomRecipe(props: RandomRecipeProps) {
             </div>
           )}
           <div className="flex w-full justify-center bg-black pb-2 px-2">
-            <IconButton
-              onClick={() => refetch()}
-              color="secondary"
-              size="medium"
-            >
-              <UndoIcon fontSize="large" />
-            </IconButton>
-            <span className="px-2"></span>
-            <IconButton
-              onClick={() => refetch()}
-              color="secondary"
-              size="medium"
-            >
-              <RedoIcon fontSize="large" />
+            <IconButton onClick={refetch} color="secondary" size="medium">
+              <AutorenewIcon fontSize="large" />
             </IconButton>
           </div>
         </Paper>
@@ -61,9 +63,8 @@ export function RandomRecipe(props: RandomRecipeProps) {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   recipe: {
-    backgroundImage: `url(/assets/default/recipe.jpg)`,
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
@@ -71,13 +72,10 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     maxHeight: 'calc(100vh - 99px)',
     height: 667,
-    // [theme.breakpoints.up('md')]: {
-    //   height: '100%',
-    // },
     '&.loading': {
-      backgroundImage: `url(/assets/default/recipe-loading.png)`,
+      backgroundImage: `url(/assets/default/recipe-loading.jpg)`,
     },
   },
-}));
+});
 
 export default RandomRecipe;

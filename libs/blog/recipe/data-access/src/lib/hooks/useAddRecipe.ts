@@ -11,6 +11,7 @@ export const useAddRecipe = () => {
 
   useEffect(() => {
     if (!isUninitialized && isSuccess) {
+      history.push('/');
       history.push(`/recipe/${data.id}`);
     }
   }, [isSuccess, isUninitialized, data, history]);

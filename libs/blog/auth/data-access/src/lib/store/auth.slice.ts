@@ -6,7 +6,7 @@ import {
   RegisterRes,
 } from '@cookingblog/api/interfaces';
 import { clearAuthToken, setAuthToken } from '@cookingblog/blog/auth/utils';
-import { forwardTo } from '@cookingblog/blog/utils';
+import { forwardTo } from '@cookingblog/blog/shared/utils';
 import {
   isFulfilledAction,
   isPendingAction,

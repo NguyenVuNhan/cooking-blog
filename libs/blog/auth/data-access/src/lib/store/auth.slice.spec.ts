@@ -1,6 +1,6 @@
 import { authReducer, authActions } from './auth.slice';
 import * as authServices from './auth.service';
-import { forwardTo } from '@cookingblog/blog/utils';
+import { forwardTo } from '@cookingblog/blog/shared/utils';
 import { AsyncThunkAction, Dispatch } from '@reduxjs/toolkit';
 import {
   LoginReq,

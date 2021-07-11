@@ -1,5 +1,5 @@
 import { getAuthenticated } from '@cookingblog/blog/auth/data-access';
-import { ImportRecipeModal } from '@cookingblog/blog/feature/import-recipe-modal';
+import { ImportRecipeModal } from '@cookingblog/blog/shared/feature/import-recipe-modal';
 import {
   SidebarHeader,
   SidebarSearch,

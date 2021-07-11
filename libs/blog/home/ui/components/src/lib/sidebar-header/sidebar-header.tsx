@@ -3,7 +3,7 @@ import {
   getAuthenticated,
   getUser,
 } from '@cookingblog/blog/auth/data-access';
-import { forwardTo } from '@cookingblog/blog/utils';
+import { forwardTo } from '@cookingblog/blog/shared/utils';
 import AppBar from '@material-ui/core/AppBar';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';

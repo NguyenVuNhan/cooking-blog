@@ -7,12 +7,12 @@ import {
   useExtractRecipe,
 } from '@cookingblog/blog/recipe/data-access';
 import { AddStepGroup } from '@cookingblog/blog/recipe/ui/components';
-import { RecipeTemplate } from '@cookingblog/blog/recipe/feature/template';
+import { RecipeTemplate } from '@cookingblog/blog/recipe/ui/template';
 import {
   LoadingSpinner,
   TextField,
-} from '@cookingblog/blog/ui/components/atoms';
-import { ErrorBadge } from '@cookingblog/blog/ui/components/molecules';
+} from '@cookingblog/blog/shared/ui/components/atoms';
+import { ErrorBadge } from '@cookingblog/blog/shared/ui/components/molecules';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
@@ -50,7 +50,6 @@ export function AddRecipe() {
   useEffect(() => {
     if (data) {
       setIngredients(data.ingredients.map((v) => v.ingredient_name));
-      console.log(mapIngredients(data.ingredients));
 
       reset({ ...data, ingredients: mapIngredients(data.ingredients) });
     }
@@ -90,13 +89,13 @@ export function AddRecipe() {
                 ?.data}
             />
             <ErrorBadge
-              message={((errors.steps as unknown) as FieldError)?.message}
+              message={(errors.steps as unknown as FieldError)?.message}
             />
             <ErrorBadge
-              message={((errors.ingredients as unknown) as FieldError)?.message}
+              message={(errors.ingredients as unknown as FieldError)?.message}
             />
           </Grid>
-          <Grid item sm={8}>
+          <Grid item xs={12} sm={8}>
             <TextField
               {...register('title')}
               defaultValue={data?.title}
@@ -108,7 +107,7 @@ export function AddRecipe() {
             />
           </Grid>
 
-          <Grid item sm={2}>
+          <Grid item xs={6} sm={2}>
             <TextField
               label="Serving"
               {...register('serving', { valueAsNumber: true })}
@@ -121,7 +120,7 @@ export function AddRecipe() {
             />
           </Grid>
 
-          <Grid item sm={2}>
+          <Grid item xs={6} sm={2}>
             <TextField
               label="Duration"
               {...register('duration')}
@@ -129,7 +128,6 @@ export function AddRecipe() {
               error={!!errors.duration}
               helperText={errors.duration?.message}
               fullWidth
-              InputLabelProps={{ shrink: !!data?.duration }}
             />
           </Grid>
 

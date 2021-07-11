@@ -1,6 +1,6 @@
 import { UpdateRecipeReq } from '@cookingblog/api/interfaces';
 import { RecipeDTO } from '@cookingblog/api/recipe/dto';
-import { TextField } from '@cookingblog/blog/ui/components/atoms';
+import { TextField } from '@cookingblog/blog/shared/ui/components/atoms';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';

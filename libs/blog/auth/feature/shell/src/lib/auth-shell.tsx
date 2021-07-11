@@ -1,9 +1,9 @@
-import { LoadingSpinner } from '@cookingblog/blog/ui/components/atoms';
+import { LoadingSpinner } from '@cookingblog/blog/shared/ui/components/atoms';
 import { makeStyles } from '@material-ui/core/styles';
 import { motion } from 'framer-motion';
 import React, { lazy, Suspense } from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { AnimatedRoute } from '@cookingblog/blog/ui/components/molecules';
+import { AnimatedRoute } from '@cookingblog/blog/shared/ui/components/molecules';
 import { routes } from './routes';
 import { useSelector } from 'react-redux';
 import { getAuthenticated } from '@cookingblog/blog/auth/data-access';
