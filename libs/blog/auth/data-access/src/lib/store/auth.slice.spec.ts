@@ -11,7 +11,7 @@ import {
 import { clearAuthToken, setAuthToken } from '@cookingblog/blog/auth/utils';
 
 jest.mock('./auth.service');
-jest.mock('@cookingblog/blog/utils');
+jest.mock('@cookingblog/blog/shared/utils');
 jest.mock('@cookingblog/blog/auth/utils');
 
 type AuthServicesMockType = jest.Mocked<typeof authServices>;
@@ -34,7 +34,7 @@ describe('Auth reducer', () => {
 
   afterAll(() => {
     jest.unmock('./auth.service');
-    jest.unmock('@cookingblog/blog/utils');
+    jest.unmock('@cookingblog/blog/shared/utils');
     jest.unmock('@cookingblog/shared/web/utils');
   });
 
