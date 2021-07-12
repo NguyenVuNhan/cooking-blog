@@ -20,12 +20,12 @@ export interface IAuthService {
   /**
    * User login service
    *
-   * @param {string} email user email
+   * @param {string} emailOrName user email
    * @param {string} password user password
    * @returns {IUserModel & JWTToken} user info and jwt token
    */
   login(
-    email: string,
+    emailOrName: string,
     password: string,
     jwtOptions?: JWTOptions
   ): Promise<JWTToken & { user: IUserModel }>;

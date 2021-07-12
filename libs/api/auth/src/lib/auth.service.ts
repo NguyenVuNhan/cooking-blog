@@ -77,11 +77,11 @@ export class AuthService implements IAuthService {
   }
 
   async login(
-    email: string,
+    emailOrName: string,
     password: string,
     jwtOptions?: { appSecret: string; expiresIn: number }
   ): Promise<JWTToken & { user: IUserModel }> {
-    const user = await this.userService.get(email);
+    const user = await this.userService.get(emailOrName);
 
     if (!(await compare(password, user.password)))
       throw new ValidationError('Password not match');

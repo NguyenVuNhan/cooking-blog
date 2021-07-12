@@ -59,9 +59,9 @@ export class AuthController extends Controller {
   }
 
   private async login(req: Request, res: Response) {
-    const { email, password } = req.body;
+    const { emailOrName, password } = req.body as LoginDTO;
 
-    const data = await this.authService.login(email, password, {
+    const data = await this.authService.login(emailOrName, password, {
       appSecret: req.app.locals.appSecret,
       expiresIn: req.app.locals.jwtExpiresIn * 60,
     });

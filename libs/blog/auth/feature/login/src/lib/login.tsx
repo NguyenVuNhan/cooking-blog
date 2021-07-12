@@ -41,11 +41,10 @@ export function Login() {
       </Grid>
       <Grid item xs={12}>
         <TextField
-          label="Email Address"
-          {...register('email')}
-          error={!!errors.email}
-          helperText={errors.email?.message}
-          type="email"
+          label="Email Or User name"
+          {...register('emailOrName')}
+          error={!!errors.emailOrName}
+          helperText={errors.emailOrName?.message}
           fullWidth
           InputProps={{
             startAdornment: (
