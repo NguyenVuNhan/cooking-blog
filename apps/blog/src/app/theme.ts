@@ -1,7 +1,6 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import type {} from '@material-ui/lab/themeAugmentation';
-import deepOrange from '@material-ui/core/colors/deepOrange';
-import lightBlue from '@material-ui/core/colors/lightBlue';
+import { deepOrange, lightBlue } from '@material-ui/core/colors';
 
 const theme = responsiveFontSizes(
   createMuiTheme({

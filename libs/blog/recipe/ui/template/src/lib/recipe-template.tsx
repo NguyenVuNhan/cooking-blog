@@ -1,9 +1,8 @@
 import { ToolBox } from '@cookingblog/blog/shared/feature/tool-box';
 import { goBack } from '@cookingblog/blog/shared/utils';
-import Container from '@material-ui/core/Container';
-import IconButton from '@material-ui/core/IconButton';
+import { Container, IconButton } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 export interface RecipeTemplateProps {
   children?: ReactNode;

@@ -4,9 +4,8 @@ import { ListRecipe } from '@cookingblog/blog/recipe/ui/components';
 import { LoadingSpinner } from '@cookingblog/blog/shared/ui/components/atoms';
 import { RTKQueryError } from '@cookingblog/blog/shared/ui/error';
 import { getQuery } from '@cookingblog/blog/shared/utils';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import React, { useEffect } from 'react';
+import { Box, Typography } from '@material-ui/core';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export function RecipeSearch() {

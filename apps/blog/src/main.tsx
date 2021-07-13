@@ -6,7 +6,7 @@ import {
 } from '@cookingblog/blog/auth/data-access';
 import { recipeApi } from '@cookingblog/blog/recipe/data-access';
 import { history } from '@cookingblog/blog/shared/utils';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { CssBaseline } from '@material-ui/core';
 import { MuiThemeProvider, StylesProvider } from '@material-ui/core/styles';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import * as ReactDOM from 'react-dom';

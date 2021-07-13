@@ -1,8 +1,9 @@
-import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import MuiTextField, {
+import {
+  IconButton,
+  InputAdornment,
+  TextField as MuiTextField,
   TextFieldProps as MuiTextFieldProps,
-} from '@material-ui/core/TextField';
+} from '@material-ui/core';
 import LockIcon from '@material-ui/icons/Lock';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';

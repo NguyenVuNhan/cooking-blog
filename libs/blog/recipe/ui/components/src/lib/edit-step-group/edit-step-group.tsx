@@ -1,9 +1,8 @@
 import { RecipeDTO } from '@cookingblog/api/recipe/dto';
 import { AddStepGroup } from '@cookingblog/blog/recipe/ui/components';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import React, { useRef } from 'react';
+import { Button, Grid } from '@material-ui/core';
+import { useRef } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 export interface EditStepGroupProps {

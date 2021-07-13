@@ -1,21 +1,19 @@
 import { RegisterDTO } from '@cookingblog/api/auth/dto';
-import { PasswordField } from '@cookingblog/blog/auth/ui/components';
-import EmailIcon from '@material-ui/icons/Email';
 import { ErrorRes } from '@cookingblog/api/interfaces';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { useRegisterMutation } from '@cookingblog/blog/auth/data-access';
+import { PasswordField } from '@cookingblog/blog/auth/ui/components';
 import { AuthTemplate } from '@cookingblog/blog/auth/ui/template';
 import { TextField } from '@cookingblog/blog/shared/ui/components/atoms';
 import { ErrorBadge } from '@cookingblog/blog/shared/ui/components/molecules';
 import { forwardTo } from '@cookingblog/blog/shared/utils';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
+import { Button, Grid, InputAdornment } from '@material-ui/core';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import EmailIcon from '@material-ui/icons/Email';
 import Alert from '@material-ui/lab/Alert/Alert';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import InputAdornment from '@material-ui/core/InputAdornment';
 
 export function Register() {
   const {

@@ -1,7 +1,5 @@
 import SearchIcon from '@material-ui/icons/Search';
-import IconButton from '@material-ui/core/IconButton';
-import InputBase from '@material-ui/core/InputBase';
-import React from 'react';
+import { IconButton, InputBase } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 
 export interface SidebarSearchProps {

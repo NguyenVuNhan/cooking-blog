@@ -1,5 +1,4 @@
 import { ResetRequestDTO } from '@cookingblog/api/auth/dto';
-import EmailIcon from '@material-ui/icons/Email';
 import { ErrorRes } from '@cookingblog/api/interfaces';
 import { useLazyPasswordResetRequestQuery } from '@cookingblog/blog/auth/data-access';
 import { AuthTemplate } from '@cookingblog/blog/auth/ui/template';
@@ -7,9 +6,8 @@ import { TextField } from '@cookingblog/blog/shared/ui/components/atoms';
 import { ErrorBadge } from '@cookingblog/blog/shared/ui/components/molecules';
 import { forwardTo } from '@cookingblog/blog/shared/utils';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import InputAdornment from '@material-ui/core/InputAdornment';
+import { Button, Grid, InputAdornment } from '@material-ui/core';
+import EmailIcon from '@material-ui/icons/Email';
 import Alert from '@material-ui/lab/Alert';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import React from 'react';

@@ -5,7 +5,7 @@ import {
 import { ImportRecipeModal } from '@cookingblog/blog/shared/feature/import-recipe-modal';
 import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
 import { forwardTo } from '@cookingblog/blog/shared/utils';
-import Backdrop from '@material-ui/core/Backdrop';
+import { Backdrop } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AddIcon from '@material-ui/icons/Add';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';

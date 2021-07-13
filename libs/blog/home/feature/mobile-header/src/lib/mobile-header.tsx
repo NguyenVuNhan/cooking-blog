@@ -1,15 +1,12 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import CloseIcon from '@material-ui/icons/Close';
 import {
   SidebarSearch,
   SidebarSearchProps,
 } from '@cookingblog/blog/home/ui/components';
-import AppBar from '@material-ui/core/AppBar';
-import IconButton from '@material-ui/core/IconButton';
+import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import CloseIcon from '@material-ui/icons/Close';
 import SearchIcon from '@material-ui/icons/Search';
+import { AnimatePresence, motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import MobileDrawer from './mobile-drawer/mobile-drawer';

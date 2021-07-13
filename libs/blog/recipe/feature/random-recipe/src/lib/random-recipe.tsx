@@ -1,15 +1,11 @@
-import AutorenewIcon from '@material-ui/icons/Autorenew';
-import UndoIcon from '@material-ui/icons/Undo';
-import RedoIcon from '@material-ui/icons/Redo';
-import React, { useEffect } from 'react';
-import Typography from '@material-ui/core/Typography';
 import {
   useGetRandomRecipeQuery,
   usePrefetch,
 } from '@cookingblog/blog/recipe/data-access';
-import Paper from '@material-ui/core/Paper';
+import { Paper, IconButton, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
+import AutorenewIcon from '@material-ui/icons/Autorenew';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 /* eslint-disable-next-line */

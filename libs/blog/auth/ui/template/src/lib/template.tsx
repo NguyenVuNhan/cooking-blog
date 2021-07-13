@@ -1,9 +1,11 @@
-import { makeStyles } from '@material-ui/core';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import React, { FormEventHandler, ReactNode } from 'react';
+import {
+  Container,
+  Grid,
+  makeStyles,
+  Paper,
+  Typography,
+} from '@material-ui/core';
+import { FormEventHandler, ReactNode } from 'react';
 
 export interface AuthTemplateProps {
   children?: ReactNode;

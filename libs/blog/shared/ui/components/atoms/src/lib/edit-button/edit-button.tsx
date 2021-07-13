@@ -1,6 +1,6 @@
-import React, { MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 import EditIcon from '@material-ui/icons/Edit';
-import IconButton from '@material-ui/core/IconButton';
+import { IconButton } from '@material-ui/core';
 
 export interface EditButtonProps {
   show?: boolean;

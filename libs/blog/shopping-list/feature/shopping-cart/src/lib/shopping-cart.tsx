@@ -1,17 +1,19 @@
 import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
 import { AislesView, RecipesView } from '@cookingblog/blog/shopping-list/ui';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Divider,
+  IconButton,
+  Typography,
+} from '@material-ui/core';
 import BookIcon from '@material-ui/icons/Book';
 import ClearAllIcon from '@material-ui/icons/ClearAll';
 import CloseIcon from '@material-ui/icons/Close';
 import ListAltIcon from '@material-ui/icons/ListAlt';
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 
 /* eslint-disable-next-line */
 export interface ShoppingCartProps {}

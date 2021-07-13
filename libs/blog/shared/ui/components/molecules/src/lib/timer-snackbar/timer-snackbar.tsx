@@ -1,8 +1,11 @@
 import { useInterval } from '@cookingblog/shared/web/hooks';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import Snackbar, { SnackbarCloseReason } from '@material-ui/core/Snackbar';
+import {
+  LinearProgress,
+  Snackbar,
+  SnackbarCloseReason,
+} from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
-import React, { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 
 /* eslint-disable-next-line */
 export interface TimerSnackbarProps {

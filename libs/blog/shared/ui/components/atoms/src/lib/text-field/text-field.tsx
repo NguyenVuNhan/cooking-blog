@@ -1,7 +1,8 @@
 import React, { forwardRef } from 'react';
-import MuiTextField, {
+import {
+  TextField as MuiTextField,
   TextFieldProps as MuiTextFieldProps,
-} from '@material-ui/core/TextField';
+} from '@material-ui/core';
 
 export type TextFieldProps = MuiTextFieldProps & {
   thisRef?: MuiTextFieldProps['ref'];

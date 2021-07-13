@@ -2,11 +2,10 @@ import {
   ShoppingListCtx,
   ShoppingListItem,
 } from '@cookingblog/blog/shopping-list/data-access';
-import List from '@material-ui/core/List';
-import { AnimatePresence, motion } from 'framer-motion';
-import ListItemAnimation from '../list-item-animation/list-item-animation';
+import { List } from '@material-ui/core';
 import React, { useContext, useMemo } from 'react';
 import AislesViewItem from '../aisles-view-item/aisles-view-item';
+import ListItemAnimation from '../list-item-animation/list-item-animation';
 
 interface ShoppingList {
   [key: string]: ShoppingListItem[];

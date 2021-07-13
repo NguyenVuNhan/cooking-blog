@@ -3,7 +3,7 @@ import {
   ShoppingListCtx,
   ShoppingListItem,
 } from '@cookingblog/blog/shopping-list/data-access';
-import Snackbar from '@material-ui/core/Snackbar';
+import { Snackbar } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import React, { FC, useEffect, useState } from 'react';
 

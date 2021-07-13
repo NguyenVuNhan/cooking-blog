@@ -1,16 +1,13 @@
 import { LoginDTO } from '@cookingblog/api/auth/dto';
 import { authActions, getErrors } from '@cookingblog/blog/auth/data-access';
-import { AuthTemplate } from '@cookingblog/blog/auth/ui/template';
 import { PasswordField } from '@cookingblog/blog/auth/ui/components';
+import { AuthTemplate } from '@cookingblog/blog/auth/ui/template';
 import { TextField } from '@cookingblog/blog/shared/ui/components/atoms';
 import { ErrorBadge } from '@cookingblog/blog/shared/ui/components/molecules';
 import { forwardTo } from '@cookingblog/blog/shared/utils';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import InputAdornment from '@material-ui/core/InputAdornment';
+import { Button, Grid, InputAdornment } from '@material-ui/core';
 import EmailIcon from '@material-ui/icons/Email';
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 

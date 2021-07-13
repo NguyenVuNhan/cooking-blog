@@ -1,14 +1,15 @@
 import { IRecipe } from '@cookingblog/api/recipe';
 import { forwardTo } from '@cookingblog/blog/shared/utils';
-import { CardMedia } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Grid,
+  Typography,
+} from '@material-ui/core';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import React from 'react';
 
 export interface ListRecipeProps {
   recipes: IRecipe[];

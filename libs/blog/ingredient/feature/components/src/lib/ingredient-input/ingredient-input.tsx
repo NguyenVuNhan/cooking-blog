@@ -1,11 +1,10 @@
-import TextField, { TextFieldProps } from '@material-ui/core/TextField';
-import React, { useRef, useState } from 'react';
-import { Control, Controller, Path, PathValue } from 'react-hook-form';
+import { getIngredients } from '@cookingblog/blog/ingredient/data-access';
 import { mapStringMatch, throttle } from '@cookingblog/shared/utils';
 import { useIsMounted } from '@cookingblog/shared/web/hooks';
+import { CircularProgress, TextField, TextFieldProps } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { getIngredients } from '@cookingblog/blog/ingredient/data-access';
+import React, { useRef, useState } from 'react';
+import { Control, Controller, Path, PathValue } from 'react-hook-form';
 
 export interface IngredientInputProps<TFieldValues>
   extends Omit<TextFieldProps, 'name'> {

@@ -408,7 +408,7 @@
                             "extractCss": true,
                             "namedChunks": false,
                             "extractLicenses": true,
-                            "vendorChunk": false,
+                            "vendorChunk": true,
                             "budgets": [{
                                 "type": "initial",
                                 "maximumWarning": "2mb",

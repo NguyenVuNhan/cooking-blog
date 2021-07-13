@@ -6,9 +6,8 @@ import {
   SidebarSearchProps,
 } from '@cookingblog/blog/home/ui/components';
 import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
-import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
-import React, { useContext, useState } from 'react';
+import { Button, Paper } from '@material-ui/core';
+import { useContext, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 

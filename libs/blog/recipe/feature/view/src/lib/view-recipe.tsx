@@ -1,4 +1,3 @@
-import { RTKQueryError } from '@cookingblog/blog/shared/ui/error';
 import { getUserId } from '@cookingblog/blog/auth/data-access';
 import { EditIngredientModal } from '@cookingblog/blog/ingredient/feature/components';
 import {
@@ -12,29 +11,32 @@ import {
 } from '@cookingblog/blog/recipe/ui/components';
 import { RecipeTemplate } from '@cookingblog/blog/recipe/ui/template';
 import { strToDuration } from '@cookingblog/blog/recipe/utils';
-import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
 import {
   EditButton,
   LoadingSpinner,
   ToShoppingListButton,
 } from '@cookingblog/blog/shared/ui/components/atoms';
 import { TimerSnackbar } from '@cookingblog/blog/shared/ui/components/molecules';
+import { RTKQueryError } from '@cookingblog/blog/shared/ui/error';
+import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
 import { mapStringMatch } from '@cookingblog/shared/utils';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+import {
+  Box,
+  Button,
+  Dialog,
+  Divider,
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  Typography,
+} from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import CloseIcon from '@material-ui/icons/Close';
 import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
-import React, { Fragment, SyntheticEvent, useContext, useState } from 'react';
+import { Fragment, SyntheticEvent, useContext, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
