@@ -14,7 +14,7 @@ export interface EditIngredientModalProps {
 }
 
 export function EditIngredientModal(props: EditIngredientModalProps) {
-  const { defaultIngredients, onUpdate, ...rest } = props;
+  const { defaultIngredients = [], onUpdate, ...rest } = props;
   const formMethods = useForm<UpdateRecipeReq>({
     resolver: classValidatorResolver(RecipeDTO),
     defaultValues: {

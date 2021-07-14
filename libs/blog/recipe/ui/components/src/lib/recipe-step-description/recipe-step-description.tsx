@@ -1,4 +1,3 @@
-import { IRecipeStep } from '@cookingblog/api/recipe';
 import { strToDuration } from '@cookingblog/blog/recipe/utils';
 import { mapStringMatch } from '@cookingblog/shared/utils';
 import { Box } from '@material-ui/core';
@@ -6,15 +5,15 @@ import { memo } from 'react';
 
 export interface RecipeStepDescriptionProps {
   description: string;
-  startTimer: (number) => () => void;
+  onDurationClick: (number) => () => void;
 }
 
 export const RecipeStepDescription = memo<RecipeStepDescriptionProps>(
   (props) => {
-    const { description, startTimer } = props;
+    const { description, onDurationClick } = props;
 
     return (
-      <Box lineHeight={2}>
+      <Box lineHeight={2} component="p">
         <strong>Description:</strong>
         {mapStringMatch(
           description,
@@ -28,9 +27,9 @@ export const RecipeStepDescription = memo<RecipeStepDescriptionProps>(
                 component="a"
                 bgcolor="primary.main"
                 color="white"
-                className="px-1 py-1 rounded font-semibold"
+                className="px-1 py-1 rounded font-semibold cursor-pointer"
                 key={i}
-                onClick={startTimer(duration)}
+                onClick={onDurationClick(duration)}
               >
                 {val}
               </Box>
@@ -39,7 +38,8 @@ export const RecipeStepDescription = memo<RecipeStepDescriptionProps>(
         )}
       </Box>
     );
-  }
+  },
+  (prev, next) => prev.description === next.description
 );
 
 export default RecipeStepDescription;

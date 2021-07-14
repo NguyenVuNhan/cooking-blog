@@ -5,9 +5,8 @@ import {
   SnackbarCloseReason,
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useEffect, useRef, useState } from 'react';
 
-/* eslint-disable-next-line */
 export interface TimerSnackbarProps {
   open: boolean;
   duration: number;
@@ -19,16 +18,24 @@ const tick = 1000;
 
 export function TimerSnackbar(props: TimerSnackbarProps) {
   const { open, onClose, duration } = props;
-  const [progress, setProgress] = useState(tick);
+
+  const progress = useRef<number>(tick);
   const [time, setTime] = useState<{ h: number; m: number; s: number }>({
     h: 0,
     m: 0,
     s: 0,
   });
 
+  useEffect(() => {
+    progress.current = tick;
+  }, [open]);
+
   useInterval(() => {
-    setProgress(progress + tick > duration ? duration : progress + tick);
-    const remain = (duration - progress) / 1000;
+    progress.current = progress.current + tick;
+    if (progress.current >= duration) {
+      progress.current = duration;
+    }
+    const remain = (duration - progress.current) / 1000;
     const s = Math.ceil(remain % 60);
     const m = Math.floor((remain % (60 * 60)) / 60);
     const h = Math.floor(remain / (60 * 60));
@@ -48,7 +55,7 @@ export function TimerSnackbar(props: TimerSnackbarProps) {
         </Alert>
         <LinearProgress
           variant="determinate"
-          value={(progress * 100) / duration}
+          value={(progress.current * 100) / duration}
         />
       </div>
     </Snackbar>
