@@ -7,25 +7,21 @@ import {
 } from '@cookingblog/blog/recipe/data-access';
 import {
   EditStepGroup,
+  RecipeStep,
   RecipeTitleEdit,
 } from '@cookingblog/blog/recipe/ui/components';
 import { RecipeTemplate } from '@cookingblog/blog/recipe/ui/template';
-import { strToDuration } from '@cookingblog/blog/recipe/utils';
 import {
   EditButton,
   LoadingSpinner,
   ToShoppingListButton,
 } from '@cookingblog/blog/shared/ui/components/atoms';
-import { TimerSnackbar } from '@cookingblog/blog/shared/ui/components/molecules';
 import { RTKQueryError } from '@cookingblog/blog/shared/ui/error';
 import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
-import { mapStringMatch } from '@cookingblog/shared/utils';
 import {
   Box,
   Button,
-  Dialog,
   Divider,
-  IconButton,
   List,
   ListItem,
   ListItemIcon,
@@ -33,10 +29,7 @@ import {
 } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import CloseIcon from '@material-ui/icons/Close';
-import Alert from '@material-ui/lab/Alert';
-import AlertTitle from '@material-ui/lab/AlertTitle';
-import { Fragment, SyntheticEvent, useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -56,30 +49,6 @@ export function ViewRecipe() {
   const [ingredientEdit, setIngredientEdit] = useState(false);
   const [stepEdit, setStepEdit] = useState(false);
   const [titleEdit, setTitleEdit] = useState(false);
-  const [timerOpen, setTimerOpen] = useState(false);
-  const [timeoutOpen, setTimeoutOpen] = useState(false);
-  const [duration, setDuration] = useState(0);
-
-  const handleClose = () => {
-    setTimeoutOpen(false);
-  };
-
-  const startTimer = (duration: number) => () => {
-    setTimerOpen(false);
-    setDuration(duration);
-    setTimerOpen(true);
-  };
-
-  const closeTimer = (_?: SyntheticEvent, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setTimerOpen(false);
-    if (reason === 'timeout') {
-      setTimeoutOpen(true);
-    }
-  };
 
   const isOwner = recipe?.user === userId;
 
@@ -94,37 +63,7 @@ export function ViewRecipe() {
         handleClose={() => setIngredientEdit(false)}
         onUpdate={updateRecipe}
       />
-      {timerOpen && (
-        <TimerSnackbar
-          onClose={closeTimer}
-          open={timerOpen}
-          duration={duration}
-        />
-      )}
-      <Dialog
-        open={timeoutOpen}
-        onClose={handleClose}
-        aria-labelledby="responsive-dialog-title"
-      >
-        <Alert
-          severity="warning"
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="small"
-              onClick={() => {
-                setTimeoutOpen(false);
-              }}
-            >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
-          }
-        >
-          <AlertTitle>Time out</AlertTitle>
-          Ding Ding Ding
-        </Alert>
-      </Dialog>
+
       {!titleEdit ? (
         <>
           <Typography variant="h2" align="center">
@@ -189,43 +128,7 @@ export function ViewRecipe() {
       {/* Steps */}
       {!stepEdit ? (
         recipe?.steps.map((step, index) => (
-          <Fragment key={index}>
-            <Divider variant="middle" className="my-1" />
-            <Box key={index} py={2}>
-              <Typography variant="h5" align="left" noWrap>
-                <Box fontWeight={500}>Step {index + 1}:</Box>
-              </Typography>
-              <p>
-                <span className="font-semibold">Ingredients:</span>{' '}
-                {step.ingredients.join(', ')}
-              </p>
-              <Box lineHeight={2}>
-                <strong>Description:</strong>
-                {mapStringMatch(
-                  step.description,
-                  /(\d\d*\s*(?:-\s*\d\d*\s*)?\w*)/g,
-                  (val, match, i) =>
-                    !match ? (
-                      val
-                    ) : (
-                      <Box
-                        component="a"
-                        bgcolor="primary.main"
-                        color="white"
-                        px={0.8}
-                        py={0.3}
-                        borderRadius={10}
-                        fontWeight={500}
-                        key={i}
-                        onClick={startTimer(strToDuration(val))}
-                      >
-                        {val}
-                      </Box>
-                    )
-                )}
-              </Box>
-            </Box>
-          </Fragment>
+          <RecipeStep step={step} index={index + 1} key={index} />
         ))
       ) : (
         <EditStepGroup
