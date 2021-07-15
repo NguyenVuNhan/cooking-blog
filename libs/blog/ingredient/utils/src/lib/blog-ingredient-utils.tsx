@@ -7,5 +7,5 @@ export const mapIngredients = (
   ingredients.map((val) => ({
     ...val,
     ingredient: val.ingredient_name,
-    quantity: val.quantity + val.unit,
+    quantity: val.quantity + (val.unit ?? ''),
   }));

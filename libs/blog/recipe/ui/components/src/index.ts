@@ -1,3 +1,4 @@
+export * from './lib/recipe-ingredient/recipe-ingredient';
 export * from './lib/recipe-step-description/recipe-step-description';
 export * from './lib/recipe-step/recipe-step';
 export * from './lib/list-recipe/list-recipe';

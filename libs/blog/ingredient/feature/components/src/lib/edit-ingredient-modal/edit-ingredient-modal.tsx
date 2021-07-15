@@ -1,20 +1,21 @@
 import { GetRecipeRes, UpdateRecipeReq } from '@cookingblog/api/interfaces';
 import { RecipeDTO } from '@cookingblog/api/recipe/dto';
 import { mapIngredients } from '@cookingblog/blog/ingredient/utils';
+import { useUpdateRecipe } from '@cookingblog/blog/recipe/data-access';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { AddIngredientModal } from '../add-ingredient-modal/add-ingredient-modal';
 
 export interface EditIngredientModalProps {
+  recipeId: string;
   defaultIngredients: GetRecipeRes['data']['ingredients'];
   open: boolean;
   handleClose: () => void;
-  onUpdate: (data: UpdateRecipeReq) => void;
 }
 
 export function EditIngredientModal(props: EditIngredientModalProps) {
-  const { defaultIngredients = [], onUpdate, ...rest } = props;
+  const { defaultIngredients = [], recipeId, ...rest } = props;
   const formMethods = useForm<UpdateRecipeReq>({
     resolver: classValidatorResolver(RecipeDTO),
     defaultValues: {
@@ -22,8 +23,11 @@ export function EditIngredientModal(props: EditIngredientModalProps) {
     },
   });
   const { reset } = formMethods;
+
+  const updateRecipe = useUpdateRecipe(recipeId);
+
   const handleModalSave = (ingredients: UpdateRecipeReq['ingredients']) => {
-    onUpdate({ ingredients });
+    updateRecipe({ ingredients });
   };
 
   useEffect(() => {

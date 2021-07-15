@@ -57,6 +57,8 @@ export function AddIngredientModal(props: AddIngredientModalProps) {
     }
   };
 
+  console.log(fields);
+
   return (
     <Dialog
       title={title}
