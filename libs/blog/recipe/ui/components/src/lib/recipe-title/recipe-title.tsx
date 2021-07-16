@@ -1,6 +1,7 @@
 import { UpdateRecipeReq } from '@cookingblog/api/interfaces';
 import { IRecipe } from '@cookingblog/api/recipe';
 import { RecipeTitleEdit } from '@cookingblog/blog/recipe/ui/components';
+import { getRecipeDetails } from '@cookingblog/blog/recipe/utils';
 import { EditButton } from '@cookingblog/blog/shared/ui/components/atoms';
 import { Box, Typography } from '@material-ui/core';
 import { memo, useState } from 'react';
@@ -35,8 +36,7 @@ export const RecipeTitle = memo<RecipeTitleProps>(function (props) {
         </Box>
       </Typography>
       <Typography align="center" noWrap>
-        {recipe?.ingredients.length} ingredients - {recipe?.duration} -{' '}
-        {recipe?.serving} serving
+        {getRecipeDetails(recipe)}
         <EditButton show={allowEdit} onClick={() => setIsEditing(true)} />
       </Typography>
     </>
