@@ -8,23 +8,31 @@ import {
   EditStepGroup,
   RecipeIngredient,
   RecipeStep,
-  RecipeTitle,
+  RecipeTitleEdit,
 } from '@cookingblog/blog/recipe/ui/components';
 import { RecipeTemplate } from '@cookingblog/blog/recipe/ui/template';
-import { LoadingSpinner } from '@cookingblog/blog/shared/ui/components/atoms';
+import {
+  EditButton,
+  LoadingSpinner,
+} from '@cookingblog/blog/shared/ui/components/atoms';
 import { RTKQueryError } from '@cookingblog/blog/shared/ui/error';
-import { Box, Button, Divider } from '@material-ui/core';
+import { Box, Button, Divider, Typography } from '@material-ui/core';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 export function ViewRecipe() {
+  const classes = useStyle();
+
+  // Fetch data
   const { id } = useParams<{ id: string }>();
   const deleteRecipe = useDeleteRecipe();
   const updateRecipe = useUpdateRecipe(id);
   const { data: recipe, isLoading, error } = useGetRecipeQuery(id);
   const userId = useSelector(getUserId);
   const [stepEdit, setStepEdit] = useState(false);
+  const [titleEdit, setTitleEdit] = useState(false);
 
   const isOwner = recipe?.user === userId;
 
@@ -33,11 +41,29 @@ export function ViewRecipe() {
 
   return (
     <RecipeTemplate>
-      <RecipeTitle
-        recipe={recipe}
-        allowEdit={isOwner}
-        onUpdate={updateRecipe}
-      />
+      {!titleEdit ? (
+        <>
+          <Typography variant="h2" align="center">
+            <Box fontWeight="fontWeightBold" pb={2}>
+              {recipe?.title}
+            </Box>
+          </Typography>
+          <Typography align="center" noWrap>
+            {recipe?.ingredients.length} ingredients - {recipe?.duration} -{' '}
+            {recipe?.serving} serving
+            <EditButton
+              show={isOwner && !titleEdit}
+              onClick={() => setTitleEdit(true)}
+            />
+          </Typography>
+        </>
+      ) : (
+        <RecipeTitleEdit
+          data={recipe}
+          onUpdate={updateRecipe}
+          handleClose={() => setTitleEdit(false)}
+        />
+      )}
       <Divider variant="middle" className="my-1" />
 
       <RecipeIngredient recipe={recipe} />
@@ -80,5 +106,19 @@ export function ViewRecipe() {
     </RecipeTemplate>
   );
 }
+
+const useStyle = makeStyles((theme) =>
+  createStyles({
+    ingredientItem: {
+      '& .MuiListItemIcon-root': {
+        minWidth: 'max-content',
+      },
+      '& .MuiCheckbox-root': {
+        paddingTop: theme.spacing(0),
+        paddingBottom: theme.spacing(0),
+      },
+    },
+  })
+);
 
 export default ViewRecipe;
