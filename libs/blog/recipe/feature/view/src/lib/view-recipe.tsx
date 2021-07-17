@@ -11,6 +11,7 @@ import {
   RecipeTitleEdit,
 } from '@cookingblog/blog/recipe/ui/components';
 import { RecipeTemplate } from '@cookingblog/blog/recipe/ui/template';
+import { getRecipeDetails } from '@cookingblog/blog/recipe/utils';
 import {
   EditButton,
   LoadingSpinner,
@@ -49,8 +50,7 @@ export function ViewRecipe() {
             </Box>
           </Typography>
           <Typography align="center" noWrap>
-            {recipe?.ingredients.length} ingredients - {recipe?.duration} -{' '}
-            {recipe?.serving} serving
+            {getRecipeDetails(recipe)}
             <EditButton
               show={isOwner && !titleEdit}
               onClick={() => setTitleEdit(true)}
