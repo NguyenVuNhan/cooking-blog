@@ -14,7 +14,7 @@ import {
 } from '@cookingblog/blog/shared/ui/components/atoms';
 import { ErrorBadge } from '@cookingblog/blog/shared/ui/components/molecules';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { Chip, Grid, IconButton, Typography, Button } from '@material-ui/core';
+import { Button, Chip, Grid, IconButton, Typography } from '@material-ui/core';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query/react';
 import { useEffect, useState } from 'react';
@@ -99,7 +99,7 @@ export function AddRecipe() {
               helperText={errors.title?.message}
               label="Title"
               fullWidth
-              InputLabelProps={{ shrink: !!data?.title }}
+              InputLabelProps={!!data?.title && { shrink: true }}
             />
           </Grid>
 
@@ -112,7 +112,7 @@ export function AddRecipe() {
               helperText={errors.serving?.message}
               fullWidth
               type="number"
-              InputLabelProps={{ shrink: !!data?.serving }}
+              InputLabelProps={!!data?.serving && { shrink: true }}
             />
           </Grid>
 
