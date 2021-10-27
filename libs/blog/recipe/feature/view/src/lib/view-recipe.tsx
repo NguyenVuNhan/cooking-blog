@@ -18,14 +18,11 @@ import {
 } from '@cookingblog/blog/shared/ui/components/atoms';
 import { RTKQueryError } from '@cookingblog/blog/shared/ui/error';
 import { Box, Button, Divider, Typography } from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 export function ViewRecipe() {
-  const classes = useStyle();
-
   // Fetch data
   const { id } = useParams<{ id: string }>();
   const deleteRecipe = useDeleteRecipe();
@@ -106,19 +103,5 @@ export function ViewRecipe() {
     </RecipeTemplate>
   );
 }
-
-const useStyle = makeStyles((theme) =>
-  createStyles({
-    ingredientItem: {
-      '& .MuiListItemIcon-root': {
-        minWidth: 'max-content',
-      },
-      '& .MuiCheckbox-root': {
-        paddingTop: theme.spacing(0),
-        paddingBottom: theme.spacing(0),
-      },
-    },
-  })
-);
 
 export default ViewRecipe;

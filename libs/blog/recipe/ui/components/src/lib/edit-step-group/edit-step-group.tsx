@@ -1,5 +1,5 @@
 import { RecipeDTO } from '@cookingblog/api/recipe/dto';
-import { AddStepGroup } from '@cookingblog/blog/recipe/ui/components';
+import { AddStepGroup } from '../add-step-group/add-step-group';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import { Button, Grid } from '@material-ui/core';
 import { useRef } from 'react';
@@ -47,6 +47,10 @@ export function EditStepGroup(props: EditStepGroupProps) {
         spacing={3}
         onSubmit={handleSubmit(onSubmit)}
       >
+        <AddStepGroup
+          ingredients={recipe.ingredients.map((val) => val.ingredient)}
+          {...rest}
+        />
         <Grid item sm={12} container alignItems="flex-end" spacing={3}>
           <Grid item container sm={6} justify="center">
             <Button variant="contained" color="primary" type="submit">
@@ -59,10 +63,6 @@ export function EditStepGroup(props: EditStepGroupProps) {
             </Button>
           </Grid>
         </Grid>
-        <AddStepGroup
-          ingredients={recipe.ingredients.map((val) => val.ingredient)}
-          {...rest}
-        />
       </Grid>
     </FormProvider>
   );

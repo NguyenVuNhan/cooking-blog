@@ -1,5 +1,5 @@
 import { IRecipeStep } from '@cookingblog/api/recipe';
-import { RecipeStepDescription } from '@cookingblog/blog/recipe/ui/components';
+import { RecipeStepDescription } from '../recipe-step-description/recipe-step-description';
 import { TimerSnackbar } from '@cookingblog/blog/shared/ui/components/molecules';
 import {
   Box,

@@ -26,6 +26,6 @@ const pleuralTransform = (
       if (wordInPleural) {
         return `${count} ${wordInPleural}`;
       }
-      return `${count} ${wordInSingular}` + 's';
+      return `${count} ${wordInSingular}s`;
   }
 };
