@@ -72,7 +72,7 @@ export function RecipeStep(props: RecipeStepProps) {
       <Divider variant="middle" className="my-1" />
       <Box py={2}>
         <Typography variant="h5" align="left" noWrap>
-          <Box fontWeight={500}>Step {index + 1}:</Box>
+          <Box fontWeight={500}>Step {index}:</Box>
         </Typography>
         <p>
           <span className="font-semibold">Ingredients:</span>{' '}
