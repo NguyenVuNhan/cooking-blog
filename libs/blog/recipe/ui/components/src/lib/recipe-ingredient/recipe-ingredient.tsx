@@ -64,7 +64,7 @@ export function RecipeIngredient(props: RecipeIngredientProps) {
                 onRemove={() => removeItem(recipe.title, ingredient)}
               />
             </ListItemIcon>
-            <Typography>{raw_data}</Typography>
+            <Typography>{raw_data.replace('of ', '')}</Typography>
           </ListItem>
         ))}
       </List>
