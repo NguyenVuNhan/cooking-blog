@@ -14,7 +14,7 @@ export const RecipeStepDescription = memo<RecipeStepDescriptionProps>(
 
     return (
       <Box lineHeight={2} component="p">
-        <strong>Description:</strong>
+        <strong>Description: </strong>
         {mapStringMatch(
           description,
           /(\d+\s*(?:-\s*\d+\s*)?\w+)/g,
