@@ -9,12 +9,18 @@ import {
   UpdateRecipeReq,
   UpdateRecipeRes,
 } from '@cookingblog/api/interfaces';
+import { TMeal } from '@cookingblog/api/recipe/dto';
 import {
   AuthState,
   AUTH_FEATURE_KEY,
 } from '@cookingblog/blog/auth/data-access';
 import { transformIngredients } from '@cookingblog/blog/recipe/utils';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
+export interface SearchData {
+  query: string;
+  meal?: TMeal;
+}
 
 export const recipeApi = createApi({
   reducerPath: 'api/recipe',
@@ -31,8 +37,9 @@ export const recipeApi = createApi({
   }),
   endpoints: (builder) => ({
     // Search recipe
-    searchRecipe: builder.query<SearchRecipeRes['data'], string>({
-      query: (query) => `?query=${query}`,
+    searchRecipe: builder.query<SearchRecipeRes['data'], SearchData>({
+      query: ({ query, meal }) =>
+        `?query=${query}${meal ? '&typeOfMeal=' + meal : ''}`,
       transformResponse: (response: SearchRecipeRes) => response.data,
       providesTags: (result) =>
         result

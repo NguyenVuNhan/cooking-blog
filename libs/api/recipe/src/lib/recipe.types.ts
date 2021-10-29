@@ -20,10 +20,11 @@ export interface IRecipeRepository extends IBaseRepository<IRecipeModel> {
 
   /**
    * @param {string} query Query to search for.
+   * @param {Partial<IRecipe>} Condition to serach for recipe
    *
    * @return {Promise<IRecipeModel[]>} Promise of array of recipe
    */
-  search(query: string): Promise<IRecipeModel[]>;
+  search(query: string, condition?: Partial<IRecipe>): Promise<IRecipeModel[]>;
 }
 
 // ======================================================================
@@ -49,10 +50,11 @@ export interface IRecipeService extends IBaseService<IRecipeModel> {
 
   /**
    * @param {string} query Query to search for.
+   * @param {Partial<IRecipe>} Condition to serach for recipe
    *
    * @return {Promise<IRecipeModel[]>} Promise of array of recipe
    */
-  search(query: string): Promise<IRecipeModel[]>;
+  search(query: string, condition?: Partial<IRecipe>): Promise<IRecipeModel[]>;
 
   /**
    * @param {string} user User id

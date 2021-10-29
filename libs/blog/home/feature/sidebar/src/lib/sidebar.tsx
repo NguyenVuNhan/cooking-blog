@@ -20,10 +20,10 @@ export function SideBar(props: SideBarProps) {
   const history = useHistory();
   const { openShoppingList } = useContext(ShoppingListCtx);
 
-  const onSearch: SidebarSearchProps['onSearch'] = ({ query }) => {
+  const onSearch: SidebarSearchProps['onSearch'] = ({ query, meal }) => {
     history.push({
       pathname: '/search',
-      search: `?q=${query}`,
+      search: `?q=${query}${meal ? '&meal=' + meal : ''}`,
     });
   };
 

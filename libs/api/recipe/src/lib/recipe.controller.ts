@@ -1,3 +1,4 @@
+import { IRecipe } from '@cookingblog/api/recipe';
 import { ExtractDTO, RecipeDTO } from '@cookingblog/api/recipe/dto';
 import {
   NotFoundError,
@@ -75,7 +76,11 @@ export class RecipeController extends Controller {
   }
 
   private async search(req: Request, res: Response) {
-    const recipes = await this.recipeService.search(req.query.query as string);
+    const { query, ...rest } = req.query;
+    const recipes = await this.recipeService.search(
+      query as string,
+      rest as unknown as IRecipe
+    );
 
     if (!recipes) throw new NotFoundError('Recipe not found');
     sendSuccessResponse({ recipes }, res);

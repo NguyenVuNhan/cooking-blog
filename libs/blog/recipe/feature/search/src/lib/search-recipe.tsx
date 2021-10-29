@@ -7,6 +7,7 @@ import { getQuery } from '@cookingblog/blog/shared/utils';
 import { Box, Typography } from '@material-ui/core';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { TMeal } from '@cookingblog/api/recipe/dto';
 
 export function RecipeSearch() {
   const { search } = useLocation();
@@ -15,7 +16,9 @@ export function RecipeSearch() {
 
   useEffect(() => {
     const query = getQuery(search.substring(1), 'q') || '';
-    trigger(query);
+    const meal = (getQuery(search.substring(1), 'meal') as TMeal) || undefined;
+
+    trigger({ query, meal });
   }, [search]);
 
   return (

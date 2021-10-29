@@ -18,6 +18,7 @@ import {
   IRecipeService,
   RecipeServiceProp,
 } from './recipe.types';
+import { TMeal } from '@cookingblog/api/recipe/dto';
 
 export class RecipeService
   extends BaseService<IRecipeModel>
@@ -141,13 +142,16 @@ export class RecipeService
     return this.deleteById(id);
   }
 
-  async search(query: string): Promise<IRecipeModel[]> {
+  async search(
+    query: string,
+    condition: Partial<IRecipe> = {}
+  ): Promise<IRecipeModel[]> {
     let recipes: IRecipeModel[] = [];
 
     if (query) {
-      recipes = await this.repo.search(query);
+      recipes = await this.repo.search(query, condition);
     } else {
-      recipes = await this.repo.findMany({});
+      recipes = await this.repo.findMany(condition);
     }
 
     return recipes;

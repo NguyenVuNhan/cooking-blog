@@ -1,10 +1,11 @@
+import { TMeal } from '@cookingblog/api/recipe/dto';
 import {
   BaseRepository,
   removeIdTransform,
   Repository,
 } from '@cookingblog/express/api/mongoose';
-import { Schema, Types } from 'mongoose';
-import { IRecipeModel } from './recipe.entity';
+import { FilterQuery, Schema, Types, _AllowStringsForIds } from 'mongoose';
+import { IRecipe, IRecipeModel } from './recipe.entity';
 import { IRecipeRepository } from './recipe.types';
 
 const ObjectId = Types.ObjectId;
@@ -83,11 +84,15 @@ export class RecipeRepository
   }
 
   @Repository()
-  async search(query: string): Promise<IRecipeModel[]> {
+  async search(
+    query: string,
+    condition: Partial<IRecipe> = {}
+  ): Promise<IRecipeModel[]> {
     return this.model
       .find(
         {
           $text: { $search: query },
+          $and: [{ ...condition }],
         },
         { score: { $meta: 'textScore' } }
       )
