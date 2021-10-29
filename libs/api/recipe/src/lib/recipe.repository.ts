@@ -34,6 +34,10 @@ const RecipeSchema = new Schema<IRecipeModel>(
     ],
     sourceUrl: { type: String },
     image: { type: String },
+    typeOfMeal: {
+      type: String,
+      enum: ['breakfast', 'lunch', 'snack', 'dinner'],
+    },
   },
   {
     timestamps: true,
@@ -62,7 +66,8 @@ RecipeSchema.index(
 
 export class RecipeRepository
   extends BaseRepository<IRecipeModel>
-  implements IRecipeRepository {
+  implements IRecipeRepository
+{
   constructor() {
     super('recipe', RecipeSchema, 'recipes');
   }

@@ -14,7 +14,14 @@ import {
 } from '@cookingblog/blog/shared/ui/components/atoms';
 import { ErrorBadge } from '@cookingblog/blog/shared/ui/components/molecules';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { Button, Chip, Grid, IconButton, Typography } from '@material-ui/core';
+import {
+  Button,
+  Chip,
+  Grid,
+  IconButton,
+  MenuItem,
+  Typography,
+} from '@material-ui/core';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query/react';
 import { useEffect, useState } from 'react';
@@ -91,7 +98,7 @@ export function AddRecipe() {
               message={(errors.ingredients as unknown as FieldError)?.message}
             />
           </Grid>
-          <Grid item xs={12} sm={8}>
+          <Grid item xs={12}>
             <TextField
               {...register('title')}
               defaultValue={data?.title}
@@ -103,7 +110,27 @@ export function AddRecipe() {
             />
           </Grid>
 
-          <Grid item xs={6} sm={2}>
+          <Grid item xs={4}>
+            <TextField
+              label="Meal"
+              {...register('typeOfMeal')}
+              defaultValue={data?.typeOfMeal}
+              error={!!errors.typeOfMeal}
+              helperText={errors.typeOfMeal?.message}
+              fullWidth
+              InputLabelProps={!!data?.typeOfMeal && { shrink: true }}
+              InputProps={{ className: 'capitalize' }}
+              select
+            >
+              {['breakfast', 'lunch', 'snack', 'dinner'].map((type) => (
+                <MenuItem key={type} value={type} className="capitalize">
+                  {type}
+                </MenuItem>
+              ))}
+            </TextField>
+          </Grid>
+
+          <Grid item xs={4}>
             <TextField
               label="Serving"
               {...register('serving', { valueAsNumber: true })}
@@ -116,7 +143,7 @@ export function AddRecipe() {
             />
           </Grid>
 
-          <Grid item xs={6} sm={2}>
+          <Grid item xs={4}>
             <TextField
               label="Duration"
               {...register('duration')}

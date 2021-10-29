@@ -1,4 +1,5 @@
 import { IIngredientService } from '@cookingblog/api/ingredient';
+import { ISpoonacularIngredientsService } from '@cookingblog/api/spoonacular/ingredients';
 import { ISpoonacularRecipesService } from '@cookingblog/api/spoonacular/recipes';
 import { ILogger } from '@cookingblog/express/api/common';
 import {
@@ -7,7 +8,6 @@ import {
   ServiceCache,
 } from '@cookingblog/express/api/core';
 import { IRecipe, IRecipeModel } from './recipe.entity';
-import { ISpoonacularIngredientsService } from '../../../spoonacular/ingredients/src/lib/ingredient.types';
 
 // ======================================================================
 // Repository

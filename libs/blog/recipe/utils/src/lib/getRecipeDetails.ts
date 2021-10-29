@@ -3,6 +3,7 @@ import { IRecipe } from '@cookingblog/api/recipe';
 export const getRecipeDetails = (recipe: IRecipe) => {
   let details = '';
 
+  details += recipe.typeOfMeal ? recipe.typeOfMeal + ' - ' : '';
   details += pleuralTransform('ingredient', recipe.ingredients.length);
   details += ' - ' + recipe.duration;
   details += ' - ' + pleuralTransform('serving', recipe.serving);

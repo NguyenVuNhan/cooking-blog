@@ -1,4 +1,5 @@
 import { IIngredient } from '@cookingblog/api/ingredient';
+import { TMeal } from '@cookingblog/api/recipe/dto';
 import { BaseEntity } from '@cookingblog/express/api/mongoose';
 import { Document } from 'mongoose';
 
@@ -29,6 +30,7 @@ export interface IRecipeGeneric<TIngredient extends string | IIngredient>
   steps: IRecipeStep[];
   sourceUrl?: string;
   image?: string;
+  typeOfMeal?: TMeal;
 }
 
 export type IRecipe = IRecipeGeneric<string>;

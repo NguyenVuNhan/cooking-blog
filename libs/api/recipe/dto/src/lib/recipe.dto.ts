@@ -3,12 +3,15 @@ import { Type } from 'class-transformer';
 import {
   ArrayNotEmpty,
   IsArray,
+  IsEnum,
   IsNotEmpty,
   IsNumber,
   IsString,
   Min,
   ValidateNested,
 } from 'class-validator';
+
+export type TMeal = 'breakfast' | 'lunch' | 'snack' | 'dinner';
 
 export class StepDTO {
   @IsString()
@@ -19,7 +22,6 @@ export class StepDTO {
   @IsString({ each: true })
   ingredients: string[];
 }
-
 export class IngredientDTO {
   @IsString()
   @IsNotEmpty({ message: 'Ingredient is required' })
@@ -55,6 +57,10 @@ export class RecipeDTO {
   @Type(() => IngredientDTO)
   @ArrayNotEmpty({ message: 'At least one ingredient is required' })
   ingredients: IngredientDTO[];
+
+  @IsString()
+  @IsEnum(['breakfast', 'lunch', 'snack', 'dinner'])
+  typeOfMeal: TMeal;
 }
 
 export class ExtractDTO {

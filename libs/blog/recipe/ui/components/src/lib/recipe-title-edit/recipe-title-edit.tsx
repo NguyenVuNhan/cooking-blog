@@ -2,7 +2,7 @@ import { UpdateRecipeReq } from '@cookingblog/api/interfaces';
 import { RecipeDTO } from '@cookingblog/api/recipe/dto';
 import { TextField } from '@cookingblog/blog/shared/ui/components/atoms';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { Button, Grid } from '@material-ui/core';
+import { Button, Grid, MenuItem } from '@material-ui/core';
 import { useForm, useFormState } from 'react-hook-form';
 
 export interface RecipeTitleEditProps {
@@ -39,7 +39,7 @@ export function RecipeTitleEdit(props: RecipeTitleEditProps) {
       onSubmit={handleSubmit(onSubmit)}
       spacing={3}
     >
-      <Grid item xs={12} sm={8}>
+      <Grid item xs={12}>
         <TextField
           {...register('title')}
           error={!!errors.title}
@@ -48,7 +48,28 @@ export function RecipeTitleEdit(props: RecipeTitleEditProps) {
           fullWidth
         />
       </Grid>
-      <Grid item xs={6} sm={2}>
+
+      <Grid item xs={4}>
+        <TextField
+          label="Meal"
+          {...register('typeOfMeal')}
+          defaultValue={data?.typeOfMeal}
+          error={!!errors.typeOfMeal}
+          helperText={errors.typeOfMeal?.message}
+          fullWidth
+          InputLabelProps={!!data?.typeOfMeal && { shrink: true }}
+          InputProps={{ className: 'capitalize' }}
+          select
+        >
+          {['breakfast', 'lunch', 'snack', 'dinner'].map((type) => (
+            <MenuItem key={type} value={type} className="capitalize">
+              {type}
+            </MenuItem>
+          ))}
+        </TextField>
+      </Grid>
+
+      <Grid item xs={4}>
         <TextField
           label="Serving"
           {...register('serving', { valueAsNumber: true })}
@@ -57,7 +78,8 @@ export function RecipeTitleEdit(props: RecipeTitleEditProps) {
           fullWidth
         />
       </Grid>
-      <Grid item xs={6} sm={2}>
+
+      <Grid item xs={4}>
         <TextField
           label="Duration"
           {...register('duration')}
