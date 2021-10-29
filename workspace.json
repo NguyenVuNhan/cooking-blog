@@ -1,25 +1,5 @@
 {
   "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
-  "defaultProject": "blog",
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "style": "scss",
-        "linter": "eslint",
-        "babel": true
-      },
-      "component": {
-        "style": "scss"
-      },
-      "library": {
-        "style": "scss",
-        "linter": "eslint"
-      }
-    }
-  },
   "projects": {
     "api": {
       "root": "apps/api",
@@ -60,7 +40,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/api/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -70,7 +51,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-auth": {
       "root": "libs/api/auth",
@@ -81,7 +63,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/api/auth/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -91,7 +74,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-auth-dto": {
       "root": "libs/api/auth/dto",
@@ -102,7 +86,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/api/auth/dto/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -112,7 +97,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-base-queue": {
       "root": "libs/api/base/queue",
@@ -123,7 +109,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/api/base/queue/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -133,7 +120,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-ingredient": {
       "root": "libs/api/ingredient",
@@ -144,7 +132,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/api/ingredient/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -154,7 +143,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-interfaces": {
       "root": "libs/api/interfaces",
@@ -165,9 +155,11 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/api/interfaces/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "api-meal-planner": {
       "root": "libs/api/meal-planner",
@@ -178,7 +170,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/api/meal-planner/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -188,7 +181,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-queue-mail": {
       "root": "libs/api/queue/mail",
@@ -199,7 +193,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/api/queue/mail/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -209,7 +204,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-recipe": {
       "root": "libs/api/recipe",
@@ -220,7 +216,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/api/recipe/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -230,7 +227,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-recipe-dto": {
       "root": "libs/api/recipe/dto",
@@ -241,7 +239,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/api/recipe/dto/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -251,7 +250,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-recipe-rank": {
       "root": "libs/api/recipe-rank",
@@ -262,7 +262,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/api/recipe-rank/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -272,7 +273,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-spoonacular-base": {
       "root": "libs/api/spoonacular/base",
@@ -283,7 +285,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/api/spoonacular/base/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -293,7 +296,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-spoonacular-ingredients": {
       "root": "libs/api/spoonacular/ingredients",
@@ -304,7 +308,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/api/spoonacular/ingredients/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -314,7 +319,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-spoonacular-recipes": {
       "root": "libs/api/spoonacular/recipes",
@@ -325,7 +331,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/api/spoonacular/recipes/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -335,7 +342,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-token": {
       "root": "libs/api/token",
@@ -346,7 +354,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/api/token/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -356,7 +365,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-user": {
       "root": "libs/api/user",
@@ -367,7 +377,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/api/user/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -377,7 +388,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog": {
       "root": "apps/blog",
@@ -441,7 +453,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/blog/**/*.{ts,tsx,js,jsx}"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -461,7 +474,8 @@
             "parallel": false
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-auth-data-access": {
       "root": "libs/blog/auth/data-access",
@@ -474,7 +488,8 @@
             "lintFilePatterns": [
               "libs/blog/auth/data-access/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -484,7 +499,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-auth-feature-login": {
       "root": "libs/blog/auth/feature/login",
@@ -497,7 +513,8 @@
             "lintFilePatterns": [
               "libs/blog/auth/feature/login/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -507,7 +524,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-auth-feature-password-reset": {
       "root": "libs/blog/auth/feature/password-reset",
@@ -520,7 +538,8 @@
             "lintFilePatterns": [
               "libs/blog/auth/feature/password-reset/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -530,7 +549,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-auth-feature-password-reset-request": {
       "root": "libs/blog/auth/feature/password-reset-request",
@@ -543,7 +563,8 @@
             "lintFilePatterns": [
               "libs/blog/auth/feature/password-reset-request/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -553,7 +574,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-auth-feature-register": {
       "root": "libs/blog/auth/feature/register",
@@ -566,7 +588,8 @@
             "lintFilePatterns": [
               "libs/blog/auth/feature/register/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -576,7 +599,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-auth-feature-shell": {
       "root": "libs/blog/auth/feature/shell",
@@ -589,7 +613,8 @@
             "lintFilePatterns": [
               "libs/blog/auth/feature/shell/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -599,7 +624,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-auth-ui-components": {
       "root": "libs/blog/auth/ui/components",
@@ -612,7 +638,8 @@
             "lintFilePatterns": [
               "libs/blog/auth/ui/components/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -622,7 +649,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-auth-ui-template": {
       "root": "libs/blog/auth/ui/template",
@@ -635,7 +663,8 @@
             "lintFilePatterns": [
               "libs/blog/auth/ui/template/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -645,7 +674,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-auth-utils": {
       "root": "libs/blog/auth/utils",
@@ -656,7 +686,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/blog/auth/utils/**/*.{ts,tsx,js,jsx}"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -666,7 +697,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-e2e": {
       "root": "apps/blog-e2e",
@@ -690,9 +722,12 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/blog-e2e/**/*.{js,ts}"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["blog"]
     },
     "blog-home-data-access": {
       "root": "libs/blog/home/data-access",
@@ -705,7 +740,8 @@
             "lintFilePatterns": [
               "libs/blog/home/data-access/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -715,7 +751,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-home-feature-mobile-header": {
       "root": "libs/blog/home/feature/mobile-header",
@@ -728,7 +765,8 @@
             "lintFilePatterns": [
               "libs/blog/home/feature/mobile-header/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -738,7 +776,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-home-feature-shell": {
       "root": "libs/blog/home/feature/shell",
@@ -751,7 +790,8 @@
             "lintFilePatterns": [
               "libs/blog/home/feature/shell/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -761,7 +801,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-home-feature-sidebar": {
       "root": "libs/blog/home/feature/sidebar",
@@ -774,7 +815,8 @@
             "lintFilePatterns": [
               "libs/blog/home/feature/sidebar/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -784,7 +826,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-home-ui-components": {
       "root": "libs/blog/home/ui/components",
@@ -797,7 +840,8 @@
             "lintFilePatterns": [
               "libs/blog/home/ui/components/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -807,7 +851,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-ingredient-data-access": {
       "root": "libs/blog/ingredient/data-access",
@@ -820,7 +865,8 @@
             "lintFilePatterns": [
               "libs/blog/ingredient/data-access/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -830,7 +876,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-ingredient-feature-components": {
       "root": "libs/blog/ingredient/feature/components",
@@ -843,7 +890,8 @@
             "lintFilePatterns": [
               "libs/blog/ingredient/feature/components/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -853,7 +901,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-ingredient-utils": {
       "root": "libs/blog/ingredient/utils",
@@ -866,7 +915,8 @@
             "lintFilePatterns": [
               "libs/blog/ingredient/utils/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -876,7 +926,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-recipe-data-access": {
       "root": "libs/blog/recipe/data-access",
@@ -889,7 +940,8 @@
             "lintFilePatterns": [
               "libs/blog/recipe/data-access/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -899,7 +951,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-recipe-feature-add": {
       "root": "libs/blog/recipe/feature/add",
@@ -912,7 +965,8 @@
             "lintFilePatterns": [
               "libs/blog/recipe/feature/add/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -922,7 +976,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-recipe-feature-random-recipe": {
       "root": "libs/blog/recipe/feature/random-recipe",
@@ -935,7 +990,8 @@
             "lintFilePatterns": [
               "libs/blog/recipe/feature/random-recipe/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -945,7 +1001,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-recipe-feature-search": {
       "root": "libs/blog/recipe/feature/search",
@@ -958,7 +1015,8 @@
             "lintFilePatterns": [
               "libs/blog/recipe/feature/search/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -968,7 +1026,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-recipe-feature-shell": {
       "root": "libs/blog/recipe/feature/shell",
@@ -981,7 +1040,8 @@
             "lintFilePatterns": [
               "libs/blog/recipe/feature/shell/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -991,7 +1051,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-recipe-feature-view": {
       "root": "libs/blog/recipe/feature/view",
@@ -1004,7 +1065,8 @@
             "lintFilePatterns": [
               "libs/blog/recipe/feature/view/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1014,7 +1076,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-recipe-ui-components": {
       "root": "libs/blog/recipe/ui/components",
@@ -1027,7 +1090,8 @@
             "lintFilePatterns": [
               "libs/blog/recipe/ui/components/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1037,7 +1101,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-recipe-ui-template": {
       "root": "libs/blog/recipe/ui/template",
@@ -1050,7 +1115,8 @@
             "lintFilePatterns": [
               "libs/blog/recipe/ui/template/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1060,7 +1126,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-recipe-utils": {
       "root": "libs/blog/recipe/utils",
@@ -1071,7 +1138,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/blog/recipe/utils/**/*.{ts,tsx,js,jsx}"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1081,7 +1149,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-shared-feature-import-recipe-modal": {
       "root": "libs/blog/shared/feature/import-recipe-modal",
@@ -1094,7 +1163,8 @@
             "lintFilePatterns": [
               "libs/blog/shared/feature/import-recipe-modal/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1104,7 +1174,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-shared-feature-tool-box": {
       "root": "libs/blog/shared/feature/tool-box",
@@ -1117,7 +1188,8 @@
             "lintFilePatterns": [
               "libs/blog/shared/feature/tool-box/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1127,7 +1199,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-shared-ui-components-atoms": {
       "root": "libs/blog/shared/ui/components/atoms",
@@ -1140,7 +1213,8 @@
             "lintFilePatterns": [
               "libs/blog/shared/ui/components/atoms/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1150,7 +1224,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-shared-ui-components-molecules": {
       "root": "libs/blog/shared/ui/components/molecules",
@@ -1163,7 +1238,8 @@
             "lintFilePatterns": [
               "libs/blog/shared/ui/components/molecules/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1173,7 +1249,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-shared-ui-error": {
       "root": "libs/blog/shared/ui/error",
@@ -1186,7 +1263,8 @@
             "lintFilePatterns": [
               "libs/blog/shared/ui/error/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1196,7 +1274,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-shared-utils": {
       "root": "libs/blog/shared/utils",
@@ -1207,7 +1286,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/blog/shared/utils/**/*.{ts,tsx,js,jsx}"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1217,7 +1297,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-shopping-list-data-access": {
       "root": "libs/blog/shopping-list/data-access",
@@ -1230,7 +1311,8 @@
             "lintFilePatterns": [
               "libs/blog/shopping-list/data-access/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1240,7 +1322,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-shopping-list-feature-provider": {
       "root": "libs/blog/shopping-list/feature/provider",
@@ -1253,7 +1336,8 @@
             "lintFilePatterns": [
               "libs/blog/shopping-list/feature/provider/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1263,7 +1347,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-shopping-list-feature-shopping-cart": {
       "root": "libs/blog/shopping-list/feature/shopping-cart",
@@ -1276,7 +1361,8 @@
             "lintFilePatterns": [
               "libs/blog/shopping-list/feature/shopping-cart/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1286,7 +1372,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-shopping-list-ui": {
       "root": "libs/blog/shopping-list/ui",
@@ -1299,7 +1386,8 @@
             "lintFilePatterns": [
               "libs/blog/shopping-list/ui/**/*.{ts,tsx,js,jsx}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1309,7 +1397,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "express-api-cache": {
       "root": "libs/express/api/cache",
@@ -1320,7 +1409,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/express/api/cache/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1330,7 +1420,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "express-api-common": {
       "root": "libs/express/api/common",
@@ -1341,7 +1432,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/express/api/common/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1351,7 +1443,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "express-api-core": {
       "root": "libs/express/api/core",
@@ -1362,7 +1455,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/express/api/core/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1372,7 +1466,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "express-api-mongoose": {
       "root": "libs/express/api/mongoose",
@@ -1383,7 +1478,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/express/api/mongoose/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1393,7 +1489,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "shared-utils": {
       "root": "libs/shared/utils",
@@ -1404,7 +1501,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/shared/utils/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1414,7 +1512,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "shared-validator-decorator": {
       "root": "libs/shared/validator-decorator",
@@ -1425,7 +1524,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/shared/validator-decorator/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1435,7 +1535,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "shared-web-hooks": {
       "root": "libs/shared/web/hooks",
@@ -1446,7 +1547,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/shared/web/hooks/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1456,7 +1558,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "shared-web-utils": {
       "root": "libs/shared/web/utils",
@@ -1467,7 +1570,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/shared/web/utils/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -1477,7 +1581,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     }
   }
 }

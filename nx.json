@@ -21,195 +21,6 @@
       }
     }
   },
-  "projects": {
-    "api": {
-      "tags": []
-    },
-    "api-auth": {
-      "tags": []
-    },
-    "api-auth-dto": {
-      "tags": []
-    },
-    "api-base-queue": {
-      "tags": []
-    },
-    "api-ingredient": {
-      "tags": []
-    },
-    "api-interfaces": {
-      "tags": []
-    },
-    "api-meal-planner": {
-      "tags": []
-    },
-    "api-queue-mail": {
-      "tags": []
-    },
-    "api-recipe": {
-      "tags": []
-    },
-    "api-recipe-dto": {
-      "tags": []
-    },
-    "api-recipe-rank": {
-      "tags": []
-    },
-    "api-spoonacular-base": {
-      "tags": []
-    },
-    "api-spoonacular-ingredients": {
-      "tags": []
-    },
-    "api-spoonacular-recipes": {
-      "tags": []
-    },
-    "api-token": {
-      "tags": []
-    },
-    "api-user": {
-      "tags": []
-    },
-    "blog": {
-      "tags": []
-    },
-    "blog-auth-data-access": {
-      "tags": []
-    },
-    "blog-auth-feature-login": {
-      "tags": []
-    },
-    "blog-auth-feature-password-reset": {
-      "tags": []
-    },
-    "blog-auth-feature-password-reset-request": {
-      "tags": []
-    },
-    "blog-auth-feature-register": {
-      "tags": []
-    },
-    "blog-auth-feature-shell": {
-      "tags": []
-    },
-    "blog-auth-ui-components": {
-      "tags": []
-    },
-    "blog-auth-ui-template": {
-      "tags": []
-    },
-    "blog-auth-utils": {
-      "tags": []
-    },
-    "blog-e2e": {
-      "tags": [],
-      "implicitDependencies": ["blog"]
-    },
-    "blog-home-data-access": {
-      "tags": []
-    },
-    "blog-home-feature-mobile-header": {
-      "tags": []
-    },
-    "blog-home-feature-shell": {
-      "tags": []
-    },
-    "blog-home-feature-sidebar": {
-      "tags": []
-    },
-    "blog-home-ui-components": {
-      "tags": []
-    },
-    "blog-ingredient-data-access": {
-      "tags": []
-    },
-    "blog-ingredient-feature-components": {
-      "tags": []
-    },
-    "blog-ingredient-utils": {
-      "tags": []
-    },
-    "blog-recipe-data-access": {
-      "tags": []
-    },
-    "blog-recipe-feature-add": {
-      "tags": []
-    },
-    "blog-recipe-feature-random-recipe": {
-      "tags": []
-    },
-    "blog-recipe-feature-search": {
-      "tags": []
-    },
-    "blog-recipe-feature-shell": {
-      "tags": []
-    },
-    "blog-recipe-feature-view": {
-      "tags": []
-    },
-    "blog-recipe-ui-components": {
-      "tags": []
-    },
-    "blog-recipe-ui-template": {
-      "tags": []
-    },
-    "blog-recipe-utils": {
-      "tags": []
-    },
-    "blog-shared-feature-import-recipe-modal": {
-      "tags": []
-    },
-    "blog-shared-feature-tool-box": {
-      "tags": []
-    },
-    "blog-shared-ui-components-atoms": {
-      "tags": []
-    },
-    "blog-shared-ui-components-molecules": {
-      "tags": []
-    },
-    "blog-shared-ui-error": {
-      "tags": []
-    },
-    "blog-shared-utils": {
-      "tags": []
-    },
-    "blog-shopping-list-data-access": {
-      "tags": []
-    },
-    "blog-shopping-list-feature-provider": {
-      "tags": []
-    },
-    "blog-shopping-list-feature-shopping-cart": {
-      "tags": []
-    },
-    "blog-shopping-list-ui": {
-      "tags": []
-    },
-    "express-api-cache": {
-      "tags": []
-    },
-    "express-api-common": {
-      "tags": []
-    },
-    "express-api-core": {
-      "tags": []
-    },
-    "express-api-mongoose": {
-      "tags": []
-    },
-    "shared-utils": {
-      "tags": []
-    },
-    "shared-validator-decorator": {
-      "tags": []
-    },
-    "shared-web-hooks": {
-      "tags": []
-    },
-    "shared-web-utils": {
-      "tags": []
-    }
-  },
   "targetDependencies": {
     "build": [
       {
@@ -217,5 +28,25 @@
         "projects": "dependencies"
       }
     ]
-  }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "scss"
+      },
+      "library": {
+        "style": "scss",
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "blog"
 }
