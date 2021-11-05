@@ -4,25 +4,25 @@ import {
 } from '@cookingblog/blog/auth/data-access';
 import { ImportRecipeModal } from '@cookingblog/blog/shared/feature/import-recipe-modal';
 import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
-import { forwardTo } from '@cookingblog/blog/shared/utils';
-import { Backdrop } from '@material-ui/core';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import AddIcon from '@material-ui/icons/Add';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import MenuIcon from '@material-ui/icons/Menu';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
-import SpeedDial from '@material-ui/lab/SpeedDial';
-import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-import React, { useContext, useState } from 'react';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AddIcon from '@mui/icons-material/Add';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import MenuIcon from '@mui/icons-material/Menu';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import SystemUpdateAltIcon from '@mui/icons-material/SystemUpdateAlt';
+import { Backdrop } from '@mui/material';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import { useContext, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export interface ToolBoxProps {
   hidden?: boolean;
 }
 
-export function ToolBox(props: ToolBoxProps) {
-  const { hidden } = props;
+export function ToolBox({ hidden }: ToolBoxProps) {
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(getAuthenticated);
@@ -40,7 +40,7 @@ export function ToolBox(props: ToolBoxProps) {
 
   const onLogout = () => {
     dispatch(authActions.logout());
-    forwardTo('/');
+    navigate('/');
   };
 
   return (
@@ -71,7 +71,7 @@ export function ToolBox(props: ToolBoxProps) {
               tooltipTitle="Login"
               tooltipOpen
               open={open}
-              onClick={() => forwardTo('/auth/login')}
+              onClick={() => navigate('/auth/login')}
             />
           )}
           <SpeedDialAction
@@ -86,7 +86,7 @@ export function ToolBox(props: ToolBoxProps) {
             tooltipTitle="Add Recipe"
             tooltipOpen
             open={open}
-            onClick={() => forwardTo('/recipe/add')}
+            onClick={() => navigate('/recipe/add')}
           />
           <SpeedDialAction
             icon={<ShoppingBasketIcon />}

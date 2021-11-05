@@ -1,4 +1,4 @@
-import { Backdrop, Box, CircularProgress } from '@material-ui/core';
+import { Backdrop, Box, CircularProgress } from '@mui/material';
 import { ReactChild } from 'react';
 
 export interface LoadingSpinnerProps {

@@ -1,4 +1,5 @@
-import { withStyles, Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
+import withStyles from '@mui/styles/withStyles';
 import { FC } from 'react';
 
 const styles = (theme: Theme) => ({

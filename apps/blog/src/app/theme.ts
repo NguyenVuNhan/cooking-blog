@@ -1,9 +1,8 @@
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
-import type {} from '@material-ui/lab/themeAugmentation';
-import { deepOrange, lightBlue } from '@material-ui/core/colors';
+import { deepOrange, lightBlue } from '@mui/material/colors';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 const theme = responsiveFontSizes(
-  createMuiTheme({
+  createTheme({
     palette: {
       primary: {
         main: deepOrange[900],
@@ -21,10 +20,12 @@ const theme = responsiveFontSizes(
         xl: 1280,
       },
     },
-    overrides: {
+    components: {
       MuiSpeedDialAction: {
-        staticTooltipLabel: {
-          whiteSpace: 'nowrap',
+        styleOverrides: {
+          staticTooltipLabel: {
+            whiteSpace: 'nowrap',
+          },
         },
       },
     },

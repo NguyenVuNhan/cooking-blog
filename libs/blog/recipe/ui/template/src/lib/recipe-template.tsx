@@ -1,8 +1,8 @@
 import { ToolBox } from '@cookingblog/blog/shared/feature/tool-box';
-import { goBack } from '@cookingblog/blog/shared/utils';
-import { Container, IconButton } from '@material-ui/core';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Container, IconButton } from '@mui/material';
 import { ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export interface RecipeTemplateProps {
   children?: ReactNode;
@@ -12,11 +12,17 @@ export interface RecipeTemplateProps {
 
 export function RecipeTemplate(props: RecipeTemplateProps) {
   const { children, showToolBox = true, hideGoBack = false } = props;
+  const navigate = useNavigate();
+
   return (
     <div className="overflow-auto h-screen">
-      <Container className="min-h-screen overflow-x-hidden overflow-y-auto pb-6">
+      <Container className="min-h-screen pb-6 overflow-x-hidden overflow-y-auto">
         {!hideGoBack && (
-          <IconButton onClick={goBack} data-testid="go-back-btn">
+          <IconButton
+            onClick={() => navigate(-1)}
+            data-testid="go-back-btn"
+            size="large"
+          >
             <ArrowBackIcon />
           </IconButton>
         )}

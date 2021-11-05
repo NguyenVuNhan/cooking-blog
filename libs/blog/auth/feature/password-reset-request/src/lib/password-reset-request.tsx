@@ -4,16 +4,16 @@ import { useLazyPasswordResetRequestQuery } from '@cookingblog/blog/auth/data-ac
 import { AuthTemplate } from '@cookingblog/blog/auth/ui/template';
 import { TextField } from '@cookingblog/blog/shared/ui/components/atoms';
 import { ErrorBadge } from '@cookingblog/blog/shared/ui/components/molecules';
-import { forwardTo } from '@cookingblog/blog/shared/utils';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { Button, Grid, InputAdornment } from '@material-ui/core';
-import EmailIcon from '@material-ui/icons/Email';
-import Alert from '@material-ui/lab/Alert';
+import EmailIcon from '@mui/icons-material/Email';
+import { Button, Grid, InputAdornment } from '@mui/material';
+import Alert from '@mui/material/Alert';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
-import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 export function PasswordResetRequest() {
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
@@ -21,8 +21,6 @@ export function PasswordResetRequest() {
   } = useForm<ResetRequestDTO>({
     resolver: classValidatorResolver(ResetRequestDTO),
   });
-
-  const toLogin = () => forwardTo('/auth/login');
 
   const [trigger, { data, error, isSuccess }] =
     useLazyPasswordResetRequestQuery();
@@ -71,10 +69,10 @@ export function PasswordResetRequest() {
         className="p-2"
         container
         direction="row"
-        justify="space-between"
+        justifyContent="space-between"
         alignItems="center"
       >
-        <Button color="primary" onClick={toLogin}>
+        <Button color="primary" onClick={() => navigate('/auth/login')}>
           Login
         </Button>
         <Button variant="contained" color="primary" type="submit">

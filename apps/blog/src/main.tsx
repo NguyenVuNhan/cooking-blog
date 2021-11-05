@@ -1,17 +1,17 @@
-import 'reflect-metadata';
 import {
   authApi,
   authReducer,
   AUTH_FEATURE_KEY,
 } from '@cookingblog/blog/auth/data-access';
 import { recipeApi } from '@cookingblog/blog/recipe/data-access';
-import { history } from '@cookingblog/blog/shared/utils';
-import { CssBaseline } from '@material-ui/core';
-import { MuiThemeProvider, StylesProvider } from '@material-ui/core/styles';
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { CssBaseline } from '@mui/material';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
+import StylesProvider from '@mui/styles/StylesProvider';
+import { configureStore } from '@reduxjs/toolkit';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import 'reflect-metadata';
 import App from './app/app';
 import GlobalStyle from './app/GlobalStyle';
 import theme from './app/theme';
@@ -24,7 +24,7 @@ export const store = configureStore({
     [recipeApi.reducerPath]: recipeApi.reducer,
   },
   // Additional middleware can be passed to this array
-  middleware: [
+  middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware(),
     authApi.middleware,
     recipeApi.middleware,
@@ -35,15 +35,17 @@ export const store = configureStore({
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
+    <BrowserRouter>
       <StylesProvider injectFirst>
-        <MuiThemeProvider theme={theme}>
-          <CssBaseline />
-          <GlobalStyle />
-          <App />
-        </MuiThemeProvider>
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <GlobalStyle />
+            <App />
+          </ThemeProvider>
+        </StyledEngineProvider>
       </StylesProvider>
-    </Router>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );

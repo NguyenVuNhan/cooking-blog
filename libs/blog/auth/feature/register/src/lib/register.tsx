@@ -5,25 +5,21 @@ import { PasswordField } from '@cookingblog/blog/auth/ui/components';
 import { AuthTemplate } from '@cookingblog/blog/auth/ui/template';
 import { TextField } from '@cookingblog/blog/shared/ui/components/atoms';
 import { ErrorBadge } from '@cookingblog/blog/shared/ui/components/molecules';
-import { forwardTo } from '@cookingblog/blog/shared/utils';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { Button, Grid, InputAdornment } from '@material-ui/core';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import EmailIcon from '@material-ui/icons/Email';
-import Alert from '@material-ui/lab/Alert/Alert';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import EmailIcon from '@mui/icons-material/Email';
+import { Alert, Button, Grid, InputAdornment } from '@mui/material';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
-import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 export function Register() {
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm<RegisterDTO>({ resolver: classValidatorResolver(RegisterDTO) });
-
-  const toPasswordReset = () => forwardTo('/auth/password-reset');
-  const toLogin = () => forwardTo('/auth/login');
   const [trigger, { error, data, isSuccess }] = useRegisterMutation();
 
   return (
@@ -113,13 +109,16 @@ export function Register() {
         className="p-2"
         container
         direction="row"
-        justify="space-between"
+        justifyContent="space-between"
         alignItems="center"
       >
-        <Button color="primary" onClick={toPasswordReset}>
+        <Button
+          color="primary"
+          onClick={() => navigate('/auth/password-reset')}
+        >
           Forgot password?
         </Button>
-        <Button color="primary" onClick={toLogin}>
+        <Button color="primary" onClick={() => navigate('/auth/login')}>
           Login
         </Button>
       </Grid>

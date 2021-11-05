@@ -2,9 +2,9 @@ import {
   useGetRandomRecipeQuery,
   usePrefetch,
 } from '@cookingblog/blog/recipe/data-access';
-import { Paper, IconButton, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import AutorenewIcon from '@material-ui/icons/Autorenew';
+import { Paper, IconButton, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 

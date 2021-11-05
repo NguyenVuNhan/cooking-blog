@@ -1,20 +1,20 @@
 import { useAddRecipeMutation } from '@cookingblog/blog/recipe/data-access';
 import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const useAddRecipe = () => {
   const [
     addRecipe,
     { isLoading, error: addRecipeError, isSuccess, isUninitialized, data },
   ] = useAddRecipeMutation();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isUninitialized && isSuccess) {
-      history.push('/');
-      history.push(`/recipe/${data.id}`);
+      navigate('/');
+      navigate(`/recipe/${data.id}`);
     }
-  }, [isSuccess, isUninitialized, data, history]);
+  }, [isSuccess, isUninitialized, data, navigate]);
 
   return { addRecipe, isLoading, addRecipeError };
 };

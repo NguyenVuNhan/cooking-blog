@@ -8,11 +8,11 @@ import {
   Divider,
   IconButton,
   Typography,
-} from '@material-ui/core';
-import BookIcon from '@material-ui/icons/Book';
-import ClearAllIcon from '@material-ui/icons/ClearAll';
-import CloseIcon from '@material-ui/icons/Close';
-import ListAltIcon from '@material-ui/icons/ListAlt';
+} from '@mui/material';
+import BookIcon from '@mui/icons-material/Book';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
+import CloseIcon from '@mui/icons-material/Close';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 import { useContext, useState } from 'react';
 
 /* eslint-disable-next-line */
@@ -35,10 +35,10 @@ export function ShoppingCart(props: ShoppingCartProps) {
 
   return (
     <Dialog open={open} onClose={closeShoppingList} fullWidth maxWidth="xs">
-      <DialogTitle className="flex align-items-center" disableTypography>
+      <DialogTitle className="flex align-items-center">
         <Typography variant="h6">Your Shopping List</Typography>
         <div className="flex-grow-1"></div>
-        <IconButton aria-label="close" onClick={closeShoppingList}>
+        <IconButton aria-label="close" onClick={closeShoppingList} size="large">
           <CloseIcon />
         </IconButton>
       </DialogTitle>

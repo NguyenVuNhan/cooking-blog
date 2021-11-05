@@ -4,12 +4,12 @@ import { PasswordField } from '@cookingblog/blog/auth/ui/components';
 import { AuthTemplate } from '@cookingblog/blog/auth/ui/template';
 import { TextField } from '@cookingblog/blog/shared/ui/components/atoms';
 import { ErrorBadge } from '@cookingblog/blog/shared/ui/components/molecules';
-import { forwardTo } from '@cookingblog/blog/shared/utils';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { Button, Grid, InputAdornment } from '@material-ui/core';
-import EmailIcon from '@material-ui/icons/Email';
+import EmailIcon from '@mui/icons-material/Email';
+import { Button, Grid, InputAdornment } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export function Login() {
   const {
@@ -19,9 +19,7 @@ export function Login() {
   } = useForm<LoginDTO>({ resolver: classValidatorResolver(LoginDTO) });
   const loginErrors = useSelector(getErrors);
   const dispatch = useDispatch();
-
-  const toRegister = () => forwardTo('/auth/register');
-  const toPasswordReset = () => forwardTo('/auth/password-reset');
+  const navigate = useNavigate();
 
   const onSubmit = (data: LoginDTO) => {
     dispatch(authActions.login(data));
@@ -79,13 +77,16 @@ export function Login() {
         className="p-2"
         container
         direction="row"
-        justify="space-between"
+        justifyContent="space-between"
         alignItems="center"
       >
-        <Button color="primary" onClick={toPasswordReset}>
+        <Button
+          color="primary"
+          onClick={() => navigate('/auth/password-reset')}
+        >
           Forgot password?
         </Button>
-        <Button color="primary" onClick={toRegister}>
+        <Button color="primary" onClick={() => navigate('/auth/register')}>
           Create Account
         </Button>
       </Grid>

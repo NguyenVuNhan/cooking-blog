@@ -3,29 +3,20 @@ import {
   getAuthenticated,
   getUser,
 } from '@cookingblog/blog/auth/data-access';
-import { forwardTo } from '@cookingblog/blog/shared/utils';
-import {
-  AppBar,
-  Avatar,
-  IconButton,
-  Toolbar,
-  Typography,
-} from '@material-ui/core';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import { AppBar, Avatar, IconButton, Toolbar, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-/* eslint-disable-next-line */
-export interface SidebarHeaderProps {}
-
-export function SidebarHeader(props: SidebarHeaderProps) {
-  const authenticated = useSelector(getAuthenticated);
+export function SidebarHeader() {
   const user = useSelector(getUser);
+  const authenticated = useSelector(getAuthenticated);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const onLogout = () => {
     dispatch(authActions.logout());
-    forwardTo('/');
+    navigate('/');
   };
 
   return (

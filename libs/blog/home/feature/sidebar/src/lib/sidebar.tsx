@@ -6,22 +6,19 @@ import {
   SidebarSearchProps,
 } from '@cookingblog/blog/home/ui/components';
 import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
-import { Button, Paper } from '@material-ui/core';
+import { Button, Paper } from '@mui/material';
 import { useContext, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-/* eslint-disable-next-line */
-export interface SideBarProps {}
-
-export function SideBar(props: SideBarProps) {
+export function SideBar() {
   const authenticated = useSelector(getAuthenticated);
   const [importRecipeOpen, setImportRecipeOpen] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
   const { openShoppingList } = useContext(ShoppingListCtx);
 
   const onSearch: SidebarSearchProps['onSearch'] = ({ query, meal }) => {
-    history.push({
+    navigate({
       pathname: '/search',
       search: `?q=${query}${meal ? '&meal=' + meal : ''}`,
     });

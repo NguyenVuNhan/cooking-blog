@@ -2,7 +2,7 @@ import { UpdateRecipeReq } from '@cookingblog/api/interfaces';
 import { RecipeDTO } from '@cookingblog/api/recipe/dto';
 import { TextField } from '@cookingblog/blog/shared/ui/components/atoms';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { Button, Grid, MenuItem } from '@material-ui/core';
+import { Button, Grid, MenuItem } from '@mui/material';
 import { useForm, useFormState } from 'react-hook-form';
 
 export interface RecipeTitleEditProps {

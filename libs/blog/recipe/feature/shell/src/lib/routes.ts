@@ -2,7 +2,7 @@ import { lazy } from 'react';
 
 export const routes = [
   {
-    path: '/add(.*)',
+    path: '/add*',
     view: lazy(() => import('@cookingblog/blog/recipe/feature/add')),
     auth: true,
   },

@@ -7,11 +7,11 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-} from '@material-ui/core';
-import BookIcon from '@material-ui/icons/Book';
-import DeleteIcon from '@material-ui/icons/Delete';
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+} from '@mui/material';
+import BookIcon from '@mui/icons-material/Book';
+import DeleteIcon from '@mui/icons-material/Delete';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import React, { useContext, useState } from 'react';
 import { ViewItemProps } from '../propTypes';
 

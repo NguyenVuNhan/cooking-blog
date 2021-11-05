@@ -1,12 +1,5 @@
-import {
-  ErrorRes,
-  LoginReq,
-  LoginRes,
-  RegisterReq,
-  RegisterRes,
-} from '@cookingblog/api/interfaces';
+import { ErrorRes, LoginReq, LoginRes } from '@cookingblog/api/interfaces';
 import { clearAuthToken, setAuthToken } from '@cookingblog/blog/auth/utils';
-import { forwardTo } from '@cookingblog/blog/shared/utils';
 import {
   isFulfilledAction,
   isPendingAction,
@@ -28,7 +21,6 @@ const login = createAsyncThunk<LoginRes['data'], LoginReq>(
     const res = await authServices.login(data);
 
     setAuthToken(res.data.token);
-    forwardTo('/');
     return res.data;
   })
 );

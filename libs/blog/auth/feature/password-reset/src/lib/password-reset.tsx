@@ -4,17 +4,16 @@ import { usePasswordResetMutation } from '@cookingblog/blog/auth/data-access';
 import { PasswordField } from '@cookingblog/blog/auth/ui/components';
 import { AuthTemplate } from '@cookingblog/blog/auth/ui/template';
 import { ErrorBadge } from '@cookingblog/blog/shared/ui/components/molecules';
-import { forwardTo } from '@cookingblog/blog/shared/utils';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { Button, Grid } from '@material-ui/core';
-import { Alert } from '@material-ui/lab';
+import { Alert, Button, Grid } from '@mui/material';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
-import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export function PasswordReset() {
-  const { id, token } = useParams<{ id: string; token: string }>();
+  const { token } = useParams<'token'>();
+  const { id } = useParams<'id'>();
+  const navigate = useNavigate();
 
   const {
     handleSubmit,
@@ -24,8 +23,6 @@ export function PasswordReset() {
     defaultValues: { user: id, token },
     resolver: classValidatorResolver(ResetDTO, { whitelist: true }),
   });
-
-  const toLogin = () => forwardTo('/auth/login');
 
   const [trigger, { data, error, isSuccess }] = usePasswordResetMutation();
 
@@ -74,10 +71,10 @@ export function PasswordReset() {
         className="p-2"
         container
         direction="row"
-        justify="space-between"
+        justifyContent="space-between"
         alignItems="center"
       >
-        <Button color="primary" onClick={toLogin}>
+        <Button color="primary" onClick={() => navigate('/auth/login')}>
           Login
         </Button>
         <Button variant="contained" color="primary" type="submit">

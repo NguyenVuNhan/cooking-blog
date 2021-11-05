@@ -1,6 +1,6 @@
 import { AnimatePresence, AnimatePresenceProps } from 'framer-motion';
-import React, { ReactNode } from 'react';
-import { Switch, useLocation } from 'react-router-dom';
+import { ReactNode } from 'react';
+import { Routes, useLocation } from 'react-router-dom';
 
 export interface AnimatedRouteProps extends AnimatePresenceProps {
   children?: ReactNode;
@@ -12,9 +12,9 @@ export function AnimatedRoute(props: AnimatedRouteProps) {
 
   return (
     <AnimatePresence {...rest}>
-      <Switch location={location} key={location.pathname}>
-        {children}
-      </Switch>
+      {/* <Routes location={location} key={location.pathname}> */}
+      {children}
+      {/* </Routes> */}
     </AnimatePresence>
   );
 }

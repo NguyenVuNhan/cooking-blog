@@ -7,9 +7,9 @@ import {
   Divider,
   IconButton,
   Typography,
-} from '@material-ui/core';
-import { Close as CloseIcon } from '@material-ui/icons';
-import { Alert, AlertTitle } from '@material-ui/lab';
+} from '@mui/material';
+import { Close as CloseIcon } from '@mui/icons-material';
+import { Alert, AlertTitle } from '@mui/material';
 import { Fragment, SyntheticEvent, useCallback, useState } from 'react';
 
 export interface RecipeStepProps {

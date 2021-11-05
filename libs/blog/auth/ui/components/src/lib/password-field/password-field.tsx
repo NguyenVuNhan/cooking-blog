@@ -3,10 +3,10 @@ import {
   InputAdornment,
   TextField as MuiTextField,
   TextFieldProps as MuiTextFieldProps,
-} from '@material-ui/core';
-import LockIcon from '@material-ui/icons/Lock';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+} from '@mui/material';
+import LockIcon from '@mui/icons-material/Lock';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import React, { forwardRef, useState } from 'react';
 
 export type PasswordFieldProps = MuiTextFieldProps & {
@@ -42,7 +42,7 @@ export const PasswordField = forwardRef((props: PasswordFieldProps, ref) => {
               aria-label="toggle password visibility"
               onClick={handleClickShowPassword}
               onMouseDown={handleMouseDownPassword}
-            >
+              size="large">
               {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
             </IconButton>
           </InputAdornment>

@@ -1,24 +1,22 @@
+import { TMeal } from '@cookingblog/api/recipe/dto';
 import { useLazySearchRecipeQuery } from '@cookingblog/blog/recipe/data-access';
-import { RecipeTemplate } from '@cookingblog/blog/recipe/ui/template';
 import { ListRecipe } from '@cookingblog/blog/recipe/ui/components';
+import { RecipeTemplate } from '@cookingblog/blog/recipe/ui/template';
 import { LoadingSpinner } from '@cookingblog/blog/shared/ui/components/atoms';
 import { RTKQueryError } from '@cookingblog/blog/shared/ui/error';
-import { getQuery } from '@cookingblog/blog/shared/utils';
-import { Box, Typography } from '@material-ui/core';
+import { useGetQuery } from '@cookingblog/blog/shared/utils';
+import { Box, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { TMeal } from '@cookingblog/api/recipe/dto';
 
 export function RecipeSearch() {
   const { search } = useLocation();
   const [trigger, { data, error, isLoading, isUninitialized }] =
     useLazySearchRecipeQuery();
+  const { q: query, meal } = useGetQuery();
 
   useEffect(() => {
-    const query = getQuery(search.substring(1), 'q') || '';
-    const meal = (getQuery(search.substring(1), 'meal') as TMeal) || undefined;
-
-    trigger({ query, meal });
+    trigger({ query, meal: meal as TMeal });
   }, [search]);
 
   return (

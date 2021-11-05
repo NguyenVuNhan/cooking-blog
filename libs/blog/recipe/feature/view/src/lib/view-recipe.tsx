@@ -17,14 +17,14 @@ import {
   LoadingSpinner,
 } from '@cookingblog/blog/shared/ui/components/atoms';
 import { RTKQueryError } from '@cookingblog/blog/shared/ui/error';
-import { Box, Button, Divider, Typography } from '@material-ui/core';
+import { Box, Button, Divider, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 export function ViewRecipe() {
   // Fetch data
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<'id'>();
   const deleteRecipe = useDeleteRecipe();
   const updateRecipe = useUpdateRecipe(id);
   const { data: recipe, isLoading, error } = useGetRecipeQuery(id);

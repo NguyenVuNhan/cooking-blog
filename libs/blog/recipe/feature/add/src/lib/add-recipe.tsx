@@ -21,8 +21,8 @@ import {
   IconButton,
   MenuItem,
   Typography,
-} from '@material-ui/core';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+} from '@mui/material';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query/react';
 import { useEffect, useState } from 'react';
 import {
@@ -166,7 +166,7 @@ export function AddRecipe() {
               {ingredients.map((ingredient: string, index: number) => (
                 <Chip key={index} size="small" label={ingredient} />
               ))}
-              <IconButton color="primary" onClick={handleModalOpen}>
+              <IconButton color="primary" onClick={handleModalOpen} size="large">
                 <AddCircleOutlineIcon />
               </IconButton>
             </div>

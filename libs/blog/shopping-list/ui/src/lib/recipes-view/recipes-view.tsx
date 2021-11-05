@@ -2,7 +2,7 @@ import {
   ShoppingListCtx,
   ShoppingListItem,
 } from '@cookingblog/blog/shopping-list/data-access';
-import { List } from '@material-ui/core';
+import { List } from '@mui/material';
 import React, { useContext, useMemo } from 'react';
 import ListItemAnimation from '../list-item-animation/list-item-animation';
 import RecipesViewItem from '../recipes-view-item/recipes-view-item';

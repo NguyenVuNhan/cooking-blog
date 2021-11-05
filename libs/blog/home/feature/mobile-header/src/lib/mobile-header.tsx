@@ -2,26 +2,23 @@ import {
   SidebarSearch,
   SidebarSearchProps,
 } from '@cookingblog/blog/home/ui/components';
-import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import CloseIcon from '@material-ui/icons/Close';
-import SearchIcon from '@material-ui/icons/Search';
+import CloseIcon from '@mui/icons-material/Close';
+import SearchIcon from '@mui/icons-material/Search';
+import { AppBar, IconButton, Theme, Toolbar, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MobileDrawer from './mobile-drawer/mobile-drawer';
 
-/* eslint-disable-next-line */
-export interface MobileHeaderProps {}
-
-export function MobileHeader(props: MobileHeaderProps) {
+export function MobileHeader() {
   const classes = useStyles();
   const [searchToggle, setSearchToggle] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const onSearch: SidebarSearchProps['onSearch'] = ({ query }) => {
     setSearchToggle(false);
-    history.push({
+    navigate({
       pathname: '/search',
       search: `?q=${query}`,
     });
@@ -64,7 +61,7 @@ export function MobileHeader(props: MobileHeaderProps) {
             )}
           </AnimatePresence>
         </div>
-        <IconButton onClick={() => setSearchToggle(!searchToggle)}>
+        <IconButton onClick={() => setSearchToggle(!searchToggle)} size="large">
           {!searchToggle ? (
             <SearchIcon className="text-white" />
           ) : (
@@ -76,7 +73,7 @@ export function MobileHeader(props: MobileHeaderProps) {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   appBar: {
     [theme.breakpoints.up('md')]: {
       display: 'none',

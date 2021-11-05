@@ -1,19 +1,17 @@
 import { useDeleteRecipeMutation } from '../apis/recipe.api';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 export const useDeleteRecipe = () => {
-  const [
-    deleteRecipe,
-    { isSuccess, isUninitialized },
-  ] = useDeleteRecipeMutation();
-  const history = useHistory();
+  const [deleteRecipe, { isSuccess, isUninitialized }] =
+    useDeleteRecipeMutation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isUninitialized && isSuccess) {
-      history.goBack();
+      navigate(-1);
     }
-  }, [history, isSuccess, isUninitialized]);
+  }, [navigate, isSuccess, isUninitialized]);
 
   return deleteRecipe;
 };

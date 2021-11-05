@@ -1,10 +1,20 @@
 import { getIngredients } from '@cookingblog/blog/ingredient/data-access';
 import { mapStringMatch, throttle } from '@cookingblog/shared/utils';
 import { useIsMounted } from '@cookingblog/shared/web/hooks';
-import { CircularProgress, TextField, TextFieldProps } from '@material-ui/core';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import {
+  Autocomplete,
+  CircularProgress,
+  TextField,
+  TextFieldProps,
+} from '@mui/material';
 import React, { useRef, useState } from 'react';
-import { Control, Controller, Path, PathValue } from 'react-hook-form';
+import {
+  Control,
+  Controller,
+  Path,
+  PathValue,
+  UnpackNestedValue,
+} from 'react-hook-form';
 
 export interface IngredientInputProps<TFieldValues>
   extends Omit<TextFieldProps, 'name'> {
@@ -42,10 +52,7 @@ export function IngredientInput<TFieldValues>(
     [isMounted]
   );
 
-  const onInputChange = (
-    _event: React.ChangeEvent<Record<string, unknown>>,
-    value: string
-  ): void => {
+  const onInputChange = (_event: React.SyntheticEvent, value: string): void => {
     if (value === '') {
       isMounted() && setOptions([]);
       return;
@@ -58,13 +65,17 @@ export function IngredientInput<TFieldValues>(
     <Controller
       name={name as Path<TFieldValues>}
       control={control}
-      defaultValue={defaultValue as PathValue<TFieldValues, Path<TFieldValues>>}
+      defaultValue={
+        defaultValue as UnpackNestedValue<
+          PathValue<TFieldValues, Path<TFieldValues>>
+        >
+      }
       render={({ field: { onChange, value, name } }) => (
         <Autocomplete
           value={(value as string) || ''}
           options={options}
           getOptionLabel={(option) => option}
-          renderOption={(option, { inputValue }) => {
+          renderOption={(_, option, { inputValue }) => {
             return (
               <div>
                 {mapStringMatch(option, inputValue, (element, match, i) => (
@@ -78,9 +89,9 @@ export function IngredientInput<TFieldValues>(
           open={open}
           onOpen={() => setOpen(true)}
           onClose={() => setOpen(false)}
-          onInputChange={(...args) => {
-            onInputChange(args[0], args[1]);
-            onChange(args[1]);
+          onInputChange={(event, value) => {
+            onInputChange(event, value);
+            onChange(value);
           }}
           loading={loading.current}
           fullWidth={rest.fullWidth}

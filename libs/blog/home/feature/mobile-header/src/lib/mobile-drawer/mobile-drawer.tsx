@@ -4,8 +4,13 @@ import {
   getUser,
 } from '@cookingblog/blog/auth/data-access';
 import { ImportRecipeModal } from '@cookingblog/blog/shared/feature/import-recipe-modal';
-import { forwardTo } from '@cookingblog/blog/shared/utils';
 import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AddIcon from '@mui/icons-material/Add';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import MenuIcon from '@mui/icons-material/Menu';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import SystemUpdateAltIcon from '@mui/icons-material/SystemUpdateAlt';
 import {
   Avatar,
   Divider,
@@ -15,38 +20,35 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Theme,
   Typography,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import AddIcon from '@material-ui/icons/Add';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import MenuIcon from '@material-ui/icons/Menu';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { useContext, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 /* eslint-disable-next-line */
 export interface MobileDrawerProps {}
 
 export function MobileDrawer(props: MobileDrawerProps) {
-  const [open, setOpen] = useState(false);
-  const authenticated = useSelector(getAuthenticated);
-  const user = useSelector(getUser);
   const classes = useStyles();
-  const [importRecipeOpen, setImportRecipeOpen] = useState(false);
+  const navigate = useNavigate();
   const { openShoppingList } = useContext(ShoppingListCtx);
+  const [open, setOpen] = useState(false);
+  const [importRecipeOpen, setImportRecipeOpen] = useState(false);
+  const user = useSelector(getUser);
+  const authenticated = useSelector(getAuthenticated);
 
   const dispatch = useDispatch();
   const onAuth = () => {
     if (authenticated) return dispatch(authActions.logout());
-    forwardTo('/auth/login');
+    navigate('/auth/login');
   };
 
   return (
     <>
-      <IconButton onClick={() => setOpen(true)}>
+      <IconButton onClick={() => setOpen(true)} size="large">
         <MenuIcon className="text-white" />
       </IconButton>
       <Drawer anchor="left" open={open} onClose={() => setOpen(false)}>
@@ -77,7 +79,7 @@ export function MobileDrawer(props: MobileDrawerProps) {
                 </ListItemIcon>
                 <ListItemText primary="Import Recipe" />
               </ListItem>
-              <ListItem button onClick={() => forwardTo('/recipe/add')}>
+              <ListItem button onClick={() => navigate('/recipe/add')}>
                 <ListItemIcon>
                   <AddIcon />
                 </ListItemIcon>
@@ -101,7 +103,7 @@ export function MobileDrawer(props: MobileDrawerProps) {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   avatar: {
     marginRight: theme.spacing(2),
     width: '80px',

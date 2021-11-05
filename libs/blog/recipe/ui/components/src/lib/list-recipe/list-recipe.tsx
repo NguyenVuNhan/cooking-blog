@@ -1,5 +1,5 @@
 import { IRecipe } from '@cookingblog/api/recipe';
-import { forwardTo } from '@cookingblog/blog/shared/utils';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import {
   Button,
   Card,
@@ -8,18 +8,18 @@ import {
   CardMedia,
   Grid,
   Typography,
-} from '@material-ui/core';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
+} from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 export interface ListRecipeProps {
   recipes: IRecipe[];
 }
 
-export function ListRecipe(props: ListRecipeProps) {
-  const { recipes } = props;
+export function ListRecipe({ recipes }: ListRecipeProps) {
+  const navigate = useNavigate();
 
   const toRecipe = (id: string | undefined) => () => {
-    forwardTo(`/recipe/${id}`);
+    navigate(`/recipe/${id}`);
   };
 
   return (

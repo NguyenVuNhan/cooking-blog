@@ -1,6 +1,6 @@
 import { strToDuration } from '@cookingblog/blog/recipe/utils';
 import { mapStringMatch } from '@cookingblog/shared/utils';
-import { Box } from '@material-ui/core';
+import { Box } from '@mui/material';
 import { memo } from 'react';
 
 export interface RecipeStepDescriptionProps {

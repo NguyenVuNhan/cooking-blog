@@ -1,43 +1,22 @@
-import { createBrowserHistory } from 'history';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-export const history = createBrowserHistory();
+export const useGetQuery = () => {
+  const location = useLocation();
+  const [query, setQuery] =
+    useState<Record<string, string | undefined>>(undefined);
 
-export const forwardTo = (location: string): void => {
-  history.push(location);
-};
+  useEffect(() => {
+    const parseQuery = location.search.substring(1);
+    const vars = parseQuery.split('&');
 
-export const toLogin = (): void => {
-  forwardTo('/auth/login');
-};
-
-export const goBack = (): void => {
-  history.goBack();
-};
-
-export const appendToPath = (str: string) => {
-  history.replace(`${history.location.pathname}${str}`);
-};
-
-export const getDefaultQuery = (variable: string) => {
-  const query = history.location.search.substring(1);
-
-  const vars = query.split('&');
-  for (let i = 0; i < vars.length; i++) {
-    const pair = vars[i].split('=');
-    if (pair[0] === variable) {
-      return pair[1];
+    for (let i = 0; i < vars.length; i++) {
+      const pair = vars[i].split('=');
+      query[pair[0]] = pair[1];
     }
-  }
-  return false;
-};
 
-export const getQuery = (query: string, variable: string): false | string => {
-  const vars = query.split('&');
-  for (let i = 0; i < vars.length; i++) {
-    const pair = vars[i].split('=');
-    if (pair[0] === variable) {
-      return pair[1];
-    }
-  }
-  return false;
+    setQuery({ ...query });
+  }, [location]);
+
+  return query;
 };

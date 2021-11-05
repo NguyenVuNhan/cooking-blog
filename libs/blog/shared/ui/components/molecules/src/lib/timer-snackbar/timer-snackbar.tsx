@@ -3,8 +3,8 @@ import {
   LinearProgress,
   Snackbar,
   SnackbarCloseReason,
-} from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
+} from '@mui/material';
+import Alert from '@mui/material/Alert';
 import { SyntheticEvent, useEffect, useRef, useState } from 'react';
 
 export interface TimerSnackbarProps {

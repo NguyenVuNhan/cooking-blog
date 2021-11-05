@@ -10,10 +10,11 @@ import {
   DialogTitle,
   Grid,
   IconButton,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import DeleteIcon from '@material-ui/icons/Delete';
+  Theme,
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import DeleteIcon from '@mui/icons-material/Delete';
 import React, { Fragment } from 'react';
 import {
   FieldError,
@@ -114,7 +115,11 @@ export function AddIngredientModal(props: AddIngredientModalProps) {
                 />
               </Grid>
               <Grid item xs={2} sm={1}>
-                <IconButton onClick={deleteIngredient(index)} className="p-0">
+                <IconButton
+                  onClick={deleteIngredient(index)}
+                  className="p-0"
+                  size="large"
+                >
                   <DeleteIcon color="error" />
                 </IconButton>
               </Grid>
@@ -141,7 +146,7 @@ export function AddIngredientModal(props: AddIngredientModalProps) {
   );
 }
 
-const useStyle = makeStyles((theme) => ({
+const useStyle = makeStyles((theme: Theme) => ({
   addBtn: {
     marginTop: theme.spacing(2),
   },

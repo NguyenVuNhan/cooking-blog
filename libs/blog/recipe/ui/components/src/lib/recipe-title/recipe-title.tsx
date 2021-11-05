@@ -3,7 +3,7 @@ import { IRecipe } from '@cookingblog/api/recipe';
 import { RecipeTitleEdit } from '@cookingblog/blog/recipe/ui/components';
 import { getRecipeDetails } from '@cookingblog/blog/recipe/utils';
 import { EditButton } from '@cookingblog/blog/shared/ui/components/atoms';
-import { Box, Typography } from '@material-ui/core';
+import { Box, Typography } from '@mui/material';
 import { memo, useState } from 'react';
 
 export interface RecipeTitleProps {

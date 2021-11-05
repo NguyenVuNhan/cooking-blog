@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { IconButton } from '@material-ui/core';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import RemoveIcon from '@material-ui/icons/Remove';
+import { IconButton } from '@mui/material';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 export interface ToShoppingListButtonProps {
   onSelect?: () => void;

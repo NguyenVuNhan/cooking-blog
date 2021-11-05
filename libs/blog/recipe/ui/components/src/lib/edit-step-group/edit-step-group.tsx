@@ -1,7 +1,7 @@
 import { RecipeDTO } from '@cookingblog/api/recipe/dto';
 import { AddStepGroup } from '../add-step-group/add-step-group';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { Button, Grid } from '@material-ui/core';
+import { Button, Grid } from '@mui/material';
 import { useRef } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -52,12 +52,12 @@ export function EditStepGroup(props: EditStepGroupProps) {
           {...rest}
         />
         <Grid item sm={12} container alignItems="flex-end" spacing={3}>
-          <Grid item container sm={6} justify="center">
+          <Grid item container sm={6} justifyContent="center">
             <Button variant="contained" color="primary" type="submit">
               Save
             </Button>
           </Grid>
-          <Grid item container sm={6} justify="center">
+          <Grid item container sm={6} justifyContent="center">
             <Button variant="contained" onClick={handleClose}>
               Cancel
             </Button>

@@ -1,15 +1,15 @@
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from '@mui/icons-material/Search';
 import {
   Collapse,
   IconButton,
   InputBase,
   MenuItem,
   TextField,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { TMeal } from '@cookingblog/api/recipe/dto';
 import { useState } from 'react';
-import SettingsIcon from '@material-ui/icons/Settings';
+import SettingsIcon from '@mui/icons-material/Settings';
 import { SearchData } from '@cookingblog/blog/recipe/data-access';
 
 export interface SidebarSearchProps {

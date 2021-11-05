@@ -2,7 +2,6 @@ import { ErrorRes } from '@cookingblog/api/interfaces';
 import { useLazyExtractRecipeQuery } from '@cookingblog/blog/recipe/data-access';
 import { LoadingSpinner } from '@cookingblog/blog/shared/ui/components/atoms';
 import { ErrorBadge } from '@cookingblog/blog/shared/ui/components/molecules';
-import { forwardTo } from '@cookingblog/blog/shared/utils';
 import {
   Button,
   Dialog,
@@ -10,9 +9,10 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-} from '@material-ui/core';
+} from '@mui/material';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export interface ImportRecipeModalProps {
   open: boolean;
@@ -21,6 +21,7 @@ export interface ImportRecipeModalProps {
 
 export function ImportRecipeModal(props: ImportRecipeModalProps) {
   const { open, onClose } = props;
+  const navigate = useNavigate();
   const urlInputRef = useRef<HTMLInputElement>();
 
   const [trigger, { isLoading, isUninitialized, data, error }] =
@@ -28,7 +29,7 @@ export function ImportRecipeModal(props: ImportRecipeModalProps) {
 
   useEffect(() => {
     if (data) {
-      forwardTo(`/recipe/add?url=${urlInputRef?.current?.value}`);
+      navigate(`/recipe/add?url=${urlInputRef?.current?.value}`);
     }
   }, [data]);
 

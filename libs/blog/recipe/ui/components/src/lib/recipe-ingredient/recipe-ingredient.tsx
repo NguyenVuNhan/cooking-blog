@@ -6,16 +6,17 @@ import {
   ToShoppingListButton,
 } from '@cookingblog/blog/shared/ui/components/atoms';
 import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import {
   Box,
   Button,
   List,
   ListItem,
   ListItemIcon,
-  makeStyles,
+  Theme,
   Typography,
-} from '@material-ui/core';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { useContext, useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -83,7 +84,7 @@ export function RecipeIngredient(props: RecipeIngredientProps) {
   );
 }
 
-const useStyle = makeStyles((theme) => ({
+const useStyle = makeStyles((theme: Theme) => ({
   ingredientItem: {
     '& .MuiListItemIcon-root': {
       minWidth: 'max-content',
