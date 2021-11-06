@@ -13,11 +13,11 @@ export function RecipeSearch() {
   const { search } = useLocation();
   const [trigger, { data, error, isLoading, isUninitialized }] =
     useLazySearchRecipeQuery();
-  const { q: query, meal } = useGetQuery();
+  const query = useGetQuery();
 
   useEffect(() => {
-    trigger({ query, meal: meal as TMeal });
-  }, [search]);
+    trigger({ query: query.q, meal: query.meal as TMeal });
+  }, [search, query]);
 
   return (
     <RecipeTemplate hideGoBack showToolBox={false}>

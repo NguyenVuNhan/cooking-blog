@@ -1,12 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export const useGetQuery = () => {
   const location = useLocation();
-  const [query, setQuery] =
-    useState<Record<string, string | undefined>>(undefined);
-
-  useEffect(() => {
+  return useMemo(() => {
+    const query: Record<string, string | undefined> = {};
     const parseQuery = location.search.substring(1);
     const vars = parseQuery.split('&');
 
@@ -15,8 +13,6 @@ export const useGetQuery = () => {
       query[pair[0]] = pair[1];
     }
 
-    setQuery({ ...query });
+    return query;
   }, [location]);
-
-  return query;
 };

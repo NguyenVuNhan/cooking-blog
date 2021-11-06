@@ -1,5 +1,8 @@
 import { ShoppingListCtx } from '@cookingblog/blog/shopping-list/data-access';
-import { AislesView, RecipesView } from '@cookingblog/blog/shopping-list/ui';
+import BookIcon from '@mui/icons-material/Book';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
+import CloseIcon from '@mui/icons-material/Close';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 import {
   Button,
   Dialog,
@@ -9,29 +12,13 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-import BookIcon from '@mui/icons-material/Book';
-import ClearAllIcon from '@mui/icons-material/ClearAll';
-import CloseIcon from '@mui/icons-material/Close';
-import ListAltIcon from '@mui/icons-material/ListAlt';
 import { useContext, useState } from 'react';
+import ListView from './list-view';
 
-/* eslint-disable-next-line */
-export interface ShoppingCartProps {}
-
-export function ShoppingCart(props: ShoppingCartProps) {
+export function ShoppingCart() {
   const { open, closeShoppingList, clearShoppingList } =
     useContext(ShoppingListCtx);
   const [view, setView] = useState<'aisles' | 'recipes'>('aisles');
-
-  let listView;
-  switch (view) {
-    case 'aisles':
-      listView = <AislesView />;
-      break;
-    case 'recipes':
-      listView = <RecipesView />;
-      break;
-  }
 
   return (
     <Dialog open={open} onClose={closeShoppingList} fullWidth maxWidth="xs">
@@ -63,7 +50,9 @@ export function ShoppingCart(props: ShoppingCartProps) {
         />
       </div>
       <Divider className="mx-1" />
-      <DialogContent>{listView}</DialogContent>
+      <DialogContent>
+        <ListView type={view} />
+      </DialogContent>
       <Divider className="m-1" />
     </Dialog>
   );

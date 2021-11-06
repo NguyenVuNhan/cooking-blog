@@ -14,7 +14,7 @@ export function RecipeShell() {
         {routes.map((route, index) => (
           <Route
             key={index}
-            path={`/recipe${route.path}`}
+            path={route.path}
             element={
               <Suspense fallback={<LoadingSpinner />}>
                 {!route.auth || isAuthenticated ? (
@@ -26,7 +26,6 @@ export function RecipeShell() {
             }
           />
         ))}
-        <Route element={<Navigate to="/" />} />
       </Routes>
     </div>
   );

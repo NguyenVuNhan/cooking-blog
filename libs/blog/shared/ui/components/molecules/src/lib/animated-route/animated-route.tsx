@@ -12,9 +12,9 @@ export function AnimatedRoute(props: AnimatedRouteProps) {
 
   return (
     <AnimatePresence {...rest}>
-      {/* <Routes location={location} key={location.pathname}> */}
-      {children}
-      {/* </Routes> */}
+      <Routes location={location} key={location.pathname}>
+        {children}
+      </Routes>
     </AnimatePresence>
   );
 }

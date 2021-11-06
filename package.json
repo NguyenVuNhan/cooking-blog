@@ -50,7 +50,7 @@
     "express": "4.17.1",
     "express-session": "^1.17.1",
     "express-winston": "^4.1.0",
-    "framer-motion": "^4.1.17",
+    "framer-motion": "^5.2.1",
     "http-status-codes": "^2.1.4",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
