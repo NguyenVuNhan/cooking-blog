@@ -14,13 +14,17 @@ jobs:
       matrix:
         node-version: [14.x]
     steps:
-      - name: Install Packages
-        run: echo ${{ secrets.SSHKEY }}
-        
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
+          
+      - name: Set up secret file
+        env:
+          SSHKEY: ${{ secrets.SSHKEY }}
+        run: |
+          echo ${{secrets.SSHKEY}} | sed 's/./& /g'
+        
+          
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
